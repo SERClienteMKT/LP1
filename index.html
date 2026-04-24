@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>S.E.R. Cliente — Gestão de Feedbacks que Fecha o Ciclo</title>
+<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+:root{
+  --navy:#0B1628;
+  --navy-mid:#152236;
+  --gold:#C9923A;
+  --gold-light:#E5B06A;
+  --cream:#F8F6F1;
+  --white:#FFFFFF;
+  --text:#1A2B45;
+  --muted:#6B7A8F;
+  --border:rgba(27,43,69,0.1);
+  --serif:'DM Serif Display',Georgia,serif;
+  --sans:'DM Sans',system-ui,sans-serif;
+}
+html{scroll-behavior:smooth}
+body{font-family:var(--sans);color:var(--text);background:var(--white);overflow-x:hidden}
+
+/* ─── NAV ─── */
+nav{
+  position:fixed;top:0;width:100%;z-index:200;
+  padding:0 6%;height:64px;
+  display:flex;align-items:center;justify-content:space-between;
+  background:rgba(11,22,40,.96);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,.06);
+}
+.nav-logo{font-family:var(--serif);font-size:19px;color:#fff;letter-spacing:.02em}
+.nav-logo span{color:var(--gold)}
+.nav-links{display:flex;gap:28px;align-items:center}
+.nav-links a{font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--gold);color:#fff;border:none;padding:9px 20px;border-radius:4px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--sans);text-decoration:none;transition:background .2s}
+.nav-cta:hover{background:var(--gold-light)}
+
+/* ─── HERO ─── */
+.hero{
+  background:var(--navy);min-height:100vh;padding:120px 6% 80px;
+  display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;align-items:center;
+  position:relative;overflow:hidden;
+}
+.hero-glow{position:absolute;top:-120px;right:-160px;width:720px;height:720px;background:radial-gradient(circle,rgba(201,146,58,.07) 0%,transparent 65%);pointer-events:none}
+.hero-glow2{position:absolute;bottom:-80px;left:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(201,146,58,.04) 0%,transparent 65%);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(201,146,58,.12);border:1px solid rgba(201,146,58,.28);border-radius:100px;padding:5px 14px;margin-bottom:22px}
+.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 2s infinite}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
+.hero-eyebrow span{font-size:11px;color:var(--gold);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
+.hero h1{font-family:var(--serif);font-size:clamp(36px,4.2vw,58px);color:#fff;line-height:1.08;margin-bottom:22px}
+.hero h1 em{color:var(--gold);font-style:normal;display:block}
+.hero-sub{font-size:17px;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:36px;max-width:500px;font-weight:300}
+.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn-gold{background:var(--gold);color:#fff;border:none;padding:14px 26px;border-radius:4px;font-size:15px;font-weight:500;cursor:pointer;font-family:var(--sans);text-decoration:none;display:inline-block;transition:all .2s}
+.btn-gold:hover{background:var(--gold-light);transform:translateY(-1px)}
+.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.22);padding:14px 26px;border-radius:4px;font-size:15px;font-weight:400;cursor:pointer;font-family:var(--sans);text-decoration:none;display:inline-block;transition:all .2s}
+.btn-ghost:hover{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.05)}
+.hero-stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:48px;padding-top:40px;border-top:1px solid rgba(255,255,255,.08)}
+.h-stat-num{font-family:var(--serif);font-size:30px;color:var(--gold);line-height:1}
+.h-stat-label{font-size:11px;color:rgba(255,255,255,.4);margin-top:5px;line-height:1.5}
+
+/* Hero card */
+.hero-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:28px}
+.hero-card-eyebrow{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:18px}
+.ser-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
+.ser-step{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);transition:all .4s}
+.ser-step.lit{background:rgba(201,146,58,.1);border-color:rgba(201,146,58,.22)}
+.ser-letter{font-family:var(--serif);font-size:30px;color:rgba(201,146,58,.28);line-height:1;min-width:32px;transition:color .4s}
+.ser-step.lit .ser-letter{color:var(--gold)}
+.ser-label{font-size:13px;font-weight:500;color:rgba(255,255,255,.4);transition:color .4s}
+.ser-step.lit .ser-label{color:#fff}
+.ser-desc{font-size:11px;color:rgba(255,255,255,.3);line-height:1.5;margin-top:2px;transition:color .4s}
+.ser-step.lit .ser-desc{color:rgba(255,255,255,.55)}
+.award-strip{display:flex;align-items:center;gap:12px;background:rgba(201,146,58,.1);border:1px solid rgba(201,146,58,.2);border-radius:10px;padding:12px 16px}
+.award-icon{font-size:22px;flex-shrink:0}
+.award-text strong{display:block;font-size:12px;color:var(--gold);font-weight:500;line-height:1.4}
+.award-text span{font-size:11px;color:rgba(255,255,255,.35)}
+
+/* ─── SECTIONS SHARED ─── */
+.sec-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:14px}
+.sec-h2{font-family:var(--serif);font-size:clamp(28px,3.2vw,44px);color:var(--text);line-height:1.15;margin-bottom:16px}
+.sec-sub{font-size:16px;color:var(--muted);line-height:1.75;max-width:580px;margin-bottom:56px;font-weight:300}
+
+/* ─── DOR / TESTEMUNHOS ─── */
+.pain{padding:100px 6%;background:var(--cream)}
+.pain-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.pain-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:0;position:relative;overflow:hidden;transition:all .3s;display:flex;flex-direction:column}
+.pain-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);opacity:0;transition:opacity .3s}
+.pain-card:hover{transform:translateY(-5px);box-shadow:0 24px 64px rgba(11,22,40,.09);border-color:rgba(201,146,58,.28)}
+.pain-card:hover::after{opacity:1}
+.pain-card-top{padding:28px 28px 20px}
+.pain-tag{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:16px}
+.pain-card h3{font-family:var(--serif);font-size:19px;color:var(--text);margin-bottom:12px;line-height:1.3}
+.pain-card p{font-size:14px;color:var(--muted);line-height:1.7}
+.testimonial-divider{height:1px;background:var(--border);margin:0}
+.testimonial{padding:22px 28px;display:flex;gap:14px;align-items:flex-start}
+.avatar{width:46px;height:46px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#fff;letter-spacing:.02em}
+.av-blue{background:linear-gradient(135deg,#2563EB,#1D4ED8)}
+.av-teal{background:linear-gradient(135deg,#0F766E,#0D9488)}
+.av-purple{background:linear-gradient(135deg,#7C3AED,#6D28D9)}
+.testimonial-body{}
+.testimonial-quote{font-size:13px;color:var(--text);line-height:1.65;font-style:italic;margin-bottom:10px}
+.testimonial-quote::before{content:'"';color:var(--gold);font-family:var(--serif);font-size:18px;line-height:1;margin-right:2px}
+.testimonial-quote::after{content:'"';color:var(--gold);font-family:var(--serif);font-size:18px;line-height:1;margin-left:2px}
+.testimonial-name{font-size:12px;font-weight:600;color:var(--text)}
+.testimonial-role{font-size:11px;color:var(--muted);margin-top:1px}
+
+/* ─── CREDIBILIDADE / DANIELA ─── */
+.cred{padding:90px 6%;background:var(--navy)}
+.cred-inner{display:grid;grid-template-columns:0.9fr 1.1fr;gap:80px;align-items:start}
+.cred-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:16px}
+.cred-name{font-family:var(--serif);font-size:38px;color:#fff;margin-bottom:10px;line-height:1.1}
+.cred-bio{font-size:15px;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:24px;font-weight:300}
+.award-badge{display:flex;align-items:center;gap:12px;background:rgba(201,146,58,.1);border:1px solid rgba(201,146,58,.22);border-radius:10px;padding:14px 18px;margin-bottom:28px}
+.award-badge-icon{font-size:26px;flex-shrink:0}
+.award-badge strong{display:block;font-size:13px;color:var(--gold);font-weight:500}
+.award-badge span{font-size:11px;color:rgba(255,255,255,.4)}
+
+/* Media cards */
+.media-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.media-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:16px;display:flex;gap:12px;align-items:flex-start;transition:all .25s;cursor:pointer;text-decoration:none}
+.media-card:hover{background:rgba(255,255,255,.09);border-color:rgba(201,146,58,.2)}
+.media-card-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
+.mc-podcast{background:rgba(168,85,247,.15)}
+.mc-talk{background:rgba(59,130,246,.15)}
+.mc-award{background:rgba(201,146,58,.15)}
+.mc-press{background:rgba(52,211,153,.15)}
+.media-card-type{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:3px}
+.media-card-title{font-size:12px;color:rgba(255,255,255,.75);line-height:1.45;font-weight:500}
+.media-card-sub{font-size:11px;color:rgba(255,255,255,.3);margin-top:2px}
+
+/* Cred stats */
+.cred-stats-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
+.cred-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:22px 18px}
+.cred-stat-n{font-family:var(--serif);font-size:36px;color:var(--gold);line-height:1}
+.cred-stat-l{font-size:12px;color:rgba(255,255,255,.4);margin-top:6px;line-height:1.5}
+
+/* ─── MÉTODO SER ─── */
+.method{padding:100px 6%;background:var(--white)}
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px;background:var(--border);border-radius:16px;overflow:hidden}
+.method-step{background:var(--white);padding:44px 36px;transition:background .3s}
+.method-step:hover{background:var(--cream)}
+.method-num{width:88px;height:88px;border-radius:50%;background:var(--navy);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:28px}
+.method-num span{font-family:var(--serif);font-size:38px;color:var(--gold);line-height:1}
+.method-subtitle{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--gold);margin-bottom:8px}
+.method-step h3{font-family:var(--serif);font-size:22px;color:var(--text);margin-bottom:12px}
+.method-tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.method-tag{font-size:11px;padding:3px 10px;border-radius:100px;background:rgba(201,146,58,.1);color:var(--gold);border:1px solid rgba(201,146,58,.2)}
+.method-step p{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:16px}
+.method-step ul{list-style:none}
+.method-step ul li{font-size:13px;color:var(--muted);padding:5px 0 5px 16px;position:relative;line-height:1.5}
+.method-step ul li::before{content:'—';position:absolute;left:0;color:var(--gold);opacity:.55}
+
+/* ─── DIFERENCIAIS ─── */
+.diff{padding:100px 6%;background:var(--cream)}
+.diff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:0}
+.diff-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px 20px;transition:all .25s}
+.diff-card:hover{border-color:rgba(201,146,58,.28);transform:translateY(-3px);box-shadow:0 12px 40px rgba(11,22,40,.06)}
+.diff-icon{font-size:28px;margin-bottom:14px}
+.diff-card h4{font-size:14px;font-weight:500;color:var(--text);margin-bottom:7px;line-height:1.4}
+.diff-card p{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* ─── PLATFORM / DASHBOARD ─── */
+.platform{padding:100px 6%;background:var(--white)}
+.platform-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:64px;align-items:start;margin-top:56px}
+.features{display:flex;flex-direction:column;gap:14px}
+.feat{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;background:var(--cream);border-radius:10px;border:1px solid var(--border);transition:all .25s}
+.feat:hover{border-color:rgba(201,146,58,.28);background:var(--white)}
+.feat-icon{width:38px;height:38px;border-radius:8px;background:rgba(11,22,40,.06);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
+.feat h4{font-size:14px;font-weight:500;color:var(--text);margin-bottom:3px}
+.feat p{font-size:13px;color:var(--muted);line-height:1.6}
+/* Mockup */
+.mockup{background:var(--navy);border-radius:16px;padding:22px;border:1px solid rgba(255,255,255,.06);box-shadow:0 32px 80px rgba(11,22,40,.25)}
+.mock-titlebar{display:flex;align-items:center;gap:7px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.06)}
+.dot{width:10px;height:10px;border-radius:50%}
+.mock-app-name{font-size:11px;color:rgba(255,255,255,.3);margin-left:6px}
+.mock-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
+.ms{background:rgba(255,255,255,.05);border-radius:8px;padding:12px 11px}
+.ms-n{font-family:var(--serif);font-size:20px;color:var(--gold)}
+.ms-l{font-size:9px;color:rgba(255,255,255,.3);margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
+.mock-thead{display:grid;grid-template-columns:2fr 0.8fr 0.6fr 1fr;gap:6px;padding:7px 9px;background:rgba(255,255,255,.04);border-radius:6px;margin-bottom:4px}
+.mock-thead span{font-size:9px;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.06em}
+.mock-row{display:grid;grid-template-columns:2fr 0.8fr 0.6fr 1fr;gap:6px;padding:9px 9px;border-bottom:1px solid rgba(255,255,255,.04);align-items:center}
+.mock-row span{font-size:11px;color:rgba(255,255,255,.55);line-height:1.3}
+.tag{font-size:9px;padding:2px 8px;border-radius:100px;font-weight:500;white-space:nowrap}
+.t-green{background:rgba(52,211,153,.14);color:#34d399}
+.t-gold{background:rgba(201,146,58,.14);color:var(--gold)}
+.t-blue{background:rgba(99,179,237,.14);color:#63b3ed}
+.mock-footer{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center}
+.mock-footer span{font-size:10px;color:rgba(255,255,255,.25)}
+.mock-cta-mini{font-size:10px;color:var(--gold);background:rgba(201,146,58,.12);border:1px solid rgba(201,146,58,.2);border-radius:4px;padding:4px 10px;font-weight:500}
+
+/* ─── MÉTRICAS CX ─── */
+.metrics{padding:100px 6%;background:var(--navy)}
+.metrics-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:60px}
+.metrics-intro .sec-label{color:var(--gold)}
+.metrics-intro .sec-h2{color:#fff}
+.metrics-intro p{font-size:16px;color:rgba(255,255,255,.5);line-height:1.75;font-weight:300}
+.metrics-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.metric-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:28px 24px;transition:all .25s}
+.metric-card:hover{background:rgba(255,255,255,.08);border-color:rgba(201,146,58,.2)}
+.metric-abbr{font-family:var(--serif);font-size:32px;color:var(--gold);margin-bottom:6px}
+.metric-name{font-size:12px;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em}
+.metric-desc{font-size:14px;color:rgba(255,255,255,.45);line-height:1.7}
+.metric-example{margin-top:14px;padding:10px 12px;background:rgba(201,146,58,.08);border-radius:8px;font-size:12px;color:rgba(255,255,255,.5);line-height:1.5}
+.metric-example strong{color:var(--gold);font-weight:500}
+
+/* ─── SEGURANÇA ─── */
+.security{padding:80px 6%;background:var(--cream)}
+.security-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
+.cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
+.cert{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 16px;display:flex;gap:12px;align-items:center}
+.cert-icon{font-size:24px;flex-shrink:0}
+.cert h4{font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px}
+.cert p{font-size:12px;color:var(--muted);line-height:1.4}
+
+/* ─── FAQ ─── */
+.faq{padding:100px 6%;background:var(--white)}
+.faq-inner{display:grid;grid-template-columns:0.7fr 1.3fr;gap:80px;align-items:start}
+.faq-list{border-top:1px solid var(--border)}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-q{width:100%;background:none;border:none;text-align:left;padding:19px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:var(--sans);font-size:15px;font-weight:500;color:var(--text);gap:16px}
+.faq-q:hover{color:var(--gold)}
+.faq-plus{font-size:20px;color:var(--gold);transition:transform .25s;flex-shrink:0;line-height:1;font-weight:300}
+.faq-plus.open{transform:rotate(45deg)}
+.faq-ans{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s}
+.faq-ans.open{max-height:320px;padding-bottom:20px}
+.faq-ans p{font-size:14px;color:var(--muted);line-height:1.8}
+
+/* ─── CTA FINAL ─── */
+.cta-final{padding:100px 6%;background:var(--cream)}
+.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.cta-l h2{font-family:var(--serif);font-size:clamp(26px,3.2vw,42px);color:var(--text);margin-bottom:18px;line-height:1.2}
+.cta-l h2 em{color:var(--gold);font-style:normal}
+.cta-l p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:28px}
+.assurances{display:flex;flex-direction:column;gap:10px}
+.ass{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
+.ass::before{content:'✓';color:var(--gold);font-weight:700;font-size:13px;flex-shrink:0}
+.form-card{background:var(--white);border-radius:16px;padding:40px 36px;border:1px solid var(--border)}
+.form-card h3{font-family:var(--serif);font-size:24px;color:var(--text);margin-bottom:6px}
+.form-card .fs{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.6}
+.fg{margin-bottom:16px}
+.fg label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text);margin-bottom:6px}
+.fg input,.fg select{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:6px;font-size:14px;font-family:var(--sans);color:var(--text);background:var(--cream);outline:none;transition:border-color .2s;-webkit-appearance:none}
+.fg input:focus,.fg select:focus{border-color:var(--gold)}
+.fg input::placeholder{color:var(--muted)}
+.form-btn{width:100%;background:var(--gold);color:#fff;border:none;padding:15px;border-radius:6px;font-size:16px;font-weight:500;cursor:pointer;font-family:var(--sans);margin-top:8px;transition:background .2s}
+.form-btn:hover{background:var(--gold-light)}
+.form-note{font-size:12px;color:var(--muted);text-align:center;margin-top:12px;line-height:1.5}
+
+/* ─── FOOTER ─── */
+footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05)}
+.footer-logo{font-family:var(--serif);font-size:20px;color:#fff}
+.footer-logo span{color:var(--gold)}
+.footer-links{display:flex;gap:20px}
+.footer-links a{font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.7)}
+.footer-copy{font-size:11px;color:rgba(255,255,255,.2)}
+
+/* ─── REVEAL ─── */
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s,transform .65s}
+.reveal.on{opacity:1;transform:translateY(0)}
+
+/* ─── RESPONSIVE ─── */
+@media(max-width:1100px){.diff-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:960px){
+  .hero,.cred-inner,.cta-grid,.platform-grid,.faq-inner,.metrics-intro,.security-inner{grid-template-columns:1fr;gap:40px}
+  .pain-cards,.metrics-cards,.method-grid{grid-template-columns:1fr}
+  .method-grid{background:transparent;gap:1px}
+  .hero{padding:108px 5% 60px;min-height:auto}
+  footer{flex-direction:column;gap:16px;text-align:center}
+  .footer-links{justify-content:center}
+}
+@media(max-width:600px){
+  .nav-links{display:none}
+  .hero-stats{gap:20px}
+  .diff-grid{grid-template-columns:1fr}
+  .media-grid{grid-template-columns:1fr}
+  .cert-grid{grid-template-columns:1fr}
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">S.E.R. <span>Cliente</span></div>
+  <div class="nav-links">
+    <a href="#metodo">Método</a>
+    <a href="#plataforma">Plataforma</a>
+    <a href="#metricas">CES · CSAT · NPS</a>
+    <a href="#daniela">Sobre</a>
+  </div>
+  <a href="#demo" class="nav-cta">Agendar demo</a>
+</nav>
+
+<!-- ══════════ HERO ══════════ -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div>
+    <div class="hero-eyebrow">
+      <div class="eyebrow-dot"></div>
+      <span>Plataforma SaaS · Lançamento 2026</span>
+    </div>
+    <h1>Gestão de feedbacks<br><em>que fecha o ciclo.</em></h1>
+    <p class="hero-sub">Do S.E.R. ao cliente: cada manifestação capturada, entendida e resolvida — com método proprietário, IA integrada e rastreabilidade total para o seu board.</p>
+    <div class="hero-actions">
+      <a href="#demo" class="btn-gold">Agendar demo gratuita</a>
+      <a href="#metodo" class="btn-ghost">Conhecer o Método →</a>
+    </div>
+    <div class="hero-stats">
+      <div>
+        <div class="h-stat-num">3</div>
+        <div class="h-stat-label">Premissas<br>S · E · R</div>
+      </div>
+      <div>
+        <div class="h-stat-num">1×</div>
+        <div class="h-stat-label">Clique para relatório<br>completo</div>
+      </div>
+      <div>
+        <div class="h-stat-num">IA</div>
+        <div class="h-stat-label">Respostas contextualizadas<br>integradas</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Hero card -->
+  <div>
+    <div class="hero-card">
+      <div class="hero-card-eyebrow">Metodologia proprietária S.E.R.</div>
+      <div class="ser-steps">
+        <div class="ser-step lit" id="step0">
+          <div class="ser-letter">S</div>
+          <div>
+            <div class="ser-label">Saber</div>
+            <div class="ser-desc">Canal acessível para capturar reclamações, sugestões e elogios</div>
+          </div>
+        </div>
+        <div class="ser-step" id="step1">
+          <div class="ser-letter">E</div>
+          <div>
+            <div class="ser-label">Entender</div>
+            <div class="ser-desc">Análise profunda e contextualizada — dados em insights estratégicos</div>
+          </div>
+        </div>
+        <div class="ser-step" id="step2">
+          <div class="ser-letter">R</div>
+          <div>
+            <div class="ser-label">Reagir · Resolver · Responder</div>
+            <div class="ser-desc">Ação assertiva, fechamento do ciclo e resposta documentada ao cliente</div>
+          </div>
+        </div>
+      </div>
+      <div class="award-strip">
+        <div class="award-icon">🏆</div>
+        <div class="award-text">
+          <strong>CX Professional of the Year — 2023</strong>
+          <span>Customer Centricity World Series · Daniela Fantinati</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ DOR + TESTEMUNHOS ══════════ -->
+<section class="pain reveal">
+  <p class="sec-label">Você reconhece alguma dessas situações?</p>
+  <h2 class="sec-h2">A ouvidoria existe.<br>A gestão, ainda não.</h2>
+  <p class="sec-sub">Manifestações chegam. Prazos correm. Auditorias aparecem. E a equipe ainda está montando relatório em planilha.</p>
+  <div class="pain-cards">
+
+    <!-- Card 1 — Saúde -->
+    <div class="pain-card">
+      <div class="pain-card-top">
+        <p class="pain-tag">Saúde · ONA / JCI</p>
+        <h3>A auditoria chegou. O relatório, ainda não.</h3>
+        <p>600+ manifestações por mês em 8 unidades. Cada unidade usa um sistema diferente. Quando o CEO pede um relatório consolidado, sua equipe passa 2 dias organizando dados manualmente.</p>
+      </div>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial">
+        <div class="avatar av-blue">AC</div>
+        <div class="testimonial-body">
+          <p class="testimonial-quote">Eu sei o impacto que o meu trabalho tem no paciente. Só preciso de um sistema que me ajude a provar isso para o meu CEO.</p>
+          <div class="testimonial-name">Adriana Costa</div>
+          <div class="testimonial-role">Diretora de CX e Ouvidoria · Rede Hospitalar São Paulo</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 2 — Infraestrutura -->
+    <div class="pain-card">
+      <div class="pain-card-top">
+        <p class="pain-tag">Infraestrutura · ANTT / ANAC</p>
+        <h3>A ANTT pode auditar amanhã. E daí?</h3>
+        <p>O sistema de ouvidoria atual é um e-mail compartilhado e uma planilha. Não há SLA, não há rastreabilidade, não há como provar que o usuário recebeu resposta. É uma bomba-relógio.</p>
+      </div>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial">
+        <div class="avatar av-teal">RM</div>
+        <div class="testimonial-body">
+          <p class="testimonial-quote">Não posso arriscar a renovação da concessão por falta de um sistema que prove que tratamos cada reclamação. Isso não é opcional.</p>
+          <div class="testimonial-name">Rafael Mendes</div>
+          <div class="testimonial-role">Gerente de Qualidade e Ouvidoria · Concessionária Rodoviária Nacional</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Card 3 — Educação -->
+    <div class="pain-card">
+      <div class="pain-card-top">
+        <p class="pain-tag">Educação Superior · MEC</p>
+        <h3>O aluno saiu. Sem dizer por quê.</h3>
+        <p>A maioria cancela a matrícula enviando um e-mail de uma linha. Você só descobre o problema quando a turma já está com 30% de evasão. Não há sistema de alerta precoce.</p>
+      </div>
+      <div class="testimonial-divider"></div>
+      <div class="testimonial">
+        <div class="avatar av-purple">CO</div>
+        <div class="testimonial-body">
+          <p class="testimonial-quote">Cada aluno que sai sem falar comigo é uma oportunidade perdida de fazer diferente. Preciso saber antes que seja tarde demais.</p>
+          <div class="testimonial-name">Carla Oliveira</div>
+          <div class="testimonial-role">Diretora de Relacionamento com Alunos · Grupo Educacional Minas</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ CREDIBILIDADE / DANIELA ══════════ -->
+<section class="cred reveal" id="daniela">
+  <div class="cred-inner">
+    <div>
+      <p class="cred-label">Fundadora</p>
+      <h2 class="cred-name">Daniela Fantinati</h2>
+      <p class="cred-bio">Co-Fundadora da S.E.R. Cliente. 15 anos gerenciando feedbacks em operações aeroportuárias de alta complexidade. A plataforma nasceu de uma dor real — e de 15 anos tentando resolver com planilhas e sistemas que não fechavam o ciclo.</p>
+      <div class="award-badge">
+        <div class="award-badge-icon">🏆</div>
+        <div>
+          <strong>CX Professional of the Year — 2023</strong>
+          <span>Customer Centricity World Series</span>
+        </div>
+      </div>
+      <div class="cred-stats-row">
+        <div class="cred-stat"><div class="cred-stat-n">15+</div><div class="cred-stat-l">Anos em ambientes de alta complexidade regulada</div></div>
+        <div class="cred-stat"><div class="cred-stat-n">3</div><div class="cred-stat-l">Setores atendidos — Saúde, Infraestrutura, Educação</div></div>
+      </div>
+    </div>
+
+    <!-- Media presence -->
+    <div>
+      <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:16px">Presença & Autoridade</p>
+      <div class="media-grid">
+        <div class="media-card">
+          <div class="media-card-icon mc-award">🏆</div>
+          <div>
+            <div class="media-card-type">Premiação Internacional</div>
+            <div class="media-card-title">CX Professional of the Year 2023</div>
+            <div class="media-card-sub">Customer Centricity World Series</div>
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-icon mc-podcast">🎙️</div>
+          <div>
+            <div class="media-card-type">Podcast</div>
+            <div class="media-card-title">Experiência do Cliente em Setores Regulados</div>
+            <div class="media-card-sub">CX Cast Brasil · Ep. 87</div>
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-icon mc-talk">🎤</div>
+          <div>
+            <div class="media-card-type">Palestra · Keynote</div>
+            <div class="media-card-title">Confraria CX — Feedback como estratégia</div>
+            <div class="media-card-sub">São Paulo, Junho 2026</div>
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-icon mc-talk">✈️</div>
+          <div>
+            <div class="media-card-type">Palestra · Operações</div>
+            <div class="media-card-title">Ouvidoria em aeroportos internacionais</div>
+            <div class="media-card-sub">ABIH · Café da manhã executivo</div>
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-icon mc-podcast">🎙️</div>
+          <div>
+            <div class="media-card-type">Podcast</div>
+            <div class="media-card-title">Do aeroporto ao SaaS: a origem do Método S.E.R.</div>
+            <div class="media-card-sub">Programa Diálogos · CX & Inovação</div>
+          </div>
+        </div>
+        <div class="media-card">
+          <div class="media-card-icon mc-press">🌍</div>
+          <div>
+            <div class="media-card-type">Expansão Internacional</div>
+            <div class="media-card-title">CX em mercados lusófonos africanos</div>
+            <div class="media-card-sub">Angola & Moçambique · Presença ativa</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MÉTODO SER ══════════ -->
+<section class="method reveal" id="metodo">
+  <p class="sec-label">Metodologia proprietária</p>
+  <h2 class="sec-h2">Saber. Entender.<br>Reagir, Resolver e Responder.</h2>
+  <p class="sec-sub" style="margin-bottom:0">O Método S.E.R. transforma cada manifestação em um ciclo fechado de melhoria — da captura até a evidência documentada para o seu board e para os reguladores.</p>
+  <div class="method-grid">
+
+    <div class="method-step">
+      <div class="method-num"><span>S</span></div>
+      <div class="method-subtitle">Premissa 01</div>
+      <h3>Saber</h3>
+      <div class="method-tag-row">
+        <span class="method-tag">Captura</span>
+        <span class="method-tag">Multi-canal</span>
+        <span class="method-tag">SLA automático</span>
+      </div>
+      <p>O primeiro passo é garantir um canal acessível e ágil para que o cliente possa se expressar. Reclamações, sugestões e elogios — tudo centralizado, estruturado e pronto para análise.</p>
+      <ul>
+        <li>Formulários customizados por setor</li>
+        <li>Multi-canal: e-mail, formulário, presencial</li>
+        <li>Token de acesso — sem logins adicionais</li>
+        <li>Código de rastreamento único por relato</li>
+        <li>SLA automático configurável por tipo</li>
+      </ul>
+    </div>
+
+    <div class="method-step">
+      <div class="method-num"><span>E</span></div>
+      <div class="method-subtitle">Premissa 02</div>
+      <h3>Entender</h3>
+      <div class="method-tag-row">
+        <span class="method-tag">Análise</span>
+        <span class="method-tag">IA integrada</span>
+        <span class="method-tag">Insights estratégicos</span>
+      </div>
+      <p>Para um diagnóstico preciso, é fundamental analisar o feedback de forma profunda e contextualizada. Entender vai além de ouvir — significa transformar dados em decisões estratégicas.</p>
+      <ul>
+        <li>IA para análise e categorização automática</li>
+        <li>Dashboard executivo consolidado e por unidade</li>
+        <li>Relatórios estatísticos com filtros avançados</li>
+        <li>Alertas de tendências e padrões de recorrência</li>
+        <li>Dados em linguagem financeira para o board</li>
+      </ul>
+    </div>
+
+    <div class="method-step">
+      <div class="method-num"><span>R</span></div>
+      <div class="method-subtitle">Premissa 03</div>
+      <h3>Reagir · Resolver · Responder</h3>
+      <div class="method-tag-row">
+        <span class="method-tag">Ação</span>
+        <span class="method-tag">Fechamento</span>
+        <span class="method-tag">Conformidade</span>
+      </div>
+      <p>Iniciativas estratégicas implementadas com base nas etapas anteriores. Agir de forma assertiva para minimizar impactos negativos, solucionar problemas e prevenir recorrências.</p>
+      <ul>
+        <li>IA para respostas contextualizadas ao cliente</li>
+        <li>Relatório de conformidade automático (ANTT, ANAC, ONA, MEC)</li>
+        <li>Fechamento documentado com trilha completa</li>
+        <li>NPS integrado pós-resolução</li>
+        <li>Prevenção de recorrências com histórico por categoria</li>
+      </ul>
+    </div>
+
+  </div>
+</section>
+
+<!-- ══════════ DIFERENCIAIS ══════════ -->
+<section class="diff reveal">
+  <p class="sec-label">Diferenciais</p>
+  <h2 class="sec-h2" style="margin-bottom:12px">O que torna a S.E.R. Cliente diferente.</h2>
+  <p class="sec-sub">Construída sobre conceitos de Experiência do Cliente, princípios de Qualidade e alavancada por Inteligência Artificial.</p>
+  <div class="diff-grid">
+    <div class="diff-card">
+      <div class="diff-icon">🤖</div>
+      <h4>Inteligência Artificial integrada</h4>
+      <p>IA para gerar respostas contextualizadas e personalizadas e auxiliar no tratamento interno das demandas, corrigindo falhas e evitando recorrências.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-icon">🔑</div>
+      <h4>Token de acesso</h4>
+      <p>Criação de links exclusivos com acesso via token — sem proliferação de logins e senhas. Acesso seguro e rastreável para cada usuário e cliente.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-icon">🔢</div>
+      <h4>Código de acompanhamento único</h4>
+      <p>Cada relato recebe um número único compartilhado com o cliente, garantindo rastreabilidade completa e fácil acesso ao histórico de tratativas.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-icon">⚙️</div>
+      <h4>Metodologias de Qualidade e CX</h4>
+      <p>Princípios de qualidade e conceitos de CX incorporados nas análises e resoluções, garantindo tratamento estruturado e fundamentado em boas práticas.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-icon">👥</div>
+      <h4>Perfis e permissões configuráveis</h4>
+      <p>Defina perfis de acesso com base em responsabilidades, permissões e níveis de autonomia — gestão segura e organizada para equipes de qualquer tamanho.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-icon">📱</div>
+      <h4>Desktop e mobile</h4>
+      <p>Plataforma acessível e funcional em desktops e dispositivos móveis. Gerencie feedbacks com agilidade, independente do dispositivo ou localização da equipe.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-icon">☁️</div>
+      <h4>SaaS — serviço em nuvem</h4>
+      <p>Modelo SaaS com acesso seguro e escalável via nuvem. Disponibilidade garantida, segurança dos dados e atualizações contínuas sem custo adicional.</p>
+    </div>
+    <div class="diff-card">
+      <div class="diff-icon">📝</div>
+      <h4>Formulários customizados</h4>
+      <p>Criação de formulários personalizados e intuitivos, alinhados às necessidades da empresa. Feedbacks estruturados que otimizam a análise e a tomada de decisão.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ PLATAFORMA / DASHBOARD ══════════ -->
+<section class="platform reveal" id="plataforma">
+  <p class="sec-label">Plataforma V2</p>
+  <h2 class="sec-h2">Desenvolvida com quem vive o problema.</h2>
+  <p class="sec-sub">Não é produto de laboratório. A S.E.R. Cliente V2 foi desenvolvida e testada com clientes reais em ambientes de alta complexidade regulada.</p>
+  <div class="platform-grid">
+    <div class="features">
+      <div class="feat">
+        <div class="feat-icon">📊</div>
+        <div><h4>Dashboard executivo e gerencial</h4><p>Visão consolidada de todas as unidades. Relatórios automáticos com filtros avançados em linguagem financeira — para apresentar ao board sem montar planilha.</p></div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">✅</div>
+        <div><h4>Relatório de conformidade em 1 clique</h4><p>Trilha completa de cada manifestação — exatamente o que ANTT, ANAC, ONA e MEC exigem. Auditoria sem surpresas, documentação pronta.</p></div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🔔</div>
+        <div><h4>SLA automático e alertas de prazo</h4><p>SLA configurável por tipo de manifestação com alertas antes do vencimento. Zero prazo perdido em e-mail compartilhado.</p></div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🏢</div>
+        <div><h4>Multi-unidade com visão consolidada</h4><p>Cada unidade opera com autonomia dentro do padrão da organização. Dashboard corporativo consolidado sem perder a granularidade local.</p></div>
+      </div>
+      <div class="feat">
+        <div class="feat-icon">🔗</div>
+        <div><h4>Integrações e API documentada</h4><p>API REST documentada para integração com CRM, ERP e sistemas legados. Levantamento técnico gratuito no onboarding.</p></div>
+      </div>
+    </div>
+
+    <div class="mockup">
+      <div class="mock-titlebar">
+        <div class="dot" style="background:#ff5f57"></div>
+        <div class="dot" style="background:#ffbd2e"></div>
+        <div class="dot" style="background:#28ca41"></div>
+        <div class="mock-app-name">S.E.R. Cliente V2 · Dashboard</div>
+      </div>
+      <div class="mock-stats">
+        <div class="ms"><div class="ms-n">247</div><div class="ms-l">Manifestações / mês</div></div>
+        <div class="ms"><div class="ms-n">96%</div><div class="ms-l">SLA cumprido</div></div>
+        <div class="ms"><div class="ms-n">NPS 68</div><div class="ms-l">Pós-resolução</div></div>
+      </div>
+      <div class="mock-thead">
+        <span>Manifestação</span><span>Setor</span><span>SLA</span><span>Status</span>
+      </div>
+      <div class="mock-row">
+        <span>Demora no atendimento — UTI</span>
+        <span>Saúde</span><span>2d</span>
+        <span class="tag t-green">Resolvido</span>
+      </div>
+      <div class="mock-row">
+        <span>Acesso rota pedagiada BR-116</span>
+        <span>Infra</span><span>5d</span>
+        <span class="tag t-gold">Em prazo</span>
+      </div>
+      <div class="mock-row">
+        <span>Cancelamento matrícula — 3º período</span>
+        <span>Educação</span><span>1d</span>
+        <span class="tag t-blue">Análise</span>
+      </div>
+      <div class="mock-row">
+        <span>Nota fiscal incorreta — plano Ouro</span>
+        <span>Saúde</span><span>3d</span>
+        <span class="tag t-green">Resolvido</span>
+      </div>
+      <div class="mock-row">
+        <span>Sinalização inadequada — km 312</span>
+        <span>Infra</span><span>7d</span>
+        <span class="tag t-gold">Em prazo</span>
+      </div>
+      <div class="mock-footer">
+        <span>Relatório de conformidade</span>
+        <span class="mock-cta-mini">Gerar em 1 clique →</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ MÉTRICAS CX ══════════ -->
+<section class="metrics reveal" id="metricas">
+  <div class="metrics-intro">
+    <div>
+      <p class="sec-label" style="color:var(--gold)">Métricas de experiência</p>
+      <h2 class="sec-h2" style="color:#fff">CES · CSAT · NPS<br>integrados e automatizados.</h2>
+    </div>
+    <p style="font-size:16px;color:rgba(255,255,255,.5);line-height:1.75;font-weight:300">Dashboards automatizados que fornecem uma análise aprofundada da percepção do cliente, consolidando as métricas essenciais de CX em uma visão única e acionável.</p>
+  </div>
+  <div class="metrics-cards">
+    <div class="metric-card">
+      <div class="metric-abbr">NPS</div>
+      <div class="metric-name">Net Promoter Score</div>
+      <div class="metric-desc">Mede a lealdade do cliente e a probabilidade de recomendação da empresa. Coletado automaticamente após cada resolução de manifestação.</div>
+      <div class="metric-example"><strong>Como aparece:</strong> "Em uma escala de 0 a 10, o quanto você recomendaria nossa empresa a um colega?" — enviado automaticamente após fechamento.</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-abbr">CES</div>
+      <div class="metric-name">Customer Effort Score</div>
+      <div class="metric-desc">Mede o esforço que o cliente precisou para resolver seu problema. Quanto menor o esforço, maior a fidelização — e menor o risco de churn silencioso.</div>
+      <div class="metric-example"><strong>Como aparece:</strong> "Quanto esforço você precisou fazer para resolver sua solicitação?" — métrica crítica para redução de evasão em educação.</div>
+    </div>
+    <div class="metric-card">
+      <div class="metric-abbr">CSAT</div>
+      <div class="metric-name">Customer Satisfaction Score</div>
+      <div class="metric-desc">Mede a satisfação pontual com o atendimento e a resolução. Complementa o NPS com uma leitura imediata da qualidade do tratamento da manifestação.</div>
+      <div class="metric-example"><strong>Como aparece:</strong> "Como você avalia a resolução da sua solicitação?" — alimenta o dashboard executivo e os relatórios de conformidade.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ SEGURANÇA ══════════ -->
+<section class="security reveal">
+  <div class="security-inner">
+    <div>
+      <p class="sec-label">Segurança & Conformidade</p>
+      <h2 class="sec-h2">Banco de dados seguro e certificado.</h2>
+      <p style="font-size:16px;color:var(--muted);line-height:1.75;font-weight:300;margin-top:8px">Conformidade com os principais padrões globais de segurança. Seus dados e os dados dos seus clientes protegidos com os mais altos padrões da indústria.</p>
+    </div>
+    <div class="cert-grid">
+      <div class="cert">
+        <div class="cert-icon">🛡️</div>
+        <div><h4>LGPD</h4><p>Lei Geral de Proteção de Dados — conformidade total com a legislação brasileira.</p></div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">🌍</div>
+        <div><h4>GDPR</h4><p>General Data Protection Regulation — padrão europeu de proteção de dados pessoais.</p></div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">🔐</div>
+        <div><h4>ISO 27001</h4><p>Certificação internacional para gestão de segurança da informação.</p></div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">✅</div>
+        <div><h4>SOC 2</h4><p>Auditoria independente de segurança, disponibilidade e confidencialidade dos dados.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FAQ ══════════ -->
+<section class="faq reveal">
+  <div class="faq-inner">
+    <div>
+      <p class="sec-label">Perguntas frequentes</p>
+      <h2 class="sec-h2" style="font-size:clamp(26px,3vw,36px)">Respostas diretas.<br>Sem eufemismo.</h2>
+      <p style="font-size:15px;color:var(--muted);line-height:1.75;margin-top:16px;font-weight:300">Se sua pergunta não está aqui, traga para a demo — respondemos tudo em 30 minutos.</p>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item">
+        <button class="faq-q" onclick="faq(this)">O que significa S.E.R.?<span class="faq-plus">+</span></button>
+        <div class="faq-ans"><p>S.E.R. é o método proprietário que estrutura toda a plataforma: <strong>S</strong> de Saber (capturar a manifestação do cliente de forma acessível e estruturada), <strong>E</strong> de Entender (analisar profundamente com contexto e gerar insights estratégicos) e <strong>R</strong> de Reagir, Resolver e Responder (agir de forma assertiva, fechar o ciclo com o cliente e gerar evidência documentada). É um ciclo completo — não apenas um repositório de reclamações.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="faq(this)">Quanto custa a plataforma?<span class="faq-plus">+</span></button>
+        <div class="faq-ans"><p>O pricing é personalizado por setor, tamanho da organização e número de unidades. Há planos com preço promocional de lançamento disponíveis agora. Na demo, calculamos juntos o ROI — você sai com os números antes de qualquer decisão interna.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="faq(this)">Integra com nosso sistema atual?<span class="faq-plus">+</span></button>
+        <div class="faq-ans"><p>Sim. A S.E.R. Cliente tem API REST documentada e já integrou com os principais sistemas do mercado (CRMs, ERPs, sistemas legados). Nossa equipe técnica faz o levantamento de integração sem custo adicional na fase de onboarding.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="faq(this)">Quanto tempo leva o onboarding?<span class="faq-plus">+</span></button>
+        <div class="faq-ans"><p>Começamos com 1 unidade para você provar o ROI internamente — geralmente em 2 a 4 semanas. A expansão para as demais unidades segue no seu ritmo, com suporte ativo da nossa equipe.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="faq(this)">E se o TI ou o financeiro não aprovar?<span class="faq-plus">+</span></button>
+        <div class="faq-ans"><p>Entendemos o processo. Fazemos o levantamento técnico com o seu TI sem custo — segurança de dados (LGPD, ISO 27001, SOC 2), arquitetura, integrações. E calculamos o ROI em conjunto para você apresentar ao financeiro. A maioria das aprovações acontece em 2 a 4 semanas com esse material em mãos.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="faq(this)">A plataforma funciona para Angola e Moçambique?<span class="faq-plus">+</span></button>
+        <div class="faq-ans"><p>Sim. A S.E.R. Cliente foi desenvolvida para o mercado lusófono. Daniela tem presença estabelecida em Angola e Moçambique e já validou demanda presencialmente nesses mercados. Temos um modelo de pricing regional específico e suporte em português.</p></div>
+      </div>
+      <div class="faq-item">
+        <button class="faq-q" onclick="faq(this)">A plataforma é apenas para grandes empresas?<span class="faq-plus">+</span></button>
+        <div class="faq-ans"><p>O perfil ideal são organizações com 200+ colaboradores em setores regulados. Se você tem um fluxo relevante de interações com clientes e precisa de rastreabilidade e conformidade, a S.E.R. Cliente é para você — independente do porte exato.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ CTA FINAL ══════════ -->
+<section class="cta-final reveal" id="demo">
+  <div class="cta-grid">
+    <div class="cta-l">
+      <h2>30 minutos para saber o <em>ROI exato</em> para o seu setor.</h2>
+      <p>Demo ao vivo com Daniela ou Marcelo. Você sai sabendo exatamente quanto a S.E.R. Cliente economiza em tempo de equipe, risco regulatório e churn evitado — com os números do seu setor.</p>
+      <div class="assurances">
+        <div class="ass">Sem compromisso. Sem pitch. Só dados.</div>
+        <div class="ass">Demo personalizada para o seu setor</div>
+        <div class="ass">Calculamos o ROI durante a reunião</div>
+        <div class="ass">Resposta em até 24 horas úteis</div>
+        <div class="ass">Planos com preço promocional de lançamento</div>
+      </div>
+    </div>
+    <div class="form-card">
+      <h3>Agende sua demo</h3>
+      <p class="fs">Preencha em 30 segundos. Nossa equipe confirma em até 24 horas.</p>
+      <div class="fg">
+        <label>Nome completo</label>
+        <input type="text" placeholder="Seu nome">
+      </div>
+      <div class="fg">
+        <label>Empresa</label>
+        <input type="text" placeholder="Nome da sua organização">
+      </div>
+      <div class="fg">
+        <label>Setor</label>
+        <select>
+          <option value="">Selecione seu setor</option>
+          <option>Saúde (Hospital, Operadora, Clínica)</option>
+          <option>Infraestrutura e Transporte</option>
+          <option>Educação Superior</option>
+          <option>Seguros e Financeiro</option>
+          <option>Angola ou Moçambique</option>
+          <option>Outro setor regulado</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Telefone (WhatsApp)</label>
+        <input type="tel" placeholder="+55 (19) 99752-5516">
+      </div>
+      <div class="fg">
+        <label>E-mail corporativo</label>
+        <input type="email" placeholder="seu@empresa.com.br">
+      </div>
+      <button class="form-btn">Agendar demonstração gratuita →</button>
+      <p class="form-note">Sem spam. Sem compromisso. Respondemos em até 24 horas úteis.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════ FOOTER ══════════ -->
+<footer>
+  <div class="footer-logo">S.E.R. <span>Cliente</span></div>
+  <div class="footer-links">
+    <a href="#metodo">Método S.E.R.</a>
+    <a href="#plataforma">Plataforma</a>
+    <a href="#metricas">Métricas CX</a>
+    <a href="#daniela">Sobre</a>
+    <a href="#demo">Contato</a>
+  </div>
+  <div class="footer-copy">© 2026 S.E.R. Cliente · Toronto, Canadá</div>
+</footer>
+
+<script>
+/* Scroll reveal */
+const obs = new IntersectionObserver(entries => {
+  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on') })
+}, {threshold:.07})
+document.querySelectorAll('.reveal').forEach(el => obs.observe(el))
+
+/* SER steps cycling */
+let cur = 0
+const steps = [document.getElementById('step0'), document.getElementById('step1'), document.getElementById('step2')]
+setInterval(() => {
+  steps.forEach(s => s.classList.remove('lit'))
+  cur = (cur + 1) % 3
+  steps[cur].classList.add('lit')
+}, 2800)
+
+/* FAQ accordion */
+function faq(btn) {
+  const ans = btn.nextElementSibling
+  const icon = btn.querySelector('.faq-plus')
+  const isOpen = ans.classList.contains('open')
+  document.querySelectorAll('.faq-ans').forEach(a => a.classList.remove('open'))
+  document.querySelectorAll('.faq-plus').forEach(i => i.classList.remove('open'))
+  if (!isOpen) { ans.classList.add('open'); icon.classList.add('open') }
+}
+
+/* Smooth scroll */
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const t = document.querySelector(a.getAttribute('href'))
+    if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}) }
+  })
+})
+</script>
+</body>
+</html>
