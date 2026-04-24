@@ -3,7 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S.E.R. Cliente — Gestão de Feedbacks que Fecha o Ciclo</title>
+<title>S.E.R. Cliente — Gestão de Feedbacks da Escuta à Resolução</title>
+<meta name="description" content="Ouvidoria · Experiência do Cliente · Inteligência Artificial. Gestão de feedbacks da escuta à resolução.">
 <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
@@ -80,6 +81,16 @@ nav{
 .award-text strong{display:block;font-size:12px;color:var(--gold);font-weight:500;line-height:1.4}
 .award-text span{font-size:11px;color:rgba(255,255,255,.35)}
 
+/* ─── HERO FEATURES STRIP ─── */
+.hero-features{background:var(--white);border-bottom:1px solid var(--border)}
+.hero-features-inner{display:grid;grid-template-columns:repeat(3,1fr);padding:0 6%}
+.hf-item{padding:36px 32px;border-right:1px solid var(--border);transition:background .25s}
+.hf-item:last-child{border-right:none}
+.hf-item:hover{background:var(--cream)}
+.hf-icon{font-size:26px;margin-bottom:14px}
+.hf-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:6px}
+.hf-desc{font-size:13px;color:var(--muted);line-height:1.65}
+
 /* ─── SECTIONS SHARED ─── */
 .sec-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:14px}
 .sec-h2{font-family:var(--serif);font-size:clamp(28px,3.2vw,44px);color:var(--text);line-height:1.15;margin-bottom:16px}
@@ -109,38 +120,58 @@ nav{
 .testimonial-name{font-size:12px;font-weight:600;color:var(--text)}
 .testimonial-role{font-size:11px;color:var(--muted);margin-top:1px}
 
+/* ─── SOBRE NÓS ─── */
+.sobre{padding:100px 6%;background:var(--navy)}
+.sobre-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
+.sobre-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:16px}
+.sobre-h2{font-family:var(--serif);font-size:clamp(28px,3vw,40px);color:#fff;line-height:1.15;margin-bottom:24px}
+.sobre-text{font-size:15px;color:rgba(255,255,255,.5);line-height:1.85;font-weight:300}
+.sobre-text p{margin-bottom:18px}
+.sobre-text p:last-child{margin-bottom:0}
+.sobre-quote{font-family:var(--serif);font-size:20px;color:var(--gold);line-height:1.45;font-style:italic;margin:28px 0;padding-left:20px;border-left:3px solid rgba(201,146,58,.4)}
+.sobre-values{display:flex;flex-direction:column;gap:10px}
+.sobre-value{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;transition:all .25s}
+.sobre-value:hover{background:rgba(255,255,255,.07);border-color:rgba(201,146,58,.2)}
+.sv-label{font-size:12px;font-weight:600;color:var(--gold);min-width:160px;flex-shrink:0;line-height:1.4}
+.sv-desc{font-size:13px;color:rgba(255,255,255,.45);line-height:1.5}
+.sobre-mission{margin-top:28px;background:rgba(201,146,58,.08);border:1px solid rgba(201,146,58,.18);border-radius:12px;padding:24px}
+.sobre-mission p{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:14px}
+.sobre-mission ul{list-style:none}
+.sobre-mission ul li{font-size:14px;color:rgba(255,255,255,.6);padding:6px 0 6px 18px;position:relative;line-height:1.5}
+.sobre-mission ul li::before{content:'→';position:absolute;left:0;color:var(--gold);opacity:.7;font-size:12px}
+
 /* ─── CREDIBILIDADE / DANIELA ─── */
-.cred{padding:90px 6%;background:var(--navy)}
+.cred{padding:90px 6%;background:var(--white)}
 .cred-inner{display:grid;grid-template-columns:0.9fr 1.1fr;gap:80px;align-items:start}
 .cred-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:16px}
-.cred-name{font-family:var(--serif);font-size:38px;color:#fff;margin-bottom:10px;line-height:1.1}
-.cred-bio{font-size:15px;color:rgba(255,255,255,.5);line-height:1.75;margin-bottom:24px;font-weight:300}
+.cred-name{font-family:var(--serif);font-size:38px;color:var(--text);margin-bottom:10px;line-height:1.1}
+.cred-bio{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:24px;font-weight:300}
 .award-badge{display:flex;align-items:center;gap:12px;background:rgba(201,146,58,.1);border:1px solid rgba(201,146,58,.22);border-radius:10px;padding:14px 18px;margin-bottom:28px}
 .award-badge-icon{font-size:26px;flex-shrink:0}
 .award-badge strong{display:block;font-size:13px;color:var(--gold);font-weight:500}
-.award-badge span{font-size:11px;color:rgba(255,255,255,.4)}
+.award-badge span{font-size:11px;color:var(--muted)}
 
 /* Media cards */
 .media-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.media-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:16px;display:flex;gap:12px;align-items:flex-start;transition:all .25s;cursor:pointer;text-decoration:none}
-.media-card:hover{background:rgba(255,255,255,.09);border-color:rgba(201,146,58,.2)}
+.media-card{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;gap:12px;align-items:flex-start;transition:all .25s;cursor:pointer;text-decoration:none}
+.media-card:hover{background:var(--white);border-color:rgba(201,146,58,.3)}
 .media-card-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.mc-podcast{background:rgba(168,85,247,.15)}
-.mc-talk{background:rgba(59,130,246,.15)}
-.mc-award{background:rgba(201,146,58,.15)}
-.mc-press{background:rgba(52,211,153,.15)}
-.media-card-type{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.3);margin-bottom:3px}
-.media-card-title{font-size:12px;color:rgba(255,255,255,.75);line-height:1.45;font-weight:500}
-.media-card-sub{font-size:11px;color:rgba(255,255,255,.3);margin-top:2px}
+.mc-podcast{background:rgba(168,85,247,.12)}
+.mc-talk{background:rgba(59,130,246,.12)}
+.mc-award{background:rgba(201,146,58,.12)}
+.mc-press{background:rgba(52,211,153,.12)}
+.media-card-type{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:3px}
+.media-card-title{font-size:12px;color:var(--text);line-height:1.45;font-weight:500}
+.media-card-sub{font-size:11px;color:var(--muted);margin-top:2px}
 
 /* Cred stats */
 .cred-stats-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
-.cred-stat{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:12px;padding:22px 18px}
+.cred-stat{background:var(--cream);border:1px solid var(--border);border-radius:12px;padding:22px 18px}
 .cred-stat-n{font-family:var(--serif);font-size:36px;color:var(--gold);line-height:1}
-.cred-stat-l{font-size:12px;color:rgba(255,255,255,.4);margin-top:6px;line-height:1.5}
+.cred-stat-l{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
 
 /* ─── MÉTODO SER ─── */
-.method{padding:100px 6%;background:var(--white)}
+.method{padding:100px 6%;background:var(--cream)}
 .method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px;background:var(--border);border-radius:16px;overflow:hidden}
 .method-step{background:var(--white);padding:44px 36px;transition:background .3s}
 .method-step:hover{background:var(--cream)}
@@ -156,20 +187,20 @@ nav{
 .method-step ul li::before{content:'—';position:absolute;left:0;color:var(--gold);opacity:.55}
 
 /* ─── DIFERENCIAIS ─── */
-.diff{padding:100px 6%;background:var(--cream)}
+.diff{padding:100px 6%;background:var(--white)}
 .diff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:0}
-.diff-card{background:var(--white);border:1px solid var(--border);border-radius:12px;padding:24px 20px;transition:all .25s}
+.diff-card{background:var(--cream);border:1px solid var(--border);border-radius:12px;padding:24px 20px;transition:all .25s}
 .diff-card:hover{border-color:rgba(201,146,58,.28);transform:translateY(-3px);box-shadow:0 12px 40px rgba(11,22,40,.06)}
 .diff-icon{font-size:28px;margin-bottom:14px}
 .diff-card h4{font-size:14px;font-weight:500;color:var(--text);margin-bottom:7px;line-height:1.4}
 .diff-card p{font-size:13px;color:var(--muted);line-height:1.65}
 
 /* ─── PLATFORM / DASHBOARD ─── */
-.platform{padding:100px 6%;background:var(--white)}
+.platform{padding:100px 6%;background:var(--cream)}
 .platform-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:64px;align-items:start;margin-top:56px}
 .features{display:flex;flex-direction:column;gap:14px}
-.feat{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;background:var(--cream);border-radius:10px;border:1px solid var(--border);transition:all .25s}
-.feat:hover{border-color:rgba(201,146,58,.28);background:var(--white)}
+.feat{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;background:var(--white);border-radius:10px;border:1px solid var(--border);transition:all .25s}
+.feat:hover{border-color:rgba(201,146,58,.28);box-shadow:0 4px 20px rgba(11,22,40,.05)}
 .feat-icon{width:38px;height:38px;border-radius:8px;background:rgba(11,22,40,.06);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
 .feat h4{font-size:14px;font-weight:500;color:var(--text);margin-bottom:3px}
 .feat p{font-size:13px;color:var(--muted);line-height:1.6}
@@ -228,7 +259,7 @@ nav{
 .faq-plus{font-size:20px;color:var(--gold);transition:transform .25s;flex-shrink:0;line-height:1;font-weight:300}
 .faq-plus.open{transform:rotate(45deg)}
 .faq-ans{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s}
-.faq-ans.open{max-height:320px;padding-bottom:20px}
+.faq-ans.open{max-height:400px;padding-bottom:20px}
 .faq-ans p{font-size:14px;color:var(--muted);line-height:1.8}
 
 /* ─── CTA FINAL ─── */
@@ -268,10 +299,13 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
 /* ─── RESPONSIVE ─── */
 @media(max-width:1100px){.diff-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:960px){
-  .hero,.cred-inner,.cta-grid,.platform-grid,.faq-inner,.metrics-intro,.security-inner{grid-template-columns:1fr;gap:40px}
+  .hero,.cred-inner,.cta-grid,.platform-grid,.faq-inner,.metrics-intro,.security-inner,.sobre-inner{grid-template-columns:1fr;gap:40px}
   .pain-cards,.metrics-cards,.method-grid{grid-template-columns:1fr}
   .method-grid{background:transparent;gap:1px}
   .hero{padding:108px 5% 60px;min-height:auto}
+  .hero-features-inner{grid-template-columns:1fr}
+  .hf-item{border-right:none;border-bottom:1px solid var(--border)}
+  .hf-item:last-child{border-bottom:none}
   footer{flex-direction:column;gap:16px;text-align:center}
   .footer-links{justify-content:center}
 }
@@ -290,10 +324,11 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
 <nav>
   <div class="nav-logo">S.E.R. <span>Cliente</span></div>
   <div class="nav-links">
-    <a href="#metodo">Método</a>
     <a href="#plataforma">Plataforma</a>
-    <a href="#metricas">CES · CSAT · NPS</a>
-    <a href="#daniela">Sobre</a>
+    <a href="#metodo">Método</a>
+    <a href="#diferenciais">Diferenciais</a>
+    <a href="#sobre">Sobre</a>
+    <a href="#demo">Contato</a>
   </div>
   <a href="#demo" class="nav-cta">Agendar demo</a>
 </nav>
@@ -305,13 +340,13 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
   <div>
     <div class="hero-eyebrow">
       <div class="eyebrow-dot"></div>
-      <span>Plataforma SaaS · Lançamento 2026</span>
+      <span>Ouvidoria · Experiência do Cliente · Inteligência Artificial</span>
     </div>
-    <h1>Gestão de feedbacks<br><em>que fecha o ciclo.</em></h1>
-    <p class="hero-sub">Do S.E.R. ao cliente: cada manifestação capturada, entendida e resolvida — com método proprietário, IA integrada e rastreabilidade total para o seu board.</p>
+    <h1>Gestão de feedbacks<br><em>da escuta à resolução.</em></h1>
+    <p class="hero-sub">A S.E.R. Cliente transforma a voz do cliente em direcionamento para a operação e para a gestão. Cada feedback registrado é entendido e resolvido com envolvimento das áreas, visibilidade do fluxo, IA integrada e rastreabilidade total.</p>
     <div class="hero-actions">
       <a href="#demo" class="btn-gold">Agendar demo gratuita</a>
-      <a href="#metodo" class="btn-ghost">Conhecer o Método →</a>
+      <a href="#metodo" class="btn-ghost">Saiba mais</a>
     </div>
     <div class="hero-stats">
       <div>
@@ -324,7 +359,7 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
       </div>
       <div>
         <div class="h-stat-num">IA</div>
-        <div class="h-stat-label">Respostas contextualizadas<br>integradas</div>
+        <div class="h-stat-label">Respostas contextualizadas<br>e relatórios analíticos</div>
       </div>
     </div>
   </div>
@@ -332,7 +367,7 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
   <!-- Hero card -->
   <div>
     <div class="hero-card">
-      <div class="hero-card-eyebrow">Metodologia proprietária S.E.R.</div>
+      <div class="hero-card-eyebrow">Método S.E.R. Cliente</div>
       <div class="ser-steps">
         <div class="ser-step lit" id="step0">
           <div class="ser-letter">S</div>
@@ -351,8 +386,8 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
         <div class="ser-step" id="step2">
           <div class="ser-letter">R</div>
           <div>
-            <div class="ser-label">Reagir · Resolver · Responder</div>
-            <div class="ser-desc">Ação assertiva, fechamento do ciclo e resposta documentada ao cliente</div>
+            <div class="ser-label">Resolver · Responder</div>
+            <div class="ser-desc">Fechamento do ciclo com ação assertiva e resposta documentada ao cliente</div>
           </div>
         </div>
       </div>
@@ -366,6 +401,27 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
     </div>
   </div>
 </section>
+
+<!-- ══════════ HERO FEATURES STRIP ══════════ -->
+<div class="hero-features">
+  <div class="hero-features-inner">
+    <div class="hf-item">
+      <div class="hf-icon">📝</div>
+      <div class="hf-title">Formulários flexíveis</div>
+      <div class="hf-desc">Captação adaptada à sua operação</div>
+    </div>
+    <div class="hf-item">
+      <div class="hf-icon">📊</div>
+      <div class="hf-title">Relatórios customizados</div>
+      <div class="hf-desc">Mais clareza para a tomada de decisão</div>
+    </div>
+    <div class="hf-item">
+      <div class="hf-icon">🤖</div>
+      <div class="hf-title">IA integrada</div>
+      <div class="hf-desc">Respostas contextualizadas e relatórios analíticos</div>
+    </div>
+  </div>
+</div>
 
 <!-- ══════════ DOR + TESTEMUNHOS ══════════ -->
 <section class="pain reveal">
@@ -428,6 +484,61 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
       </div>
     </div>
 
+  </div>
+</section>
+
+<!-- ══════════ SOBRE NÓS ══════════ -->
+<section class="sobre reveal" id="sobre">
+  <div class="sobre-inner">
+    <div>
+      <p class="sobre-label">Sobre nós</p>
+      <h2 class="sobre-h2">Existimos para transformar a voz do cliente em ação.</h2>
+      <div class="sobre-text">
+        <p>A S.E.R. Cliente nasceu para ajudar empresas a lidarem com feedbacks de forma mais prática, ágil, estruturada e estratégica.</p>
+        <p>Acreditamos que reclamações, sugestões, elogios e outras manifestações não devem ser vistas apenas como problemas a resolver, mas como consultoria gratuita — ganhos valiosos para melhorar processos, fortalecer relações e evoluir a experiência do cliente.</p>
+        <p>Por isso, desenvolvemos uma solução que apoia empresas na organização da escuta, na condução das tratativas e na construção de respostas mais contextualizadas, com clareza, rastreabilidade e conexão entre áreas.</p>
+        <p>Com a S.E.R. Cliente, cada manifestação pode se tornar uma oportunidade real de gerar confiança, evolução e impacto.</p>
+      </div>
+      <div class="sobre-quote">A plataforma ocupa o espaço entre ouvidoria tradicional e gestão estratégica de CX, com foco em operação e decisão.</div>
+      <div class="sobre-mission">
+        <p>Nossa missão</p>
+        <ul>
+          <li>Estruturar processos de melhoria contínua</li>
+          <li>Facilitar a gestão de feedbacks</li>
+          <li>Ser aliada estratégica da gestão</li>
+          <li>Ser a ponte confiável entre empresas e clientes</li>
+        </ul>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:16px">Nossos valores</p>
+      <div class="sobre-values">
+        <div class="sobre-value">
+          <div class="sv-label">Escuta ativa</div>
+          <div class="sv-desc">Feedback é oportunidade, não incômodo.</div>
+        </div>
+        <div class="sobre-value">
+          <div class="sv-label">Parceria com o cliente</div>
+          <div class="sv-desc">Construção conjunta.</div>
+        </div>
+        <div class="sobre-value">
+          <div class="sv-label">Decisão baseada em dados</div>
+          <div class="sv-desc">Números ganham valor quando contextualizados.</div>
+        </div>
+        <div class="sobre-value">
+          <div class="sv-label">Pragmatismo e simplicidade</div>
+          <div class="sv-desc">Ferramentas que funcionam no dia a dia.</div>
+        </div>
+        <div class="sobre-value">
+          <div class="sv-label">Responsabilidade na resposta</div>
+          <div class="sv-desc">Responder com contexto, ação e comprometimento real.</div>
+        </div>
+        <div class="sobre-value">
+          <div class="sv-label">Transparência e rastreabilidade</div>
+          <div class="sv-desc">Tudo tem histórico, evidência e acompanhamento.</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -510,9 +621,9 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
 
 <!-- ══════════ MÉTODO SER ══════════ -->
 <section class="method reveal" id="metodo">
-  <p class="sec-label">Metodologia proprietária</p>
-  <h2 class="sec-h2">Saber. Entender.<br>Reagir, Resolver e Responder.</h2>
-  <p class="sec-sub" style="margin-bottom:0">O Método S.E.R. transforma cada manifestação em um ciclo fechado de melhoria — da captura até a evidência documentada para o seu board e para os reguladores.</p>
+  <p class="sec-label">Método</p>
+  <h2 class="sec-h2">Saber. Entender.<br>Resolver e Responder.</h2>
+  <p class="sec-sub" style="margin-bottom:0">O Método S.E.R. Cliente auxilia no entendimento da manifestação, na identificação da causa-raíz e melhorias contínuas. Um ciclo completo — da captura à evidência documentada para o seu board e para as agências reguladoras.</p>
   <div class="method-grid">
 
     <div class="method-step">
@@ -526,11 +637,11 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
       </div>
       <p>O primeiro passo é garantir um canal acessível e ágil para que o cliente possa se expressar. Reclamações, sugestões e elogios — tudo centralizado, estruturado e pronto para análise.</p>
       <ul>
-        <li>Formulários customizados por setor</li>
-        <li>Multi-canal: e-mail, formulário, presencial</li>
+        <li>Formulários customizados</li>
+        <li>Multi-canal: e-mail, formulário, presencial, telefone</li>
         <li>Token de acesso — sem logins adicionais</li>
         <li>Código de rastreamento único por relato</li>
-        <li>SLA automático configurável por tipo</li>
+        <li>SLA automático configurável</li>
       </ul>
     </div>
 
@@ -549,14 +660,14 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
         <li>Dashboard executivo consolidado e por unidade</li>
         <li>Relatórios estatísticos com filtros avançados</li>
         <li>Alertas de tendências e padrões de recorrência</li>
-        <li>Dados em linguagem financeira para o board</li>
+        <li>Uso de ferramentas de Qualidade Total</li>
       </ul>
     </div>
 
     <div class="method-step">
       <div class="method-num"><span>R</span></div>
       <div class="method-subtitle">Premissa 03</div>
-      <h3>Reagir · Resolver · Responder</h3>
+      <h3>Resolver · Responder</h3>
       <div class="method-tag-row">
         <span class="method-tag">Ação</span>
         <span class="method-tag">Fechamento</span>
@@ -565,10 +676,10 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
       <p>Iniciativas estratégicas implementadas com base nas etapas anteriores. Agir de forma assertiva para minimizar impactos negativos, solucionar problemas e prevenir recorrências.</p>
       <ul>
         <li>IA para respostas contextualizadas ao cliente</li>
-        <li>Relatório de conformidade automático (ANTT, ANAC, ONA, MEC)</li>
+        <li>Relatório de conformidade automático (Agências reguladoras)</li>
         <li>Fechamento documentado com trilha completa</li>
-        <li>NPS integrado pós-resolução</li>
-        <li>Prevenção de recorrências com histórico por categoria</li>
+        <li>CSAT e NPS integrado no pós-resolução</li>
+        <li>Interação com o cliente por multi-canal</li>
       </ul>
     </div>
 
@@ -576,15 +687,15 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
 </section>
 
 <!-- ══════════ DIFERENCIAIS ══════════ -->
-<section class="diff reveal">
+<section class="diff reveal" id="diferenciais">
   <p class="sec-label">Diferenciais</p>
   <h2 class="sec-h2" style="margin-bottom:12px">O que torna a S.E.R. Cliente diferente.</h2>
-  <p class="sec-sub">Construída sobre conceitos de Experiência do Cliente, princípios de Qualidade e alavancada por Inteligência Artificial.</p>
+  <p class="sec-sub">Construída com conceitos de Experiência do Cliente, princípios de Qualidade Total e alavancada por Inteligência Artificial.</p>
   <div class="diff-grid">
     <div class="diff-card">
       <div class="diff-icon">🤖</div>
       <h4>Inteligência Artificial integrada</h4>
-      <p>IA para gerar respostas contextualizadas e personalizadas e auxiliar no tratamento interno das demandas, corrigindo falhas e evitando recorrências.</p>
+      <p>IA para sugerir respostas contextualizadas e personalizadas, auxiliar no tratamento das manifestações e analisar os dados e emissão de relatórios executivos.</p>
     </div>
     <div class="diff-card">
       <div class="diff-icon">🔑</div>
@@ -594,7 +705,7 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
     <div class="diff-card">
       <div class="diff-icon">🔢</div>
       <h4>Código de acompanhamento único</h4>
-      <p>Cada relato recebe um número único compartilhado com o cliente, garantindo rastreabilidade completa e fácil acesso ao histórico de tratativas.</p>
+      <p>Cada relato recebe um número único compartilhado com o cliente, garantindo rastreabilidade completa e fácil acesso ao histórico de informações.</p>
     </div>
     <div class="diff-card">
       <div class="diff-icon">⚙️</div>
@@ -626,18 +737,18 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
 
 <!-- ══════════ PLATAFORMA / DASHBOARD ══════════ -->
 <section class="platform reveal" id="plataforma">
-  <p class="sec-label">Plataforma V2</p>
+  <p class="sec-label">Plataforma</p>
   <h2 class="sec-h2">Desenvolvida com quem vive o problema.</h2>
-  <p class="sec-sub">Não é produto de laboratório. A S.E.R. Cliente V2 foi desenvolvida e testada com clientes reais em ambientes de alta complexidade regulada.</p>
+  <p class="sec-sub">Não é produto de prateleira. A S.E.R. Cliente foi desenvolvida e validada com clientes reais em ambientes de alta complexidade regulada.</p>
   <div class="platform-grid">
     <div class="features">
       <div class="feat">
         <div class="feat-icon">📊</div>
-        <div><h4>Dashboard executivo e gerencial</h4><p>Visão consolidada de todas as unidades. Relatórios automáticos com filtros avançados em linguagem financeira — para apresentar ao board sem montar planilha.</p></div>
+        <div><h4>Dashboard executivo e gerencial</h4><p>Visão consolidada de todas as unidades. Relatórios operacionais e executivos customizados, em xls, ppt e BI, prontos para apresentar.</p></div>
       </div>
       <div class="feat">
         <div class="feat-icon">✅</div>
-        <div><h4>Relatório de conformidade em 1 clique</h4><p>Trilha completa de cada manifestação — exatamente o que ANTT, ANAC, ONA e MEC exigem. Auditoria sem surpresas, documentação pronta.</p></div>
+        <div><h4>Relatório de conformidade em 1 clique</h4><p>Trilha completa de cada manifestação — exatamente como exigem as agências reguladoras. Auditorias sem surpresas, documentação pronta.</p></div>
       </div>
       <div class="feat">
         <div class="feat-icon">🔔</div>
@@ -658,7 +769,7 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
         <div class="dot" style="background:#ff5f57"></div>
         <div class="dot" style="background:#ffbd2e"></div>
         <div class="dot" style="background:#28ca41"></div>
-        <div class="mock-app-name">S.E.R. Cliente V2 · Dashboard</div>
+        <div class="mock-app-name">S.E.R. Cliente · Dashboard</div>
       </div>
       <div class="mock-stats">
         <div class="ms"><div class="ms-n">247</div><div class="ms-l">Manifestações / mês</div></div>
@@ -708,7 +819,7 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
       <p class="sec-label" style="color:var(--gold)">Métricas de experiência</p>
       <h2 class="sec-h2" style="color:#fff">CES · CSAT · NPS<br>integrados e automatizados.</h2>
     </div>
-    <p style="font-size:16px;color:rgba(255,255,255,.5);line-height:1.75;font-weight:300">Dashboards automatizados que fornecem uma análise aprofundada da percepção do cliente, consolidando as métricas essenciais de CX em uma visão única e acionável.</p>
+    <p style="font-size:16px;color:rgba(255,255,255,.5);line-height:1.75;font-weight:300">Analisamos métricas, fornecemos indicadores e damos contexto — transformando feedback em gestão inteligente. Dashboards automatizados que consolidam as métricas essenciais de CX em uma visão única e acionável.</p>
   </div>
   <div class="metrics-cards">
     <div class="metric-card">
@@ -757,6 +868,14 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
         <div class="cert-icon">✅</div>
         <div><h4>SOC 2</h4><p>Auditoria independente de segurança, disponibilidade e confidencialidade dos dados.</p></div>
       </div>
+      <div class="cert">
+        <div class="cert-icon">🪟</div>
+        <div><h4>Microsoft Active Directory (AD)</h4><p>Integração com AD para autenticação centralizada e gestão de acessos corporativos.</p></div>
+      </div>
+      <div class="cert">
+        <div class="cert-icon">🔵</div>
+        <div><h4>Google Single Sign-On (SSO)</h4><p>Acesso via Google SSO — sem senhas adicionais, com segurança e rastreabilidade.</p></div>
+      </div>
     </div>
   </div>
 </section>
@@ -767,36 +886,32 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
     <div>
       <p class="sec-label">Perguntas frequentes</p>
       <h2 class="sec-h2" style="font-size:clamp(26px,3vw,36px)">Respostas diretas.<br>Sem eufemismo.</h2>
-      <p style="font-size:15px;color:var(--muted);line-height:1.75;margin-top:16px;font-weight:300">Se sua pergunta não está aqui, traga para a demo — respondemos tudo em 30 minutos.</p>
+      <p style="font-size:15px;color:var(--muted);line-height:1.75;margin-top:16px;font-weight:300">Se sua pergunta não está aqui, traga para a demonstração da plataforma — que responderemos durante a demo.</p>
     </div>
     <div class="faq-list">
       <div class="faq-item">
         <button class="faq-q" onclick="faq(this)">O que significa S.E.R.?<span class="faq-plus">+</span></button>
-        <div class="faq-ans"><p>S.E.R. é o método proprietário que estrutura toda a plataforma: <strong>S</strong> de Saber (capturar a manifestação do cliente de forma acessível e estruturada), <strong>E</strong> de Entender (analisar profundamente com contexto e gerar insights estratégicos) e <strong>R</strong> de Reagir, Resolver e Responder (agir de forma assertiva, fechar o ciclo com o cliente e gerar evidência documentada). É um ciclo completo — não apenas um repositório de reclamações.</p></div>
+        <div class="faq-ans"><p>S.E.R. é o método proprietário que estrutura toda a plataforma: <strong>S</strong> de Saber (ouvir a voz do cliente e entender suas percepções e necessidades, oferecendo um canal de comunicação fácil e acessível para o registro dos feedbacks), <strong>E</strong> de Entender (analisar profundamente com contexto e gerar insights estratégicos) e <strong>R</strong> de Resolver e Responder (agir de forma assertiva, fechar o ciclo com o cliente e gerar evidência documentada). É um ciclo completo — não apenas um repositório de reclamações.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="faq(this)">Quanto custa a plataforma?<span class="faq-plus">+</span></button>
-        <div class="faq-ans"><p>O pricing é personalizado por setor, tamanho da organização e número de unidades. Há planos com preço promocional de lançamento disponíveis agora. Na demo, calculamos juntos o ROI — você sai com os números antes de qualquer decisão interna.</p></div>
+        <div class="faq-ans"><p>A assinatura da plataforma varia com base na quantidade de feedbacks. Há pacotes fixos e variáveis. Na demo, apresentamos os planos e condições de pagamento.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="faq(this)">Integra com nosso sistema atual?<span class="faq-plus">+</span></button>
-        <div class="faq-ans"><p>Sim. A S.E.R. Cliente tem API REST documentada e já integrou com os principais sistemas do mercado (CRMs, ERPs, sistemas legados). Nossa equipe técnica faz o levantamento de integração sem custo adicional na fase de onboarding.</p></div>
+        <div class="faq-ans"><p>A S.E.R. Cliente possui condições de integração via API, permitindo conexão com outros sistemas de acordo com a necessidade de cada operação. As possibilidades podem ser avaliadas conforme o contexto, os objetivos do projeto e os requisitos técnicos envolvidos.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="faq(this)">Quanto tempo leva o onboarding?<span class="faq-plus">+</span></button>
-        <div class="faq-ans"><p>Começamos com 1 unidade para você provar o ROI internamente — geralmente em 2 a 4 semanas. A expansão para as demais unidades segue no seu ritmo, com suporte ativo da nossa equipe.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="faq(this)">E se o TI ou o financeiro não aprovar?<span class="faq-plus">+</span></button>
-        <div class="faq-ans"><p>Entendemos o processo. Fazemos o levantamento técnico com o seu TI sem custo — segurança de dados (LGPD, ISO 27001, SOC 2), arquitetura, integrações. E calculamos o ROI em conjunto para você apresentar ao financeiro. A maioria das aprovações acontece em 2 a 4 semanas com esse material em mãos.</p></div>
+        <div class="faq-ans"><p>Em 30 minutos o acesso à plataforma é liberado e o onboarding é feito em até três encontros de 1h.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="faq(this)">A plataforma funciona para Angola e Moçambique?<span class="faq-plus">+</span></button>
-        <div class="faq-ans"><p>Sim. A S.E.R. Cliente foi desenvolvida para o mercado lusófono. Daniela tem presença estabelecida em Angola e Moçambique e já validou demanda presencialmente nesses mercados. Temos um modelo de pricing regional específico e suporte em português.</p></div>
+        <div class="faq-ans"><p>Sim. A S.E.R. Cliente está disponível para todos os países, incluindo Angola e Moçambique.</p></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" onclick="faq(this)">A plataforma é apenas para grandes empresas?<span class="faq-plus">+</span></button>
-        <div class="faq-ans"><p>O perfil ideal são organizações com 200+ colaboradores em setores regulados. Se você tem um fluxo relevante de interações com clientes e precisa de rastreabilidade e conformidade, a S.E.R. Cliente é para você — independente do porte exato.</p></div>
+        <div class="faq-ans"><p>Não! A plataforma é para todas as empresas que querem ouvir o feedback dos clientes. Se você quer implementar um canal de comunicação com seus clientes, a S.E.R. Cliente é ideal para você. Se você já possui um canal de Ouvidoria, pode modernizá-lo e usufruir dos diferenciais da S.E.R. Cliente. Temos condições especiais para pequenas e médias empresas.</p></div>
       </div>
     </div>
   </div>
@@ -806,14 +921,10 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
 <section class="cta-final reveal" id="demo">
   <div class="cta-grid">
     <div class="cta-l">
-      <h2>30 minutos para saber o <em>ROI exato</em> para o seu setor.</h2>
-      <p>Demo ao vivo com Daniela ou Marcelo. Você sai sabendo exatamente quanto a S.E.R. Cliente economiza em tempo de equipe, risco regulatório e churn evitado — com os números do seu setor.</p>
+      <h2>30 minutos para ter o acesso à plataforma e <em>já começar a usar.</em></h2>
+      <p>Agende sua demo e conheça os benefícios da S.E.R. Cliente para a sua operação e sua gestão.</p>
       <div class="assurances">
         <div class="ass">Sem compromisso. Sem pitch. Só dados.</div>
-        <div class="ass">Demo personalizada para o seu setor</div>
-        <div class="ass">Calculamos o ROI durante a reunião</div>
-        <div class="ass">Resposta em até 24 horas úteis</div>
-        <div class="ass">Planos com preço promocional de lançamento</div>
       </div>
     </div>
     <div class="form-card">
@@ -860,7 +971,7 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
     <a href="#metodo">Método S.E.R.</a>
     <a href="#plataforma">Plataforma</a>
     <a href="#metricas">Métricas CX</a>
-    <a href="#daniela">Sobre</a>
+    <a href="#sobre">Sobre</a>
     <a href="#demo">Contato</a>
   </div>
   <div class="footer-copy">© 2026 S.E.R. Cliente · Toronto, Canadá</div>
