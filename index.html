@@ -200,27 +200,27 @@ section{padding:100px 5%}
 .sobre-mission ul li::before{content:'→';position:absolute;left:0;color:var(--green);font-size:11px;top:8px}
 
 /* ─── DANIELA ─── */
-.dan-top{display:grid;grid-template-columns:360px 1fr;gap:32px;align-items:start}
-.dan-photo-wrap{position:relative;border-radius:20px;overflow:hidden;cursor:default;line-height:0}
-.dan-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .6s cubic-bezier(.34,1.56,.64,1)}
-.dan-photo-wrap:hover img{transform:scale(1.04)}
+.dan-top{display:grid;grid-template-columns:400px 1fr;gap:32px;align-items:stretch}
+.dan-photo-wrap{position:relative;border-radius:20px;overflow:hidden;cursor:default;line-height:0;min-height:520px}
+.dan-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
+.dan-photo-wrap:hover img{transform:scale(1.03)}
 .dan-photo-badge{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(3,13,6,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(38,162,76,.3);border-radius:10px;padding:9px 18px;white-space:nowrap;text-align:center}
 .dan-photo-badge strong{display:block;font-size:11.5px;font-weight:700;color:var(--green);letter-spacing:.01em}
 .dan-photo-badge span{font-size:10px;color:var(--muted2)}
 .dan-bio-col{padding-top:8px}
 .dan-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--green);margin-bottom:12px}
 .dan-name{font-family:var(--sans);font-size:clamp(28px,3vw,44px);font-weight:800;color:var(--white);line-height:1.05;margin-bottom:6px;letter-spacing:-1.5px}
-.dan-tagline{font-size:14px;color:var(--muted);margin-bottom:26px;font-weight:300;line-height:1.6}
-.dan-bullets{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
-.dan-bullets li{display:flex;gap:12px;align-items:flex-start;font-size:13px;color:rgba(228,237,230,.75);line-height:1.6}
-.dan-bi{width:28px;height:28px;border-radius:7px;background:rgba(38,162,76,.09);border:1px solid rgba(38,162,76,.2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-top:2px}
+.dan-tagline{font-size:15.5px;color:var(--muted);margin-bottom:28px;font-weight:300;line-height:1.7}
+.dan-bullets{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:26px}
+.dan-bullets li{display:flex;gap:13px;align-items:flex-start;font-size:14.5px;color:rgba(228,237,230,.78);line-height:1.65}
+.dan-bi{width:32px;height:32px;border-radius:8px;background:rgba(38,162,76,.09);border:1px solid rgba(38,162,76,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;color:rgba(38,162,76,.85)}
 .dan-awards{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
 .dan-award{display:flex;align-items:center;gap:12px;background:rgba(38,162,76,.07);border:1px solid rgba(38,162,76,.18);border-radius:10px;padding:11px 14px;transition:background .25s}
 .dan-award:hover{background:rgba(38,162,76,.12)}
-.dan-award-trophy{font-size:18px;flex-shrink:0}
+.dan-award-trophy{flex-shrink:0;display:flex;align-items:center;color:rgba(38,162,76,.8)}
 .dan-award-text{flex:1}
-.dan-award-title{font-size:12px;font-weight:600;color:var(--green);line-height:1.35}
-.dan-award-sub{font-size:11px;color:var(--muted2);margin-top:2px}
+.dan-award-title{font-size:13.5px;font-weight:600;color:var(--green);line-height:1.35}
+.dan-award-sub{font-size:12px;color:var(--muted2);margin-top:3px}
 .dan-books{display:flex;gap:7px;flex-wrap:wrap}
 .dan-book{font-size:10px;padding:4px 11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;color:var(--muted2);line-height:1.4}
 /* Carousel */
@@ -679,7 +679,7 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
 
     <!-- Foto principal -->
     <div class="dan-photo-wrap fade fade-delay-1">
-      <img src="Fotos Daniela Fantinati/0115.jpg" alt="Daniela Fantinati" loading="lazy">
+      <img src="Fotos Daniela Fantinati/0a5b03fe-5fb9-43c1-ae7d-5fd5bb4ea1cb 2.JPG" alt="Daniela Fantinati" loading="lazy">
       <div class="dan-photo-badge">
         <strong>Daniela Fantinati</strong>
         <span>Fundadora & CEO · S.E.R. Cliente</span>
@@ -694,36 +694,60 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
 
       <ul class="dan-bullets">
         <li>
-          <div class="dan-bi">🎓</div>
+          <div class="dan-bi">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
+            </svg>
+          </div>
           <span><strong style="color:var(--white)">Comunicação Social</strong> · PUC-Campinas &nbsp;+&nbsp; <strong style="color:var(--white)">CX Strategy</strong> · Columbia Business School</span>
         </li>
         <li>
-          <div class="dan-bi">🏭</div>
+          <div class="dan-bi">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12"/>
+            </svg>
+          </div>
           <span>Trajetória em <strong style="color:var(--white)">governamental, educação, óleo & gás e aviação civil</strong> — liderando ouvidoria, sucesso do cliente e estratégias estruturadas de CX</span>
         </li>
         <li>
-          <div class="dan-bi">📚</div>
+          <div class="dan-bi">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
+            </svg>
+          </div>
           <span>Coautora de <strong style="color:var(--white)">3 livros</strong>: Experiência do Cliente na Teoria e Muita Prática · Mulheres na Aviação · Pérolas de Gestão</span>
         </li>
       </ul>
 
       <div class="dan-awards">
         <div class="dan-award">
-          <div class="dan-award-trophy">🏅</div>
+          <div class="dan-award-trophy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="12" cy="15" r="5"/><path d="M9.5 4h5L16 9l-4 2-4-2z"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/>
+            </svg>
+          </div>
           <div class="dan-award-text">
             <div class="dan-award-title">CX Emerging Leader</div>
             <div class="dan-award-sub">2022 · CX Professional Association (CXPA) · Internacional</div>
           </div>
         </div>
         <div class="dan-award">
-          <div class="dan-award-trophy">🥇</div>
+          <div class="dan-award-trophy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
+            </svg>
+          </div>
           <div class="dan-award-text">
             <div class="dan-award-title">Profissional de Sucesso e CX do Ano · Brasil</div>
             <div class="dan-award-sub">2023 · CSX Week</div>
           </div>
         </div>
         <div class="dan-award">
-          <div class="dan-award-trophy">🏆</div>
+          <div class="dan-award-trophy">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/>
+            </svg>
+          </div>
           <div class="dan-award-text">
             <div class="dan-award-title">CX Professional of the Year · <span style="color:rgba(228,237,230,.5);font-weight:400">única brasileira</span></div>
             <div class="dan-award-sub">2023 · Customer Centricity World Series · Mundial</div>
