@@ -258,34 +258,64 @@ section{padding:100px 5%}
 @media(max-width:1100px){.diff-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:600px){.diff-grid{grid-template-columns:1fr}}
 
-/* ─── PLATAFORMA ─── */
-.platform-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start;margin-top:0}
-.feat-list{display:flex;flex-direction:column;gap:10px}
-.feat{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;transition:all .25s}
-.feat:hover{border-color:rgba(38,162,76,.2);background:rgba(255,255,255,.05)}
-.feat-icon{width:36px;height:36px;border-radius:8px;background:rgba(38,162,76,.08);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
-.feat h4{font-size:13px;font-weight:500;color:var(--white);margin-bottom:3px;letter-spacing:-.2px}
-.feat p{font-size:12px;color:var(--muted);line-height:1.6}
-/* Mockup */
-.mockup{background:rgba(8,11,20,.8);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px;box-shadow:0 40px 100px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06)}
-.mock-bar{display:flex;align-items:center;gap:6px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.06)}
-.mock-dot{width:9px;height:9px;border-radius:50%}
-.mock-name{font-size:11px;color:rgba(255,255,255,.25);margin-left:6px;letter-spacing:-.01em}
-.mock-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
-.ms{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:11px}
-.ms-n{font-family:var(--serif);font-size:18px;color:var(--green);font-style:italic}
-.ms-l{font-size:9px;color:rgba(255,255,255,.25);margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
-.mock-thead{display:grid;grid-template-columns:2fr .8fr .6fr 1fr;gap:4px;padding:6px 8px;background:rgba(255,255,255,.03);border-radius:6px;margin-bottom:4px}
-.mock-thead span{font-size:9px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.06em}
-.mock-row{display:grid;grid-template-columns:2fr .8fr .6fr 1fr;gap:4px;padding:8px;border-bottom:1px solid rgba(255,255,255,.04);align-items:center}
-.mock-row span{font-size:11px;color:rgba(255,255,255,.5);line-height:1.3}
-.mtag{font-size:9px;padding:2px 8px;border-radius:100px;font-weight:500;white-space:nowrap}
-.t-g{background:rgba(52,211,153,.12);color:#34d399}
-.t-y{background:rgba(38,162,76,.12);color:var(--green)}
-.t-b{background:rgba(99,179,237,.12);color:#63b3ed}
-.mock-foot{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center}
-.mock-foot span{font-size:10px;color:rgba(255,255,255,.2)}
-.mock-foot-cta{font-size:10px;color:var(--green);background:rgba(38,162,76,.1);border:1px solid rgba(38,162,76,.18);border-radius:4px;padding:4px 10px;font-weight:500}
+/* ─── PLATAFORMA BENTO ─── */
+.plat-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1100px;margin:0 auto}
+.plat-card{background:rgba(8,16,9,0.9);border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;cursor:default;transition:border-color .35s}
+.plat-card:hover{border-color:rgba(38,162,76,0.35)}
+.plat-card-d2{grid-column:span 2}
+.plat-visual{height:190px;background:rgba(0,0,0,0.28);border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+.plat-body{padding:20px 24px 26px}
+.plat-body h4{font-size:14px;font-weight:700;color:var(--white);margin-bottom:7px;letter-spacing:-.25px;line-height:1.35}
+.plat-body p{font-size:12px;color:var(--muted);line-height:1.7}
+@media(max-width:900px){.plat-bento{grid-template-columns:1fr 1fr}.plat-card-d2{grid-column:span 2}}
+@media(max-width:600px){.plat-bento{grid-template-columns:1fr}.plat-card-d2{grid-column:span 1}}
+/* Card 1: Dashboard bars */
+.pd-inner{display:flex;align-items:center;gap:28px;padding:0 24px}
+.pd-kpis{display:flex;flex-direction:column;gap:8px}
+.pd-kpi{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:8px 13px;min-width:82px}
+.pd-kpi-n{font-size:17px;font-weight:700;color:var(--green);line-height:1}
+.pd-kpi-l{font-size:9px;color:rgba(255,255,255,0.28);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
+.pd-bars-wrap{display:flex;align-items:flex-end;gap:7px;height:110px}
+.pd-bar-col{display:flex;flex-direction:column;align-items:center;gap:4px}
+.pd-bar{width:20px;border-radius:4px 4px 0 0;animation:pd-bar-wave var(--spd,2.4s) var(--dly,0s) ease-in-out infinite alternate}
+@keyframes pd-bar-wave{from{height:var(--hf,30px)}to{height:var(--ht,90px)}}
+.pd-label{font-size:8px;color:rgba(255,255,255,0.2);text-transform:uppercase;letter-spacing:.05em}
+/* Card 2: Relatório progress */
+.pr-doc{display:flex;flex-direction:column;gap:8px;width:155px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:16px}
+.pr-line{height:7px;border-radius:20px;background:rgba(255,255,255,0.08)}
+.pr-track{height:7px;border-radius:20px;background:rgba(255,255,255,0.08);overflow:hidden}
+.pr-fill{height:100%;border-radius:20px;background:var(--green);animation:pr-fill 3.5s ease-in-out infinite}
+@keyframes pr-fill{0%,5%{width:0}60%{width:100%}85%,100%{width:100%}}
+.pr-cta{margin-top:4px;background:rgba(38,162,76,0.15);border:1px solid rgba(38,162,76,0.35);border-radius:6px;padding:6px 0;font-size:10px;color:var(--green);font-weight:700;text-align:center;letter-spacing:.04em;animation:pr-pop 3.5s ease-in-out infinite}
+@keyframes pr-pop{0%,55%{opacity:0.3;transform:scale(.95)}66%{opacity:1;transform:scale(1.04)}80%,100%{opacity:1;transform:scale(1)}}
+/* Card 3: SLA ring + alerts */
+.psla-wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
+.psla-ring-arc{stroke:var(--green);stroke-dasharray:188;animation:psla-drain 5s linear infinite}
+@keyframes psla-drain{0%{stroke-dashoffset:0}85%{stroke-dashoffset:188}86%,100%{stroke-dashoffset:0}}
+.psla-ring-label{font-size:13px;font-weight:700;fill:var(--white);text-anchor:middle;dominant-baseline:central}
+.psla-ring-sub{font-size:7px;fill:rgba(255,255,255,0.3);text-anchor:middle}
+.psla-alerts{display:flex;flex-direction:column;gap:6px}
+.psla-alert{display:flex;align-items:center;gap:7px;font-size:9.5px;color:rgba(255,255,255,0.45)}
+.psla-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
+.psla-dot-r{background:#ef4444;animation:psla-pulse-r 1.6s ease-in-out infinite}
+.psla-dot-y{background:#f59e0b;animation:psla-pulse-y 2s ease-in-out infinite .5s}
+.psla-dot-g{background:rgba(38,162,76,0.7)}
+@keyframes psla-pulse-r{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.5)}50%{box-shadow:0 0 0 4px rgba(239,68,68,0)}}
+@keyframes psla-pulse-y{0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,.5)}50%{box-shadow:0 0 0 4px rgba(245,158,11,0)}}
+/* Card 4: Multi-unidade lines */
+.pmulti-line{stroke:rgba(38,162,76,0.5);stroke-dasharray:65;stroke-dashoffset:65;animation:pmulti-draw 2.5s ease-in-out infinite}
+@keyframes pmulti-draw{0%,5%{stroke-dashoffset:65;opacity:.2}45%{stroke-dashoffset:0;opacity:1}80%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:65;opacity:.2}}
+.pmulti-unit{animation:pmulti-unit-glow 2.5s ease-in-out infinite}
+@keyframes pmulti-unit-glow{0%,5%{opacity:.3}45%{opacity:1}80%{opacity:1}100%{opacity:.3}}
+/* Card 5: API calls */
+.papi-wrap{display:flex;flex-direction:column;gap:6px;overflow:hidden;height:138px;width:210px}
+.papi-row{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:6px 10px;opacity:0;transform:translateY(12px);animation:papi-in 5s var(--d,0s) ease-out infinite}
+@keyframes papi-in{0%{opacity:0;transform:translateY(12px)}14%{opacity:1;transform:translateY(0)}72%{opacity:1;transform:translateY(0)}88%{opacity:0;transform:translateY(-7px)}100%{opacity:0}}
+.papi-method{font-size:8px;font-weight:700;padding:2px 5px;border-radius:3px;flex-shrink:0;font-family:monospace}
+.m-get{background:rgba(99,179,237,.15);color:#63b3ed}
+.m-post{background:rgba(38,162,76,.15);color:var(--green)}
+.papi-ep{font-size:9px;color:rgba(255,255,255,0.4);font-family:monospace;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
+.papi-ok{font-size:8px;color:#4ade80;flex-shrink:0}
 
 /* ─── MÉTRICAS ─── */
 .metrics-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:50px}
@@ -365,7 +395,7 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
 /* ─── RESPONSIVE ─── */
 @media(max-width:1100px){.daniela-grid{grid-template-columns:1fr}}
 @media(max-width:900px){
-  .pain-grid,.method-grid,.metrics-cards,.sobre-grid,.platform-grid,.sec-grid-2,.metrics-head,.faq-grid{grid-template-columns:1fr;gap:30px}
+  .pain-grid,.method-grid,.metrics-cards,.sobre-grid,.sec-grid-2,.metrics-head,.faq-grid{grid-template-columns:1fr;gap:30px}
   .sobre-main{grid-column:1}.sobre-mission{grid-column:1}
   .media-grid{grid-template-columns:1fr 1fr}
   footer{flex-direction:column;gap:20px;text-align:center}.f-links{justify-content:center}
@@ -871,54 +901,180 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
   </div>
   <h2 class="sec-h2">Desenvolvida com quem<br><em>vive o problema.</em></h2>
   <p class="sec-sub" style="margin-bottom:48px">Não é produto de prateleira. A S.E.R. Cliente foi desenvolvida e validada com clientes reais em ambientes de alta complexidade regulada.</p>
-  <div class="platform-grid">
-    <div class="feat-list fade fade-delay-1">
-      <div class="feat">
-        <div class="feat-icon">📊</div>
-        <div><h4>Dashboard executivo e gerencial</h4><p>Visão consolidada de todas as unidades. Relatórios operacionais e executivos customizados, em xls, ppt e BI, prontos para apresentar.</p></div>
+
+  <div class="plat-bento">
+
+    <!-- Card 1: Dashboard executivo (span 2 cols) -->
+    <div class="plat-card plat-card-d2 fade fade-delay-1">
+      <div class="plat-visual">
+        <div class="pd-inner">
+          <div class="pd-kpis">
+            <div class="pd-kpi">
+              <div class="pd-kpi-n">247</div>
+              <div class="pd-kpi-l">Manifestações/mês</div>
+            </div>
+            <div class="pd-kpi">
+              <div class="pd-kpi-n">96%</div>
+              <div class="pd-kpi-l">SLA cumprido</div>
+            </div>
+            <div class="pd-kpi">
+              <div class="pd-kpi-n">NPS 68</div>
+              <div class="pd-kpi-l">Pós-resolução</div>
+            </div>
+          </div>
+          <div class="pd-bars-wrap">
+            <div class="pd-bar-col">
+              <div class="pd-bar" style="background:rgba(38,162,76,.22);--hf:28px;--ht:72px;--spd:3.1s;--dly:0s"></div>
+              <div class="pd-label">Jan</div>
+            </div>
+            <div class="pd-bar-col">
+              <div class="pd-bar" style="background:rgba(38,162,76,.22);--hf:55px;--ht:95px;--spd:2.7s;--dly:.4s"></div>
+              <div class="pd-label">Fev</div>
+            </div>
+            <div class="pd-bar-col">
+              <div class="pd-bar" style="background:rgba(38,162,76,.6);--hf:40px;--ht:88px;--spd:3.5s;--dly:.7s"></div>
+              <div class="pd-label">Mar</div>
+            </div>
+            <div class="pd-bar-col">
+              <div class="pd-bar" style="background:rgba(38,162,76,.22);--hf:35px;--ht:78px;--spd:2.9s;--dly:1s"></div>
+              <div class="pd-label">Abr</div>
+            </div>
+            <div class="pd-bar-col">
+              <div class="pd-bar" style="background:rgba(38,162,76,.22);--hf:52px;--ht:90px;--spd:3.2s;--dly:1.3s"></div>
+              <div class="pd-label">Mai</div>
+            </div>
+            <div class="pd-bar-col">
+              <div class="pd-bar" style="background:rgba(38,162,76,.75);--hf:62px;--ht:100px;--spd:2.8s;--dly:1.6s"></div>
+              <div class="pd-label">Jun</div>
+            </div>
+          </div>
+        </div>
       </div>
-      <div class="feat">
-        <div class="feat-icon">✅</div>
-        <div><h4>Relatório de conformidade em 1 clique</h4><p>Trilha completa de cada manifestação — exatamente como exigem as agências reguladoras. Auditorias sem surpresas, documentação pronta.</p></div>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">🔔</div>
-        <div><h4>SLA automático e alertas de prazo</h4><p>SLA configurável por tipo de manifestação com alertas antes do vencimento. Zero prazo perdido em e-mail compartilhado.</p></div>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">🏢</div>
-        <div><h4>Multi-unidade com visão consolidada</h4><p>Cada unidade opera com autonomia dentro do padrão da organização. Dashboard corporativo sem perder a granularidade local.</p></div>
-      </div>
-      <div class="feat">
-        <div class="feat-icon">🔗</div>
-        <div><h4>Integrações e API documentada</h4><p>API REST para integração com CRM, ERP e sistemas legados. Levantamento técnico gratuito no onboarding.</p></div>
+      <div class="plat-body">
+        <h4>Dashboard executivo e gerencial</h4>
+        <p>Visão consolidada de todas as unidades. Relatórios operacionais e executivos customizados, em xls, ppt e BI, prontos para apresentar.</p>
       </div>
     </div>
-    <div class="mockup fade fade-delay-2">
-      <div class="mock-bar">
-        <div class="mock-dot" style="background:#ff5f57"></div>
-        <div class="mock-dot" style="background:#ffbd2e"></div>
-        <div class="mock-dot" style="background:#28ca41"></div>
-        <span class="mock-name">S.E.R. Cliente · Dashboard</span>
+
+    <!-- Card 2: Relatório de conformidade -->
+    <div class="plat-card fade fade-delay-2">
+      <div class="plat-visual">
+        <div class="pr-doc">
+          <div class="pr-line" style="width:75%;background:rgba(38,162,76,.3)"></div>
+          <div class="pr-line" style="width:100%"></div>
+          <div class="pr-line" style="width:85%"></div>
+          <div class="pr-track"><div class="pr-fill"></div></div>
+          <div class="pr-line" style="width:60%"></div>
+          <div class="pr-cta">✓&nbsp; Gerar Relatório</div>
+        </div>
       </div>
-      <div class="mock-stats">
-        <div class="ms"><div class="ms-n">247</div><div class="ms-l">Manifestações / mês</div></div>
-        <div class="ms"><div class="ms-n">96%</div><div class="ms-l">SLA cumprido</div></div>
-        <div class="ms"><div class="ms-n">NPS 68</div><div class="ms-l">Pós-resolução</div></div>
-      </div>
-      <div class="mock-thead">
-        <span>Manifestação</span><span>Setor</span><span>SLA</span><span>Status</span>
-      </div>
-      <div class="mock-row"><span>Demora no atendimento — UTI</span><span>Saúde</span><span>2d</span><span class="mtag t-g">Resolvido</span></div>
-      <div class="mock-row"><span>Acesso rota pedagiada BR-116</span><span>Infra</span><span>5d</span><span class="mtag t-y">Em prazo</span></div>
-      <div class="mock-row"><span>Cancelamento matrícula — 3º período</span><span>Educação</span><span>1d</span><span class="mtag t-b">Análise</span></div>
-      <div class="mock-row"><span>Nota fiscal incorreta — plano Ouro</span><span>Saúde</span><span>3d</span><span class="mtag t-g">Resolvido</span></div>
-      <div class="mock-row"><span>Sinalização inadequada — km 312</span><span>Infra</span><span>7d</span><span class="mtag t-y">Em prazo</span></div>
-      <div class="mock-foot">
-        <span>Relatório de conformidade</span>
-        <span class="mock-foot-cta">Gerar em 1 clique →</span>
+      <div class="plat-body">
+        <h4>Relatório de conformidade em 1 clique</h4>
+        <p>Trilha completa de cada manifestação — exatamente como exigem as agências reguladoras. Auditorias sem surpresas.</p>
       </div>
     </div>
+
+    <!-- Card 3: SLA automático -->
+    <div class="plat-card fade fade-delay-1">
+      <div class="plat-visual">
+        <div class="psla-wrap">
+          <svg width="84" height="84" viewBox="0 0 84 84" fill="none">
+            <circle cx="42" cy="42" r="30" stroke="rgba(255,255,255,0.07)" stroke-width="5"/>
+            <circle class="psla-ring-arc" cx="42" cy="42" r="30" stroke-linecap="round" stroke-width="5" transform="rotate(-90 42 42)"/>
+            <text class="psla-ring-label" x="42" y="40">SLA</text>
+            <text class="psla-ring-sub" x="42" y="52">automático</text>
+          </svg>
+          <div class="psla-alerts">
+            <div class="psla-alert"><div class="psla-dot psla-dot-r"></div>Vence em 2h · UTI</div>
+            <div class="psla-alert"><div class="psla-dot psla-dot-y"></div>Vence em 1d · Edu</div>
+            <div class="psla-alert"><div class="psla-dot psla-dot-g"></div>Resolvido · Infra</div>
+          </div>
+        </div>
+      </div>
+      <div class="plat-body">
+        <h4>SLA automático e alertas de prazo</h4>
+        <p>SLA configurável por tipo de manifestação com alertas antes do vencimento. Zero prazo perdido em e-mail compartilhado.</p>
+      </div>
+    </div>
+
+    <!-- Card 4: Multi-unidade -->
+    <div class="plat-card fade fade-delay-2">
+      <div class="plat-visual">
+        <svg width="210" height="148" viewBox="0 0 210 148" fill="none">
+          <!-- Lines (draw first so they appear behind units) -->
+          <line x1="88" y1="65" x2="38" y2="30" stroke-width="1.3" class="pmulti-line" style="animation-delay:0s"/>
+          <line x1="122" y1="65" x2="172" y2="30" stroke-width="1.3" class="pmulti-line" style="animation-delay:.5s"/>
+          <line x1="88" y1="83" x2="38" y2="118" stroke-width="1.3" class="pmulti-line" style="animation-delay:1s"/>
+          <line x1="122" y1="83" x2="172" y2="118" stroke-width="1.3" class="pmulti-line" style="animation-delay:1.5s"/>
+          <!-- Center hub -->
+          <circle cx="105" cy="74" r="18" fill="rgba(38,162,76,.1)" stroke="rgba(38,162,76,.3)" stroke-width="1.5"/>
+          <circle cx="105" cy="74" r="10" fill="rgba(38,162,76,.18)" stroke="rgba(38,162,76,.6)" stroke-width="1.5"/>
+          <circle cx="105" cy="74" r="4.5" fill="#26A24C"/>
+          <!-- Unit boxes -->
+          <g class="pmulti-unit" style="animation-delay:0s">
+            <rect x="14" y="16" width="42" height="26" rx="5" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+            <rect x="20" y="22" width="10" height="6" rx="1.5" fill="rgba(255,255,255,.18)"/>
+            <rect x="33" y="22" width="16" height="2.5" rx="1" fill="rgba(255,255,255,.08)"/>
+            <rect x="33" y="27" width="11" height="2.5" rx="1" fill="rgba(255,255,255,.06)"/>
+          </g>
+          <g class="pmulti-unit" style="animation-delay:.5s">
+            <rect x="154" y="16" width="42" height="26" rx="5" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+            <rect x="160" y="22" width="10" height="6" rx="1.5" fill="rgba(255,255,255,.18)"/>
+            <rect x="173" y="22" width="16" height="2.5" rx="1" fill="rgba(255,255,255,.08)"/>
+            <rect x="173" y="27" width="11" height="2.5" rx="1" fill="rgba(255,255,255,.06)"/>
+          </g>
+          <g class="pmulti-unit" style="animation-delay:1s">
+            <rect x="14" y="106" width="42" height="26" rx="5" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+            <rect x="20" y="112" width="10" height="6" rx="1.5" fill="rgba(255,255,255,.18)"/>
+            <rect x="33" y="112" width="16" height="2.5" rx="1" fill="rgba(255,255,255,.08)"/>
+            <rect x="33" y="117" width="11" height="2.5" rx="1" fill="rgba(255,255,255,.06)"/>
+          </g>
+          <g class="pmulti-unit" style="animation-delay:1.5s">
+            <rect x="154" y="106" width="42" height="26" rx="5" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
+            <rect x="160" y="112" width="10" height="6" rx="1.5" fill="rgba(255,255,255,.18)"/>
+            <rect x="173" y="112" width="16" height="2.5" rx="1" fill="rgba(255,255,255,.08)"/>
+            <rect x="173" y="117" width="11" height="2.5" rx="1" fill="rgba(255,255,255,.06)"/>
+          </g>
+        </svg>
+      </div>
+      <div class="plat-body">
+        <h4>Multi-unidade com visão consolidada</h4>
+        <p>Cada unidade opera com autonomia dentro do padrão da organização. Dashboard corporativo sem perder a granularidade local.</p>
+      </div>
+    </div>
+
+    <!-- Card 5: Integrações e API -->
+    <div class="plat-card fade fade-delay-3">
+      <div class="plat-visual">
+        <div class="papi-wrap">
+          <div class="papi-row" style="--d:0s">
+            <span class="papi-method m-get">GET</span>
+            <span class="papi-ep">/manifestacoes</span>
+            <span class="papi-ok">200 ✓</span>
+          </div>
+          <div class="papi-row" style="--d:.9s">
+            <span class="papi-method m-post">POST</span>
+            <span class="papi-ep">/sla/config</span>
+            <span class="papi-ok">201 ✓</span>
+          </div>
+          <div class="papi-row" style="--d:1.8s">
+            <span class="papi-method m-get">GET</span>
+            <span class="papi-ep">/relatorios/conformidade</span>
+            <span class="papi-ok">200 ✓</span>
+          </div>
+          <div class="papi-row" style="--d:2.7s">
+            <span class="papi-method m-post">POST</span>
+            <span class="papi-ep">/alertas/prazo</span>
+            <span class="papi-ok">201 ✓</span>
+          </div>
+        </div>
+      </div>
+      <div class="plat-body">
+        <h4>Integrações e API documentada</h4>
+        <p>API REST para integração com CRM, ERP e sistemas legados. Levantamento técnico gratuito no onboarding.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
