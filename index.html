@@ -111,15 +111,39 @@ nav{
 .hero-scroll svg{animation:scrollBounce 2s infinite}
 @keyframes scrollBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 
-/* ─── FEATURES STRIP ─── */
-.strip{border-top:1px solid var(--divider);border-bottom:1px solid var(--divider);background:var(--bg)}
-.strip-inner{display:grid;grid-template-columns:repeat(3,1fr);max-width:900px;margin:0 auto}
-.strip-item{padding:28px 32px;display:flex;align-items:center;gap:14px;border-right:1px solid var(--divider);transition:background .2s}
-.strip-item:last-child{border-right:none}
-.strip-item:hover{background:rgba(255,255,255,.02)}
-.strip-icon{font-size:18px;flex-shrink:0}
-.strip-label{font-size:13px;font-weight:500;color:var(--white);letter-spacing:-.01em}
-.strip-desc{font-size:12px;color:var(--muted);margin-top:2px;letter-spacing:-.01em}
+/* ─── FEATURES CARDS ─── */
+.feat-cards-section{padding:48px 5% 60px;background:var(--bg)}
+.feat-cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1100px;margin:0 auto}
+.feat-card{background:rgba(8,16,9,0.9);border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;cursor:default;transition:border-color .35s}
+.feat-card:hover{border-color:rgba(38,162,76,0.35)}
+.feat-card-visual{height:200px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.28);border-bottom:1px solid rgba(255,255,255,0.05);overflow:hidden}
+.feat-card-body{padding:24px 28px 32px;text-align:center}
+.feat-card-body h3{font-size:17px;font-weight:700;color:var(--white);margin-bottom:8px;letter-spacing:-.3px}
+.feat-card-body p{font-size:13px;color:var(--muted);line-height:1.65}
+
+/* Object 1 — Form document */
+.obj-form-doc{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;width:128px;padding:18px 16px;display:flex;flex-direction:column;gap:9px;transition:transform .55s cubic-bezier(.34,1.56,.64,1)}
+.feat-card:hover .obj-form-doc{transform:translateY(-14px) rotate(-3deg)}
+.fline{height:8px;border-radius:20px;background:rgba(255,255,255,0.1)}
+
+/* Object 2 — Bar chart */
+.obj-bars-wrap{display:flex;align-items:flex-end;gap:9px;height:110px;transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
+.feat-card:hover .obj-bars-wrap{transform:translateY(-10px)}
+.obj-bar{width:24px;border-radius:5px 5px 0 0;background:rgba(255,255,255,0.09);height:var(--h);transition:background .35s,transform .55s cubic-bezier(.34,1.56,.64,1)}
+.feat-card:hover .obj-bar:nth-child(1){background:rgba(38,162,76,0.3);transform:scaleY(1.08);transform-origin:bottom}
+.feat-card:hover .obj-bar:nth-child(2){background:rgba(38,162,76,0.55);transform:scaleY(1.12);transform-origin:bottom}
+.feat-card:hover .obj-bar:nth-child(3){background:rgba(38,162,76,0.25);transform:scaleY(1.06);transform-origin:bottom}
+.feat-card:hover .obj-bar:nth-child(4){background:rgba(38,162,76,0.45);transform:scaleY(1.1);transform-origin:bottom}
+.feat-card:hover .obj-bar:nth-child(5){background:rgba(38,162,76,0.3);transform:scaleY(1.07);transform-origin:bottom}
+
+/* Object 3 — Neural network */
+.obj-network{width:170px;height:140px;transition:transform .55s cubic-bezier(.34,1.56,.64,1)}
+.feat-card:hover .obj-network{transform:translateY(-10px) scale(1.07)}
+.net-outer{transition:stroke .35s;stroke:rgba(255,255,255,0.15)}
+.feat-card:hover .net-outer{stroke:rgba(38,162,76,0.4)}
+
+@media(max-width:900px){.feat-cards-grid{grid-template-columns:1fr;gap:12px}}
+@media(max-width:600px){.feat-cards-grid{grid-template-columns:1fr}}
 
 /* ─── SECTION SHARED ─── */
 section{padding:100px 5%}
@@ -401,30 +425,70 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
   </div>
 </section>
 
-<!-- STRIP -->
-<div class="strip">
-  <div class="strip-inner">
-    <div class="strip-item">
-      <div class="strip-icon">📝</div>
-      <div>
-        <div class="strip-label">Formulários flexíveis</div>
-        <div class="strip-desc">Captação adaptada à sua operação</div>
+<!-- FEATURES CARDS -->
+<div class="feat-cards-section">
+  <div class="feat-cards-grid">
+
+    <!-- Card 1: Formulários flexíveis -->
+    <div class="feat-card">
+      <div class="feat-card-visual">
+        <div class="obj-form-doc">
+          <div class="fline" style="width:75%;background:rgba(38,162,76,0.5)"></div>
+          <div class="fline" style="width:100%"></div>
+          <div class="fline" style="width:85%"></div>
+          <div class="fline" style="width:55%;background:rgba(38,162,76,0.28)"></div>
+          <div class="fline" style="width:100%"></div>
+          <div class="fline" style="width:70%"></div>
+        </div>
+      </div>
+      <div class="feat-card-body">
+        <h3>Formulários flexíveis</h3>
+        <p>Captação adaptada à sua operação</p>
       </div>
     </div>
-    <div class="strip-item">
-      <div class="strip-icon">📊</div>
-      <div>
-        <div class="strip-label">Relatórios customizados</div>
-        <div class="strip-desc">Mais clareza para a tomada de decisão</div>
+
+    <!-- Card 2: Relatórios customizados -->
+    <div class="feat-card">
+      <div class="feat-card-visual">
+        <div class="obj-bars-wrap">
+          <div class="obj-bar" style="--h:52%"></div>
+          <div class="obj-bar" style="--h:88%"></div>
+          <div class="obj-bar" style="--h:40%"></div>
+          <div class="obj-bar" style="--h:72%"></div>
+          <div class="obj-bar" style="--h:58%"></div>
+        </div>
+      </div>
+      <div class="feat-card-body">
+        <h3>Relatórios customizados</h3>
+        <p>Mais clareza para a tomada de decisão</p>
       </div>
     </div>
-    <div class="strip-item">
-      <div class="strip-icon">🤖</div>
-      <div>
-        <div class="strip-label">IA integrada</div>
-        <div class="strip-desc">Respostas contextualizadas e analíticas</div>
+
+    <!-- Card 3: IA integrada -->
+    <div class="feat-card">
+      <div class="feat-card-visual">
+        <svg class="obj-network" viewBox="0 0 180 150" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <line x1="90" y1="75" x2="38" y2="28" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="90" y1="75" x2="148" y2="28" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="90" y1="75" x2="22" y2="118" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="90" y1="75" x2="158" y2="118" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <line x1="90" y1="75" x2="90" y2="14" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
+          <circle class="net-outer" cx="38" cy="28" r="8" fill="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+          <circle class="net-outer" cx="148" cy="28" r="8" fill="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+          <circle class="net-outer" cx="22" cy="118" r="8" fill="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+          <circle class="net-outer" cx="158" cy="118" r="8" fill="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+          <circle class="net-outer" cx="90" cy="14" r="8" fill="rgba(255,255,255,0.05)" stroke-width="1.5"/>
+          <circle cx="90" cy="75" r="18" fill="rgba(38,162,76,0.1)" stroke="rgba(38,162,76,0.25)" stroke-width="1.5"/>
+          <circle cx="90" cy="75" r="10" fill="rgba(38,162,76,0.18)" stroke="rgba(38,162,76,0.55)" stroke-width="1.5"/>
+          <circle cx="90" cy="75" r="4.5" fill="#26A24C"/>
+        </svg>
+      </div>
+      <div class="feat-card-body">
+        <h3>IA integrada</h3>
+        <p>Respostas contextualizadas e analíticas</p>
       </div>
     </div>
+
   </div>
 </div>
 
