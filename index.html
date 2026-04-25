@@ -409,11 +409,12 @@ section{padding:100px 5%}
 .sec-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
 .sec-left-text{font-size:15px;color:var(--muted);line-height:1.8;margin-top:16px;font-weight:300}
 .cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.cert{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:18px;display:flex;gap:12px;align-items:flex-start;transition:all .2s}
-.cert:hover{border-color:rgba(38,162,76,.18)}
-.cert-icon{font-size:20px;flex-shrink:0;margin-top:2px}
-.cert h4{font-size:13px;font-weight:500;color:var(--white);margin-bottom:3px;letter-spacing:-.2px}
-.cert p{font-size:11px;color:var(--muted);line-height:1.5}
+.cert{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:20px;display:flex;gap:14px;align-items:flex-start;transition:border-color .3s,background .3s,transform .4s cubic-bezier(.34,1.56,.64,1);cursor:default}
+.cert:hover{border-color:rgba(38,162,76,.38);background:rgba(255,255,255,.055);transform:translateY(-6px)}
+.cert-icon{width:40px;height:40px;border-radius:10px;background:rgba(38,162,76,.08);border:1px solid rgba(38,162,76,.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(38,162,76,.7);transition:color .3s,background .3s,border-color .3s,transform .4s cubic-bezier(.34,1.56,.64,1)}
+.cert:hover .cert-icon{color:rgba(38,162,76,1);background:rgba(38,162,76,.14);border-color:rgba(38,162,76,.4);transform:scale(1.1)}
+.cert h4{font-size:13.5px;font-weight:600;color:var(--white);margin-bottom:4px;letter-spacing:-.2px}
+.cert p{font-size:12px;color:var(--muted);line-height:1.55}
 
 /* ─── FAQ ─── */
 .faq-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:80px;align-items:start}
@@ -1465,12 +1466,74 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
       <p class="sec-left-text">Conformidade com os principais padrões globais de segurança. Seus dados e os dados dos seus clientes protegidos com os mais altos padrões da indústria.</p>
     </div>
     <div class="cert-grid fade fade-delay-1">
-      <div class="cert"><div class="cert-icon">🛡️</div><div><h4>LGPD</h4><p>Conformidade total com a Lei Geral de Proteção de Dados brasileira.</p></div></div>
-      <div class="cert"><div class="cert-icon">🌍</div><div><h4>GDPR</h4><p>Padrão europeu de proteção de dados pessoais.</p></div></div>
-      <div class="cert"><div class="cert-icon">🔐</div><div><h4>ISO 27001</h4><p>Certificação internacional para gestão de segurança da informação.</p></div></div>
-      <div class="cert"><div class="cert-icon">✅</div><div><h4>SOC 2</h4><p>Auditoria independente de segurança, disponibilidade e confidencialidade.</p></div></div>
-      <div class="cert"><div class="cert-icon">🪟</div><div><h4>Microsoft Active Directory</h4><p>Autenticação centralizada e gestão de acessos corporativos via AD.</p></div></div>
-      <div class="cert"><div class="cert-icon">🔵</div><div><h4>Google SSO</h4><p>Acesso via Google Single Sign-On — sem senhas adicionais.</p></div></div>
+      <!-- LGPD: escudo com check -->
+      <div class="cert">
+        <div class="cert-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+            <polyline points="9 12 11 14 15 10"/>
+          </svg>
+        </div>
+        <div><h4>LGPD</h4><p>Conformidade total com a Lei Geral de Proteção de Dados brasileira.</p></div>
+      </div>
+      <!-- GDPR: globo com meridianos -->
+      <div class="cert">
+        <div class="cert-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="2" y1="12" x2="22" y2="12"/>
+            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+          </svg>
+        </div>
+        <div><h4>GDPR</h4><p>Padrão europeu de proteção de dados pessoais.</p></div>
+      </div>
+      <!-- ISO 27001: cadeado -->
+      <div class="cert">
+        <div class="cert-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+            <circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/>
+          </svg>
+        </div>
+        <div><h4>ISO 27001</h4><p>Certificação internacional para gestão de segurança da informação.</p></div>
+      </div>
+      <!-- SOC 2: checklist auditoria -->
+      <div class="cert">
+        <div class="cert-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M9 11l3 3L22 4"/>
+            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
+          </svg>
+        </div>
+        <div><h4>SOC 2</h4><p>Auditoria independente de segurança, disponibilidade e confidencialidade.</p></div>
+      </div>
+      <!-- Microsoft AD: hierarquia de rede -->
+      <div class="cert">
+        <div class="cert-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="4" r="2"/>
+            <circle cx="5" cy="20" r="2"/>
+            <circle cx="19" cy="20" r="2"/>
+            <line x1="12" y1="6" x2="12" y2="13"/>
+            <line x1="12" y1="13" x2="5" y2="18"/>
+            <line x1="12" y1="13" x2="19" y2="18"/>
+          </svg>
+        </div>
+        <div><h4>Microsoft Active Directory</h4><p>Autenticação centralizada e gestão de acessos corporativos via AD.</p></div>
+      </div>
+      <!-- Google SSO: chave -->
+      <div class="cert">
+        <div class="cert-icon">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="7.5" cy="9.5" r="4.5"/>
+            <path d="M10.5 12.5L20 22"/>
+            <path d="M17 20l2-2"/>
+            <path d="M14.5 17.5l2-2"/>
+          </svg>
+        </div>
+        <div><h4>Google SSO</h4><p>Acesso via Google Single Sign-On — sem senhas adicionais.</p></div>
+      </div>
     </div>
   </div>
 </section>
