@@ -200,30 +200,56 @@ section{padding:100px 5%}
 .sobre-mission ul li::before{content:'→';position:absolute;left:0;color:var(--green);font-size:11px;top:8px}
 
 /* ─── DANIELA ─── */
-.daniela-grid{display:grid;grid-template-columns:380px 1fr;gap:20px;align-items:start}
-.daniela-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:32px}
-.d-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin-bottom:14px}
-.d-name{font-family:var(--serif);font-size:36px;font-style:italic;color:var(--white);line-height:1.1;margin-bottom:12px}
-.d-bio{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:20px}
-.d-award{display:flex;align-items:center;gap:12px;background:rgba(38,162,76,.08);border:1px solid rgba(38,162,76,.18);border-radius:10px;padding:14px 16px;margin-bottom:20px}
-.d-award-icon{font-size:22px;flex-shrink:0}
-.d-award strong{display:block;font-size:12px;color:var(--green);font-weight:500;line-height:1.4}
-.d-award span{font-size:11px;color:var(--muted2)}
-.d-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.d-stat{background:rgba(255,255,255,.03);border:1px solid var(--divider);border-radius:10px;padding:18px 16px}
-.d-stat-n{font-family:var(--serif);font-size:32px;color:var(--green);line-height:1;font-style:italic}
-.d-stat-l{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4}
-.media-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.media-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:16px;display:flex;gap:12px;align-items:flex-start;transition:all .2s;cursor:default}
-.media-card:hover{border-color:rgba(38,162,76,.2);background:rgba(255,255,255,.06)}
-.media-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
-.mi-award{background:rgba(38,162,76,.12)}
-.mi-pod{background:rgba(168,85,247,.1)}
-.mi-talk{background:rgba(59,130,246,.1)}
-.mi-globe{background:rgba(52,211,153,.1)}
-.media-type{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted2);margin-bottom:3px}
-.media-title{font-size:12px;color:rgba(228,233,242,.8);line-height:1.45;font-weight:500}
-.media-sub{font-size:11px;color:var(--muted2);margin-top:2px}
+.dan-top{display:grid;grid-template-columns:360px 1fr;gap:32px;align-items:start}
+.dan-photo-wrap{position:relative;border-radius:20px;overflow:hidden;cursor:default;line-height:0}
+.dan-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:top center;display:block;transition:transform .6s cubic-bezier(.34,1.56,.64,1)}
+.dan-photo-wrap:hover img{transform:scale(1.04)}
+.dan-photo-badge{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(3,13,6,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(38,162,76,.3);border-radius:10px;padding:9px 18px;white-space:nowrap;text-align:center}
+.dan-photo-badge strong{display:block;font-size:11.5px;font-weight:700;color:var(--green);letter-spacing:.01em}
+.dan-photo-badge span{font-size:10px;color:var(--muted2)}
+.dan-bio-col{padding-top:8px}
+.dan-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--green);margin-bottom:12px}
+.dan-name{font-family:var(--sans);font-size:clamp(28px,3vw,44px);font-weight:800;color:var(--white);line-height:1.05;margin-bottom:6px;letter-spacing:-1.5px}
+.dan-tagline{font-size:14px;color:var(--muted);margin-bottom:26px;font-weight:300;line-height:1.6}
+.dan-bullets{list-style:none;display:flex;flex-direction:column;gap:10px;margin-bottom:24px}
+.dan-bullets li{display:flex;gap:12px;align-items:flex-start;font-size:13px;color:rgba(228,237,230,.75);line-height:1.6}
+.dan-bi{width:28px;height:28px;border-radius:7px;background:rgba(38,162,76,.09);border:1px solid rgba(38,162,76,.2);display:flex;align-items:center;justify-content:center;font-size:13px;flex-shrink:0;margin-top:2px}
+.dan-awards{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
+.dan-award{display:flex;align-items:center;gap:12px;background:rgba(38,162,76,.07);border:1px solid rgba(38,162,76,.18);border-radius:10px;padding:11px 14px;transition:background .25s}
+.dan-award:hover{background:rgba(38,162,76,.12)}
+.dan-award-trophy{font-size:18px;flex-shrink:0}
+.dan-award-text{flex:1}
+.dan-award-title{font-size:12px;font-weight:600;color:var(--green);line-height:1.35}
+.dan-award-sub{font-size:11px;color:var(--muted2);margin-top:2px}
+.dan-books{display:flex;gap:7px;flex-wrap:wrap}
+.dan-book{font-size:10px;padding:4px 11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;color:var(--muted2);line-height:1.4}
+/* Carousel */
+.dan-carousel-section{margin-top:36px}
+.dan-carousel-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin-bottom:14px;opacity:.7}
+.dan-carousel-wrap{overflow:hidden;position:relative;mask-image:linear-gradient(to right,transparent,black 6%,black 94%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 6%,black 94%,transparent)}
+.dan-carousel-track{display:flex;gap:12px;width:max-content;animation:dan-scroll 32s linear infinite}
+.dan-carousel-track:hover{animation-play-state:paused}
+.dan-carousel-img{height:195px;width:auto;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:12px;border:1px solid rgba(255,255,255,.07);flex-shrink:0;transition:border-color .3s}
+.dan-carousel-img:hover{border-color:rgba(38,162,76,.35)}
+@keyframes dan-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+/* YouTube cards */
+.dan-videos-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin:36px 0 16px;opacity:.7}
+.dan-videos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
+.dan-yt{display:block;border-radius:14px;overflow:hidden;background:rgba(8,16,9,.9);border:1px solid rgba(255,255,255,.08);text-decoration:none;transition:border-color .3s,transform .35s cubic-bezier(.34,1.56,.64,1)}
+.dan-yt:hover{border-color:rgba(38,162,76,.4);transform:translateY(-5px)}
+.dan-yt-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000}
+.dan-yt-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.dan-yt:hover .dan-yt-thumb img{transform:scale(1.06)}
+.dan-yt-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(0deg,rgba(0,0,0,.5),rgba(0,0,0,.15))}
+.dan-yt-play{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.34,1.56,.64,1),background .25s}
+.dan-yt:hover .dan-yt-play{transform:scale(1.15);background:#fff}
+.dan-yt-play svg{width:15px;height:15px;fill:#111;margin-left:2px}
+.dan-yt-info{padding:12px 14px 14px}
+.dan-yt-tag{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);opacity:.7}
+.dan-yt-title{font-size:11.5px;color:rgba(228,237,230,.75);margin-top:4px;line-height:1.45}
+@media(max-width:1100px){.dan-top{grid-template-columns:1fr}}
+@media(max-width:900px){.dan-videos-grid{grid-template-columns:repeat(2,1fr)}.dan-carousel-img{height:150px}}
+@media(max-width:600px){.dan-videos-grid{grid-template-columns:1fr 1fr}}
 
 /* ─── MÉTODO ─── */
 .method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:0}
@@ -393,7 +419,7 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
 .fade-delay-3{transition-delay:.3s}
 
 /* ─── RESPONSIVE ─── */
-@media(max-width:1100px){.daniela-grid{grid-template-columns:1fr}}
+@media(max-width:1100px){.dan-top{grid-template-columns:1fr}}
 @media(max-width:900px){
   .pain-grid,.method-grid,.metrics-cards,.sobre-grid,.sec-grid-2,.metrics-head,.faq-grid{grid-template-columns:1fr;gap:30px}
   .sobre-main{grid-column:1}.sobre-mission{grid-column:1}
@@ -647,53 +673,154 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
     <span class="eyebrow-text">Fundadora</span>
   </div>
   <h2 class="sec-h2" style="margin-bottom:48px">Construída por quem<br><em>viveu o problema.</em></h2>
-  <div class="daniela-grid">
-    <div class="daniela-card fade fade-delay-1">
-      <div class="d-label">Co-Fundadora</div>
-      <div class="d-name">Daniela Fantinati</div>
-      <p class="d-bio">15 anos gerenciando feedbacks em operações aeroportuárias de alta complexidade. A plataforma nasceu de uma dor real — e de 15 anos tentando resolver com planilhas e sistemas que não fechavam o ciclo.</p>
-      <div class="d-award">
-        <div class="d-award-icon">🏆</div>
-        <div>
-          <strong>CX Professional of the Year — 2023</strong>
-          <span>Customer Centricity World Series</span>
-        </div>
-      </div>
-      <div class="d-stats">
-        <div class="d-stat"><div class="d-stat-n">15+</div><div class="d-stat-l">Anos em ambientes de alta complexidade regulada</div></div>
-        <div class="d-stat"><div class="d-stat-n">3</div><div class="d-stat-l">Setores — Saúde, Infraestrutura, Educação</div></div>
+
+  <!-- Top: photo + bio -->
+  <div class="dan-top">
+
+    <!-- Foto principal -->
+    <div class="dan-photo-wrap fade fade-delay-1">
+      <img src="Fotos Daniela Fantinati/0115.jpg" alt="Daniela Fantinati" loading="lazy">
+      <div class="dan-photo-badge">
+        <strong>Daniela Fantinati</strong>
+        <span>Fundadora & CEO · S.E.R. Cliente</span>
       </div>
     </div>
-    <div class="fade fade-delay-2">
-      <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin-bottom:14px">Presença & Autoridade</p>
-      <div class="media-grid">
-        <div class="media-card">
-          <div class="media-icon mi-award">🏆</div>
-          <div><div class="media-type">Premiação Internacional</div><div class="media-title">CX Professional of the Year 2023</div><div class="media-sub">Customer Centricity World Series</div></div>
+
+    <!-- Bio -->
+    <div class="dan-bio-col fade fade-delay-2">
+      <div class="dan-label">Fundadora & CEO</div>
+      <div class="dan-name">Daniela Fantinati</div>
+      <p class="dan-tagline">20+ anos conectando estratégia, cultura e resultados<br>em Experiência do Cliente.</p>
+
+      <ul class="dan-bullets">
+        <li>
+          <div class="dan-bi">🎓</div>
+          <span><strong style="color:var(--white)">Comunicação Social</strong> · PUC-Campinas &nbsp;+&nbsp; <strong style="color:var(--white)">CX Strategy</strong> · Columbia Business School</span>
+        </li>
+        <li>
+          <div class="dan-bi">🏭</div>
+          <span>Trajetória em <strong style="color:var(--white)">governamental, educação, óleo & gás e aviação civil</strong> — liderando ouvidoria, sucesso do cliente e estratégias estruturadas de CX</span>
+        </li>
+        <li>
+          <div class="dan-bi">📚</div>
+          <span>Coautora de <strong style="color:var(--white)">3 livros</strong>: Experiência do Cliente na Teoria e Muita Prática · Mulheres na Aviação · Pérolas de Gestão</span>
+        </li>
+      </ul>
+
+      <div class="dan-awards">
+        <div class="dan-award">
+          <div class="dan-award-trophy">🏅</div>
+          <div class="dan-award-text">
+            <div class="dan-award-title">CX Emerging Leader</div>
+            <div class="dan-award-sub">2022 · CX Professional Association (CXPA) · Internacional</div>
+          </div>
         </div>
-        <div class="media-card">
-          <div class="media-icon mi-pod">🎙️</div>
-          <div><div class="media-type">Podcast</div><div class="media-title">Experiência do Cliente em Setores Regulados</div><div class="media-sub">CX Cast Brasil · Ep. 87</div></div>
+        <div class="dan-award">
+          <div class="dan-award-trophy">🥇</div>
+          <div class="dan-award-text">
+            <div class="dan-award-title">Profissional de Sucesso e CX do Ano · Brasil</div>
+            <div class="dan-award-sub">2023 · CSX Week</div>
+          </div>
         </div>
-        <div class="media-card">
-          <div class="media-icon mi-talk">🎤</div>
-          <div><div class="media-type">Palestra · Keynote</div><div class="media-title">Confraria CX — Feedback como estratégia</div><div class="media-sub">São Paulo, Junho 2026</div></div>
+        <div class="dan-award">
+          <div class="dan-award-trophy">🏆</div>
+          <div class="dan-award-text">
+            <div class="dan-award-title">CX Professional of the Year · <span style="color:rgba(228,237,230,.5);font-weight:400">única brasileira</span></div>
+            <div class="dan-award-sub">2023 · Customer Centricity World Series · Mundial</div>
+          </div>
         </div>
-        <div class="media-card">
-          <div class="media-icon mi-talk">✈️</div>
-          <div><div class="media-type">Palestra · Operações</div><div class="media-title">Ouvidoria em aeroportos internacionais</div><div class="media-sub">ABIH · Café da manhã executivo</div></div>
-        </div>
-        <div class="media-card">
-          <div class="media-icon mi-pod">🎙️</div>
-          <div><div class="media-type">Podcast</div><div class="media-title">Do aeroporto ao SaaS: a origem do Método S.E.R.</div><div class="media-sub">Programa Diálogos · CX & Inovação</div></div>
-        </div>
-        <div class="media-card">
-          <div class="media-icon mi-globe">🌍</div>
-          <div><div class="media-type">Expansão Internacional</div><div class="media-title">CX em mercados lusófonos africanos</div><div class="media-sub">Angola & Moçambique · Presença ativa</div></div>
-        </div>
+      </div>
+
+      <div class="dan-books">
+        <span class="dan-book">📘 CX na Teoria e Muita Prática</span>
+        <span class="dan-book">✈️ Mulheres na Aviação</span>
+        <span class="dan-book">💼 Pérolas de Gestão</span>
       </div>
     </div>
   </div>
+
+  <!-- Carrossel de fotos -->
+  <div class="dan-carousel-section fade">
+    <div class="dan-carousel-label">Daniela em palestras & eventos</div>
+    <div class="dan-carousel-wrap">
+      <div class="dan-carousel-track">
+        <!-- Fotos duplicadas para loop seamless -->
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/WhatsApp Image 2025-10-14 at 21.48.06.jpeg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/Daniela (26).jpg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/Daniela (27).jpg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/Daniela (31).jpg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/Daniela (36).jpg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/Daniela (39).jpg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/duo films-6305.jpg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/duo films-6308.jpg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/0a5b03fe-5fb9-43c1-ae7d-5fd5bb4ea1cb 2.JPG" alt="" loading="lazy">
+        <!-- Duplicadas para loop -->
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/WhatsApp Image 2025-10-14 at 21.48.06.jpeg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/Daniela (26).jpg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/Daniela (27).jpg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/Daniela (31).jpg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/Daniela (36).jpg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/Daniela (39).jpg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/duo films-6305.jpg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/duo films-6308.jpg" alt="" loading="lazy">
+        <img class="dan-carousel-img" src="Fotos Daniela Fantinati/0a5b03fe-5fb9-43c1-ae7d-5fd5bb4ea1cb 2.JPG" alt="" loading="lazy">
+      </div>
+    </div>
+  </div>
+
+  <!-- Vídeos YouTube -->
+  <div class="dan-videos-label fade">Daniela em vídeo</div>
+  <div class="dan-videos-grid fade">
+    <a class="dan-yt" href="https://www.youtube.com/watch?v=ErQcElJiqng" target="_blank" rel="noopener">
+      <div class="dan-yt-thumb">
+        <img src="https://img.youtube.com/vi/ErQcElJiqng/hqdefault.jpg" alt="" loading="lazy">
+        <div class="dan-yt-overlay">
+          <div class="dan-yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+      </div>
+      <div class="dan-yt-info">
+        <div class="dan-yt-tag">Palestra</div>
+        <div class="dan-yt-title">Daniela Fantinati · Assista no YouTube</div>
+      </div>
+    </a>
+    <a class="dan-yt" href="https://www.youtube.com/watch?v=IX4Y40JiFzk" target="_blank" rel="noopener">
+      <div class="dan-yt-thumb">
+        <img src="https://img.youtube.com/vi/IX4Y40JiFzk/hqdefault.jpg" alt="" loading="lazy">
+        <div class="dan-yt-overlay">
+          <div class="dan-yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+      </div>
+      <div class="dan-yt-info">
+        <div class="dan-yt-tag">Palestra</div>
+        <div class="dan-yt-title">Daniela Fantinati · Assista no YouTube</div>
+      </div>
+    </a>
+    <a class="dan-yt" href="https://www.youtube.com/watch?v=4kXdMalIFk4" target="_blank" rel="noopener">
+      <div class="dan-yt-thumb">
+        <img src="https://img.youtube.com/vi/4kXdMalIFk4/hqdefault.jpg" alt="" loading="lazy">
+        <div class="dan-yt-overlay">
+          <div class="dan-yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+      </div>
+      <div class="dan-yt-info">
+        <div class="dan-yt-tag">Palestra</div>
+        <div class="dan-yt-title">Daniela Fantinati · Assista no YouTube</div>
+      </div>
+    </a>
+    <a class="dan-yt" href="https://www.youtube.com/watch?v=74WAFYGKDiQ" target="_blank" rel="noopener">
+      <div class="dan-yt-thumb">
+        <img src="https://img.youtube.com/vi/74WAFYGKDiQ/hqdefault.jpg" alt="" loading="lazy">
+        <div class="dan-yt-overlay">
+          <div class="dan-yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
+        </div>
+      </div>
+      <div class="dan-yt-info">
+        <div class="dan-yt-tag">Palestra</div>
+        <div class="dan-yt-title">Daniela Fantinati · Assista no YouTube</div>
+      </div>
+    </a>
+  </div>
+
 </section>
 
 <div class="divider"></div>
