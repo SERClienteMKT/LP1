@@ -243,13 +243,20 @@ section{padding:100px 5%}
 .method-card ul li:last-child{border-bottom:none}
 .method-card ul li::before{content:'—';position:absolute;left:0;color:var(--green);opacity:.5;font-size:11px}
 
-/* ─── DIFERENCIAIS / BENTO ─── */
-.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:auto;gap:12px;margin-top:0}
-.bento-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:24px;transition:all .25s;display:flex;flex-direction:column;gap:10px}
-.bento-card:hover{border-color:rgba(38,162,76,.2);background:rgba(255,255,255,.05);transform:translateY(-2px)}
-.bento-icon{font-size:24px;line-height:1}
-.bento-card h4{font-size:14px;font-weight:500;color:var(--white);line-height:1.4;letter-spacing:-.2px}
-.bento-card p{font-size:12px;color:var(--muted);line-height:1.7}
+/* ─── DIFERENCIAIS CARDS ─── */
+.diff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
+.diff-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;cursor:default;transition:border-color .35s,background .35s}
+.diff-card:hover{border-color:rgba(38,162,76,0.32);background:rgba(255,255,255,0.05)}
+.diff-visual{height:148px;background:rgba(0,0,0,0.28);display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(255,255,255,0.05)}
+.diff-icon-box{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:15px 22px;display:flex;gap:16px;align-items:center;transition:transform .55s cubic-bezier(.34,1.56,.64,1),border-color .35s}
+.diff-card:hover .diff-icon-box{transform:translateY(-12px);border-color:rgba(38,162,76,0.3)}
+.diff-icon-box svg{color:rgba(255,255,255,0.42);width:28px;height:28px;flex-shrink:0;transition:color .35s}
+.diff-card:hover .diff-icon-box svg{color:rgba(38,162,76,0.85)}
+.diff-body{padding:18px 20px 24px}
+.diff-body h4{font-size:14px;font-weight:700;color:var(--white);margin-bottom:7px;line-height:1.35;letter-spacing:-.2px}
+.diff-body p{font-size:12px;color:var(--muted);line-height:1.7}
+@media(max-width:1100px){.diff-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:600px){.diff-grid{grid-template-columns:1fr}}
 
 /* ─── PLATAFORMA ─── */
 .platform-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start;margin-top:0}
@@ -356,7 +363,7 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
 .fade-delay-3{transition-delay:.3s}
 
 /* ─── RESPONSIVE ─── */
-@media(max-width:1100px){.bento{grid-template-columns:repeat(2,1fr)}.daniela-grid{grid-template-columns:1fr}}
+@media(max-width:1100px){.daniela-grid{grid-template-columns:1fr}}
 @media(max-width:900px){
   .pain-grid,.method-grid,.metrics-cards,.sobre-grid,.platform-grid,.sec-grid-2,.metrics-head,.faq-grid{grid-template-columns:1fr;gap:30px}
   .sobre-main{grid-column:1}.sobre-mission{grid-column:1}
@@ -366,7 +373,6 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
 }
 @media(max-width:600px){
   .nav-links{display:none}
-  .bento{grid-template-columns:1fr}
   .strip-inner{grid-template-columns:1fr}
   .strip-item{border-right:none;border-bottom:1px solid var(--divider)}
   .cert-grid{grid-template-columns:1fr}
@@ -738,47 +744,120 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
   </div>
   <h2 class="sec-h2">O que torna a S.E.R. Cliente<br><em>diferente.</em></h2>
   <p class="sec-sub">Construída com conceitos de Experiência do Cliente, princípios de Qualidade Total e alavancada por Inteligência Artificial.</p>
-  <div class="bento">
-    <div class="bento-card fade fade-delay-1">
-      <div class="bento-icon">🤖</div>
-      <h4>Inteligência Artificial integrada</h4>
-      <p>IA para sugerir respostas contextualizadas e personalizadas, auxiliar no tratamento das manifestações e emissão de relatórios executivos.</p>
+  <div class="diff-grid">
+
+    <!-- 1. IA integrada -->
+    <div class="diff-card fade fade-delay-1">
+      <div class="diff-visual">
+        <div class="diff-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="3"/><circle cx="9" cy="14" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="1.5" fill="currentColor" stroke="none"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1.2" fill="currentColor" stroke="none"/><path d="M7 20v1.5M17 20v1.5"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4"/></svg>
+        </div>
+      </div>
+      <div class="diff-body">
+        <h4>Inteligência Artificial integrada</h4>
+        <p>IA para sugerir respostas contextualizadas e personalizadas, auxiliar no tratamento das manifestações e emissão de relatórios executivos.</p>
+      </div>
     </div>
-    <div class="bento-card fade fade-delay-1">
-      <div class="bento-icon">🔑</div>
-      <h4>Token de acesso</h4>
-      <p>Links exclusivos com acesso via token — sem proliferação de logins e senhas. Acesso seguro e rastreável.</p>
+
+    <!-- 2. Token de acesso -->
+    <div class="diff-card fade fade-delay-1">
+      <div class="diff-visual">
+        <div class="diff-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="M21 2l-9.6 9.6M15.5 7.5l2 2M18.5 4.5l2 2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
+        </div>
+      </div>
+      <div class="diff-body">
+        <h4>Token de acesso</h4>
+        <p>Links exclusivos com acesso via token — sem proliferação de logins e senhas. Acesso seguro e rastreável.</p>
+      </div>
     </div>
-    <div class="bento-card fade fade-delay-2">
-      <div class="bento-icon">🔢</div>
-      <h4>Código de acompanhamento único</h4>
-      <p>Cada relato recebe um número único compartilhado com o cliente, garantindo rastreabilidade e fácil acesso ao histórico de informações.</p>
+
+    <!-- 3. Código único -->
+    <div class="diff-card fade fade-delay-2">
+      <div class="diff-visual">
+        <div class="diff-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16M9 3v18M15 3v18"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z"/><path d="M12 8v4l3 3"/></svg>
+        </div>
+      </div>
+      <div class="diff-body">
+        <h4>Código de acompanhamento único</h4>
+        <p>Cada relato recebe um número único compartilhado com o cliente, garantindo rastreabilidade e fácil acesso ao histórico.</p>
+      </div>
     </div>
-    <div class="bento-card fade fade-delay-2">
-      <div class="bento-icon">⚙️</div>
-      <h4>Metodologias de Qualidade e CX</h4>
-      <p>Princípios de qualidade e conceitos de CX incorporados nas análises e resoluções, garantindo tratamento fundamentado em boas práticas.</p>
+
+    <!-- 4. Qualidade e CX -->
+    <div class="diff-card fade fade-delay-2">
+      <div class="diff-visual">
+        <div class="diff-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
+        </div>
+      </div>
+      <div class="diff-body">
+        <h4>Metodologias de Qualidade e CX</h4>
+        <p>Princípios de qualidade e conceitos de CX incorporados nas análises e resoluções, garantindo tratamento fundamentado em boas práticas.</p>
+      </div>
     </div>
-    <div class="bento-card fade fade-delay-3">
-      <div class="bento-icon">👥</div>
-      <h4>Perfis e permissões configuráveis</h4>
-      <p>Perfis de acesso com base em responsabilidades, permissões e níveis de autonomia — gestão segura para qualquer equipe.</p>
+
+    <!-- 5. Perfis e permissões -->
+    <div class="diff-card fade fade-delay-3">
+      <div class="diff-visual">
+        <div class="diff-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        </div>
+      </div>
+      <div class="diff-body">
+        <h4>Perfis e permissões configuráveis</h4>
+        <p>Perfis de acesso com base em responsabilidades, permissões e níveis de autonomia — gestão segura para qualquer equipe.</p>
+      </div>
     </div>
-    <div class="bento-card fade fade-delay-3">
-      <div class="bento-icon">📱</div>
-      <h4>Desktop e mobile</h4>
-      <p>Plataforma acessível e funcional em desktops e dispositivos móveis. Gerencie feedbacks com agilidade de qualquer lugar.</p>
+
+    <!-- 6. Desktop e mobile -->
+    <div class="diff-card fade fade-delay-3">
+      <div class="diff-visual">
+        <div class="diff-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
+        </div>
+      </div>
+      <div class="diff-body">
+        <h4>Desktop e mobile</h4>
+        <p>Plataforma acessível e funcional em desktops e dispositivos móveis. Gerencie feedbacks com agilidade de qualquer lugar.</p>
+      </div>
     </div>
-    <div class="bento-card fade fade-delay-3">
-      <div class="bento-icon">☁️</div>
-      <h4>SaaS — serviço em nuvem</h4>
-      <p>Acesso seguro e escalável via nuvem. Disponibilidade garantida, segurança dos dados e atualizações contínuas.</p>
+
+    <!-- 7. SaaS / nuvem -->
+    <div class="diff-card fade fade-delay-3">
+      <div class="diff-visual">
+        <div class="diff-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
+        </div>
+      </div>
+      <div class="diff-body">
+        <h4>SaaS — serviço em nuvem</h4>
+        <p>Acesso seguro e escalável via nuvem. Disponibilidade garantida, segurança dos dados e atualizações contínuas.</p>
+      </div>
     </div>
-    <div class="bento-card fade fade-delay-3">
-      <div class="bento-icon">📝</div>
-      <h4>Formulários customizados</h4>
-      <p>Formulários personalizados e intuitivos, alinhados às necessidades da empresa. Feedbacks estruturados para melhor análise.</p>
+
+    <!-- 8. Formulários -->
+    <div class="diff-card fade fade-delay-3">
+      <div class="diff-visual">
+        <div class="diff-icon-box">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
+        </div>
+      </div>
+      <div class="diff-body">
+        <h4>Formulários customizados</h4>
+        <p>Formulários personalizados e intuitivos, alinhados às necessidades da empresa. Feedbacks estruturados para melhor análise.</p>
+      </div>
     </div>
+
   </div>
 </section>
 
