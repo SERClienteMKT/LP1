@@ -5,316 +5,351 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>S.E.R. Cliente — Gestão de Feedbacks da Escuta à Resolução</title>
 <meta name="description" content="Ouvidoria · Experiência do Cliente · Inteligência Artificial. Gestão de feedbacks da escuta à resolução.">
-<link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;1,9..40,300&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Instrument+Serif:ital@0;1&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --navy:#0B1628;
-  --navy-mid:#152236;
+  --bg:#04070D;
+  --bg2:#0B0F1A;
   --gold:#C9923A;
-  --gold-light:#E5B06A;
-  --cream:#F8F6F1;
-  --white:#FFFFFF;
-  --text:#1A2B45;
-  --muted:#6B7A8F;
-  --border:rgba(27,43,69,0.1);
-  --serif:'DM Serif Display',Georgia,serif;
-  --sans:'DM Sans',system-ui,sans-serif;
+  --gold-dim:rgba(201,146,58,.18);
+  --gold-glow:rgba(201,146,58,.08);
+  --white:rgb(228,233,242);
+  --muted:rgba(184,199,217,0.5);
+  --muted2:rgba(184,199,217,0.35);
+  --card-bg:rgba(255,255,255,0.04);
+  --card-border:rgba(255,255,255,0.08);
+  --card-border-hover:rgba(201,146,58,0.3);
+  --divider:rgba(255,255,255,0.07);
+  --serif:'Instrument Serif',Georgia,serif;
+  --sans:'Inter',system-ui,sans-serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);color:var(--text);background:var(--white);overflow-x:hidden}
+body{font-family:var(--sans);color:var(--white);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
+
+/* ─── PARTICLES ─── */
+.particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.particle{position:absolute;width:2px;height:2px;border-radius:50%;background:rgba(201,146,58,.35);animation:float linear infinite}
+@keyframes float{0%{opacity:0;transform:translateY(0) scale(0)}20%{opacity:1}80%{opacity:.5}100%{opacity:0;transform:translateY(-120px) scale(1.5)}}
+
+/* ─── GLOW ─── */
+.glow{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px)}
+.glow-gold{background:radial-gradient(circle,rgba(201,146,58,.12) 0%,transparent 70%)}
+.glow-blue{background:radial-gradient(circle,rgba(100,140,255,.06) 0%,transparent 70%)}
 
 /* ─── NAV ─── */
 nav{
-  position:fixed;top:0;width:100%;z-index:200;
-  padding:0 6%;height:64px;
+  position:fixed;top:0;width:100%;z-index:200;height:64px;
   display:flex;align-items:center;justify-content:space-between;
-  background:rgba(11,22,40,.96);backdrop-filter:blur(16px);
-  border-bottom:1px solid rgba(255,255,255,.06);
+  padding:0 5%;
+  background:rgba(4,7,13,0.8);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--divider);
+  transition:background .3s;
 }
-.nav-logo{font-family:var(--serif);font-size:19px;color:#fff;letter-spacing:.02em}
-.nav-logo span{color:var(--gold)}
-.nav-links{display:flex;gap:28px;align-items:center}
-.nav-links a{font-size:13px;color:rgba(255,255,255,.5);text-decoration:none;transition:color .2s}
-.nav-links a:hover{color:#fff}
-.nav-cta{background:var(--gold);color:#fff;border:none;padding:9px 20px;border-radius:4px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--sans);text-decoration:none;transition:background .2s}
-.nav-cta:hover{background:var(--gold-light)}
+.nav-logo{font-family:var(--serif);font-size:18px;color:var(--white);letter-spacing:.02em;font-style:italic}
+.nav-logo b{font-style:normal;color:var(--gold);font-family:var(--sans);font-size:13px;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
+.nav-links{display:flex;gap:32px;align-items:center}
+.nav-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s;letter-spacing:-.01em}
+.nav-links a:hover{color:var(--white)}
+.nav-cta{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);color:var(--white);border:1px solid rgba(255,255,255,.1);padding:9px 20px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--sans);text-decoration:none;transition:all .2s;letter-spacing:-.01em}
+.nav-cta:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
+.nav-cta svg{opacity:.6}
 
 /* ─── HERO ─── */
 .hero{
-  background:var(--navy);min-height:100vh;padding:120px 6% 80px;
-  display:grid;grid-template-columns:1.1fr 0.9fr;gap:64px;align-items:center;
-  position:relative;overflow:hidden;
+  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:140px 5% 100px;text-align:center;position:relative;overflow:hidden;
 }
-.hero-glow{position:absolute;top:-120px;right:-160px;width:720px;height:720px;background:radial-gradient(circle,rgba(201,146,58,.07) 0%,transparent 65%);pointer-events:none}
-.hero-glow2{position:absolute;bottom:-80px;left:-120px;width:480px;height:480px;background:radial-gradient(circle,rgba(201,146,58,.04) 0%,transparent 65%);pointer-events:none}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:8px;background:rgba(201,146,58,.12);border:1px solid rgba(201,146,58,.28);border-radius:100px;padding:5px 14px;margin-bottom:22px}
-.eyebrow-dot{width:6px;height:6px;border-radius:50%;background:var(--gold);animation:blink 2s infinite}
-@keyframes blink{0%,100%{opacity:1}50%{opacity:.35}}
-.hero-eyebrow span{font-size:11px;color:var(--gold);font-weight:500;letter-spacing:.06em;text-transform:uppercase}
-.hero h1{font-family:var(--serif);font-size:clamp(36px,4.2vw,58px);color:#fff;line-height:1.08;margin-bottom:22px}
-.hero h1 em{color:var(--gold);font-style:normal;display:block}
-.hero-sub{font-size:17px;color:rgba(255,255,255,.6);line-height:1.75;margin-bottom:36px;max-width:500px;font-weight:300}
-.hero-actions{display:flex;gap:12px;flex-wrap:wrap}
-.btn-gold{background:var(--gold);color:#fff;border:none;padding:14px 26px;border-radius:4px;font-size:15px;font-weight:500;cursor:pointer;font-family:var(--sans);text-decoration:none;display:inline-block;transition:all .2s}
-.btn-gold:hover{background:var(--gold-light);transform:translateY(-1px)}
-.btn-ghost{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.22);padding:14px 26px;border-radius:4px;font-size:15px;font-weight:400;cursor:pointer;font-family:var(--sans);text-decoration:none;display:inline-block;transition:all .2s}
-.btn-ghost:hover{border-color:rgba(255,255,255,.45);background:rgba(255,255,255,.05)}
-.hero-stats{display:flex;gap:36px;flex-wrap:wrap;margin-top:48px;padding-top:40px;border-top:1px solid rgba(255,255,255,.08)}
-.h-stat-num{font-family:var(--serif);font-size:30px;color:var(--gold);line-height:1}
-.h-stat-label{font-size:11px;color:rgba(255,255,255,.4);margin-top:5px;line-height:1.5}
+.hero-glow-main{width:800px;height:800px;top:50%;left:50%;transform:translate(-50%,-60%)}
+.hero-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(201,146,58,.08);border:1px solid rgba(201,146,58,.2);
+  border-radius:100px;padding:7px 18px;margin-bottom:32px;
+}
+.badge-dot{width:5px;height:5px;border-radius:50%;background:var(--gold);animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
+.badge-text{font-size:11px;color:var(--gold);font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+.hero h1{
+  font-family:var(--sans);font-size:clamp(48px,6vw,84px);
+  font-weight:500;line-height:1.06;letter-spacing:-2px;
+  color:var(--white);margin-bottom:24px;max-width:820px;
+}
+.hero h1 em{font-family:var(--serif);font-style:italic;color:var(--white);font-weight:400}
+.hero-sub{
+  font-size:16px;color:var(--muted);line-height:1.8;
+  max-width:540px;margin:0 auto 40px;font-weight:300;letter-spacing:-.01em;
+}
+.hero-actions{display:flex;align-items:center;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
+.btn-primary{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(201,146,58,.15);color:var(--white);
+  border:1px solid rgba(201,146,58,.35);
+  padding:14px 28px;border-radius:10px;font-size:14px;font-weight:500;
+  cursor:pointer;font-family:var(--sans);text-decoration:none;
+  transition:all .25s;letter-spacing:-.01em;
+}
+.btn-primary:hover{background:rgba(201,146,58,.25);border-color:rgba(201,146,58,.55);transform:translateY(-1px)}
+.btn-primary svg{transition:transform .2s}
+.btn-primary:hover svg{transform:translate(2px,-2px)}
+.btn-ghost{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(255,255,255,.05);color:var(--muted);
+  border:1px solid rgba(255,255,255,.1);
+  padding:14px 24px;border-radius:10px;font-size:14px;font-weight:400;
+  cursor:pointer;font-family:var(--sans);text-decoration:none;
+  transition:all .25s;letter-spacing:-.01em;
+}
+.btn-ghost:hover{background:rgba(255,255,255,.09);color:var(--white);border-color:rgba(255,255,255,.18)}
+.hero-award{
+  display:inline-flex;align-items:center;gap:12px;
+  background:rgba(255,255,255,.04);border:1px solid var(--divider);
+  border-radius:12px;padding:12px 20px;
+}
+.hero-award span{font-size:12px;color:var(--muted);letter-spacing:-.01em}
+.hero-award strong{color:var(--gold);font-weight:500}
+.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.35}
+.hero-scroll span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--white)}
+.hero-scroll svg{animation:scrollBounce 2s infinite}
+@keyframes scrollBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
 
-/* Hero card */
-.hero-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.09);border-radius:16px;padding:28px}
-.hero-card-eyebrow{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:rgba(255,255,255,.35);margin-bottom:18px}
-.ser-steps{display:flex;flex-direction:column;gap:10px;margin-bottom:20px}
-.ser-step{display:flex;align-items:flex-start;gap:14px;padding:14px 16px;border-radius:10px;border:1px solid rgba(255,255,255,.06);background:rgba(255,255,255,.02);transition:all .4s}
-.ser-step.lit{background:rgba(201,146,58,.1);border-color:rgba(201,146,58,.22)}
-.ser-letter{font-family:var(--serif);font-size:30px;color:rgba(201,146,58,.28);line-height:1;min-width:32px;transition:color .4s}
-.ser-step.lit .ser-letter{color:var(--gold)}
-.ser-label{font-size:13px;font-weight:500;color:rgba(255,255,255,.4);transition:color .4s}
-.ser-step.lit .ser-label{color:#fff}
-.ser-desc{font-size:11px;color:rgba(255,255,255,.3);line-height:1.5;margin-top:2px;transition:color .4s}
-.ser-step.lit .ser-desc{color:rgba(255,255,255,.55)}
-.award-strip{display:flex;align-items:center;gap:12px;background:rgba(201,146,58,.1);border:1px solid rgba(201,146,58,.2);border-radius:10px;padding:12px 16px}
-.award-icon{font-size:22px;flex-shrink:0}
-.award-text strong{display:block;font-size:12px;color:var(--gold);font-weight:500;line-height:1.4}
-.award-text span{font-size:11px;color:rgba(255,255,255,.35)}
+/* ─── FEATURES STRIP ─── */
+.strip{border-top:1px solid var(--divider);border-bottom:1px solid var(--divider);background:var(--bg)}
+.strip-inner{display:grid;grid-template-columns:repeat(3,1fr);max-width:900px;margin:0 auto}
+.strip-item{padding:28px 32px;display:flex;align-items:center;gap:14px;border-right:1px solid var(--divider);transition:background .2s}
+.strip-item:last-child{border-right:none}
+.strip-item:hover{background:rgba(255,255,255,.02)}
+.strip-icon{font-size:18px;flex-shrink:0}
+.strip-label{font-size:13px;font-weight:500;color:var(--white);letter-spacing:-.01em}
+.strip-desc{font-size:12px;color:var(--muted);margin-top:2px;letter-spacing:-.01em}
 
-/* ─── HERO FEATURES STRIP ─── */
-.hero-features{background:var(--white);border-bottom:1px solid var(--border)}
-.hero-features-inner{display:grid;grid-template-columns:repeat(3,1fr);padding:0 6%}
-.hf-item{padding:36px 32px;border-right:1px solid var(--border);transition:background .25s}
-.hf-item:last-child{border-right:none}
-.hf-item:hover{background:var(--cream)}
-.hf-icon{font-size:26px;margin-bottom:14px}
-.hf-title{font-size:15px;font-weight:500;color:var(--text);margin-bottom:6px}
-.hf-desc{font-size:13px;color:var(--muted);line-height:1.65}
+/* ─── SECTION SHARED ─── */
+section{padding:100px 5%}
+.sec-eyebrow{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:20px}
+.eyebrow-icon{color:var(--gold);font-size:12px}
+.eyebrow-text{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+.sec-h2{font-family:var(--sans);font-size:clamp(32px,3.5vw,48px);font-weight:500;color:var(--white);line-height:1.1;letter-spacing:-1.2px;text-align:center;margin-bottom:14px}
+.sec-h2 em{font-family:var(--serif);font-style:italic;font-weight:400}
+.sec-sub{font-size:15px;color:var(--muted);line-height:1.8;text-align:center;max-width:520px;margin:0 auto 60px;font-weight:300;letter-spacing:-.01em}
+.divider{height:1px;background:var(--divider);margin:0 5%}
 
-/* ─── SECTIONS SHARED ─── */
-.sec-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:14px}
-.sec-h2{font-family:var(--serif);font-size:clamp(28px,3.2vw,44px);color:var(--text);line-height:1.15;margin-bottom:16px}
-.sec-sub{font-size:16px;color:var(--muted);line-height:1.75;max-width:580px;margin-bottom:56px;font-weight:300}
+/* ─── CARDS ─── */
+.card{
+  background:var(--card-bg);border:1px solid var(--card-border);
+  border-radius:14px;padding:28px;transition:all .3s;
+}
+.card:hover{border-color:var(--card-border-hover);background:rgba(255,255,255,.06)}
 
-/* ─── DOR / TESTEMUNHOS ─── */
-.pain{padding:100px 6%;background:var(--cream)}
-.pain-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
-.pain-card{background:var(--white);border:1px solid var(--border);border-radius:14px;padding:0;position:relative;overflow:hidden;transition:all .3s;display:flex;flex-direction:column}
-.pain-card::after{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--gold);opacity:0;transition:opacity .3s}
-.pain-card:hover{transform:translateY(-5px);box-shadow:0 24px 64px rgba(11,22,40,.09);border-color:rgba(201,146,58,.28)}
-.pain-card:hover::after{opacity:1}
-.pain-card-top{padding:28px 28px 20px}
-.pain-tag{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--gold);margin-bottom:16px}
-.pain-card h3{font-family:var(--serif);font-size:19px;color:var(--text);margin-bottom:12px;line-height:1.3}
-.pain-card p{font-size:14px;color:var(--muted);line-height:1.7}
-.testimonial-divider{height:1px;background:var(--border);margin:0}
-.testimonial{padding:22px 28px;display:flex;gap:14px;align-items:flex-start}
-.avatar{width:46px;height:46px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:600;color:#fff;letter-spacing:.02em}
-.av-blue{background:linear-gradient(135deg,#2563EB,#1D4ED8)}
-.av-teal{background:linear-gradient(135deg,#0F766E,#0D9488)}
-.av-purple{background:linear-gradient(135deg,#7C3AED,#6D28D9)}
-.testimonial-body{}
-.testimonial-quote{font-size:13px;color:var(--text);line-height:1.65;font-style:italic;margin-bottom:10px}
-.testimonial-quote::before{content:'"';color:var(--gold);font-family:var(--serif);font-size:18px;line-height:1;margin-right:2px}
-.testimonial-quote::after{content:'"';color:var(--gold);font-family:var(--serif);font-size:18px;line-height:1;margin-left:2px}
-.testimonial-name{font-size:12px;font-weight:600;color:var(--text)}
-.testimonial-role{font-size:11px;color:var(--muted);margin-top:1px}
+/* ─── PAIN / CENÁRIOS ─── */
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:0}
+.pain-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:all .3s}
+.pain-card:hover{border-color:rgba(201,146,58,.25);transform:translateY(-4px)}
+.pain-card-top{padding:28px 28px 22px}
+.pain-sector{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:14px}
+.pain-card h3{font-family:var(--serif);font-size:20px;font-weight:400;font-style:italic;color:var(--white);margin-bottom:12px;line-height:1.35}
+.pain-card p{font-size:13px;color:var(--muted);line-height:1.75}
+.pain-divider{height:1px;background:var(--divider)}
+.testimonial{padding:20px 28px;display:flex;gap:14px;align-items:flex-start}
+.avatar{width:40px;height:40px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;letter-spacing:.02em;font-family:var(--sans)}
+.av-a{background:linear-gradient(135deg,#1D4ED8,#2563EB)}
+.av-b{background:linear-gradient(135deg,#0D9488,#0F766E)}
+.av-c{background:linear-gradient(135deg,#7C3AED,#6D28D9)}
+.t-quote{font-size:12px;color:rgba(184,199,217,0.6);line-height:1.7;font-style:italic;margin-bottom:8px}
+.t-name{font-size:11px;font-weight:600;color:var(--white)}
+.t-role{font-size:10px;color:var(--muted2);margin-top:2px}
 
-/* ─── SOBRE NÓS ─── */
-.sobre{padding:100px 6%;background:var(--navy)}
-.sobre-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-.sobre-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:16px}
-.sobre-h2{font-family:var(--serif);font-size:clamp(28px,3vw,40px);color:#fff;line-height:1.15;margin-bottom:24px}
-.sobre-text{font-size:15px;color:rgba(255,255,255,.5);line-height:1.85;font-weight:300}
-.sobre-text p{margin-bottom:18px}
-.sobre-text p:last-child{margin-bottom:0}
-.sobre-quote{font-family:var(--serif);font-size:20px;color:var(--gold);line-height:1.45;font-style:italic;margin:28px 0;padding-left:20px;border-left:3px solid rgba(201,146,58,.4)}
-.sobre-values{display:flex;flex-direction:column;gap:10px}
-.sobre-value{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;padding:16px 18px;display:flex;gap:14px;align-items:flex-start;transition:all .25s}
-.sobre-value:hover{background:rgba(255,255,255,.07);border-color:rgba(201,146,58,.2)}
-.sv-label{font-size:12px;font-weight:600;color:var(--gold);min-width:160px;flex-shrink:0;line-height:1.4}
-.sv-desc{font-size:13px;color:rgba(255,255,255,.45);line-height:1.5}
-.sobre-mission{margin-top:28px;background:rgba(201,146,58,.08);border:1px solid rgba(201,146,58,.18);border-radius:12px;padding:24px}
-.sobre-mission p{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:14px}
+/* ─── SOBRE ─── */
+.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:0}
+.sobre-main{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:40px;grid-column:1 / 2;grid-row:1 / 3}
+.sobre-main h3{font-family:var(--serif);font-size:32px;font-style:italic;color:var(--white);line-height:1.3;margin-bottom:20px}
+.sobre-main p{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:14px}
+.sobre-main p:last-of-type{margin-bottom:0}
+.sobre-quote-block{margin-top:28px;padding:20px;background:rgba(201,146,58,.07);border-left:2px solid rgba(201,146,58,.4);border-radius:0 8px 8px 0}
+.sobre-quote-block p{font-family:var(--serif);font-style:italic;font-size:16px;color:rgba(228,233,242,.8);line-height:1.6;margin:0}
+.sobre-val{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:22px 24px;transition:all .25s}
+.sobre-val:hover{border-color:rgba(201,146,58,.2);background:rgba(255,255,255,.06)}
+.sv-name{font-size:12px;font-weight:600;color:var(--gold);margin-bottom:4px;letter-spacing:-.01em}
+.sv-desc{font-size:12px;color:var(--muted);line-height:1.5}
+.sobre-mission{background:rgba(201,146,58,.07);border:1px solid rgba(201,146,58,.15);border-radius:14px;padding:24px;grid-column:2 / 3}
+.sobre-mission-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:14px}
 .sobre-mission ul{list-style:none}
-.sobre-mission ul li{font-size:14px;color:rgba(255,255,255,.6);padding:6px 0 6px 18px;position:relative;line-height:1.5}
-.sobre-mission ul li::before{content:'→';position:absolute;left:0;color:var(--gold);opacity:.7;font-size:12px}
+.sobre-mission ul li{font-size:13px;color:rgba(228,233,242,.7);padding:7px 0 7px 18px;position:relative;line-height:1.4;border-bottom:1px solid rgba(255,255,255,.05)}
+.sobre-mission ul li:last-child{border-bottom:none}
+.sobre-mission ul li::before{content:'→';position:absolute;left:0;color:var(--gold);font-size:11px;top:8px}
 
-/* ─── CREDIBILIDADE / DANIELA ─── */
-.cred{padding:90px 6%;background:var(--white)}
-.cred-inner{display:grid;grid-template-columns:0.9fr 1.1fr;gap:80px;align-items:start}
-.cred-label{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:16px}
-.cred-name{font-family:var(--serif);font-size:38px;color:var(--text);margin-bottom:10px;line-height:1.1}
-.cred-bio{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:24px;font-weight:300}
-.award-badge{display:flex;align-items:center;gap:12px;background:rgba(201,146,58,.1);border:1px solid rgba(201,146,58,.22);border-radius:10px;padding:14px 18px;margin-bottom:28px}
-.award-badge-icon{font-size:26px;flex-shrink:0}
-.award-badge strong{display:block;font-size:13px;color:var(--gold);font-weight:500}
-.award-badge span{font-size:11px;color:var(--muted)}
-
-/* Media cards */
+/* ─── DANIELA ─── */
+.daniela-grid{display:grid;grid-template-columns:380px 1fr;gap:20px;align-items:start}
+.daniela-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:32px}
+.d-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:14px}
+.d-name{font-family:var(--serif);font-size:36px;font-style:italic;color:var(--white);line-height:1.1;margin-bottom:12px}
+.d-bio{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:20px}
+.d-award{display:flex;align-items:center;gap:12px;background:rgba(201,146,58,.08);border:1px solid rgba(201,146,58,.18);border-radius:10px;padding:14px 16px;margin-bottom:20px}
+.d-award-icon{font-size:22px;flex-shrink:0}
+.d-award strong{display:block;font-size:12px;color:var(--gold);font-weight:500;line-height:1.4}
+.d-award span{font-size:11px;color:var(--muted2)}
+.d-stats{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.d-stat{background:rgba(255,255,255,.03);border:1px solid var(--divider);border-radius:10px;padding:18px 16px}
+.d-stat-n{font-family:var(--serif);font-size:32px;color:var(--gold);line-height:1;font-style:italic}
+.d-stat-l{font-size:11px;color:var(--muted);margin-top:5px;line-height:1.4}
 .media-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-.media-card{background:var(--cream);border:1px solid var(--border);border-radius:10px;padding:16px;display:flex;gap:12px;align-items:flex-start;transition:all .25s;cursor:pointer;text-decoration:none}
-.media-card:hover{background:var(--white);border-color:rgba(201,146,58,.3)}
-.media-card-icon{width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0}
-.mc-podcast{background:rgba(168,85,247,.12)}
-.mc-talk{background:rgba(59,130,246,.12)}
-.mc-award{background:rgba(201,146,58,.12)}
-.mc-press{background:rgba(52,211,153,.12)}
-.media-card-type{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin-bottom:3px}
-.media-card-title{font-size:12px;color:var(--text);line-height:1.45;font-weight:500}
-.media-card-sub{font-size:11px;color:var(--muted);margin-top:2px}
+.media-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:10px;padding:16px;display:flex;gap:12px;align-items:flex-start;transition:all .2s;cursor:default}
+.media-card:hover{border-color:rgba(201,146,58,.2);background:rgba(255,255,255,.06)}
+.media-icon{width:38px;height:38px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:16px;flex-shrink:0}
+.mi-award{background:rgba(201,146,58,.12)}
+.mi-pod{background:rgba(168,85,247,.1)}
+.mi-talk{background:rgba(59,130,246,.1)}
+.mi-globe{background:rgba(52,211,153,.1)}
+.media-type{font-size:9px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--muted2);margin-bottom:3px}
+.media-title{font-size:12px;color:rgba(228,233,242,.8);line-height:1.45;font-weight:500}
+.media-sub{font-size:11px;color:var(--muted2);margin-top:2px}
 
-/* Cred stats */
-.cred-stats-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:10px}
-.cred-stat{background:var(--cream);border:1px solid var(--border);border-radius:12px;padding:22px 18px}
-.cred-stat-n{font-family:var(--serif);font-size:36px;color:var(--gold);line-height:1}
-.cred-stat-l{font-size:12px;color:var(--muted);margin-top:6px;line-height:1.5}
+/* ─── MÉTODO ─── */
+.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:0}
+.method-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:36px 32px;transition:all .3s;position:relative;overflow:hidden}
+.method-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(201,146,58,.4),transparent);opacity:0;transition:opacity .3s}
+.method-card:hover{border-color:rgba(201,146,58,.2);background:rgba(255,255,255,.05)}
+.method-card:hover::before{opacity:1}
+.method-letter{font-family:var(--serif);font-size:72px;color:rgba(201,146,58,.12);line-height:1;margin-bottom:20px;font-style:italic;transition:color .3s}
+.method-card:hover .method-letter{color:rgba(201,146,58,.25)}
+.method-num{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:8px}
+.method-card h3{font-size:20px;font-weight:500;color:var(--white);margin-bottom:12px;letter-spacing:-.3px}
+.method-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
+.method-tag{font-size:10px;padding:3px 10px;border-radius:100px;background:rgba(201,146,58,.08);color:rgba(201,146,58,.8);border:1px solid rgba(201,146,58,.15);letter-spacing:-.01em}
+.method-card p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px}
+.method-card ul{list-style:none}
+.method-card ul li{font-size:12px;color:rgba(184,199,217,.55);padding:5px 0 5px 16px;position:relative;line-height:1.5;border-bottom:1px solid rgba(255,255,255,.04)}
+.method-card ul li:last-child{border-bottom:none}
+.method-card ul li::before{content:'—';position:absolute;left:0;color:var(--gold);opacity:.5;font-size:11px}
 
-/* ─── MÉTODO SER ─── */
-.method{padding:100px 6%;background:var(--cream)}
-.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px;background:var(--border);border-radius:16px;overflow:hidden}
-.method-step{background:var(--white);padding:44px 36px;transition:background .3s}
-.method-step:hover{background:var(--cream)}
-.method-num{width:88px;height:88px;border-radius:50%;background:var(--navy);border:1.5px solid var(--gold);display:flex;align-items:center;justify-content:center;margin-bottom:28px}
-.method-num span{font-family:var(--serif);font-size:38px;color:var(--gold);line-height:1}
-.method-subtitle{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.09em;color:var(--gold);margin-bottom:8px}
-.method-step h3{font-family:var(--serif);font-size:22px;color:var(--text);margin-bottom:12px}
-.method-tag-row{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.method-tag{font-size:11px;padding:3px 10px;border-radius:100px;background:rgba(201,146,58,.1);color:var(--gold);border:1px solid rgba(201,146,58,.2)}
-.method-step p{font-size:14px;color:var(--muted);line-height:1.75;margin-bottom:16px}
-.method-step ul{list-style:none}
-.method-step ul li{font-size:13px;color:var(--muted);padding:5px 0 5px 16px;position:relative;line-height:1.5}
-.method-step ul li::before{content:'—';position:absolute;left:0;color:var(--gold);opacity:.55}
+/* ─── DIFERENCIAIS / BENTO ─── */
+.bento{display:grid;grid-template-columns:repeat(4,1fr);grid-auto-rows:auto;gap:12px;margin-top:0}
+.bento-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:24px;transition:all .25s;display:flex;flex-direction:column;gap:10px}
+.bento-card:hover{border-color:rgba(201,146,58,.2);background:rgba(255,255,255,.05);transform:translateY(-2px)}
+.bento-icon{font-size:24px;line-height:1}
+.bento-card h4{font-size:14px;font-weight:500;color:var(--white);line-height:1.4;letter-spacing:-.2px}
+.bento-card p{font-size:12px;color:var(--muted);line-height:1.7}
 
-/* ─── DIFERENCIAIS ─── */
-.diff{padding:100px 6%;background:var(--white)}
-.diff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin-top:0}
-.diff-card{background:var(--cream);border:1px solid var(--border);border-radius:12px;padding:24px 20px;transition:all .25s}
-.diff-card:hover{border-color:rgba(201,146,58,.28);transform:translateY(-3px);box-shadow:0 12px 40px rgba(11,22,40,.06)}
-.diff-icon{font-size:28px;margin-bottom:14px}
-.diff-card h4{font-size:14px;font-weight:500;color:var(--text);margin-bottom:7px;line-height:1.4}
-.diff-card p{font-size:13px;color:var(--muted);line-height:1.65}
-
-/* ─── PLATFORM / DASHBOARD ─── */
-.platform{padding:100px 6%;background:var(--cream)}
-.platform-grid{display:grid;grid-template-columns:1fr 1.15fr;gap:64px;align-items:start;margin-top:56px}
-.features{display:flex;flex-direction:column;gap:14px}
-.feat{display:flex;gap:16px;align-items:flex-start;padding:18px 20px;background:var(--white);border-radius:10px;border:1px solid var(--border);transition:all .25s}
-.feat:hover{border-color:rgba(201,146,58,.28);box-shadow:0 4px 20px rgba(11,22,40,.05)}
-.feat-icon{width:38px;height:38px;border-radius:8px;background:rgba(11,22,40,.06);display:flex;align-items:center;justify-content:center;font-size:17px;flex-shrink:0}
-.feat h4{font-size:14px;font-weight:500;color:var(--text);margin-bottom:3px}
-.feat p{font-size:13px;color:var(--muted);line-height:1.6}
+/* ─── PLATAFORMA ─── */
+.platform-grid{display:grid;grid-template-columns:1fr 1.1fr;gap:60px;align-items:start;margin-top:0}
+.feat-list{display:flex;flex-direction:column;gap:10px}
+.feat{display:flex;gap:14px;align-items:flex-start;padding:18px 20px;background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;transition:all .25s}
+.feat:hover{border-color:rgba(201,146,58,.2);background:rgba(255,255,255,.05)}
+.feat-icon{width:36px;height:36px;border-radius:8px;background:rgba(201,146,58,.08);display:flex;align-items:center;justify-content:center;font-size:15px;flex-shrink:0}
+.feat h4{font-size:13px;font-weight:500;color:var(--white);margin-bottom:3px;letter-spacing:-.2px}
+.feat p{font-size:12px;color:var(--muted);line-height:1.6}
 /* Mockup */
-.mockup{background:var(--navy);border-radius:16px;padding:22px;border:1px solid rgba(255,255,255,.06);box-shadow:0 32px 80px rgba(11,22,40,.25)}
-.mock-titlebar{display:flex;align-items:center;gap:7px;margin-bottom:20px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.06)}
-.dot{width:10px;height:10px;border-radius:50%}
-.mock-app-name{font-size:11px;color:rgba(255,255,255,.3);margin-left:6px}
-.mock-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:16px}
-.ms{background:rgba(255,255,255,.05);border-radius:8px;padding:12px 11px}
-.ms-n{font-family:var(--serif);font-size:20px;color:var(--gold)}
-.ms-l{font-size:9px;color:rgba(255,255,255,.3);margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
-.mock-thead{display:grid;grid-template-columns:2fr 0.8fr 0.6fr 1fr;gap:6px;padding:7px 9px;background:rgba(255,255,255,.04);border-radius:6px;margin-bottom:4px}
-.mock-thead span{font-size:9px;color:rgba(255,255,255,.25);text-transform:uppercase;letter-spacing:.06em}
-.mock-row{display:grid;grid-template-columns:2fr 0.8fr 0.6fr 1fr;gap:6px;padding:9px 9px;border-bottom:1px solid rgba(255,255,255,.04);align-items:center}
-.mock-row span{font-size:11px;color:rgba(255,255,255,.55);line-height:1.3}
-.tag{font-size:9px;padding:2px 8px;border-radius:100px;font-weight:500;white-space:nowrap}
-.t-green{background:rgba(52,211,153,.14);color:#34d399}
-.t-gold{background:rgba(201,146,58,.14);color:var(--gold)}
-.t-blue{background:rgba(99,179,237,.14);color:#63b3ed}
-.mock-footer{margin-top:16px;padding-top:14px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center}
-.mock-footer span{font-size:10px;color:rgba(255,255,255,.25)}
-.mock-cta-mini{font-size:10px;color:var(--gold);background:rgba(201,146,58,.12);border:1px solid rgba(201,146,58,.2);border-radius:4px;padding:4px 10px;font-weight:500}
+.mockup{background:rgba(8,11,20,.8);border:1px solid rgba(255,255,255,.1);border-radius:16px;padding:20px;box-shadow:0 40px 100px rgba(0,0,0,.5),inset 0 1px 0 rgba(255,255,255,.06)}
+.mock-bar{display:flex;align-items:center;gap:6px;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid rgba(255,255,255,.06)}
+.mock-dot{width:9px;height:9px;border-radius:50%}
+.mock-name{font-size:11px;color:rgba(255,255,255,.25);margin-left:6px;letter-spacing:-.01em}
+.mock-stats{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-bottom:14px}
+.ms{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.06);border-radius:8px;padding:11px}
+.ms-n{font-family:var(--serif);font-size:18px;color:var(--gold);font-style:italic}
+.ms-l{font-size:9px;color:rgba(255,255,255,.25);margin-top:2px;text-transform:uppercase;letter-spacing:.05em}
+.mock-thead{display:grid;grid-template-columns:2fr .8fr .6fr 1fr;gap:4px;padding:6px 8px;background:rgba(255,255,255,.03);border-radius:6px;margin-bottom:4px}
+.mock-thead span{font-size:9px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.06em}
+.mock-row{display:grid;grid-template-columns:2fr .8fr .6fr 1fr;gap:4px;padding:8px;border-bottom:1px solid rgba(255,255,255,.04);align-items:center}
+.mock-row span{font-size:11px;color:rgba(255,255,255,.5);line-height:1.3}
+.mtag{font-size:9px;padding:2px 8px;border-radius:100px;font-weight:500;white-space:nowrap}
+.t-g{background:rgba(52,211,153,.12);color:#34d399}
+.t-y{background:rgba(201,146,58,.12);color:var(--gold)}
+.t-b{background:rgba(99,179,237,.12);color:#63b3ed}
+.mock-foot{margin-top:14px;padding-top:12px;border-top:1px solid rgba(255,255,255,.06);display:flex;justify-content:space-between;align-items:center}
+.mock-foot span{font-size:10px;color:rgba(255,255,255,.2)}
+.mock-foot-cta{font-size:10px;color:var(--gold);background:rgba(201,146,58,.1);border:1px solid rgba(201,146,58,.18);border-radius:4px;padding:4px 10px;font-weight:500}
 
-/* ─── MÉTRICAS CX ─── */
-.metrics{padding:100px 6%;background:var(--navy)}
-.metrics-intro{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-bottom:60px}
-.metrics-intro .sec-label{color:var(--gold)}
-.metrics-intro .sec-h2{color:#fff}
-.metrics-intro p{font-size:16px;color:rgba(255,255,255,.5);line-height:1.75;font-weight:300}
-.metrics-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.metric-card{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:14px;padding:28px 24px;transition:all .25s}
-.metric-card:hover{background:rgba(255,255,255,.08);border-color:rgba(201,146,58,.2)}
-.metric-abbr{font-family:var(--serif);font-size:32px;color:var(--gold);margin-bottom:6px}
-.metric-name{font-size:12px;font-weight:500;color:rgba(255,255,255,.6);margin-bottom:12px;text-transform:uppercase;letter-spacing:.05em}
-.metric-desc{font-size:14px;color:rgba(255,255,255,.45);line-height:1.7}
-.metric-example{margin-top:14px;padding:10px 12px;background:rgba(201,146,58,.08);border-radius:8px;font-size:12px;color:rgba(255,255,255,.5);line-height:1.5}
-.metric-example strong{color:var(--gold);font-weight:500}
+/* ─── MÉTRICAS ─── */
+.metrics-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:50px}
+.metrics-head .sec-h2{text-align:left}
+.metrics-head .sec-eyebrow{justify-content:flex-start}
+.metrics-sub{font-size:15px;color:var(--muted);line-height:1.8;font-weight:300}
+.metrics-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.metric-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:28px 24px;transition:all .25s}
+.metric-card:hover{background:rgba(255,255,255,.06);border-color:rgba(201,146,58,.2)}
+.metric-abbr{font-family:var(--serif);font-size:40px;color:var(--gold);font-style:italic;line-height:1;margin-bottom:8px}
+.metric-name{font-size:11px;font-weight:600;color:rgba(184,199,217,.5);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
+.metric-desc{font-size:13px;color:rgba(184,199,217,.55);line-height:1.75}
+.metric-ex{margin-top:14px;padding:10px 12px;background:rgba(201,146,58,.07);border-radius:8px;font-size:11px;color:rgba(184,199,217,.5);line-height:1.6}
+.metric-ex strong{color:rgba(201,146,58,.8);font-weight:500}
 
 /* ─── SEGURANÇA ─── */
-.security{padding:80px 6%;background:var(--cream)}
-.security-inner{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center}
-.cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.cert{background:var(--white);border:1px solid var(--border);border-radius:10px;padding:18px 16px;display:flex;gap:12px;align-items:center}
-.cert-icon{font-size:24px;flex-shrink:0}
-.cert h4{font-size:13px;font-weight:500;color:var(--text);margin-bottom:2px}
-.cert p{font-size:12px;color:var(--muted);line-height:1.4}
+.sec-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+.sec-left-text{font-size:15px;color:var(--muted);line-height:1.8;margin-top:16px;font-weight:300}
+.cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.cert{background:var(--card-bg);border:1px solid var(--card-border);border-radius:12px;padding:18px;display:flex;gap:12px;align-items:flex-start;transition:all .2s}
+.cert:hover{border-color:rgba(201,146,58,.18)}
+.cert-icon{font-size:20px;flex-shrink:0;margin-top:2px}
+.cert h4{font-size:13px;font-weight:500;color:var(--white);margin-bottom:3px;letter-spacing:-.2px}
+.cert p{font-size:11px;color:var(--muted);line-height:1.5}
 
 /* ─── FAQ ─── */
-.faq{padding:100px 6%;background:var(--white)}
-.faq-inner{display:grid;grid-template-columns:0.7fr 1.3fr;gap:80px;align-items:start}
-.faq-list{border-top:1px solid var(--border)}
-.faq-item{border-bottom:1px solid var(--border)}
-.faq-q{width:100%;background:none;border:none;text-align:left;padding:19px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:var(--sans);font-size:15px;font-weight:500;color:var(--text);gap:16px}
+.faq-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:80px;align-items:start}
+.faq-left h2{font-family:var(--sans);font-size:clamp(28px,3vw,40px);font-weight:500;color:var(--white);line-height:1.15;letter-spacing:-1px;margin-bottom:16px}
+.faq-left h2 em{font-family:var(--serif);font-style:italic;font-weight:400}
+.faq-left p{font-size:14px;color:var(--muted);line-height:1.8}
+.faq-list{border-top:1px solid var(--divider)}
+.faq-item{border-bottom:1px solid var(--divider)}
+.faq-q{width:100%;background:none;border:none;text-align:left;padding:20px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--white);gap:16px;letter-spacing:-.2px;transition:color .2s}
 .faq-q:hover{color:var(--gold)}
-.faq-plus{font-size:20px;color:var(--gold);transition:transform .25s;flex-shrink:0;line-height:1;font-weight:300}
-.faq-plus.open{transform:rotate(45deg)}
-.faq-ans{max-height:0;overflow:hidden;transition:max-height .35s ease,padding .35s}
+.faq-plus{font-size:18px;color:var(--gold);transition:transform .25s;flex-shrink:0;line-height:1;font-weight:300;opacity:.7}
+.faq-plus.open{transform:rotate(45deg);opacity:1}
+.faq-ans{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s}
 .faq-ans.open{max-height:400px;padding-bottom:20px}
-.faq-ans p{font-size:14px;color:var(--muted);line-height:1.8}
+.faq-ans p{font-size:13px;color:var(--muted);line-height:1.9}
 
 /* ─── CTA FINAL ─── */
-.cta-final{padding:100px 6%;background:var(--cream)}
-.cta-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start}
-.cta-l h2{font-family:var(--serif);font-size:clamp(26px,3.2vw,42px);color:var(--text);margin-bottom:18px;line-height:1.2}
-.cta-l h2 em{color:var(--gold);font-style:normal}
-.cta-l p{font-size:15px;color:var(--muted);line-height:1.75;margin-bottom:28px}
-.assurances{display:flex;flex-direction:column;gap:10px}
-.ass{display:flex;align-items:center;gap:10px;font-size:14px;color:var(--muted)}
-.ass::before{content:'✓';color:var(--gold);font-weight:700;font-size:13px;flex-shrink:0}
-.form-card{background:var(--white);border-radius:16px;padding:40px 36px;border:1px solid var(--border)}
-.form-card h3{font-family:var(--serif);font-size:24px;color:var(--text);margin-bottom:6px}
-.form-card .fs{font-size:14px;color:var(--muted);margin-bottom:28px;line-height:1.6}
-.fg{margin-bottom:16px}
-.fg label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.06em;color:var(--text);margin-bottom:6px}
-.fg input,.fg select{width:100%;padding:12px 14px;border:1px solid var(--border);border-radius:6px;font-size:14px;font-family:var(--sans);color:var(--text);background:var(--cream);outline:none;transition:border-color .2s;-webkit-appearance:none}
-.fg input:focus,.fg select:focus{border-color:var(--gold)}
-.fg input::placeholder{color:var(--muted)}
-.form-btn{width:100%;background:var(--gold);color:#fff;border:none;padding:15px;border-radius:6px;font-size:16px;font-weight:500;cursor:pointer;font-family:var(--sans);margin-top:8px;transition:background .2s}
-.form-btn:hover{background:var(--gold-light)}
-.form-note{font-size:12px;color:var(--muted);text-align:center;margin-top:12px;line-height:1.5}
+.cta-final{text-align:center;position:relative;overflow:hidden}
+.cta-glow{width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%)}
+.cta-final h2{font-family:var(--sans);font-size:clamp(32px,4vw,56px);font-weight:500;color:var(--white);line-height:1.1;letter-spacing:-1.5px;margin-bottom:16px;max-width:700px;margin-left:auto;margin-right:auto}
+.cta-final h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--gold)}
+.cta-final .cta-sub{font-size:15px;color:var(--muted);max-width:480px;margin:0 auto 48px;line-height:1.8;font-weight:300}
+.cta-form-wrap{max-width:520px;margin:0 auto}
+.form-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:36px 32px}
+.fg{margin-bottom:14px}
+.fg label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:rgba(184,199,217,.5);margin-bottom:7px}
+.fg input,.fg select{width:100%;padding:12px 16px;border:1px solid rgba(255,255,255,.1);border-radius:8px;font-size:13px;font-family:var(--sans);color:var(--white);background:rgba(255,255,255,.04);outline:none;transition:border-color .2s;letter-spacing:-.01em;-webkit-appearance:none}
+.fg input:focus,.fg select:focus{border-color:rgba(201,146,58,.5)}
+.fg input::placeholder{color:rgba(184,199,217,.3)}
+.fg select option{background:#0B0F1A;color:var(--white)}
+.form-btn{width:100%;background:rgba(201,146,58,.18);color:var(--white);border:1px solid rgba(201,146,58,.4);padding:15px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--sans);margin-top:8px;transition:all .25s;letter-spacing:-.2px;display:flex;align-items:center;justify-content:center;gap:8px}
+.form-btn:hover{background:rgba(201,146,58,.28);border-color:rgba(201,146,58,.6)}
+.form-note{font-size:11px;color:rgba(184,199,217,.3);text-align:center;margin-top:14px;line-height:1.5}
+.cta-checks{display:flex;align-items:center;justify-content:center;gap:28px;margin-bottom:48px;flex-wrap:wrap}
+.cta-check{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)}
+.cta-check::before{content:'✓';color:var(--gold);font-weight:700;font-size:12px}
 
 /* ─── FOOTER ─── */
-footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid rgba(255,255,255,.05)}
-.footer-logo{font-family:var(--serif);font-size:20px;color:#fff}
-.footer-logo span{color:var(--gold)}
-.footer-links{display:flex;gap:20px}
-.footer-links a{font-size:12px;color:rgba(255,255,255,.3);text-decoration:none;transition:color .2s}
-.footer-links a:hover{color:rgba(255,255,255,.7)}
-.footer-copy{font-size:11px;color:rgba(255,255,255,.2)}
+footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--divider)}
+.f-logo{font-family:var(--serif);font-size:18px;color:var(--white);font-style:italic}
+.f-logo span{color:var(--gold)}
+.f-links{display:flex;gap:24px}
+.f-links a{font-size:12px;color:var(--muted2);text-decoration:none;transition:color .2s;letter-spacing:-.01em}
+.f-links a:hover{color:var(--white)}
+.f-copy{font-size:11px;color:rgba(184,199,217,.2)}
 
-/* ─── REVEAL ─── */
-.reveal{opacity:0;transform:translateY(22px);transition:opacity .65s,transform .65s}
-.reveal.on{opacity:1;transform:translateY(0)}
+/* ─── ANIMATIONS ─── */
+.fade{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
+.fade.on{opacity:1;transform:translateY(0)}
+.fade-delay-1{transition-delay:.1s}
+.fade-delay-2{transition-delay:.2s}
+.fade-delay-3{transition-delay:.3s}
 
 /* ─── RESPONSIVE ─── */
-@media(max-width:1100px){.diff-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:960px){
-  .hero,.cred-inner,.cta-grid,.platform-grid,.faq-inner,.metrics-intro,.security-inner,.sobre-inner{grid-template-columns:1fr;gap:40px}
-  .pain-cards,.metrics-cards,.method-grid{grid-template-columns:1fr}
-  .method-grid{background:transparent;gap:1px}
-  .hero{padding:108px 5% 60px;min-height:auto}
-  .hero-features-inner{grid-template-columns:1fr}
-  .hf-item{border-right:none;border-bottom:1px solid var(--border)}
-  .hf-item:last-child{border-bottom:none}
-  footer{flex-direction:column;gap:16px;text-align:center}
-  .footer-links{justify-content:center}
+@media(max-width:1100px){.bento{grid-template-columns:repeat(2,1fr)}.daniela-grid{grid-template-columns:1fr}}
+@media(max-width:900px){
+  .pain-grid,.method-grid,.metrics-cards,.sobre-grid,.platform-grid,.sec-grid-2,.metrics-head,.faq-grid{grid-template-columns:1fr;gap:30px}
+  .sobre-main{grid-column:1}.sobre-mission{grid-column:1}
+  .media-grid{grid-template-columns:1fr 1fr}
+  footer{flex-direction:column;gap:20px;text-align:center}.f-links{justify-content:center}
+  section{padding:70px 5%}
 }
 @media(max-width:600px){
   .nav-links{display:none}
-  .hero-stats{gap:20px}
-  .diff-grid{grid-template-columns:1fr}
-  .media-grid{grid-template-columns:1fr}
+  .bento{grid-template-columns:1fr}
+  .strip-inner{grid-template-columns:1fr}
+  .strip-item{border-right:none;border-bottom:1px solid var(--divider)}
   .cert-grid{grid-template-columns:1fr}
+  .media-grid{grid-template-columns:1fr}
+  .hero h1{letter-spacing:-1px}
 }
 </style>
 </head>
@@ -322,7 +357,7 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo">S.E.R. <span>Cliente</span></div>
+  <div class="nav-logo">S.E.R. <span style="font-style:normal;font-family:var(--sans);font-size:13px;font-weight:600;color:var(--gold);letter-spacing:.08em">CLIENTE</span></div>
   <div class="nav-links">
     <a href="#plataforma">Plataforma</a>
     <a href="#metodo">Método</a>
@@ -330,307 +365,252 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
     <a href="#sobre">Sobre</a>
     <a href="#demo">Contato</a>
   </div>
-  <a href="#demo" class="nav-cta">Agendar demo</a>
+  <a href="#demo" class="nav-cta">
+    Agendar demo
+    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+  </a>
 </nav>
 
 <!-- ══════════ HERO ══════════ -->
-<section class="hero">
-  <div class="hero-glow"></div>
-  <div class="hero-glow2"></div>
-  <div>
-    <div class="hero-eyebrow">
-      <div class="eyebrow-dot"></div>
-      <span>Ouvidoria · Experiência do Cliente · Inteligência Artificial</span>
+<section class="hero" style="padding-top:140px;padding-bottom:120px">
+  <div class="particles" id="particles"></div>
+  <div class="glow glow-gold" style="width:900px;height:900px;top:-200px;left:50%;transform:translateX(-50%);position:absolute;z-index:0"></div>
+  <div style="position:relative;z-index:1;width:100%;display:flex;flex-direction:column;align-items:center">
+    <div class="hero-badge fade">
+      <div class="badge-dot"></div>
+      <span class="badge-text">Ouvidoria · Experiência do Cliente · IA</span>
     </div>
-    <h1>Gestão de feedbacks<br><em>da escuta à resolução.</em></h1>
-    <p class="hero-sub">A S.E.R. Cliente transforma a voz do cliente em direcionamento para a operação e para a gestão. Cada feedback registrado é entendido e resolvido com envolvimento das áreas, visibilidade do fluxo, IA integrada e rastreabilidade total.</p>
-    <div class="hero-actions">
-      <a href="#demo" class="btn-gold">Agendar demo gratuita</a>
-      <a href="#metodo" class="btn-ghost">Saiba mais</a>
+    <h1 class="fade fade-delay-1">Gestão de feedbacks<br><em>da escuta à resolução.</em></h1>
+    <p class="hero-sub fade fade-delay-2">A S.E.R. Cliente transforma a voz do cliente em direcionamento para a operação e para a gestão. Cada feedback registrado — entendido, resolvido e documentado.</p>
+    <div class="hero-actions fade fade-delay-2">
+      <a href="#demo" class="btn-primary">
+        Agendar demo gratuita
+        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </a>
+      <a href="#metodo" class="btn-ghost">Conhecer o Método</a>
     </div>
-    <div class="hero-stats">
-      <div>
-        <div class="h-stat-num">3</div>
-        <div class="h-stat-label">Premissas<br>S · E · R</div>
-      </div>
-      <div>
-        <div class="h-stat-num">1×</div>
-        <div class="h-stat-label">Clique para relatório<br>completo</div>
-      </div>
-      <div>
-        <div class="h-stat-num">IA</div>
-        <div class="h-stat-label">Respostas contextualizadas<br>e relatórios analíticos</div>
-      </div>
+    <div class="hero-award fade fade-delay-3">
+      <span>🏆</span>
+      <span><strong>CX Professional of the Year 2023</strong> · Customer Centricity World Series · Daniela Fantinati</span>
     </div>
   </div>
-
-  <!-- Hero card -->
-  <div>
-    <div class="hero-card">
-      <div class="hero-card-eyebrow">Método S.E.R. Cliente</div>
-      <div class="ser-steps">
-        <div class="ser-step lit" id="step0">
-          <div class="ser-letter">S</div>
-          <div>
-            <div class="ser-label">Saber</div>
-            <div class="ser-desc">Canal acessível para capturar reclamações, sugestões e elogios</div>
-          </div>
-        </div>
-        <div class="ser-step" id="step1">
-          <div class="ser-letter">E</div>
-          <div>
-            <div class="ser-label">Entender</div>
-            <div class="ser-desc">Análise profunda e contextualizada — dados em insights estratégicos</div>
-          </div>
-        </div>
-        <div class="ser-step" id="step2">
-          <div class="ser-letter">R</div>
-          <div>
-            <div class="ser-label">Resolver · Responder</div>
-            <div class="ser-desc">Fechamento do ciclo com ação assertiva e resposta documentada ao cliente</div>
-          </div>
-        </div>
-      </div>
-      <div class="award-strip">
-        <div class="award-icon">🏆</div>
-        <div class="award-text">
-          <strong>CX Professional of the Year — 2023</strong>
-          <span>Customer Centricity World Series · Daniela Fantinati</span>
-        </div>
-      </div>
-    </div>
+  <div class="hero-scroll">
+    <span>Scroll</span>
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M7 12L3 8M7 12l4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
   </div>
 </section>
 
-<!-- ══════════ HERO FEATURES STRIP ══════════ -->
-<div class="hero-features">
-  <div class="hero-features-inner">
-    <div class="hf-item">
-      <div class="hf-icon">📝</div>
-      <div class="hf-title">Formulários flexíveis</div>
-      <div class="hf-desc">Captação adaptada à sua operação</div>
+<!-- STRIP -->
+<div class="strip">
+  <div class="strip-inner">
+    <div class="strip-item">
+      <div class="strip-icon">📝</div>
+      <div>
+        <div class="strip-label">Formulários flexíveis</div>
+        <div class="strip-desc">Captação adaptada à sua operação</div>
+      </div>
     </div>
-    <div class="hf-item">
-      <div class="hf-icon">📊</div>
-      <div class="hf-title">Relatórios customizados</div>
-      <div class="hf-desc">Mais clareza para a tomada de decisão</div>
+    <div class="strip-item">
+      <div class="strip-icon">📊</div>
+      <div>
+        <div class="strip-label">Relatórios customizados</div>
+        <div class="strip-desc">Mais clareza para a tomada de decisão</div>
+      </div>
     </div>
-    <div class="hf-item">
-      <div class="hf-icon">🤖</div>
-      <div class="hf-title">IA integrada</div>
-      <div class="hf-desc">Respostas contextualizadas e relatórios analíticos</div>
+    <div class="strip-item">
+      <div class="strip-icon">🤖</div>
+      <div>
+        <div class="strip-label">IA integrada</div>
+        <div class="strip-desc">Respostas contextualizadas e analíticas</div>
+      </div>
     </div>
   </div>
 </div>
 
-<!-- ══════════ DOR + TESTEMUNHOS ══════════ -->
-<section class="pain reveal">
-  <p class="sec-label">Você reconhece alguma dessas situações?</p>
-  <h2 class="sec-h2">A ouvidoria existe.<br>A gestão, ainda não.</h2>
-  <p class="sec-sub">Manifestações chegam. Prazos correm. Auditorias aparecem. E a equipe ainda está montando relatório em planilha.</p>
-  <div class="pain-cards">
+<div class="divider"></div>
 
-    <!-- Card 1 — Saúde -->
-    <div class="pain-card">
+<!-- ══════════ DOR / CENÁRIOS ══════════ -->
+<section class="fade">
+  <div class="sec-eyebrow">
+    <span class="eyebrow-icon">✦</span>
+    <span class="eyebrow-text">Você reconhece isso?</span>
+  </div>
+  <h2 class="sec-h2">A ouvidoria existe.<br><em>A gestão, ainda não.</em></h2>
+  <p class="sec-sub">Manifestações chegam. Prazos correm. Auditorias aparecem. E a equipe ainda está montando relatório em planilha.</p>
+  <div class="pain-grid">
+    <div class="pain-card fade fade-delay-1">
       <div class="pain-card-top">
-        <p class="pain-tag">Saúde · ONA / JCI</p>
+        <p class="pain-sector">Saúde · ONA / JCI</p>
         <h3>A auditoria chegou. O relatório, ainda não.</h3>
         <p>600+ manifestações por mês em 8 unidades. Cada unidade usa um sistema diferente. Quando o CEO pede um relatório consolidado, sua equipe passa 2 dias organizando dados manualmente.</p>
       </div>
-      <div class="testimonial-divider"></div>
+      <div class="pain-divider"></div>
       <div class="testimonial">
-        <div class="avatar av-blue">AC</div>
-        <div class="testimonial-body">
-          <p class="testimonial-quote">Eu sei o impacto que o meu trabalho tem no paciente. Só preciso de um sistema que me ajude a provar isso para o meu CEO.</p>
-          <div class="testimonial-name">Adriana Costa</div>
-          <div class="testimonial-role">Diretora de CX e Ouvidoria · Rede Hospitalar São Paulo</div>
+        <div class="avatar av-a">AC</div>
+        <div>
+          <p class="t-quote">Eu sei o impacto que o meu trabalho tem no paciente. Só preciso de um sistema que me ajude a provar isso para o meu CEO.</p>
+          <div class="t-name">Adriana Costa</div>
+          <div class="t-role">Diretora de CX e Ouvidoria · Rede Hospitalar SP</div>
         </div>
       </div>
     </div>
-
-    <!-- Card 2 — Infraestrutura -->
-    <div class="pain-card">
+    <div class="pain-card fade fade-delay-2">
       <div class="pain-card-top">
-        <p class="pain-tag">Infraestrutura · ANTT / ANAC</p>
+        <p class="pain-sector">Infraestrutura · ANTT / ANAC</p>
         <h3>A ANTT pode auditar amanhã. E daí?</h3>
         <p>O sistema de ouvidoria atual é um e-mail compartilhado e uma planilha. Não há SLA, não há rastreabilidade, não há como provar que o usuário recebeu resposta. É uma bomba-relógio.</p>
       </div>
-      <div class="testimonial-divider"></div>
+      <div class="pain-divider"></div>
       <div class="testimonial">
-        <div class="avatar av-teal">RM</div>
-        <div class="testimonial-body">
-          <p class="testimonial-quote">Não posso arriscar a renovação da concessão por falta de um sistema que prove que tratamos cada reclamação. Isso não é opcional.</p>
-          <div class="testimonial-name">Rafael Mendes</div>
-          <div class="testimonial-role">Gerente de Qualidade e Ouvidoria · Concessionária Rodoviária Nacional</div>
+        <div class="avatar av-b">RM</div>
+        <div>
+          <p class="t-quote">Não posso arriscar a renovação da concessão por falta de um sistema que prove que tratamos cada reclamação. Isso não é opcional.</p>
+          <div class="t-name">Rafael Mendes</div>
+          <div class="t-role">Gerente de Qualidade · Concessionária Rodoviária Nacional</div>
         </div>
       </div>
     </div>
-
-    <!-- Card 3 — Educação -->
-    <div class="pain-card">
+    <div class="pain-card fade fade-delay-3">
       <div class="pain-card-top">
-        <p class="pain-tag">Educação Superior · MEC</p>
+        <p class="pain-sector">Educação Superior · MEC</p>
         <h3>O aluno saiu. Sem dizer por quê.</h3>
         <p>A maioria cancela a matrícula enviando um e-mail de uma linha. Você só descobre o problema quando a turma já está com 30% de evasão. Não há sistema de alerta precoce.</p>
       </div>
-      <div class="testimonial-divider"></div>
+      <div class="pain-divider"></div>
       <div class="testimonial">
-        <div class="avatar av-purple">CO</div>
-        <div class="testimonial-body">
-          <p class="testimonial-quote">Cada aluno que sai sem falar comigo é uma oportunidade perdida de fazer diferente. Preciso saber antes que seja tarde demais.</p>
-          <div class="testimonial-name">Carla Oliveira</div>
-          <div class="testimonial-role">Diretora de Relacionamento com Alunos · Grupo Educacional Minas</div>
+        <div class="avatar av-c">CO</div>
+        <div>
+          <p class="t-quote">Cada aluno que sai sem falar comigo é uma oportunidade perdida de fazer diferente. Preciso saber antes que seja tarde demais.</p>
+          <div class="t-name">Carla Oliveira</div>
+          <div class="t-role">Diretora de Relacionamento · Grupo Educacional Minas</div>
         </div>
       </div>
     </div>
-
   </div>
 </section>
+
+<div class="divider"></div>
 
 <!-- ══════════ SOBRE NÓS ══════════ -->
-<section class="sobre reveal" id="sobre">
-  <div class="sobre-inner">
-    <div>
-      <p class="sobre-label">Sobre nós</p>
-      <h2 class="sobre-h2">Existimos para transformar a voz do cliente em ação.</h2>
-      <div class="sobre-text">
-        <p>A S.E.R. Cliente nasceu para ajudar empresas a lidarem com feedbacks de forma mais prática, ágil, estruturada e estratégica.</p>
-        <p>Acreditamos que reclamações, sugestões, elogios e outras manifestações não devem ser vistas apenas como problemas a resolver, mas como consultoria gratuita — ganhos valiosos para melhorar processos, fortalecer relações e evoluir a experiência do cliente.</p>
-        <p>Por isso, desenvolvemos uma solução que apoia empresas na organização da escuta, na condução das tratativas e na construção de respostas mais contextualizadas, com clareza, rastreabilidade e conexão entre áreas.</p>
-        <p>Com a S.E.R. Cliente, cada manifestação pode se tornar uma oportunidade real de gerar confiança, evolução e impacto.</p>
-      </div>
-      <div class="sobre-quote">A plataforma ocupa o espaço entre ouvidoria tradicional e gestão estratégica de CX, com foco em operação e decisão.</div>
-      <div class="sobre-mission">
-        <p>Nossa missão</p>
-        <ul>
-          <li>Estruturar processos de melhoria contínua</li>
-          <li>Facilitar a gestão de feedbacks</li>
-          <li>Ser aliada estratégica da gestão</li>
-          <li>Ser a ponte confiável entre empresas e clientes</li>
-        </ul>
+<section class="fade" id="sobre">
+  <div class="sec-eyebrow">
+    <span class="eyebrow-icon">✦</span>
+    <span class="eyebrow-text">Sobre nós</span>
+  </div>
+  <h2 class="sec-h2">Existimos para transformar<br><em>a voz do cliente em ação.</em></h2>
+  <p class="sec-sub" style="margin-bottom:48px">A plataforma ocupa o espaço entre ouvidoria tradicional e gestão estratégica de CX, com foco em operação e decisão.</p>
+  <div class="sobre-grid">
+    <div class="sobre-main fade fade-delay-1">
+      <h3>A S.E.R. Cliente nasceu de uma dor real.</h3>
+      <p>Criada para ajudar empresas a lidarem com feedbacks de forma mais prática, ágil, estruturada e estratégica.</p>
+      <p>Acreditamos que reclamações, sugestões e elogios não devem ser vistos apenas como problemas a resolver, mas como consultoria gratuita — ganhos valiosos para melhorar processos, fortalecer relações e evoluir a experiência do cliente.</p>
+      <p>Com a S.E.R. Cliente, cada manifestação pode se tornar uma oportunidade real de gerar confiança, evolução e impacto.</p>
+      <div class="sobre-quote-block">
+        <p>Analisamos métricas, fornecemos indicadores e damos contexto — transformando feedback em gestão inteligente.</p>
       </div>
     </div>
-    <div>
-      <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:16px">Nossos valores</p>
-      <div class="sobre-values">
-        <div class="sobre-value">
-          <div class="sv-label">Escuta ativa</div>
-          <div class="sv-desc">Feedback é oportunidade, não incômodo.</div>
-        </div>
-        <div class="sobre-value">
-          <div class="sv-label">Parceria com o cliente</div>
-          <div class="sv-desc">Construção conjunta.</div>
-        </div>
-        <div class="sobre-value">
-          <div class="sv-label">Decisão baseada em dados</div>
-          <div class="sv-desc">Números ganham valor quando contextualizados.</div>
-        </div>
-        <div class="sobre-value">
-          <div class="sv-label">Pragmatismo e simplicidade</div>
-          <div class="sv-desc">Ferramentas que funcionam no dia a dia.</div>
-        </div>
-        <div class="sobre-value">
-          <div class="sv-label">Responsabilidade na resposta</div>
-          <div class="sv-desc">Responder com contexto, ação e comprometimento real.</div>
-        </div>
-        <div class="sobre-value">
-          <div class="sv-label">Transparência e rastreabilidade</div>
-          <div class="sv-desc">Tudo tem histórico, evidência e acompanhamento.</div>
-        </div>
-      </div>
+    <div class="sobre-val fade fade-delay-2">
+      <div class="sv-name">Escuta ativa</div>
+      <div class="sv-desc">Feedback é oportunidade, não incômodo.</div>
+    </div>
+    <div class="sobre-val fade fade-delay-2">
+      <div class="sv-name">Decisão baseada em dados</div>
+      <div class="sv-desc">Números ganham valor quando contextualizados.</div>
+    </div>
+    <div class="sobre-val fade fade-delay-3">
+      <div class="sv-name">Responsabilidade na resposta</div>
+      <div class="sv-desc">Responder com contexto, ação e comprometimento real.</div>
+    </div>
+    <div class="sobre-val fade fade-delay-3">
+      <div class="sv-name">Transparência e rastreabilidade</div>
+      <div class="sv-desc">Tudo tem histórico, evidência e acompanhamento.</div>
+    </div>
+    <div class="sobre-mission fade fade-delay-3">
+      <div class="sobre-mission-label">Nossa missão</div>
+      <ul>
+        <li>Estruturar processos de melhoria contínua</li>
+        <li>Facilitar a gestão de feedbacks</li>
+        <li>Ser aliada estratégica da gestão</li>
+        <li>Ser a ponte confiável entre empresas e clientes</li>
+      </ul>
     </div>
   </div>
 </section>
 
-<!-- ══════════ CREDIBILIDADE / DANIELA ══════════ -->
-<section class="cred reveal" id="daniela">
-  <div class="cred-inner">
-    <div>
-      <p class="cred-label">Fundadora</p>
-      <h2 class="cred-name">Daniela Fantinati</h2>
-      <p class="cred-bio">Co-Fundadora da S.E.R. Cliente. 15 anos gerenciando feedbacks em operações aeroportuárias de alta complexidade. A plataforma nasceu de uma dor real — e de 15 anos tentando resolver com planilhas e sistemas que não fechavam o ciclo.</p>
-      <div class="award-badge">
-        <div class="award-badge-icon">🏆</div>
+<div class="divider"></div>
+
+<!-- ══════════ DANIELA ══════════ -->
+<section class="fade" id="daniela">
+  <div class="sec-eyebrow">
+    <span class="eyebrow-icon">✦</span>
+    <span class="eyebrow-text">Fundadora</span>
+  </div>
+  <h2 class="sec-h2" style="margin-bottom:48px">Construída por quem<br><em>viveu o problema.</em></h2>
+  <div class="daniela-grid">
+    <div class="daniela-card fade fade-delay-1">
+      <div class="d-label">Co-Fundadora</div>
+      <div class="d-name">Daniela Fantinati</div>
+      <p class="d-bio">15 anos gerenciando feedbacks em operações aeroportuárias de alta complexidade. A plataforma nasceu de uma dor real — e de 15 anos tentando resolver com planilhas e sistemas que não fechavam o ciclo.</p>
+      <div class="d-award">
+        <div class="d-award-icon">🏆</div>
         <div>
           <strong>CX Professional of the Year — 2023</strong>
           <span>Customer Centricity World Series</span>
         </div>
       </div>
-      <div class="cred-stats-row">
-        <div class="cred-stat"><div class="cred-stat-n">15+</div><div class="cred-stat-l">Anos em ambientes de alta complexidade regulada</div></div>
-        <div class="cred-stat"><div class="cred-stat-n">3</div><div class="cred-stat-l">Setores atendidos — Saúde, Infraestrutura, Educação</div></div>
+      <div class="d-stats">
+        <div class="d-stat"><div class="d-stat-n">15+</div><div class="d-stat-l">Anos em ambientes de alta complexidade regulada</div></div>
+        <div class="d-stat"><div class="d-stat-n">3</div><div class="d-stat-l">Setores — Saúde, Infraestrutura, Educação</div></div>
       </div>
     </div>
-
-    <!-- Media presence -->
-    <div>
-      <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:16px">Presença & Autoridade</p>
+    <div class="fade fade-delay-2">
+      <p style="font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--gold);margin-bottom:14px">Presença & Autoridade</p>
       <div class="media-grid">
         <div class="media-card">
-          <div class="media-card-icon mc-award">🏆</div>
-          <div>
-            <div class="media-card-type">Premiação Internacional</div>
-            <div class="media-card-title">CX Professional of the Year 2023</div>
-            <div class="media-card-sub">Customer Centricity World Series</div>
-          </div>
+          <div class="media-icon mi-award">🏆</div>
+          <div><div class="media-type">Premiação Internacional</div><div class="media-title">CX Professional of the Year 2023</div><div class="media-sub">Customer Centricity World Series</div></div>
         </div>
         <div class="media-card">
-          <div class="media-card-icon mc-podcast">🎙️</div>
-          <div>
-            <div class="media-card-type">Podcast</div>
-            <div class="media-card-title">Experiência do Cliente em Setores Regulados</div>
-            <div class="media-card-sub">CX Cast Brasil · Ep. 87</div>
-          </div>
+          <div class="media-icon mi-pod">🎙️</div>
+          <div><div class="media-type">Podcast</div><div class="media-title">Experiência do Cliente em Setores Regulados</div><div class="media-sub">CX Cast Brasil · Ep. 87</div></div>
         </div>
         <div class="media-card">
-          <div class="media-card-icon mc-talk">🎤</div>
-          <div>
-            <div class="media-card-type">Palestra · Keynote</div>
-            <div class="media-card-title">Confraria CX — Feedback como estratégia</div>
-            <div class="media-card-sub">São Paulo, Junho 2026</div>
-          </div>
+          <div class="media-icon mi-talk">🎤</div>
+          <div><div class="media-type">Palestra · Keynote</div><div class="media-title">Confraria CX — Feedback como estratégia</div><div class="media-sub">São Paulo, Junho 2026</div></div>
         </div>
         <div class="media-card">
-          <div class="media-card-icon mc-talk">✈️</div>
-          <div>
-            <div class="media-card-type">Palestra · Operações</div>
-            <div class="media-card-title">Ouvidoria em aeroportos internacionais</div>
-            <div class="media-card-sub">ABIH · Café da manhã executivo</div>
-          </div>
+          <div class="media-icon mi-talk">✈️</div>
+          <div><div class="media-type">Palestra · Operações</div><div class="media-title">Ouvidoria em aeroportos internacionais</div><div class="media-sub">ABIH · Café da manhã executivo</div></div>
         </div>
         <div class="media-card">
-          <div class="media-card-icon mc-podcast">🎙️</div>
-          <div>
-            <div class="media-card-type">Podcast</div>
-            <div class="media-card-title">Do aeroporto ao SaaS: a origem do Método S.E.R.</div>
-            <div class="media-card-sub">Programa Diálogos · CX & Inovação</div>
-          </div>
+          <div class="media-icon mi-pod">🎙️</div>
+          <div><div class="media-type">Podcast</div><div class="media-title">Do aeroporto ao SaaS: a origem do Método S.E.R.</div><div class="media-sub">Programa Diálogos · CX & Inovação</div></div>
         </div>
         <div class="media-card">
-          <div class="media-card-icon mc-press">🌍</div>
-          <div>
-            <div class="media-card-type">Expansão Internacional</div>
-            <div class="media-card-title">CX em mercados lusófonos africanos</div>
-            <div class="media-card-sub">Angola & Moçambique · Presença ativa</div>
-          </div>
+          <div class="media-icon mi-globe">🌍</div>
+          <div><div class="media-type">Expansão Internacional</div><div class="media-title">CX em mercados lusófonos africanos</div><div class="media-sub">Angola & Moçambique · Presença ativa</div></div>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ MÉTODO SER ══════════ -->
-<section class="method reveal" id="metodo">
-  <p class="sec-label">Método</p>
-  <h2 class="sec-h2">Saber. Entender.<br>Resolver e Responder.</h2>
-  <p class="sec-sub" style="margin-bottom:0">O Método S.E.R. Cliente auxilia no entendimento da manifestação, na identificação da causa-raíz e melhorias contínuas. Um ciclo completo — da captura à evidência documentada para o seu board e para as agências reguladoras.</p>
-  <div class="method-grid">
+<div class="divider"></div>
 
-    <div class="method-step">
-      <div class="method-num"><span>S</span></div>
-      <div class="method-subtitle">Premissa 01</div>
+<!-- ══════════ MÉTODO ══════════ -->
+<section class="fade" id="metodo">
+  <div class="sec-eyebrow">
+    <span class="eyebrow-icon">✦</span>
+    <span class="eyebrow-text">Método</span>
+  </div>
+  <h2 class="sec-h2">Saber. Entender.<br><em>Resolver e Responder.</em></h2>
+  <p class="sec-sub">O Método S.E.R. Cliente auxilia no entendimento da manifestação, na identificação da causa-raíz e melhorias contínuas. Um ciclo completo — da captura à evidência documentada para o seu board e para as agências reguladoras.</p>
+  <div class="method-grid">
+    <div class="method-card fade fade-delay-1">
+      <div class="method-letter">S</div>
+      <div class="method-num">Premissa 01</div>
       <h3>Saber</h3>
-      <div class="method-tag-row">
+      <div class="method-tags">
         <span class="method-tag">Captura</span>
         <span class="method-tag">Multi-canal</span>
         <span class="method-tag">SLA automático</span>
@@ -644,12 +624,11 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
         <li>SLA automático configurável</li>
       </ul>
     </div>
-
-    <div class="method-step">
-      <div class="method-num"><span>E</span></div>
-      <div class="method-subtitle">Premissa 02</div>
+    <div class="method-card fade fade-delay-2">
+      <div class="method-letter">E</div>
+      <div class="method-num">Premissa 02</div>
       <h3>Entender</h3>
-      <div class="method-tag-row">
+      <div class="method-tags">
         <span class="method-tag">Análise</span>
         <span class="method-tag">IA integrada</span>
         <span class="method-tag">Insights estratégicos</span>
@@ -663,12 +642,11 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
         <li>Uso de ferramentas de Qualidade Total</li>
       </ul>
     </div>
-
-    <div class="method-step">
-      <div class="method-num"><span>R</span></div>
-      <div class="method-subtitle">Premissa 03</div>
+    <div class="method-card fade fade-delay-3">
+      <div class="method-letter">R</div>
+      <div class="method-num">Premissa 03</div>
       <h3>Resolver · Responder</h3>
-      <div class="method-tag-row">
+      <div class="method-tags">
         <span class="method-tag">Ação</span>
         <span class="method-tag">Fechamento</span>
         <span class="method-tag">Conformidade</span>
@@ -676,72 +654,81 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
       <p>Iniciativas estratégicas implementadas com base nas etapas anteriores. Agir de forma assertiva para minimizar impactos negativos, solucionar problemas e prevenir recorrências.</p>
       <ul>
         <li>IA para respostas contextualizadas ao cliente</li>
-        <li>Relatório de conformidade automático (Agências reguladoras)</li>
+        <li>Relatório de conformidade (Agências reguladoras)</li>
         <li>Fechamento documentado com trilha completa</li>
         <li>CSAT e NPS integrado no pós-resolução</li>
         <li>Interação com o cliente por multi-canal</li>
       </ul>
     </div>
-
   </div>
 </section>
+
+<div class="divider"></div>
 
 <!-- ══════════ DIFERENCIAIS ══════════ -->
-<section class="diff reveal" id="diferenciais">
-  <p class="sec-label">Diferenciais</p>
-  <h2 class="sec-h2" style="margin-bottom:12px">O que torna a S.E.R. Cliente diferente.</h2>
+<section class="fade" id="diferenciais">
+  <div class="sec-eyebrow">
+    <span class="eyebrow-icon">✦</span>
+    <span class="eyebrow-text">Diferenciais</span>
+  </div>
+  <h2 class="sec-h2">O que torna a S.E.R. Cliente<br><em>diferente.</em></h2>
   <p class="sec-sub">Construída com conceitos de Experiência do Cliente, princípios de Qualidade Total e alavancada por Inteligência Artificial.</p>
-  <div class="diff-grid">
-    <div class="diff-card">
-      <div class="diff-icon">🤖</div>
+  <div class="bento">
+    <div class="bento-card fade fade-delay-1">
+      <div class="bento-icon">🤖</div>
       <h4>Inteligência Artificial integrada</h4>
-      <p>IA para sugerir respostas contextualizadas e personalizadas, auxiliar no tratamento das manifestações e analisar os dados e emissão de relatórios executivos.</p>
+      <p>IA para sugerir respostas contextualizadas e personalizadas, auxiliar no tratamento das manifestações e emissão de relatórios executivos.</p>
     </div>
-    <div class="diff-card">
-      <div class="diff-icon">🔑</div>
+    <div class="bento-card fade fade-delay-1">
+      <div class="bento-icon">🔑</div>
       <h4>Token de acesso</h4>
-      <p>Criação de links exclusivos com acesso via token — sem proliferação de logins e senhas. Acesso seguro e rastreável para cada usuário e cliente.</p>
+      <p>Links exclusivos com acesso via token — sem proliferação de logins e senhas. Acesso seguro e rastreável.</p>
     </div>
-    <div class="diff-card">
-      <div class="diff-icon">🔢</div>
+    <div class="bento-card fade fade-delay-2">
+      <div class="bento-icon">🔢</div>
       <h4>Código de acompanhamento único</h4>
-      <p>Cada relato recebe um número único compartilhado com o cliente, garantindo rastreabilidade completa e fácil acesso ao histórico de informações.</p>
+      <p>Cada relato recebe um número único compartilhado com o cliente, garantindo rastreabilidade e fácil acesso ao histórico de informações.</p>
     </div>
-    <div class="diff-card">
-      <div class="diff-icon">⚙️</div>
+    <div class="bento-card fade fade-delay-2">
+      <div class="bento-icon">⚙️</div>
       <h4>Metodologias de Qualidade e CX</h4>
-      <p>Princípios de qualidade e conceitos de CX incorporados nas análises e resoluções, garantindo tratamento estruturado e fundamentado em boas práticas.</p>
+      <p>Princípios de qualidade e conceitos de CX incorporados nas análises e resoluções, garantindo tratamento fundamentado em boas práticas.</p>
     </div>
-    <div class="diff-card">
-      <div class="diff-icon">👥</div>
+    <div class="bento-card fade fade-delay-3">
+      <div class="bento-icon">👥</div>
       <h4>Perfis e permissões configuráveis</h4>
-      <p>Defina perfis de acesso com base em responsabilidades, permissões e níveis de autonomia — gestão segura e organizada para equipes de qualquer tamanho.</p>
+      <p>Perfis de acesso com base em responsabilidades, permissões e níveis de autonomia — gestão segura para qualquer equipe.</p>
     </div>
-    <div class="diff-card">
-      <div class="diff-icon">📱</div>
+    <div class="bento-card fade fade-delay-3">
+      <div class="bento-icon">📱</div>
       <h4>Desktop e mobile</h4>
-      <p>Plataforma acessível e funcional em desktops e dispositivos móveis. Gerencie feedbacks com agilidade, independente do dispositivo ou localização da equipe.</p>
+      <p>Plataforma acessível e funcional em desktops e dispositivos móveis. Gerencie feedbacks com agilidade de qualquer lugar.</p>
     </div>
-    <div class="diff-card">
-      <div class="diff-icon">☁️</div>
+    <div class="bento-card fade fade-delay-3">
+      <div class="bento-icon">☁️</div>
       <h4>SaaS — serviço em nuvem</h4>
-      <p>Modelo SaaS com acesso seguro e escalável via nuvem. Disponibilidade garantida, segurança dos dados e atualizações contínuas sem custo adicional.</p>
+      <p>Acesso seguro e escalável via nuvem. Disponibilidade garantida, segurança dos dados e atualizações contínuas.</p>
     </div>
-    <div class="diff-card">
-      <div class="diff-icon">📝</div>
+    <div class="bento-card fade fade-delay-3">
+      <div class="bento-icon">📝</div>
       <h4>Formulários customizados</h4>
-      <p>Criação de formulários personalizados e intuitivos, alinhados às necessidades da empresa. Feedbacks estruturados que otimizam a análise e a tomada de decisão.</p>
+      <p>Formulários personalizados e intuitivos, alinhados às necessidades da empresa. Feedbacks estruturados para melhor análise.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════ PLATAFORMA / DASHBOARD ══════════ -->
-<section class="platform reveal" id="plataforma">
-  <p class="sec-label">Plataforma</p>
-  <h2 class="sec-h2">Desenvolvida com quem vive o problema.</h2>
-  <p class="sec-sub">Não é produto de prateleira. A S.E.R. Cliente foi desenvolvida e validada com clientes reais em ambientes de alta complexidade regulada.</p>
+<div class="divider"></div>
+
+<!-- ══════════ PLATAFORMA ══════════ -->
+<section class="fade" id="plataforma">
+  <div class="sec-eyebrow">
+    <span class="eyebrow-icon">✦</span>
+    <span class="eyebrow-text">Plataforma</span>
+  </div>
+  <h2 class="sec-h2">Desenvolvida com quem<br><em>vive o problema.</em></h2>
+  <p class="sec-sub" style="margin-bottom:48px">Não é produto de prateleira. A S.E.R. Cliente foi desenvolvida e validada com clientes reais em ambientes de alta complexidade regulada.</p>
   <div class="platform-grid">
-    <div class="features">
+    <div class="feat-list fade fade-delay-1">
       <div class="feat">
         <div class="feat-icon">📊</div>
         <div><h4>Dashboard executivo e gerencial</h4><p>Visão consolidada de todas as unidades. Relatórios operacionais e executivos customizados, em xls, ppt e BI, prontos para apresentar.</p></div>
@@ -756,20 +743,19 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
       </div>
       <div class="feat">
         <div class="feat-icon">🏢</div>
-        <div><h4>Multi-unidade com visão consolidada</h4><p>Cada unidade opera com autonomia dentro do padrão da organização. Dashboard corporativo consolidado sem perder a granularidade local.</p></div>
+        <div><h4>Multi-unidade com visão consolidada</h4><p>Cada unidade opera com autonomia dentro do padrão da organização. Dashboard corporativo sem perder a granularidade local.</p></div>
       </div>
       <div class="feat">
         <div class="feat-icon">🔗</div>
-        <div><h4>Integrações e API documentada</h4><p>API REST documentada para integração com CRM, ERP e sistemas legados. Levantamento técnico gratuito no onboarding.</p></div>
+        <div><h4>Integrações e API documentada</h4><p>API REST para integração com CRM, ERP e sistemas legados. Levantamento técnico gratuito no onboarding.</p></div>
       </div>
     </div>
-
-    <div class="mockup">
-      <div class="mock-titlebar">
-        <div class="dot" style="background:#ff5f57"></div>
-        <div class="dot" style="background:#ffbd2e"></div>
-        <div class="dot" style="background:#28ca41"></div>
-        <div class="mock-app-name">S.E.R. Cliente · Dashboard</div>
+    <div class="mockup fade fade-delay-2">
+      <div class="mock-bar">
+        <div class="mock-dot" style="background:#ff5f57"></div>
+        <div class="mock-dot" style="background:#ffbd2e"></div>
+        <div class="mock-dot" style="background:#28ca41"></div>
+        <span class="mock-name">S.E.R. Cliente · Dashboard</span>
       </div>
       <div class="mock-stats">
         <div class="ms"><div class="ms-n">247</div><div class="ms-l">Manifestações / mês</div></div>
@@ -779,237 +765,235 @@ footer{background:var(--navy);padding:40px 6%;display:flex;justify-content:space
       <div class="mock-thead">
         <span>Manifestação</span><span>Setor</span><span>SLA</span><span>Status</span>
       </div>
-      <div class="mock-row">
-        <span>Demora no atendimento — UTI</span>
-        <span>Saúde</span><span>2d</span>
-        <span class="tag t-green">Resolvido</span>
-      </div>
-      <div class="mock-row">
-        <span>Acesso rota pedagiada BR-116</span>
-        <span>Infra</span><span>5d</span>
-        <span class="tag t-gold">Em prazo</span>
-      </div>
-      <div class="mock-row">
-        <span>Cancelamento matrícula — 3º período</span>
-        <span>Educação</span><span>1d</span>
-        <span class="tag t-blue">Análise</span>
-      </div>
-      <div class="mock-row">
-        <span>Nota fiscal incorreta — plano Ouro</span>
-        <span>Saúde</span><span>3d</span>
-        <span class="tag t-green">Resolvido</span>
-      </div>
-      <div class="mock-row">
-        <span>Sinalização inadequada — km 312</span>
-        <span>Infra</span><span>7d</span>
-        <span class="tag t-gold">Em prazo</span>
-      </div>
-      <div class="mock-footer">
+      <div class="mock-row"><span>Demora no atendimento — UTI</span><span>Saúde</span><span>2d</span><span class="mtag t-g">Resolvido</span></div>
+      <div class="mock-row"><span>Acesso rota pedagiada BR-116</span><span>Infra</span><span>5d</span><span class="mtag t-y">Em prazo</span></div>
+      <div class="mock-row"><span>Cancelamento matrícula — 3º período</span><span>Educação</span><span>1d</span><span class="mtag t-b">Análise</span></div>
+      <div class="mock-row"><span>Nota fiscal incorreta — plano Ouro</span><span>Saúde</span><span>3d</span><span class="mtag t-g">Resolvido</span></div>
+      <div class="mock-row"><span>Sinalização inadequada — km 312</span><span>Infra</span><span>7d</span><span class="mtag t-y">Em prazo</span></div>
+      <div class="mock-foot">
         <span>Relatório de conformidade</span>
-        <span class="mock-cta-mini">Gerar em 1 clique →</span>
+        <span class="mock-foot-cta">Gerar em 1 clique →</span>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══════════ MÉTRICAS CX ══════════ -->
-<section class="metrics reveal" id="metricas">
-  <div class="metrics-intro">
+<div class="divider"></div>
+
+<!-- ══════════ MÉTRICAS ══════════ -->
+<section class="fade" id="metricas">
+  <div class="metrics-head">
     <div>
-      <p class="sec-label" style="color:var(--gold)">Métricas de experiência</p>
-      <h2 class="sec-h2" style="color:#fff">CES · CSAT · NPS<br>integrados e automatizados.</h2>
+      <div class="sec-eyebrow" style="justify-content:flex-start">
+        <span class="eyebrow-icon">✦</span>
+        <span class="eyebrow-text">Métricas de experiência</span>
+      </div>
+      <h2 class="sec-h2" style="text-align:left">CES · CSAT · NPS<br><em>integrados e automatizados.</em></h2>
     </div>
-    <p style="font-size:16px;color:rgba(255,255,255,.5);line-height:1.75;font-weight:300">Analisamos métricas, fornecemos indicadores e damos contexto — transformando feedback em gestão inteligente. Dashboards automatizados que consolidam as métricas essenciais de CX em uma visão única e acionável.</p>
+    <p class="metrics-sub">Analisamos métricas, fornecemos indicadores e damos contexto — transformando feedback em gestão inteligente. Dashboards que consolidam as métricas essenciais de CX em uma visão única e acionável.</p>
   </div>
   <div class="metrics-cards">
-    <div class="metric-card">
+    <div class="metric-card fade fade-delay-1">
       <div class="metric-abbr">NPS</div>
       <div class="metric-name">Net Promoter Score</div>
       <div class="metric-desc">Mede a lealdade do cliente e a probabilidade de recomendação da empresa. Coletado automaticamente após cada resolução de manifestação.</div>
-      <div class="metric-example"><strong>Como aparece:</strong> "Em uma escala de 0 a 10, o quanto você recomendaria nossa empresa a um colega?" — enviado automaticamente após fechamento.</div>
+      <div class="metric-ex"><strong>Como aparece:</strong> "Em uma escala de 0 a 10, o quanto você recomendaria nossa empresa a um colega?" — enviado automaticamente após fechamento.</div>
     </div>
-    <div class="metric-card">
+    <div class="metric-card fade fade-delay-2">
       <div class="metric-abbr">CES</div>
       <div class="metric-name">Customer Effort Score</div>
       <div class="metric-desc">Mede o esforço que o cliente precisou para resolver seu problema. Quanto menor o esforço, maior a fidelização — e menor o risco de churn silencioso.</div>
-      <div class="metric-example"><strong>Como aparece:</strong> "Quanto esforço você precisou fazer para resolver sua solicitação?" — métrica crítica para redução de evasão em educação.</div>
+      <div class="metric-ex"><strong>Como aparece:</strong> "Quanto esforço você precisou fazer para resolver sua solicitação?" — métrica crítica para redução de evasão em educação.</div>
     </div>
-    <div class="metric-card">
+    <div class="metric-card fade fade-delay-3">
       <div class="metric-abbr">CSAT</div>
       <div class="metric-name">Customer Satisfaction Score</div>
-      <div class="metric-desc">Mede a satisfação pontual com o atendimento e a resolução. Complementa o NPS com uma leitura imediata da qualidade do tratamento da manifestação.</div>
-      <div class="metric-example"><strong>Como aparece:</strong> "Como você avalia a resolução da sua solicitação?" — alimenta o dashboard executivo e os relatórios de conformidade.</div>
+      <div class="metric-desc">Mede a satisfação pontual com o atendimento e a resolução. Complementa o NPS com uma leitura imediata da qualidade do tratamento.</div>
+      <div class="metric-ex"><strong>Como aparece:</strong> "Como você avalia a resolução da sua solicitação?" — alimenta o dashboard executivo e os relatórios de conformidade.</div>
     </div>
   </div>
 </section>
+
+<div class="divider"></div>
 
 <!-- ══════════ SEGURANÇA ══════════ -->
-<section class="security reveal">
-  <div class="security-inner">
+<section class="fade">
+  <div class="sec-grid-2">
     <div>
-      <p class="sec-label">Segurança & Conformidade</p>
-      <h2 class="sec-h2">Banco de dados seguro e certificado.</h2>
-      <p style="font-size:16px;color:var(--muted);line-height:1.75;font-weight:300;margin-top:8px">Conformidade com os principais padrões globais de segurança. Seus dados e os dados dos seus clientes protegidos com os mais altos padrões da indústria.</p>
+      <div class="sec-eyebrow" style="justify-content:flex-start">
+        <span class="eyebrow-icon">✦</span>
+        <span class="eyebrow-text">Segurança & Conformidade</span>
+      </div>
+      <h2 class="sec-h2" style="text-align:left">Banco de dados<br><em>seguro e certificado.</em></h2>
+      <p class="sec-left-text">Conformidade com os principais padrões globais de segurança. Seus dados e os dados dos seus clientes protegidos com os mais altos padrões da indústria.</p>
     </div>
-    <div class="cert-grid">
-      <div class="cert">
-        <div class="cert-icon">🛡️</div>
-        <div><h4>LGPD</h4><p>Lei Geral de Proteção de Dados — conformidade total com a legislação brasileira.</p></div>
-      </div>
-      <div class="cert">
-        <div class="cert-icon">🌍</div>
-        <div><h4>GDPR</h4><p>General Data Protection Regulation — padrão europeu de proteção de dados pessoais.</p></div>
-      </div>
-      <div class="cert">
-        <div class="cert-icon">🔐</div>
-        <div><h4>ISO 27001</h4><p>Certificação internacional para gestão de segurança da informação.</p></div>
-      </div>
-      <div class="cert">
-        <div class="cert-icon">✅</div>
-        <div><h4>SOC 2</h4><p>Auditoria independente de segurança, disponibilidade e confidencialidade dos dados.</p></div>
-      </div>
-      <div class="cert">
-        <div class="cert-icon">🪟</div>
-        <div><h4>Microsoft Active Directory (AD)</h4><p>Integração com AD para autenticação centralizada e gestão de acessos corporativos.</p></div>
-      </div>
-      <div class="cert">
-        <div class="cert-icon">🔵</div>
-        <div><h4>Google Single Sign-On (SSO)</h4><p>Acesso via Google SSO — sem senhas adicionais, com segurança e rastreabilidade.</p></div>
-      </div>
+    <div class="cert-grid fade fade-delay-1">
+      <div class="cert"><div class="cert-icon">🛡️</div><div><h4>LGPD</h4><p>Conformidade total com a Lei Geral de Proteção de Dados brasileira.</p></div></div>
+      <div class="cert"><div class="cert-icon">🌍</div><div><h4>GDPR</h4><p>Padrão europeu de proteção de dados pessoais.</p></div></div>
+      <div class="cert"><div class="cert-icon">🔐</div><div><h4>ISO 27001</h4><p>Certificação internacional para gestão de segurança da informação.</p></div></div>
+      <div class="cert"><div class="cert-icon">✅</div><div><h4>SOC 2</h4><p>Auditoria independente de segurança, disponibilidade e confidencialidade.</p></div></div>
+      <div class="cert"><div class="cert-icon">🪟</div><div><h4>Microsoft Active Directory</h4><p>Autenticação centralizada e gestão de acessos corporativos via AD.</p></div></div>
+      <div class="cert"><div class="cert-icon">🔵</div><div><h4>Google SSO</h4><p>Acesso via Google Single Sign-On — sem senhas adicionais.</p></div></div>
     </div>
   </div>
 </section>
 
+<div class="divider"></div>
+
 <!-- ══════════ FAQ ══════════ -->
-<section class="faq reveal">
-  <div class="faq-inner">
-    <div>
-      <p class="sec-label">Perguntas frequentes</p>
-      <h2 class="sec-h2" style="font-size:clamp(26px,3vw,36px)">Respostas diretas.<br>Sem eufemismo.</h2>
-      <p style="font-size:15px;color:var(--muted);line-height:1.75;margin-top:16px;font-weight:300">Se sua pergunta não está aqui, traga para a demonstração da plataforma — que responderemos durante a demo.</p>
+<section class="fade">
+  <div class="faq-grid">
+    <div class="faq-left">
+      <div class="sec-eyebrow" style="justify-content:flex-start;margin-bottom:16px">
+        <span class="eyebrow-icon">✦</span>
+        <span class="eyebrow-text">FAQ</span>
+      </div>
+      <h2>Respostas diretas.<br><em>Sem eufemismo.</em></h2>
+      <p style="margin-top:16px">Se sua pergunta não está aqui, traga para a demonstração da plataforma — que responderemos durante a demo.</p>
     </div>
-    <div class="faq-list">
+    <div class="faq-list fade fade-delay-1">
       <div class="faq-item">
-        <button class="faq-q" onclick="faq(this)">O que significa S.E.R.?<span class="faq-plus">+</span></button>
-        <div class="faq-ans"><p>S.E.R. é o método proprietário que estrutura toda a plataforma: <strong>S</strong> de Saber (ouvir a voz do cliente e entender suas percepções e necessidades, oferecendo um canal de comunicação fácil e acessível para o registro dos feedbacks), <strong>E</strong> de Entender (analisar profundamente com contexto e gerar insights estratégicos) e <strong>R</strong> de Resolver e Responder (agir de forma assertiva, fechar o ciclo com o cliente e gerar evidência documentada). É um ciclo completo — não apenas um repositório de reclamações.</p></div>
+        <button class="faq-q" onclick="toggleFaq(this)">O que significa S.E.R.?<span class="faq-plus">+</span></button>
+        <div class="faq-ans"><p><strong style="color:var(--white)">S</strong> de Saber (ouvir a voz do cliente e entender suas percepções, oferecendo um canal fácil e acessível para o registro dos feedbacks), <strong style="color:var(--white)">E</strong> de Entender (analisar profundamente com contexto e gerar insights estratégicos) e <strong style="color:var(--white)">R</strong> de Resolver e Responder (agir de forma assertiva, fechar o ciclo com o cliente e gerar evidência documentada). É um ciclo completo — não apenas um repositório de reclamações.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="faq(this)">Quanto custa a plataforma?<span class="faq-plus">+</span></button>
+        <button class="faq-q" onclick="toggleFaq(this)">Quanto custa a plataforma?<span class="faq-plus">+</span></button>
         <div class="faq-ans"><p>A assinatura da plataforma varia com base na quantidade de feedbacks. Há pacotes fixos e variáveis. Na demo, apresentamos os planos e condições de pagamento.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="faq(this)">Integra com nosso sistema atual?<span class="faq-plus">+</span></button>
+        <button class="faq-q" onclick="toggleFaq(this)">Integra com nosso sistema atual?<span class="faq-plus">+</span></button>
         <div class="faq-ans"><p>A S.E.R. Cliente possui condições de integração via API, permitindo conexão com outros sistemas de acordo com a necessidade de cada operação. As possibilidades podem ser avaliadas conforme o contexto, os objetivos do projeto e os requisitos técnicos envolvidos.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="faq(this)">Quanto tempo leva o onboarding?<span class="faq-plus">+</span></button>
+        <button class="faq-q" onclick="toggleFaq(this)">Quanto tempo leva o onboarding?<span class="faq-plus">+</span></button>
         <div class="faq-ans"><p>Em 30 minutos o acesso à plataforma é liberado e o onboarding é feito em até três encontros de 1h.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="faq(this)">A plataforma funciona para Angola e Moçambique?<span class="faq-plus">+</span></button>
+        <button class="faq-q" onclick="toggleFaq(this)">A plataforma funciona para Angola e Moçambique?<span class="faq-plus">+</span></button>
         <div class="faq-ans"><p>Sim. A S.E.R. Cliente está disponível para todos os países, incluindo Angola e Moçambique.</p></div>
       </div>
       <div class="faq-item">
-        <button class="faq-q" onclick="faq(this)">A plataforma é apenas para grandes empresas?<span class="faq-plus">+</span></button>
-        <div class="faq-ans"><p>Não! A plataforma é para todas as empresas que querem ouvir o feedback dos clientes. Se você quer implementar um canal de comunicação com seus clientes, a S.E.R. Cliente é ideal para você. Se você já possui um canal de Ouvidoria, pode modernizá-lo e usufruir dos diferenciais da S.E.R. Cliente. Temos condições especiais para pequenas e médias empresas.</p></div>
+        <button class="faq-q" onclick="toggleFaq(this)">A plataforma é apenas para grandes empresas?<span class="faq-plus">+</span></button>
+        <div class="faq-ans"><p>Não! A plataforma é para todas as empresas que querem ouvir o feedback dos clientes. Se você já possui um canal de Ouvidoria, pode modernizá-lo e usufruir dos diferenciais da S.E.R. Cliente. Temos condições especiais para pequenas e médias empresas.</p></div>
       </div>
     </div>
   </div>
 </section>
 
+<div class="divider"></div>
+
 <!-- ══════════ CTA FINAL ══════════ -->
-<section class="cta-final reveal" id="demo">
-  <div class="cta-grid">
-    <div class="cta-l">
-      <h2>30 minutos para ter o acesso à plataforma e <em>já começar a usar.</em></h2>
-      <p>Agende sua demo e conheça os benefícios da S.E.R. Cliente para a sua operação e sua gestão.</p>
-      <div class="assurances">
-        <div class="ass">Sem compromisso. Sem pitch. Só dados.</div>
-      </div>
+<section class="cta-final fade" id="demo">
+  <div class="glow glow-gold cta-glow" style="position:absolute;pointer-events:none"></div>
+  <div style="position:relative;z-index:1">
+    <div class="sec-eyebrow">
+      <span class="eyebrow-icon">✦</span>
+      <span class="eyebrow-text">Comece agora</span>
     </div>
-    <div class="form-card">
-      <h3>Agende sua demo</h3>
-      <p class="fs">Preencha em 30 segundos. Nossa equipe confirma em até 24 horas.</p>
-      <div class="fg">
-        <label>Nome completo</label>
-        <input type="text" placeholder="Seu nome">
+    <h2>30 minutos para ter o acesso<br>à plataforma e <em>já começar a usar.</em></h2>
+    <p class="cta-sub">Agende sua demo e conheça os benefícios da S.E.R. Cliente para a sua operação e sua gestão.</p>
+    <div class="cta-checks">
+      <div class="cta-check">Sem compromisso. Sem pitch. Só dados.</div>
+      <div class="cta-check">Acesso em 30 minutos</div>
+      <div class="cta-check">Onboarding em até 3 encontros de 1h</div>
+    </div>
+    <div class="cta-form-wrap">
+      <div class="form-card">
+        <div style="text-align:left;margin-bottom:24px">
+          <p style="font-family:var(--serif);font-style:italic;font-size:22px;color:var(--white);line-height:1.3">Agende sua demo</p>
+          <p style="font-size:13px;color:var(--muted);margin-top:6px">Preencha em 30 segundos. Nossa equipe confirma em até 24 horas.</p>
+        </div>
+        <div class="fg"><label>Nome completo</label><input type="text" placeholder="Seu nome"></div>
+        <div class="fg"><label>Empresa</label><input type="text" placeholder="Nome da sua organização"></div>
+        <div class="fg">
+          <label>Setor</label>
+          <select>
+            <option value="">Selecione seu setor</option>
+            <option>Saúde (Hospital, Operadora, Clínica)</option>
+            <option>Infraestrutura e Transporte</option>
+            <option>Educação Superior</option>
+            <option>Seguros e Financeiro</option>
+            <option>Angola ou Moçambique</option>
+            <option>Outro setor regulado</option>
+          </select>
+        </div>
+        <div class="fg"><label>Telefone (WhatsApp)</label><input type="tel" placeholder="+55 (19) 99752-5516"></div>
+        <div class="fg"><label>E-mail corporativo</label><input type="email" placeholder="seu@empresa.com.br"></div>
+        <button class="form-btn">
+          Agendar demonstração gratuita
+          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </button>
+        <p class="form-note">Sem spam. Sem compromisso. Respondemos em até 24 horas úteis.</p>
       </div>
-      <div class="fg">
-        <label>Empresa</label>
-        <input type="text" placeholder="Nome da sua organização">
-      </div>
-      <div class="fg">
-        <label>Setor</label>
-        <select>
-          <option value="">Selecione seu setor</option>
-          <option>Saúde (Hospital, Operadora, Clínica)</option>
-          <option>Infraestrutura e Transporte</option>
-          <option>Educação Superior</option>
-          <option>Seguros e Financeiro</option>
-          <option>Angola ou Moçambique</option>
-          <option>Outro setor regulado</option>
-        </select>
-      </div>
-      <div class="fg">
-        <label>Telefone (WhatsApp)</label>
-        <input type="tel" placeholder="+55 (19) 99752-5516">
-      </div>
-      <div class="fg">
-        <label>E-mail corporativo</label>
-        <input type="email" placeholder="seu@empresa.com.br">
-      </div>
-      <button class="form-btn">Agendar demonstração gratuita →</button>
-      <p class="form-note">Sem spam. Sem compromisso. Respondemos em até 24 horas úteis.</p>
     </div>
   </div>
 </section>
 
 <!-- ══════════ FOOTER ══════════ -->
 <footer>
-  <div class="footer-logo">S.E.R. <span>Cliente</span></div>
-  <div class="footer-links">
+  <div class="f-logo">S.E.R. <span>Cliente</span></div>
+  <div class="f-links">
     <a href="#metodo">Método S.E.R.</a>
     <a href="#plataforma">Plataforma</a>
     <a href="#metricas">Métricas CX</a>
     <a href="#sobre">Sobre</a>
     <a href="#demo">Contato</a>
   </div>
-  <div class="footer-copy">© 2026 S.E.R. Cliente · Toronto, Canadá</div>
+  <div class="f-copy">© 2026 S.E.R. Cliente · Toronto, Canadá</div>
 </footer>
 
 <script>
-/* Scroll reveal */
+/* ─── PARTICLES ─── */
+(function(){
+  const container = document.getElementById('particles');
+  const count = 28;
+  for(let i = 0; i < count; i++){
+    const p = document.createElement('div');
+    p.className = 'particle';
+    p.style.cssText = `
+      left:${Math.random()*100}%;
+      top:${20 + Math.random()*70}%;
+      animation-duration:${4 + Math.random()*6}s;
+      animation-delay:${Math.random()*6}s;
+      width:${1 + Math.random()*2}px;
+      height:${1 + Math.random()*2}px;
+      opacity:${.2 + Math.random()*.4};
+    `;
+    container.appendChild(p);
+  }
+})();
+
+/* ─── SCROLL REVEAL ─── */
 const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('on') })
-}, {threshold:.07})
-document.querySelectorAll('.reveal').forEach(el => obs.observe(el))
+  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); } })
+}, {threshold:.08});
+document.querySelectorAll('.fade').forEach(el => obs.observe(el));
 
-/* SER steps cycling */
-let cur = 0
-const steps = [document.getElementById('step0'), document.getElementById('step1'), document.getElementById('step2')]
-setInterval(() => {
-  steps.forEach(s => s.classList.remove('lit'))
-  cur = (cur + 1) % 3
-  steps[cur].classList.add('lit')
-}, 2800)
-
-/* FAQ accordion */
-function faq(btn) {
-  const ans = btn.nextElementSibling
-  const icon = btn.querySelector('.faq-plus')
-  const isOpen = ans.classList.contains('open')
-  document.querySelectorAll('.faq-ans').forEach(a => a.classList.remove('open'))
-  document.querySelectorAll('.faq-plus').forEach(i => i.classList.remove('open'))
-  if (!isOpen) { ans.classList.add('open'); icon.classList.add('open') }
+/* ─── FAQ ─── */
+function toggleFaq(btn){
+  const ans = btn.nextElementSibling;
+  const icon = btn.querySelector('.faq-plus');
+  const isOpen = ans.classList.contains('open');
+  document.querySelectorAll('.faq-ans').forEach(a => a.classList.remove('open'));
+  document.querySelectorAll('.faq-plus').forEach(i => i.classList.remove('open'));
+  if(!isOpen){ ans.classList.add('open'); icon.classList.add('open'); }
 }
 
-/* Smooth scroll */
+/* ─── SMOOTH SCROLL ─── */
 document.querySelectorAll('a[href^="#"]').forEach(a => {
   a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'))
-    if (t) { e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}) }
-  })
-})
+    const t = document.querySelector(a.getAttribute('href'));
+    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+  });
+});
+
+/* ─── NAV SCROLL EFFECT ─── */
+const nav = document.querySelector('nav');
+window.addEventListener('scroll', () => {
+  nav.style.background = window.scrollY > 60
+    ? 'rgba(4,7,13,0.95)'
+    : 'rgba(4,7,13,0.8)';
+});
 </script>
 </body>
 </html>
