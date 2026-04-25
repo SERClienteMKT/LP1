@@ -162,23 +162,38 @@ section{padding:100px 5%}
 }
 .card:hover{border-color:var(--card-border-hover);background:rgba(255,255,255,.06)}
 
-/* ─── PAIN / CENÁRIOS ─── */
-.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:0}
-.pain-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;overflow:hidden;display:flex;flex-direction:column;transition:all .3s}
-.pain-card:hover{border-color:rgba(38,162,76,.25);transform:translateY(-4px)}
-.pain-card-top{padding:28px 28px 22px}
-.pain-sector{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin-bottom:14px}
-.pain-card h3{font-family:var(--serif);font-size:20px;font-weight:400;font-style:italic;color:var(--white);margin-bottom:12px;line-height:1.35}
-.pain-card p{font-size:13px;color:var(--muted);line-height:1.75}
-.pain-divider{height:1px;background:var(--divider)}
-.testimonial{padding:20px 28px;display:flex;gap:14px;align-items:flex-start}
-.avatar{width:40px;height:40px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:600;color:#fff;letter-spacing:.02em;font-family:var(--sans)}
+/* ─── PAIN CAROUSEL ─── */
+.pain-wrap{max-width:920px;margin:0 auto}
+.pain-stack{position:relative;height:420px;margin-bottom:28px}
+.pain-card{position:absolute;left:0;right:0;bottom:0;background:rgba(7,15,8,.95);border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden;transition:transform .75s cubic-bezier(.25,.46,.45,.94),opacity .75s ease}
+.pain-card.pos-0{transform:translateY(0) scale(1);opacity:1;z-index:3;border-color:rgba(255,255,255,.13)}
+.pain-card.pos-1{transform:translateY(-32px) scale(.97);opacity:.48;z-index:2;pointer-events:none}
+.pain-card.pos-2{transform:translateY(-58px) scale(.94);opacity:.22;z-index:1;pointer-events:none}
+.pc-top{display:flex;justify-content:space-between;align-items:center;padding:22px 28px 0}
+.pc-sector{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--green)}
+.pc-dots-ui{display:flex;gap:5px}
+.pc-dot-ui{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15)}
+.pc-body{display:grid;grid-template-columns:1fr 230px}
+.pc-left{padding:18px 28px 28px}
+.pc-title{font-family:var(--serif);font-size:clamp(18px,1.8vw,23px);font-style:italic;font-weight:400;color:var(--white);margin-bottom:13px;line-height:1.3;letter-spacing:-.2px}
+.pc-desc{font-size:13.5px;color:var(--muted);line-height:1.75;margin-bottom:20px}
+.pc-metrics{display:flex;gap:10px}
+.pc-metric{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px 16px;flex:1}
+.pc-metric-n{font-size:22px;font-weight:700;color:var(--white);line-height:1;letter-spacing:-.5px}
+.pc-metric-l{font-size:10px;color:var(--muted2);margin-top:4px;line-height:1.4}
+.pc-right{border-left:1px solid rgba(255,255,255,.06);padding:24px;display:flex;flex-direction:column;justify-content:center;gap:12px}
+.pc-avatar{width:52px;height:52px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;letter-spacing:.02em}
 .av-a{background:linear-gradient(135deg,#1D4ED8,#2563EB)}
 .av-b{background:linear-gradient(135deg,#0D9488,#0F766E)}
 .av-c{background:linear-gradient(135deg,#7C3AED,#6D28D9)}
-.t-quote{font-size:12px;color:rgba(184,199,217,0.6);line-height:1.7;font-style:italic;margin-bottom:8px}
-.t-name{font-size:11px;font-weight:600;color:var(--white)}
-.t-role{font-size:10px;color:var(--muted2);margin-top:2px}
+.pc-quote{font-size:12px;color:rgba(184,199,217,.62);line-height:1.7;font-style:italic}
+.pc-author-name{font-size:11.5px;font-weight:600;color:rgba(228,237,230,.8);margin-top:4px}
+.pc-author-role{font-size:10px;color:var(--muted2);margin-top:2px;line-height:1.4}
+/* Nav dots */
+.pain-dots{display:flex;gap:8px;justify-content:center;margin-top:4px}
+.pain-nav-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .35s ease;border:none;padding:0;outline:none}
+.pain-nav-dot.active{background:var(--green);width:24px;border-radius:4px}
+@media(max-width:700px){.pc-body{grid-template-columns:1fr}.pc-right{display:none}.pain-stack{height:380px}}
 
 /* ─── SOBRE ─── */
 .sobre-intro{max-width:720px;margin:0 auto 52px;text-align:center}
@@ -470,7 +485,7 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
 /* ─── RESPONSIVE ─── */
 @media(max-width:1100px){.dan-top{grid-template-columns:1fr}}
 @media(max-width:900px){
-  .pain-grid,.method-grid,.metrics-cards,.sec-grid-2,.metrics-head,.faq-grid{grid-template-columns:1fr;gap:30px}
+  .method-grid,.metrics-cards,.sec-grid-2,.metrics-head,.faq-grid{grid-template-columns:1fr;gap:30px}
   .media-grid{grid-template-columns:1fr 1fr}
   footer{flex-direction:column;gap:20px;text-align:center}.f-links{justify-content:center}
   section{padding:70px 5%}
@@ -611,55 +626,96 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
     <span class="eyebrow-text">Você reconhece isso?</span>
   </div>
   <h2 class="sec-h2">A ouvidoria existe.<br><em>A gestão, ainda não.</em></h2>
-  <p class="sec-sub">Manifestações chegam. Prazos correm. Auditorias aparecem. E a equipe ainda está montando relatório em planilha.</p>
-  <div class="pain-grid">
-    <div class="pain-card fade fade-delay-1">
-      <div class="pain-card-top">
-        <p class="pain-sector">Saúde · ONA / JCI</p>
-        <h3>A auditoria chegou. O relatório, ainda não.</h3>
-        <p>600+ manifestações por mês em 8 unidades. Cada unidade usa um sistema diferente. Quando o CEO pede um relatório consolidado, sua equipe passa 2 dias organizando dados manualmente.</p>
-      </div>
-      <div class="pain-divider"></div>
-      <div class="testimonial">
-        <div class="avatar av-a">AC</div>
-        <div>
-          <p class="t-quote">Eu sei o impacto que o meu trabalho tem no paciente. Só preciso de um sistema que me ajude a provar isso para o meu CEO.</p>
-          <div class="t-name">Adriana Costa</div>
-          <div class="t-role">Diretora de CX e Ouvidoria · Rede Hospitalar SP</div>
+  <p class="sec-sub" style="margin-bottom:52px">Manifestações chegam. Prazos correm. Auditorias aparecem. E a equipe ainda está montando relatório em planilha.</p>
+
+  <div class="pain-wrap">
+    <div class="pain-stack">
+
+      <!-- Card 1: Saúde — pos-0 (frente) -->
+      <div class="pain-card pos-0" data-idx="0">
+        <div class="pc-top">
+          <div class="pc-sector">Saúde · ONA / JCI</div>
+          <div class="pc-dots-ui"><div class="pc-dot-ui"></div><div class="pc-dot-ui"></div><div class="pc-dot-ui"></div></div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-left">
+            <div class="pc-title">A auditoria chegou. O relatório, ainda não.</div>
+            <p class="pc-desc">600+ manifestações por mês em 8 unidades. Cada uma usa um sistema diferente. Quando o CEO pede um relatório consolidado, sua equipe passa 2 dias organizando dados manualmente.</p>
+            <div class="pc-metrics">
+              <div class="pc-metric"><div class="pc-metric-n">600+</div><div class="pc-metric-l">manifestações por mês</div></div>
+              <div class="pc-metric"><div class="pc-metric-n">2 dias</div><div class="pc-metric-l">para montar 1 relatório</div></div>
+            </div>
+          </div>
+          <div class="pc-right">
+            <div class="pc-avatar av-a">AC</div>
+            <p class="pc-quote">"Eu sei o impacto que o meu trabalho tem no paciente. Só preciso de um sistema que me ajude a provar isso para o meu CEO."</p>
+            <div>
+              <div class="pc-author-name">Adriana Costa</div>
+              <div class="pc-author-role">Diretora de CX e Ouvidoria · Rede Hospitalar SP</div>
+            </div>
+          </div>
         </div>
       </div>
+
+      <!-- Card 2: Infraestrutura — pos-1 (meio) -->
+      <div class="pain-card pos-1" data-idx="1">
+        <div class="pc-top">
+          <div class="pc-sector">Infraestrutura · ANTT / ANAC</div>
+          <div class="pc-dots-ui"><div class="pc-dot-ui"></div><div class="pc-dot-ui"></div><div class="pc-dot-ui"></div></div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-left">
+            <div class="pc-title">A ANTT pode auditar amanhã. E daí?</div>
+            <p class="pc-desc">O sistema atual é um e-mail compartilhado e uma planilha. Não há SLA, não há rastreabilidade, não há como provar que o usuário recebeu resposta. É uma bomba-relógio.</p>
+            <div class="pc-metrics">
+              <div class="pc-metric"><div class="pc-metric-n">0</div><div class="pc-metric-l">SLA configurado</div></div>
+              <div class="pc-metric"><div class="pc-metric-n">Sem trilha</div><div class="pc-metric-l">de auditoria</div></div>
+            </div>
+          </div>
+          <div class="pc-right">
+            <div class="pc-avatar av-b">RM</div>
+            <p class="pc-quote">"Não posso arriscar a renovação da concessão por falta de um sistema que prove que tratamos cada reclamação. Isso não é opcional."</p>
+            <div>
+              <div class="pc-author-name">Rafael Mendes</div>
+              <div class="pc-author-role">Gerente de Qualidade · Concessionária Rodoviária Nacional</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Card 3: Educação — pos-2 (fundo) -->
+      <div class="pain-card pos-2" data-idx="2">
+        <div class="pc-top">
+          <div class="pc-sector">Educação Superior · MEC</div>
+          <div class="pc-dots-ui"><div class="pc-dot-ui"></div><div class="pc-dot-ui"></div><div class="pc-dot-ui"></div></div>
+        </div>
+        <div class="pc-body">
+          <div class="pc-left">
+            <div class="pc-title">O aluno saiu. Sem dizer por quê.</div>
+            <p class="pc-desc">A maioria cancela a matrícula enviando um e-mail de uma linha. Você só descobre o problema quando a turma já está com 30% de evasão. Não há sistema de alerta precoce.</p>
+            <div class="pc-metrics">
+              <div class="pc-metric"><div class="pc-metric-n">30%</div><div class="pc-metric-l">evasão silenciosa</div></div>
+              <div class="pc-metric"><div class="pc-metric-n">0</div><div class="pc-metric-l">alertas antecipados</div></div>
+            </div>
+          </div>
+          <div class="pc-right">
+            <div class="pc-avatar av-c">CO</div>
+            <p class="pc-quote">"Cada aluno que sai sem falar comigo é uma oportunidade perdida de fazer diferente. Preciso saber antes que seja tarde demais."</p>
+            <div>
+              <div class="pc-author-name">Carla Oliveira</div>
+              <div class="pc-author-role">Diretora de Relacionamento · Grupo Educacional Minas</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
-    <div class="pain-card fade fade-delay-2">
-      <div class="pain-card-top">
-        <p class="pain-sector">Infraestrutura · ANTT / ANAC</p>
-        <h3>A ANTT pode auditar amanhã. E daí?</h3>
-        <p>O sistema de ouvidoria atual é um e-mail compartilhado e uma planilha. Não há SLA, não há rastreabilidade, não há como provar que o usuário recebeu resposta. É uma bomba-relógio.</p>
-      </div>
-      <div class="pain-divider"></div>
-      <div class="testimonial">
-        <div class="avatar av-b">RM</div>
-        <div>
-          <p class="t-quote">Não posso arriscar a renovação da concessão por falta de um sistema que prove que tratamos cada reclamação. Isso não é opcional.</p>
-          <div class="t-name">Rafael Mendes</div>
-          <div class="t-role">Gerente de Qualidade · Concessionária Rodoviária Nacional</div>
-        </div>
-      </div>
-    </div>
-    <div class="pain-card fade fade-delay-3">
-      <div class="pain-card-top">
-        <p class="pain-sector">Educação Superior · MEC</p>
-        <h3>O aluno saiu. Sem dizer por quê.</h3>
-        <p>A maioria cancela a matrícula enviando um e-mail de uma linha. Você só descobre o problema quando a turma já está com 30% de evasão. Não há sistema de alerta precoce.</p>
-      </div>
-      <div class="pain-divider"></div>
-      <div class="testimonial">
-        <div class="avatar av-c">CO</div>
-        <div>
-          <p class="t-quote">Cada aluno que sai sem falar comigo é uma oportunidade perdida de fazer diferente. Preciso saber antes que seja tarde demais.</p>
-          <div class="t-name">Carla Oliveira</div>
-          <div class="t-role">Diretora de Relacionamento · Grupo Educacional Minas</div>
-        </div>
-      </div>
+
+    <!-- Dots de navegação -->
+    <div class="pain-dots">
+      <button class="pain-nav-dot active" onclick="painGo(0)" aria-label="Card 1"></button>
+      <button class="pain-nav-dot" onclick="painGo(1)" aria-label="Card 2"></button>
+      <button class="pain-nav-dot" onclick="painGo(2)" aria-label="Card 3"></button>
     </div>
   </div>
 </section>
@@ -1664,6 +1720,25 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
     `;
     container.appendChild(p);
   }
+})();
+
+/* ─── PAIN CAROUSEL ─── */
+(function(){
+  const cards = document.querySelectorAll('.pain-card');
+  const dots  = document.querySelectorAll('.pain-nav-dot');
+  const pos   = ['pos-0','pos-1','pos-2'];
+  let cur = 0, timer;
+  function activate(front){
+    cards.forEach((c,i)=>{
+      c.classList.remove('pos-0','pos-1','pos-2');
+      c.classList.add(pos[(i - front + 3) % 3]);
+    });
+    dots.forEach((d,i)=>d.classList.toggle('active', i===front));
+    cur = front;
+  }
+  function reset(){ clearInterval(timer); timer = setInterval(()=>activate((cur+1)%3), 5000); }
+  window.painGo = function(i){ activate(i); reset(); };
+  activate(0); reset();
 })();
 
 /* ─── SOBRE TABS ─── */
