@@ -181,23 +181,71 @@ section{padding:100px 5%}
 .t-role{font-size:10px;color:var(--muted2);margin-top:2px}
 
 /* ─── SOBRE ─── */
-.sobre-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:0}
-.sobre-main{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:40px;grid-column:1 / 2;grid-row:1 / 3}
-.sobre-main h3{font-family:var(--serif);font-size:32px;font-style:italic;color:var(--white);line-height:1.3;margin-bottom:20px}
-.sobre-main p{font-size:14px;color:var(--muted);line-height:1.85;margin-bottom:14px}
-.sobre-main p:last-of-type{margin-bottom:0}
-.sobre-quote-block{margin-top:28px;padding:20px;background:rgba(38,162,76,.07);border-left:2px solid rgba(38,162,76,.4);border-radius:0 8px 8px 0}
-.sobre-quote-block p{font-family:var(--serif);font-style:italic;font-size:16px;color:rgba(228,233,242,.8);line-height:1.6;margin:0}
-.sobre-val{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:22px 24px;transition:all .25s}
-.sobre-val:hover{border-color:rgba(38,162,76,.2);background:rgba(255,255,255,.06)}
-.sv-name{font-size:12px;font-weight:600;color:var(--green);margin-bottom:4px;letter-spacing:-.01em}
-.sv-desc{font-size:12px;color:var(--muted);line-height:1.5}
-.sobre-mission{background:rgba(38,162,76,.07);border:1px solid rgba(38,162,76,.15);border-radius:14px;padding:24px;grid-column:2 / 3}
-.sobre-mission-label{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin-bottom:14px}
-.sobre-mission ul{list-style:none}
-.sobre-mission ul li{font-size:13px;color:rgba(228,233,242,.7);padding:7px 0 7px 18px;position:relative;line-height:1.4;border-bottom:1px solid rgba(255,255,255,.05)}
-.sobre-mission ul li:last-child{border-bottom:none}
-.sobre-mission ul li::before{content:'→';position:absolute;left:0;color:var(--green);font-size:11px;top:8px}
+.sobre-intro{max-width:720px;margin:0 auto 52px;text-align:center}
+.sobre-intro-h{font-family:var(--serif);font-size:clamp(18px,2vw,22px);font-style:italic;color:var(--white);line-height:1.35;margin-bottom:18px}
+.sobre-intro p{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:12px}
+.sobre-quote-block{margin:24px 0 0;padding:18px 22px;background:rgba(38,162,76,.07);border-left:2px solid rgba(38,162,76,.4);border-radius:0 10px 10px 0;text-align:left}
+.sobre-quote-block p{font-family:var(--serif);font-style:italic;font-size:15.5px;color:rgba(228,233,242,.85);line-height:1.65;margin:0}
+/* Steps container */
+.sobre-steps{background:rgba(5,12,6,.7);border:1px solid rgba(255,255,255,.1);border-radius:22px;overflow:hidden}
+.sobre-tabs-row{display:flex;border-bottom:1px solid rgba(255,255,255,.08)}
+.sobre-tab{flex:1;padding:17px 8px;text-align:center;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);cursor:pointer;transition:color .3s,background .3s;border-right:1px solid rgba(255,255,255,.07);position:relative;user-select:none;line-height:1.3}
+.sobre-tab:last-child{border-right:none}
+.sobre-tab.active{background:rgba(255,255,255,.05);color:var(--white)}
+.sobre-tab-bar{position:absolute;bottom:0;left:0;height:2px;background:var(--green);width:0;border-radius:1px}
+.sobre-tab.active .sobre-tab-bar{animation:tab-progress 4s linear forwards}
+@keyframes tab-progress{from{width:0}to{width:100%}}
+.sobre-panel{display:none;grid-template-columns:1fr 1fr;align-items:center;min-height:360px}
+.sobre-panel.active{display:grid}
+.sobre-visual-area{padding:48px 40px;display:flex;align-items:center;justify-content:center;border-right:1px solid rgba(255,255,255,.06);min-height:360px}
+.sobre-text-area{padding:52px 48px}
+.sobre-panel-num{font-size:72px;font-weight:800;color:rgba(38,162,76,.1);line-height:1;margin-bottom:14px;letter-spacing:-3px}
+.sobre-panel-title{font-size:clamp(22px,2.5vw,30px);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:16px;letter-spacing:-.4px}
+.sobre-panel-desc{font-size:15.5px;color:var(--muted);line-height:1.8}
+/* Panel 1: Escuta ativa – chat bubbles */
+.sv1-wrap{display:flex;flex-direction:column;gap:10px;width:230px}
+.sv1-bubble{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px 14px 14px 3px;padding:13px 15px;display:flex;flex-direction:column;gap:6px}
+.sv1-bubble.rt{border-radius:14px 14px 3px 14px;align-self:flex-end;background:rgba(38,162,76,.07);border-color:rgba(38,162,76,.22)}
+.sv1-tag{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(38,162,76,.75);margin-bottom:1px}
+.sv1-l{height:6px;border-radius:20px;background:rgba(255,255,255,.08)}
+.sv1-l.g{background:rgba(38,162,76,.4)}
+.sv1-typing{display:flex;gap:4px;align-items:center;height:14px}
+.sv1-dot{width:5px;height:5px;border-radius:50%;background:rgba(38,162,76,.5);animation:sv1-bounce .9s ease-in-out infinite}
+.sv1-dot:nth-child(2){animation-delay:.15s}.sv1-dot:nth-child(3){animation-delay:.3s}
+@keyframes sv1-bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
+/* Panel 2: Decisão – bars + KPIs */
+.sv2-inner{display:flex;align-items:flex-end;gap:22px}
+.sv2-bars{display:flex;align-items:flex-end;gap:7px;height:130px}
+.sv2-col{display:flex;flex-direction:column;align-items:center;gap:5px}
+.sv2-bar{width:24px;border-radius:5px 5px 0 0;animation:sv2-wave var(--spd,2.4s) var(--dly,0s) ease-in-out infinite alternate}
+@keyframes sv2-wave{from{height:var(--hf,30px)}to{height:var(--ht,90px)}}
+.sv2-lbl{font-size:8px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.04em}
+.sv2-kpis{display:flex;flex-direction:column;gap:10px}
+.sv2-kpi{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:10px 14px;min-width:80px}
+.sv2-kpi-n{font-size:20px;font-weight:700;color:var(--green);line-height:1}
+.sv2-kpi-l{font-size:9px;color:rgba(255,255,255,.28);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
+/* Panel 3: Transparência – timeline */
+.sv3-wrap{display:flex;flex-direction:column}
+.sv3-row{display:flex;gap:16px;align-items:flex-start}
+.sv3-track{display:flex;flex-direction:column;align-items:center;width:22px;flex-shrink:0}
+.sv3-dot{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(38,162,76,.55);background:rgba(38,162,76,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sv3-connector{width:2px;height:20px;background:rgba(38,162,76,.25)}
+.sv3-body{padding-bottom:16px}
+.sv3-label{font-size:13px;font-weight:600;color:rgba(228,237,230,.82);margin-bottom:2px;padding-top:2px}
+.sv3-sub{font-size:10.5px;color:var(--muted2);line-height:1.5}
+/* Panel 4: Responsabilidade – message */
+.sv4-wrap{display:flex;flex-direction:column;gap:10px;width:230px}
+.sv4-msg{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px 14px 14px 3px;padding:14px 16px}
+.sv4-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.sv4-av{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);font-size:9px;font-weight:700;color:rgba(255,255,255,.45);display:flex;align-items:center;justify-content:center}
+.sv4-from{font-size:10px;font-weight:600;color:rgba(228,237,230,.45)}
+.sv4-l{height:6px;border-radius:20px;background:rgba(255,255,255,.08);margin-bottom:5px}
+.sv4-reply{background:rgba(38,162,76,.07);border:1px solid rgba(38,162,76,.25);border-radius:14px 14px 3px 14px;padding:14px 16px}
+.sv4-header-g{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.sv4-av-g{width:26px;height:26px;border-radius:50%;background:rgba(38,162,76,.18);border:1px solid rgba(38,162,76,.4);font-size:9px;font-weight:700;color:var(--green);display:flex;align-items:center;justify-content:center}
+.sv4-from-g{font-size:10px;font-weight:600;color:rgba(38,162,76,.8)}
+.sv4-badge{margin-top:10px;display:inline-flex;align-items:center;gap:5px;font-size:9.5px;color:rgba(38,162,76,.8);background:rgba(38,162,76,.08);border:1px solid rgba(38,162,76,.2);border-radius:20px;padding:4px 10px}
+@media(max-width:900px){.sobre-panel{grid-template-columns:1fr}.sobre-visual-area{display:none}.sobre-tabs-row{flex-wrap:wrap}.sobre-tab{flex:0 0 50%;border-bottom:1px solid rgba(255,255,255,.06)}}
 
 /* ─── DANIELA ─── */
 .dan-top{display:grid;grid-template-columns:400px 1fr;gap:32px;align-items:stretch}
@@ -421,8 +469,7 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
 /* ─── RESPONSIVE ─── */
 @media(max-width:1100px){.dan-top{grid-template-columns:1fr}}
 @media(max-width:900px){
-  .pain-grid,.method-grid,.metrics-cards,.sobre-grid,.sec-grid-2,.metrics-head,.faq-grid{grid-template-columns:1fr;gap:30px}
-  .sobre-main{grid-column:1}.sobre-mission{grid-column:1}
+  .pain-grid,.method-grid,.metrics-cards,.sec-grid-2,.metrics-head,.faq-grid{grid-template-columns:1fr;gap:30px}
   .media-grid{grid-template-columns:1fr 1fr}
   footer{flex-direction:column;gap:20px;text-align:center}.f-links{justify-content:center}
   section{padding:70px 5%}
@@ -626,41 +673,180 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
   </div>
   <h2 class="sec-h2">Existimos para transformar<br><em>a voz do cliente em ação.</em></h2>
   <p class="sec-sub" style="margin-bottom:48px">A plataforma ocupa o espaço entre ouvidoria tradicional e gestão estratégica de CX, com foco em operação e decisão.</p>
-  <div class="sobre-grid">
-    <div class="sobre-main fade fade-delay-1">
-      <h3>A S.E.R. Cliente nasceu de uma dor real.</h3>
-      <p>Criada para ajudar empresas a lidarem com feedbacks de forma mais prática, ágil, estruturada e estratégica.</p>
-      <p>Acreditamos que reclamações, sugestões e elogios não devem ser vistos apenas como problemas a resolver, mas como consultoria gratuita — ganhos valiosos para melhorar processos, fortalecer relações e evoluir a experiência do cliente.</p>
-      <p>Com a S.E.R. Cliente, cada manifestação pode se tornar uma oportunidade real de gerar confiança, evolução e impacto.</p>
-      <div class="sobre-quote-block">
-        <p>Analisamos métricas, fornecemos indicadores e damos contexto — transformando feedback em gestão inteligente.</p>
+
+  <!-- Texto de cabeça -->
+  <div class="sobre-intro fade fade-delay-1">
+    <div class="sobre-intro-h">A S.E.R. Cliente nasceu de uma dor real.</div>
+    <p>Criada para ajudar empresas a lidarem com feedbacks de forma mais prática, ágil, estruturada e estratégica.</p>
+    <p>Acreditamos que reclamações, sugestões e elogios não devem ser vistos apenas como problemas a resolver, mas como consultoria gratuita — ganhos valiosos para melhorar processos, fortalecer relações e evoluir a experiência do cliente.</p>
+    <p>Com a S.E.R. Cliente, cada manifestação pode se tornar uma oportunidade real de gerar confiança, evolução e impacto.</p>
+    <div class="sobre-quote-block">
+      <p>Analisamos métricas, fornecemos indicadores e damos contexto — transformando feedback em gestão inteligente.</p>
+    </div>
+  </div>
+
+  <!-- Tabs com animação automática -->
+  <div class="sobre-steps fade fade-delay-2">
+    <div class="sobre-tabs-row">
+      <div class="sobre-tab active" onclick="sobreTab(0)">Escuta ativa<div class="sobre-tab-bar"></div></div>
+      <div class="sobre-tab" onclick="sobreTab(1)">Decisão baseada em dados<div class="sobre-tab-bar"></div></div>
+      <div class="sobre-tab" onclick="sobreTab(2)">Transparência e rastreabilidade<div class="sobre-tab-bar"></div></div>
+      <div class="sobre-tab" onclick="sobreTab(3)">Responsabilidade na resposta<div class="sobre-tab-bar"></div></div>
+    </div>
+
+    <!-- Panel 1: Escuta ativa -->
+    <div class="sobre-panel active">
+      <div class="sobre-visual-area">
+        <div class="sv1-wrap">
+          <div class="sv1-bubble">
+            <div class="sv1-tag">Feedback recebido</div>
+            <div class="sv1-l" style="width:88%"></div>
+            <div class="sv1-l" style="width:65%"></div>
+            <div class="sv1-l" style="width:75%"></div>
+          </div>
+          <div class="sv1-bubble">
+            <div class="sv1-tag">Sugestão de melhoria</div>
+            <div class="sv1-l" style="width:100%"></div>
+            <div class="sv1-l" style="width:70%"></div>
+          </div>
+          <div class="sv1-bubble rt">
+            <div class="sv1-tag">Respondendo…</div>
+            <div class="sv1-typing">
+              <div class="sv1-dot"></div>
+              <div class="sv1-dot"></div>
+              <div class="sv1-dot"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sobre-text-area">
+        <div class="sobre-panel-num">01</div>
+        <div class="sobre-panel-title">Escuta ativa</div>
+        <div class="sobre-panel-desc">Feedback é oportunidade, não incômodo. Cada manifestação — reclamação, sugestão ou elogio — é capturada, registrada e transformada em insumo estratégico para a sua operação.</div>
       </div>
     </div>
-    <div class="sobre-val fade fade-delay-2">
-      <div class="sv-name">Escuta ativa</div>
-      <div class="sv-desc">Feedback é oportunidade, não incômodo.</div>
+
+    <!-- Panel 2: Decisão baseada em dados -->
+    <div class="sobre-panel">
+      <div class="sobre-visual-area">
+        <div class="sv2-inner">
+          <div class="sv2-bars">
+            <div class="sv2-col">
+              <div class="sv2-bar" style="background:rgba(38,162,76,.22);--hf:28px;--ht:72px;--spd:3.1s;--dly:0s"></div>
+              <div class="sv2-lbl">Jan</div>
+            </div>
+            <div class="sv2-col">
+              <div class="sv2-bar" style="background:rgba(38,162,76,.22);--hf:55px;--ht:95px;--spd:2.7s;--dly:.4s"></div>
+              <div class="sv2-lbl">Fev</div>
+            </div>
+            <div class="sv2-col">
+              <div class="sv2-bar" style="background:rgba(38,162,76,.65);--hf:40px;--ht:88px;--spd:3.5s;--dly:.7s"></div>
+              <div class="sv2-lbl">Mar</div>
+            </div>
+            <div class="sv2-col">
+              <div class="sv2-bar" style="background:rgba(38,162,76,.22);--hf:35px;--ht:78px;--spd:2.9s;--dly:1s"></div>
+              <div class="sv2-lbl">Abr</div>
+            </div>
+            <div class="sv2-col">
+              <div class="sv2-bar" style="background:rgba(38,162,76,.75);--hf:62px;--ht:105px;--spd:2.8s;--dly:1.3s"></div>
+              <div class="sv2-lbl">Mai</div>
+            </div>
+          </div>
+          <div class="sv2-kpis">
+            <div class="sv2-kpi"><div class="sv2-kpi-n">NPS 68</div><div class="sv2-kpi-l">Pós-resolução</div></div>
+            <div class="sv2-kpi"><div class="sv2-kpi-n">96%</div><div class="sv2-kpi-l">SLA cumprido</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="sobre-text-area">
+        <div class="sobre-panel-num">02</div>
+        <div class="sobre-panel-title">Decisão baseada em dados</div>
+        <div class="sobre-panel-desc">Números ganham valor quando contextualizados. Dashboards, métricas de CX e relatórios executivos transformam dados brutos em decisões claras para lideranças e auditorias.</div>
+      </div>
     </div>
-    <div class="sobre-val fade fade-delay-2">
-      <div class="sv-name">Decisão baseada em dados</div>
-      <div class="sv-desc">Números ganham valor quando contextualizados.</div>
+
+    <!-- Panel 3: Transparência e rastreabilidade -->
+    <div class="sobre-panel">
+      <div class="sobre-visual-area">
+        <div class="sv3-wrap">
+          <div class="sv3-row">
+            <div class="sv3-track">
+              <div class="sv3-dot">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(38,162,76,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="sv3-connector"></div>
+            </div>
+            <div class="sv3-body"><div class="sv3-label">Manifestação recebida</div><div class="sv3-sub">Registro automático com data e hora</div></div>
+          </div>
+          <div class="sv3-row">
+            <div class="sv3-track">
+              <div class="sv3-dot">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(38,162,76,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="sv3-connector"></div>
+            </div>
+            <div class="sv3-body"><div class="sv3-label">SLA ativado</div><div class="sv3-sub">Prazo calculado e alertas configurados</div></div>
+          </div>
+          <div class="sv3-row">
+            <div class="sv3-track">
+              <div class="sv3-dot">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(38,162,76,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <div class="sv3-connector"></div>
+            </div>
+            <div class="sv3-body"><div class="sv3-label">Resposta registrada</div><div class="sv3-sub">Trilha de auditoria completa</div></div>
+          </div>
+          <div class="sv3-row">
+            <div class="sv3-track">
+              <div class="sv3-dot">
+                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(38,162,76,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+            </div>
+            <div class="sv3-body"><div class="sv3-label">Encerrado com evidência</div><div class="sv3-sub">Disponível para relatório regulatório</div></div>
+          </div>
+        </div>
+      </div>
+      <div class="sobre-text-area">
+        <div class="sobre-panel-num">03</div>
+        <div class="sobre-panel-title">Transparência e rastreabilidade</div>
+        <div class="sobre-panel-desc">Tudo tem histórico, evidência e acompanhamento. Cada manifestação deixa uma trilha completa — do recebimento ao encerramento — pronta para auditorias e agências reguladoras.</div>
+      </div>
     </div>
-    <div class="sobre-val fade fade-delay-3">
-      <div class="sv-name">Responsabilidade na resposta</div>
-      <div class="sv-desc">Responder com contexto, ação e comprometimento real.</div>
+
+    <!-- Panel 4: Responsabilidade na resposta -->
+    <div class="sobre-panel">
+      <div class="sobre-visual-area">
+        <div class="sv4-wrap">
+          <div class="sv4-msg">
+            <div class="sv4-header">
+              <div class="sv4-av">CL</div>
+              <div class="sv4-from">Cliente · há 2h</div>
+            </div>
+            <div class="sv4-l" style="width:90%"></div>
+            <div class="sv4-l" style="width:72%"></div>
+            <div class="sv4-l" style="width:80%"></div>
+          </div>
+          <div class="sv4-reply">
+            <div class="sv4-header-g">
+              <div class="sv4-av-g">SER</div>
+              <div class="sv4-from-g">S.E.R. Cliente · agora</div>
+            </div>
+            <div class="sv4-l" style="width:100%;background:rgba(38,162,76,.25)"></div>
+            <div class="sv4-l" style="width:78%;background:rgba(38,162,76,.18)"></div>
+            <div class="sv4-badge">
+              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
+              Respondido dentro do SLA
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="sobre-text-area">
+        <div class="sobre-panel-num">04</div>
+        <div class="sobre-panel-title">Responsabilidade na resposta</div>
+        <div class="sobre-panel-desc">Responder com contexto, ação e comprometimento real. A S.E.R. Cliente garante que cada manifestação receba uma resposta dentro do prazo, com documentação e rastreabilidade total.</div>
+      </div>
     </div>
-    <div class="sobre-val fade fade-delay-3">
-      <div class="sv-name">Transparência e rastreabilidade</div>
-      <div class="sv-desc">Tudo tem histórico, evidência e acompanhamento.</div>
-    </div>
-    <div class="sobre-mission fade fade-delay-3">
-      <div class="sobre-mission-label">Nossa missão</div>
-      <ul>
-        <li>Estruturar processos de melhoria contínua</li>
-        <li>Facilitar a gestão de feedbacks</li>
-        <li>Ser aliada estratégica da gestão</li>
-        <li>Ser a ponte confiável entre empresas e clientes</li>
-      </ul>
-    </div>
+
   </div>
 </section>
 
@@ -1415,6 +1601,22 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
     `;
     container.appendChild(p);
   }
+})();
+
+/* ─── SOBRE TABS ─── */
+(function(){
+  const tabs = document.querySelectorAll('.sobre-tab');
+  const panels = document.querySelectorAll('.sobre-panel');
+  let cur = 0, timer;
+  function activate(i){
+    tabs.forEach((t,j)=>{ t.classList.toggle('active',j===i); });
+    panels.forEach((p,j)=>{ p.classList.toggle('active',j===i); });
+    cur = i;
+  }
+  function next(){ activate((cur+1)%tabs.length); }
+  function reset(){ clearInterval(timer); timer=setInterval(next,4000); }
+  window.sobreTab = function(i){ activate(i); reset(); };
+  activate(0); reset();
 })();
 
 /* ─── SCROLL REVEAL ─── */
