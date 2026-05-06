@@ -4,499 +4,552 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>S.E.R. Cliente — Gestão de Feedbacks da Escuta à Resolução</title>
-<meta name="description" content="Ouvidoria · Experiência do Cliente · Inteligência Artificial. Gestão de feedbacks da escuta à resolução.">
-<link href="https://fonts.googleapis.com/css2?family=Nunito:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,400;1,500&display=swap" rel="stylesheet">
+<meta name="description" content="Ouvidoria · Experiência do Cliente · IA. Gestão de feedbacks da escuta à resolução.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@200;300;400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
 *{margin:0;padding:0;box-sizing:border-box}
 :root{
-  --bg:#030D06;
-  --bg2:#081408;
-  --green:#26A24C;
-  --green-dim:rgba(38,162,76,.18);
-  --green-glow:rgba(38,162,76,.08);
-  --white:rgb(228,237,230);
-  --muted:rgba(178,201,193,0.55);
-  --muted2:rgba(178,201,193,0.38);
-  --card-bg:rgba(255,255,255,0.04);
-  --card-border:rgba(255,255,255,0.08);
-  --card-border-hover:rgba(38,162,76,0.35);
-  --divider:rgba(255,255,255,0.07);
-  --serif:'Nunito',system-ui,sans-serif;
-  --sans:'Nunito',system-ui,sans-serif;
+  --black:#090909;
+  --forest:#275023;
+  --intense:#1C803C;
+  --vibrant:#26A24C;
+  --bright:#32CC61;
+  --neon:#71F973;
+  --white:#FFFFFF;
+  --graphite:#2C2B2B;
+  --gray:#5E5E5E;
+  --light:#B2C9C1;
+  --neutral:#DCDCDC;
+  --dark-section:#202020;
+  --text-dark:#3b3b3b;
+  --text-dim:#413f3f;
+  --text-muted:#858585;
+  --text-gray:#929292;
+  --font:'Plus Jakarta Sans',system-ui,sans-serif;
 }
 html{scroll-behavior:smooth}
-body{font-family:var(--sans);color:var(--white);background:var(--bg);overflow-x:hidden;-webkit-font-smoothing:antialiased}
-
-/* ─── PARTICLES ─── */
-.particles{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.particle{position:absolute;width:2px;height:2px;border-radius:50%;background:rgba(50,204,97,.4);animation:float linear infinite}
-@keyframes float{0%{opacity:0;transform:translateY(0) scale(0)}20%{opacity:1}80%{opacity:.5}100%{opacity:0;transform:translateY(-120px) scale(1.5)}}
-
-/* ─── GLOW ─── */
-.glow{position:absolute;border-radius:50%;pointer-events:none;filter:blur(80px)}
-.glow-green{background:radial-gradient(circle,rgba(38,162,76,.14) 0%,transparent 70%)}
-.glow-blue{background:radial-gradient(circle,rgba(100,140,255,.06) 0%,transparent 70%)}
+body{font-family:var(--font);background:var(--black);color:var(--white);overflow-x:hidden;-webkit-font-smoothing:antialiased}
 
 /* ─── NAV ─── */
 nav{
-  position:fixed;top:0;width:100%;z-index:200;height:64px;
+  position:fixed;top:0;left:0;width:100%;z-index:300;height:67px;
   display:flex;align-items:center;justify-content:space-between;
-  padding:0 5%;
-  background:rgba(3,13,6,0.85);backdrop-filter:blur(16px);
-  border-bottom:1px solid var(--divider);
-  transition:background .3s;
+  padding:0 8%;
+  background:rgba(9,9,9,0.88);backdrop-filter:blur(16px);
+  border-bottom:1px solid rgba(255,255,255,0.07);
 }
-.nav-logo{text-decoration:none}
-.nav-links{display:flex;gap:32px;align-items:center}
-.nav-links a{font-size:13px;color:var(--muted);text-decoration:none;transition:color .2s;letter-spacing:-.01em}
-.nav-links a:hover{color:var(--white)}
-.nav-cta{display:flex;align-items:center;gap:8px;background:rgba(255,255,255,.06);color:var(--white);border:1px solid rgba(255,255,255,.1);padding:9px 20px;border-radius:8px;font-size:13px;font-weight:500;cursor:pointer;font-family:var(--sans);text-decoration:none;transition:all .2s;letter-spacing:-.01em}
-.nav-cta:hover{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.2)}
-.nav-cta svg{opacity:.6}
+.nav-logo{display:flex;align-items:center;text-decoration:none;flex-shrink:0}
+.nav-logo svg{width:80px;height:auto}
+.nav-links{display:flex;gap:40px;align-items:center}
+.nav-links a{font-size:clamp(13px,1.3vw,25px);font-weight:500;color:rgba(255,255,255,0.85);text-decoration:none;letter-spacing:-0.01em;transition:color .2s}
+.nav-links a:hover,.nav-links a.active{color:#fff}
+.nav-links a.active{color:var(--black);background:var(--white);padding:4px 12px;border-radius:4px}
+.nav-cta{
+  display:inline-flex;align-items:center;
+  background:var(--black);color:var(--white);
+  border:1px solid rgba(255,255,255,0.2);
+  padding:10px 28px;border-radius:8px;
+  font-size:clamp(13px,1.1vw,21px);font-weight:600;font-family:var(--font);
+  text-decoration:none;transition:all .2s;letter-spacing:-0.01em;white-space:nowrap
+}
+.nav-cta:hover{background:rgba(255,255,255,0.08)}
+
+/* ─── BADGE (section label) ─── */
+.badge{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:clamp(14px,1.56vw,30px);font-weight:400;letter-spacing:-0.01em;
+  margin-bottom:24px;
+}
+.badge-arrow{
+  display:inline-flex;align-items:center;justify-content:center;
+  width:clamp(22px,1.4vw,27px);height:clamp(22px,1.4vw,27px);
+  flex-shrink:0;
+}
+.badge-arrow svg{width:100%;height:100%}
+.badge-dark{color:var(--black)}
+.badge-mid{color:#2a2a2a}
+.badge-white{color:var(--white)}
+.badge-light{color:#0b111e}
 
 /* ─── HERO ─── */
 .hero{
-  min-height:100vh;display:flex;flex-direction:column;align-items:center;justify-content:center;
-  padding:140px 5% 100px;text-align:center;position:relative;overflow:hidden;
+  min-height:100vh;position:relative;overflow:hidden;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:140px 8% 100px;
+  background:var(--black);
 }
-.hero-glow-main{width:800px;height:800px;top:50%;left:50%;transform:translate(-50%,-60%)}
-.hero-badge{
-  display:inline-flex;align-items:center;gap:10px;
-  background:rgba(38,162,76,.08);border:1px solid rgba(38,162,76,.2);
-  border-radius:100px;padding:7px 18px;margin-bottom:32px;
+.hero-photo{
+  position:absolute;inset:0;
+  background:url('fotos/hero-bg.png') center/cover no-repeat;
+  opacity:0.7;
 }
-.badge-dot{width:5px;height:5px;border-radius:50%;background:var(--green);animation:pulse 2s infinite}
-@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.8)}}
-.badge-text{font-size:11px;color:var(--green);font-weight:500;letter-spacing:.08em;text-transform:uppercase}
+.hero-overlay{
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(9,9,9,0.85) 0%,rgba(9,9,9,0.55) 50%,rgba(9,9,9,0.2) 100%);
+}
+.hero-content{position:relative;z-index:1;max-width:960px}
 .hero h1{
-  font-family:var(--sans);font-size:clamp(48px,6vw,84px);
-  font-weight:500;line-height:1.06;letter-spacing:-2px;
-  color:var(--white);margin-bottom:24px;max-width:820px;
+  font-size:clamp(32px,4.2vw,80px);font-weight:600;line-height:1.1;
+  letter-spacing:-0.03em;color:var(--white);
+  margin-bottom:clamp(16px,1.5vw,32px);
 }
-.hero h1 em{font-family:var(--serif);font-style:italic;color:var(--white);font-weight:400}
 .hero-sub{
-  font-size:16px;color:var(--muted);line-height:1.8;
-  max-width:540px;margin:0 auto 40px;font-weight:300;letter-spacing:-.01em;
+  font-size:clamp(15px,1.56vw,30px);font-weight:300;line-height:1.6;
+  color:rgba(255,255,255,0.85);max-width:900px;
+  margin-bottom:clamp(28px,2vw,48px);letter-spacing:-0.01em;
 }
-.hero-actions{display:flex;align-items:center;gap:14px;justify-content:center;flex-wrap:wrap;margin-bottom:48px}
-.btn-primary{
-  display:inline-flex;align-items:center;gap:10px;
-  background:rgba(38,162,76,.15);color:var(--white);
-  border:1px solid rgba(38,162,76,.35);
-  padding:14px 28px;border-radius:10px;font-size:14px;font-weight:500;
-  cursor:pointer;font-family:var(--sans);text-decoration:none;
-  transition:all .25s;letter-spacing:-.01em;
-}
-.btn-primary:hover{background:rgba(38,162,76,.25);border-color:rgba(38,162,76,.55);transform:translateY(-1px)}
-.btn-primary svg{transition:transform .2s}
-.btn-primary:hover svg{transform:translate(2px,-2px)}
-.btn-ghost{
-  display:inline-flex;align-items:center;gap:8px;
-  background:rgba(255,255,255,.05);color:var(--muted);
-  border:1px solid rgba(255,255,255,.1);
-  padding:14px 24px;border-radius:10px;font-size:14px;font-weight:400;
-  cursor:pointer;font-family:var(--sans);text-decoration:none;
-  transition:all .25s;letter-spacing:-.01em;
-}
-.btn-ghost:hover{background:rgba(255,255,255,.09);color:var(--white);border-color:rgba(255,255,255,.18)}
-.hero-award{
+.hero-btn{
   display:inline-flex;align-items:center;gap:12px;
-  background:rgba(255,255,255,.04);border:1px solid var(--divider);
-  border-radius:12px;padding:12px 20px;
+  background:var(--vibrant);color:var(--white);
+  padding:clamp(14px,1.1vw,22px) clamp(24px,2.2vw,44px);
+  border-radius:8px;font-size:clamp(14px,1.56vw,30px);font-weight:600;
+  text-decoration:none;transition:all .25s;letter-spacing:-0.01em;font-family:var(--font)
 }
-.hero-award span{font-size:12px;color:var(--muted);letter-spacing:-.01em}
-.hero-award strong{color:var(--green);font-weight:500}
-.hero-scroll{position:absolute;bottom:36px;left:50%;transform:translateX(-50%);display:flex;flex-direction:column;align-items:center;gap:8px;opacity:.35}
-.hero-scroll span{font-size:10px;letter-spacing:.1em;text-transform:uppercase;color:var(--white)}
-.hero-scroll svg{animation:scrollBounce 2s infinite}
-@keyframes scrollBounce{0%,100%{transform:translateY(0)}50%{transform:translateY(5px)}}
+.hero-btn:hover{background:#1e9442;transform:translateY(-2px)}
 
-/* ─── FEATURES CARDS ─── */
-.feat-cards-section{padding:48px 5% 60px;background:var(--bg)}
-.feat-cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;max-width:1100px;margin:0 auto}
-.feat-card{background:rgba(8,16,9,0.9);border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;cursor:default;transition:border-color .35s}
-.feat-card:hover{border-color:rgba(38,162,76,0.35)}
-.feat-card-visual{height:200px;display:flex;align-items:center;justify-content:center;background:rgba(0,0,0,0.28);border-bottom:1px solid rgba(255,255,255,0.05);overflow:hidden}
-.feat-card-body{padding:24px 28px 32px;text-align:center}
-.feat-card-body h3{font-size:17px;font-weight:700;color:var(--white);margin-bottom:8px;letter-spacing:-.3px}
-.feat-card-body p{font-size:13px;color:var(--muted);line-height:1.65}
+/* ─── SECTION WRAPPER ─── */
+.section{padding:clamp(60px,6.25vw,120px) 8%}
+.section-white{background:var(--white)}
+.section-dark{background:var(--dark-section)}
+.section-green{background:#00803c}
 
-/* Object 1 — Form document */
-.obj-form-doc{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;width:128px;padding:18px 16px;display:flex;flex-direction:column;gap:9px;transition:transform .55s cubic-bezier(.34,1.56,.64,1)}
-.feat-card:hover .obj-form-doc{transform:translateY(-14px) rotate(-3deg)}
-.fline{height:8px;border-radius:20px;background:rgba(255,255,255,0.1)}
-
-/* Object 2 — Bar chart */
-.obj-bars-wrap{display:flex;align-items:flex-end;gap:9px;height:110px;transition:transform .5s cubic-bezier(.34,1.56,.64,1)}
-.feat-card:hover .obj-bars-wrap{transform:translateY(-10px)}
-.obj-bar{width:24px;border-radius:5px 5px 0 0;background:rgba(255,255,255,0.09);height:var(--h);transition:background .35s,transform .55s cubic-bezier(.34,1.56,.64,1)}
-.feat-card:hover .obj-bar:nth-child(1){background:rgba(38,162,76,0.3);transform:scaleY(1.08);transform-origin:bottom}
-.feat-card:hover .obj-bar:nth-child(2){background:rgba(38,162,76,0.55);transform:scaleY(1.12);transform-origin:bottom}
-.feat-card:hover .obj-bar:nth-child(3){background:rgba(38,162,76,0.25);transform:scaleY(1.06);transform-origin:bottom}
-.feat-card:hover .obj-bar:nth-child(4){background:rgba(38,162,76,0.45);transform:scaleY(1.1);transform-origin:bottom}
-.feat-card:hover .obj-bar:nth-child(5){background:rgba(38,162,76,0.3);transform:scaleY(1.07);transform-origin:bottom}
-
-/* Object 3 — Neural network */
-.obj-network{width:170px;height:140px;transition:transform .55s cubic-bezier(.34,1.56,.64,1)}
-.feat-card:hover .obj-network{transform:translateY(-10px) scale(1.07)}
-.net-outer{transition:stroke .35s;stroke:rgba(255,255,255,0.15)}
-.feat-card:hover .net-outer{stroke:rgba(38,162,76,0.4)}
-
-@media(max-width:900px){.feat-cards-grid{grid-template-columns:1fr;gap:12px}}
-@media(max-width:600px){.feat-cards-grid{grid-template-columns:1fr}}
-
-/* ─── SECTION SHARED ─── */
-section{padding:100px 5%}
-.sec-eyebrow{display:flex;align-items:center;justify-content:center;gap:8px;margin-bottom:20px}
-.eyebrow-icon{color:var(--green);font-size:12px}
-.eyebrow-text{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
-.sec-h2{font-family:var(--sans);font-size:clamp(32px,3.5vw,48px);font-weight:500;color:var(--white);line-height:1.1;letter-spacing:-1.2px;text-align:center;margin-bottom:14px}
-.sec-h2 em{font-family:var(--serif);font-style:italic;font-weight:400}
-.sec-sub{font-size:15px;color:var(--muted);line-height:1.8;text-align:center;max-width:520px;margin:0 auto 60px;font-weight:300;letter-spacing:-.01em}
-.divider{height:1px;background:var(--divider);margin:0 5%}
-
-/* ─── CARDS ─── */
-.card{
-  background:var(--card-bg);border:1px solid var(--card-border);
-  border-radius:14px;padding:28px;transition:all .3s;
+/* ─── O QUE ENTREGAMOS ─── */
+.entregamos-title{
+  font-size:clamp(26px,3.2vw,62px);font-weight:700;
+  color:var(--text-dark);letter-spacing:-0.03em;line-height:1.1;
+  margin-bottom:clamp(32px,3vw,60px);
 }
-.card:hover{border-color:var(--card-border-hover);background:rgba(255,255,255,.06)}
+.cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.5vw,28px)}
+.card{background:var(--white);border-radius:12px;overflow:hidden;border:1px solid var(--neutral)}
+.card-img{width:100%;height:clamp(180px,18vw,335px);object-fit:cover;object-position:top;display:block}
+.card-body{padding:clamp(20px,1.8vw,36px) clamp(20px,1.8vw,36px) clamp(24px,2vw,40px)}
+.card-title{font-size:clamp(18px,1.8vw,35px);font-weight:700;color:var(--text-dark);letter-spacing:-0.02em;margin-bottom:8px}
+.card-sub{font-size:clamp(14px,1.56vw,30px);font-weight:300;color:var(--text-dark);letter-spacing:-0.01em;line-height:1.5}
 
-/* ─── PAIN CAROUSEL ─── */
-.pain-wrap{max-width:920px;margin:0 auto}
-.pain-stack{position:relative;height:420px;margin-bottom:28px}
-.pain-card{position:absolute;left:0;right:0;bottom:0;background:rgba(7,15,8,.95);border:1px solid rgba(255,255,255,.1);border-radius:20px;overflow:hidden;transition:transform .75s cubic-bezier(.25,.46,.45,.94),opacity .75s ease}
-.pain-card.pos-0{transform:translateY(0) scale(1);opacity:1;z-index:3;border-color:rgba(255,255,255,.13)}
-.pain-card.pos-1{transform:translateY(-32px) scale(.97);opacity:.48;z-index:2;pointer-events:none}
-.pain-card.pos-2{transform:translateY(-58px) scale(.94);opacity:.22;z-index:1;pointer-events:none}
-.pc-top{display:flex;justify-content:space-between;align-items:center;padding:22px 28px 0}
-.pc-sector{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--green)}
-.pc-dots-ui{display:flex;gap:5px}
-.pc-dot-ui{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.15)}
-.pc-body{display:grid;grid-template-columns:1fr 230px}
-.pc-left{padding:18px 28px 28px}
-.pc-title{font-family:var(--serif);font-size:clamp(18px,1.8vw,23px);font-style:italic;font-weight:400;color:var(--white);margin-bottom:13px;line-height:1.3;letter-spacing:-.2px}
-.pc-desc{font-size:13.5px;color:var(--muted);line-height:1.75;margin-bottom:20px}
-.pc-metrics{display:flex;gap:10px}
-.pc-metric{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;padding:14px 16px;flex:1}
-.pc-metric-n{font-size:22px;font-weight:700;color:var(--white);line-height:1;letter-spacing:-.5px}
-.pc-metric-l{font-size:10px;color:var(--muted2);margin-top:4px;line-height:1.4}
-.pc-right{border-left:1px solid rgba(255,255,255,.06);padding:24px;display:flex;flex-direction:column;justify-content:center;gap:12px}
-.pc-avatar{width:52px;height:52px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700;color:#fff;letter-spacing:.02em}
-.av-a{background:linear-gradient(135deg,#1D4ED8,#2563EB)}
-.av-b{background:linear-gradient(135deg,#0D9488,#0F766E)}
-.av-c{background:linear-gradient(135deg,#7C3AED,#6D28D9)}
-.pc-quote{font-size:12px;color:rgba(184,199,217,.62);line-height:1.7;font-style:italic}
-.pc-author-name{font-size:11.5px;font-weight:600;color:rgba(228,237,230,.8);margin-top:4px}
-.pc-author-role{font-size:10px;color:var(--muted2);margin-top:2px;line-height:1.4}
-/* Nav dots */
-.pain-dots{display:flex;gap:8px;justify-content:center;margin-top:4px}
-.pain-nav-dot{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.2);cursor:pointer;transition:all .35s ease;border:none;padding:0;outline:none}
-.pain-nav-dot.active{background:var(--green);width:24px;border-radius:4px}
-@media(max-width:700px){.pc-body{grid-template-columns:1fr}.pc-right{display:none}.pain-stack{height:380px}}
+/* ─── SOBRE NÓS GREEN ─── */
+.sobre-green{
+  position:relative;overflow:hidden;
+  background:#00803c;
+  padding:clamp(50px,5vw,100px) 8%;
+}
+.sobre-green-bg{
+  position:absolute;inset:0;
+  background:url('fotos/sobre-nos-green.png') center/cover no-repeat;
+  mix-blend-mode:multiply;opacity:0.4;
+}
+.sobre-green-content{position:relative;z-index:1;max-width:960px}
+.sobre-green h2{
+  font-size:clamp(28px,4.2vw,80px);font-weight:300;line-height:1.1;
+  letter-spacing:-0.03em;color:var(--white);
+  margin-bottom:clamp(16px,1.5vw,32px);
+}
+.sobre-green-sub{
+  font-size:clamp(14px,1.56vw,30px);font-weight:300;line-height:1.6;
+  color:rgba(255,255,255,0.85);max-width:820px;letter-spacing:-0.01em;
+}
 
-/* ─── SOBRE ─── */
-.sobre-intro{max-width:720px;margin:0 auto 52px;text-align:center}
-.sobre-intro-h{font-family:var(--serif);font-size:clamp(18px,2vw,22px);font-style:italic;color:var(--white);line-height:1.35;margin-bottom:18px}
-.sobre-intro p{font-size:15px;color:var(--muted);line-height:1.85;margin-bottom:12px}
-.sobre-quote-block{margin:24px 0 0;padding:18px 22px;background:rgba(38,162,76,.07);border-left:2px solid rgba(38,162,76,.4);border-radius:0 10px 10px 0;text-align:left}
-.sobre-quote-block p{font-family:var(--serif);font-style:italic;font-size:15.5px;color:rgba(228,233,242,.85);line-height:1.65;margin:0}
-/* Steps container */
-.sobre-steps{background:rgba(5,12,6,.7);border:1px solid rgba(255,255,255,.1);border-radius:22px;overflow:hidden}
-.sobre-tabs-row{display:flex;border-bottom:1px solid rgba(255,255,255,.08)}
-.sobre-tab{flex:1;padding:17px 8px;text-align:center;font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:rgba(255,255,255,.3);cursor:pointer;transition:color .3s,background .3s;border-right:1px solid rgba(255,255,255,.07);position:relative;user-select:none;line-height:1.3}
-.sobre-tab:last-child{border-right:none}
-.sobre-tab.active{background:rgba(255,255,255,.05);color:var(--white)}
-.sobre-tab-bar{position:absolute;bottom:0;left:0;height:2px;background:var(--green);width:0;border-radius:1px}
-.sobre-tab.active .sobre-tab-bar{animation:tab-progress 4s linear forwards}
-@keyframes tab-progress{from{width:0}to{width:100%}}
-.sobre-panel{display:none;grid-template-columns:1fr 1fr;align-items:center;min-height:360px}
-.sobre-panel.active{display:grid}
-.sobre-visual-area{padding:48px 40px;display:flex;align-items:center;justify-content:center;border-right:1px solid rgba(255,255,255,.06);min-height:360px}
-.sobre-text-area{padding:52px 48px}
-.sobre-panel-num{font-size:72px;font-weight:800;color:rgba(38,162,76,.1);line-height:1;margin-bottom:14px;letter-spacing:-3px}
-.sobre-panel-title{font-size:clamp(22px,2.5vw,30px);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:16px;letter-spacing:-.4px}
-.sobre-panel-desc{font-size:15.5px;color:var(--muted);line-height:1.8}
-/* Panel 1: Escuta ativa – chat bubbles */
-.sv1-wrap{display:flex;flex-direction:column;gap:10px;width:230px}
-.sv1-bubble{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px 14px 14px 3px;padding:13px 15px;display:flex;flex-direction:column;gap:6px}
-.sv1-bubble.rt{border-radius:14px 14px 3px 14px;align-self:flex-end;background:rgba(38,162,76,.07);border-color:rgba(38,162,76,.22)}
-.sv1-tag{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:rgba(38,162,76,.75);margin-bottom:1px}
-.sv1-l{height:6px;border-radius:20px;background:rgba(255,255,255,.08)}
-.sv1-l.g{background:rgba(38,162,76,.4)}
-.sv1-typing{display:flex;gap:4px;align-items:center;height:14px}
-.sv1-dot{width:5px;height:5px;border-radius:50%;background:rgba(38,162,76,.5);animation:sv1-bounce .9s ease-in-out infinite}
-.sv1-dot:nth-child(2){animation-delay:.15s}.sv1-dot:nth-child(3){animation-delay:.3s}
-@keyframes sv1-bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-4px)}}
-/* Panel 2: Decisão – bars + KPIs */
-.sv2-inner{display:flex;align-items:flex-end;gap:22px}
-.sv2-bars{display:flex;align-items:flex-end;gap:7px;height:130px}
-.sv2-col{display:flex;flex-direction:column;align-items:center;gap:5px}
-.sv2-bar{width:24px;border-radius:5px 5px 0 0;animation:sv2-wave var(--spd,2.4s) var(--dly,0s) ease-in-out infinite alternate}
-@keyframes sv2-wave{from{height:var(--hf,30px)}to{height:var(--ht,90px)}}
-.sv2-lbl{font-size:8px;color:rgba(255,255,255,.2);text-transform:uppercase;letter-spacing:.04em}
-.sv2-kpis{display:flex;flex-direction:column;gap:10px}
-.sv2-kpi{background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.08);border-radius:9px;padding:10px 14px;min-width:80px}
-.sv2-kpi-n{font-size:20px;font-weight:700;color:var(--green);line-height:1}
-.sv2-kpi-l{font-size:9px;color:rgba(255,255,255,.28);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
-/* Panel 3: Transparência – timeline */
-.sv3-wrap{display:flex;flex-direction:column}
-.sv3-row{display:flex;gap:16px;align-items:flex-start}
-.sv3-track{display:flex;flex-direction:column;align-items:center;width:22px;flex-shrink:0}
-.sv3-dot{width:22px;height:22px;border-radius:50%;border:1.5px solid rgba(38,162,76,.55);background:rgba(38,162,76,.1);display:flex;align-items:center;justify-content:center;flex-shrink:0}
-.sv3-connector{width:2px;height:20px;background:rgba(38,162,76,.25)}
-.sv3-body{padding-bottom:16px}
-.sv3-label{font-size:13px;font-weight:600;color:rgba(228,237,230,.82);margin-bottom:2px;padding-top:2px}
-.sv3-sub{font-size:10.5px;color:var(--muted2);line-height:1.5}
-/* Panel 4: Responsabilidade – message */
-.sv4-wrap{display:flex;flex-direction:column;gap:10px;width:230px}
-.sv4-msg{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:14px 14px 14px 3px;padding:14px 16px}
-.sv4-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.sv4-av{width:26px;height:26px;border-radius:50%;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.14);font-size:9px;font-weight:700;color:rgba(255,255,255,.45);display:flex;align-items:center;justify-content:center}
-.sv4-from{font-size:10px;font-weight:600;color:rgba(228,237,230,.45)}
-.sv4-l{height:6px;border-radius:20px;background:rgba(255,255,255,.08);margin-bottom:5px}
-.sv4-reply{background:rgba(38,162,76,.07);border:1px solid rgba(38,162,76,.25);border-radius:14px 14px 3px 14px;padding:14px 16px}
-.sv4-header-g{display:flex;align-items:center;gap:8px;margin-bottom:10px}
-.sv4-av-g{width:26px;height:26px;border-radius:50%;background:rgba(38,162,76,.18);border:1px solid rgba(38,162,76,.4);font-size:9px;font-weight:700;color:var(--green);display:flex;align-items:center;justify-content:center}
-.sv4-from-g{font-size:10px;font-weight:600;color:rgba(38,162,76,.8)}
-.sv4-badge{margin-top:10px;display:inline-flex;align-items:center;gap:5px;font-size:9.5px;color:rgba(38,162,76,.8);background:rgba(38,162,76,.08);border:1px solid rgba(38,162,76,.2);border-radius:20px;padding:4px 10px}
-@media(max-width:900px){.sobre-panel{grid-template-columns:1fr}.sobre-visual-area{display:none}.sobre-tabs-row{flex-wrap:wrap}.sobre-tab{flex:0 0 50%;border-bottom:1px solid rgba(255,255,255,.06)}}
+/* ─── SOBRE NÓS ARTIGO ─── */
+.sobre-artigo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,80px);align-items:start}
+.sobre-artigo-text{}
+.sobre-artigo h2{
+  font-size:clamp(24px,3.2vw,62px);font-weight:600;line-height:1.1;
+  letter-spacing:-0.03em;color:var(--text-dark);
+  margin-bottom:clamp(16px,1.5vw,32px);
+}
+.sobre-artigo p{
+  font-size:clamp(14px,1.56vw,30px);font-weight:400;line-height:1.65;
+  color:var(--text-dark);letter-spacing:-0.01em;margin-bottom:clamp(16px,1.3vw,26px);
+}
+.sobre-artigo-img{border-radius:12px;overflow:hidden;align-self:start}
+.sobre-artigo-img img{width:100%;display:block;border-radius:12px}
+.quote-block{
+  font-size:clamp(20px,2.4vw,46px);font-weight:700;line-height:1.2;
+  letter-spacing:-0.03em;color:var(--text-dark);
+  padding:clamp(32px,3vw,60px) 0;
+}
+
+/* ─── 4 PILLARS ─── */
+.pillars-intro{margin-bottom:clamp(32px,3vw,60px)}
+.pillars-intro h2{
+  font-size:clamp(28px,4.2vw,80px);font-weight:600;line-height:1.1;
+  letter-spacing:-0.03em;color:var(--white);margin-bottom:16px;
+  max-width:900px;
+}
+.pillars-tagline{
+  font-size:clamp(15px,1.56vw,30px);font-weight:700;
+  color:var(--bright);letter-spacing:-0.01em;
+}
+.pillar{
+  display:grid;grid-template-columns:140px 1fr;gap:clamp(20px,2.5vw,48px);
+  padding:clamp(32px,2.5vw,48px) 0;
+  border-top:1px solid rgba(255,255,255,0.1);
+  align-items:start;
+}
+.pillar:last-child{border-bottom:1px solid rgba(255,255,255,0.1)}
+.pillar-num{
+  font-size:clamp(36px,3.3vw,63px);font-weight:700;
+  color:var(--bright);letter-spacing:-0.04em;line-height:1;flex-shrink:0;
+}
+.pillar-content h3{
+  font-size:clamp(22px,3.2vw,62px);font-weight:600;color:var(--white);
+  letter-spacing:-0.03em;line-height:1.1;margin-bottom:clamp(12px,1vw,20px);
+}
+.pillar-content p{
+  font-size:clamp(14px,1.56vw,30px);font-weight:300;color:rgba(255,255,255,0.85);
+  line-height:1.65;letter-spacing:-0.01em;max-width:900px;
+}
 
 /* ─── DANIELA ─── */
-.dan-top{display:grid;grid-template-columns:400px 1fr;gap:32px;align-items:stretch}
-.dan-photo-wrap{position:relative;border-radius:20px;overflow:hidden;cursor:default;line-height:0;min-height:520px}
-.dan-photo-wrap img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .7s cubic-bezier(.25,.46,.45,.94)}
-.dan-photo-wrap:hover img{transform:scale(1.03)}
-.dan-photo-badge{position:absolute;bottom:14px;left:50%;transform:translateX(-50%);background:rgba(3,13,6,.82);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border:1px solid rgba(38,162,76,.3);border-radius:10px;padding:9px 18px;white-space:nowrap;text-align:center}
-.dan-photo-badge strong{display:block;font-size:11.5px;font-weight:700;color:var(--green);letter-spacing:.01em}
-.dan-photo-badge span{font-size:10px;color:var(--muted2)}
-.dan-bio-col{padding-top:8px}
-.dan-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.12em;color:var(--green);margin-bottom:12px}
-.dan-name{font-family:var(--sans);font-size:clamp(28px,3vw,44px);font-weight:800;color:var(--white);line-height:1.05;margin-bottom:6px;letter-spacing:-1.5px}
-.dan-tagline{font-size:15.5px;color:var(--muted);margin-bottom:28px;font-weight:300;line-height:1.7}
-.dan-bullets{list-style:none;display:flex;flex-direction:column;gap:12px;margin-bottom:26px}
-.dan-bullets li{display:flex;gap:13px;align-items:flex-start;font-size:14.5px;color:rgba(228,237,230,.78);line-height:1.65}
-.dan-bi{width:32px;height:32px;border-radius:8px;background:rgba(38,162,76,.09);border:1px solid rgba(38,162,76,.2);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:2px;color:rgba(38,162,76,.85)}
-.dan-awards{display:flex;flex-direction:column;gap:8px;margin-bottom:20px}
-.dan-award{display:flex;align-items:center;gap:12px;background:rgba(38,162,76,.07);border:1px solid rgba(38,162,76,.18);border-radius:10px;padding:11px 14px;transition:background .25s}
-.dan-award:hover{background:rgba(38,162,76,.12)}
-.dan-award-trophy{flex-shrink:0;display:flex;align-items:center;color:rgba(38,162,76,.8)}
-.dan-award-text{flex:1}
-.dan-award-title{font-size:13.5px;font-weight:600;color:var(--green);line-height:1.35}
-.dan-award-sub{font-size:12px;color:var(--muted2);margin-top:3px}
-.dan-books{display:flex;gap:7px;flex-wrap:wrap}
-.dan-book{font-size:10px;padding:4px 11px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:20px;color:var(--muted2);line-height:1.4}
-/* Carousel */
-.dan-carousel-section{margin-top:36px}
-.dan-carousel-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin-bottom:14px;opacity:.7}
-.dan-carousel-wrap{overflow:hidden;position:relative;mask-image:linear-gradient(to right,transparent,black 6%,black 94%,transparent);-webkit-mask-image:linear-gradient(to right,transparent,black 6%,black 94%,transparent)}
-.dan-carousel-track{display:flex;gap:12px;width:max-content;animation:dan-scroll 32s linear infinite}
-.dan-carousel-track:hover{animation-play-state:paused}
-.dan-carousel-img{height:195px;width:auto;aspect-ratio:3/4;object-fit:cover;object-position:top;border-radius:12px;border:1px solid rgba(255,255,255,.07);flex-shrink:0;transition:border-color .3s}
-.dan-carousel-img:hover{border-color:rgba(38,162,76,.35)}
-@keyframes dan-scroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
-/* YouTube cards */
-.dan-videos-label{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin:36px 0 16px;opacity:.7}
-.dan-videos-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:12px}
-.dan-yt{display:block;border-radius:14px;overflow:hidden;background:rgba(8,16,9,.9);border:1px solid rgba(255,255,255,.08);text-decoration:none;transition:border-color .3s,transform .35s cubic-bezier(.34,1.56,.64,1)}
-.dan-yt:hover{border-color:rgba(38,162,76,.4);transform:translateY(-5px)}
-.dan-yt-thumb{position:relative;aspect-ratio:16/9;overflow:hidden;background:#000}
-.dan-yt-thumb img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
-.dan-yt:hover .dan-yt-thumb img{transform:scale(1.06)}
-.dan-yt-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;background:linear-gradient(0deg,rgba(0,0,0,.5),rgba(0,0,0,.15))}
-.dan-yt-play{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.92);display:flex;align-items:center;justify-content:center;transition:transform .35s cubic-bezier(.34,1.56,.64,1),background .25s}
-.dan-yt:hover .dan-yt-play{transform:scale(1.15);background:#fff}
-.dan-yt-play svg{width:15px;height:15px;fill:#111;margin-left:2px}
-.dan-yt-info{padding:12px 14px 14px}
-.dan-yt-tag{font-size:9px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--green);opacity:.7}
-.dan-yt-title{font-size:11.5px;color:rgba(228,237,230,.75);margin-top:4px;line-height:1.45}
-@media(max-width:1100px){.dan-top{grid-template-columns:1fr}}
-@media(max-width:900px){.dan-videos-grid{grid-template-columns:repeat(2,1fr)}.dan-carousel-img{height:150px}}
-@media(max-width:600px){.dan-videos-grid{grid-template-columns:1fr 1fr}}
+.daniela-header{
+  font-size:clamp(28px,4.2vw,80px);font-weight:700;line-height:1.1;
+  letter-spacing:-0.03em;color:var(--text-dark);
+  margin-bottom:clamp(40px,4vw,80px);max-width:820px;
+}
+.daniela-grid{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,80px);align-items:start;margin-bottom:clamp(32px,3vw,60px)}
+.daniela-photos{position:relative}
+.daniela-bg{width:100%;border-radius:12px;display:block}
+.daniela-portrait{
+  position:absolute;bottom:-20px;right:-20px;
+  width:55%;border-radius:10px;
+  border:4px solid var(--white);box-shadow:0 8px 40px rgba(0,0,0,0.18);
+}
+.daniela-bio{}
+.daniela-bio .badge{margin-bottom:16px}
+.daniela-bio h3{
+  font-size:clamp(22px,3.2vw,62px);font-weight:700;color:var(--text-dark);
+  letter-spacing:-0.03em;line-height:1.1;margin-bottom:clamp(12px,1vw,20px);
+}
+.daniela-bio p{
+  font-size:clamp(14px,1.56vw,30px);font-weight:300;color:var(--text-dark);
+  line-height:1.65;letter-spacing:-0.01em;margin-bottom:clamp(12px,1vw,20px);
+}
+.daniela-edu{
+  font-size:clamp(13px,1.56vw,30px);font-weight:500;color:var(--text-dark);
+  line-height:1.5;letter-spacing:-0.01em;
+  padding:clamp(12px,1vw,20px) 0;
+  border-top:1px solid var(--neutral);border-bottom:1px solid var(--neutral);
+  margin-bottom:clamp(16px,1.3vw,26px);
+}
+.daniela-books{display:flex;gap:clamp(12px,1.5vw,28px);align-items:flex-start}
+.daniela-books img{width:clamp(80px,7vw,120px);border-radius:6px;box-shadow:0 4px 20px rgba(0,0,0,0.1)}
 
-/* ─── MÉTODO ─── */
-.method-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:0}
-.method-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:36px 32px;transition:all .3s;position:relative;overflow:hidden}
-.method-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,transparent,rgba(38,162,76,.4),transparent);opacity:0;transition:opacity .3s}
-.method-card:hover{border-color:rgba(38,162,76,.2);background:rgba(255,255,255,.05)}
-.method-card:hover::before{opacity:1}
-.method-letter{font-family:var(--serif);font-size:72px;color:rgba(38,162,76,.12);line-height:1;margin-bottom:20px;font-style:italic;transition:color .3s}
-.method-card:hover .method-letter{color:rgba(38,162,76,.25)}
-.method-num{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--green);margin-bottom:8px}
-.method-card h3{font-size:20px;font-weight:500;color:var(--white);margin-bottom:12px;letter-spacing:-.3px}
-.method-tags{display:flex;gap:6px;flex-wrap:wrap;margin-bottom:14px}
-.method-tag{font-size:10px;padding:3px 10px;border-radius:100px;background:rgba(38,162,76,.08);color:rgba(38,162,76,.8);border:1px solid rgba(38,162,76,.15);letter-spacing:-.01em}
-.method-card p{font-size:13px;color:var(--muted);line-height:1.8;margin-bottom:16px}
-.method-card ul{list-style:none}
-.method-card ul li{font-size:12px;color:rgba(184,199,217,.55);padding:5px 0 5px 16px;position:relative;line-height:1.5;border-bottom:1px solid rgba(255,255,255,.04)}
-.method-card ul li:last-child{border-bottom:none}
-.method-card ul li::before{content:'—';position:absolute;left:0;color:var(--green);opacity:.5;font-size:11px}
+/* ─── NOSSO MÉTODO ─── */
+.metodo-intro{padding:clamp(60px,6.25vw,120px) 8% clamp(40px,4vw,80px)}
+.metodo-intro h2{
+  font-size:clamp(28px,4.2vw,80px);font-weight:700;line-height:1.05;
+  letter-spacing:-0.04em;color:var(--text-dark);
+  margin-bottom:clamp(16px,1.5vw,30px);
+}
+.metodo-intro p{
+  font-size:clamp(14px,1.56vw,30px);font-weight:300;color:#2a2a2a;
+  line-height:1.65;letter-spacing:-0.01em;max-width:900px;
+}
+.premissas{}
+.premissa{
+  padding:clamp(48px,5vw,96px) 8%;
+  background:var(--black);
+  border-top:1px solid rgba(255,255,255,0.08);
+}
+.premissa-label{
+  font-size:clamp(14px,1.56vw,30px);font-weight:400;color:rgba(255,255,255,0.7);
+  letter-spacing:-0.01em;margin-bottom:clamp(8px,.8vw,16px);
+  display:flex;align-items:center;gap:10px;
+}
+.premissa h3{
+  font-size:clamp(32px,4.4vw,85px);font-weight:600;color:var(--white);
+  letter-spacing:-0.04em;line-height:1.05;
+  margin-bottom:clamp(12px,1.2vw,24px);
+}
+.premissa-lead{
+  font-size:clamp(14px,1.56vw,30px);font-weight:500;color:var(--white);
+  line-height:1.6;letter-spacing:-0.01em;max-width:900px;
+  margin-bottom:clamp(16px,1.3vw,26px);
+}
+.premissa-list{
+  font-size:clamp(13px,1.56vw,30px);font-weight:200;color:rgba(255,255,255,0.75);
+  line-height:1.9;letter-spacing:-0.01em;
+  list-style:none;
+}
+.premissa-list li::before{content:'—  ';color:var(--bright)}
 
-/* ─── DIFERENCIAIS CARDS ─── */
-.diff-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}
-.diff-card{background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.08);border-radius:20px;overflow:hidden;cursor:default;transition:border-color .35s,background .35s}
-.diff-card:hover{border-color:rgba(38,162,76,0.32);background:rgba(255,255,255,0.05)}
-.diff-visual{height:148px;background:rgba(0,0,0,0.28);display:flex;align-items:center;justify-content:center;border-bottom:1px solid rgba(255,255,255,0.05)}
-.diff-icon-box{background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.12);border-radius:14px;padding:15px 22px;display:flex;gap:16px;align-items:center;transition:transform .55s cubic-bezier(.34,1.56,.64,1),border-color .35s}
-.diff-card:hover .diff-icon-box{transform:translateY(-12px);border-color:rgba(38,162,76,0.3)}
-.diff-icon-box svg{color:rgba(255,255,255,0.42);width:28px;height:28px;flex-shrink:0;transition:color .35s}
-.diff-card:hover .diff-icon-box svg{color:rgba(38,162,76,0.85)}
-.diff-body{padding:18px 20px 24px}
-.diff-body h4{font-size:14px;font-weight:700;color:var(--white);margin-bottom:7px;line-height:1.35;letter-spacing:-.2px}
-.diff-body p{font-size:12px;color:var(--muted);line-height:1.7}
-@media(max-width:1100px){.diff-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:600px){.diff-grid{grid-template-columns:1fr}}
+/* ─── DIFERENCIAIS ─── */
+.dif-header{margin-bottom:clamp(32px,3vw,60px)}
+.dif-header h2{
+  font-size:clamp(28px,4.2vw,80px);font-weight:700;line-height:1.1;
+  letter-spacing:-0.04em;color:var(--text-dark);
+  margin-bottom:clamp(12px,1vw,20px);
+}
+.dif-header p{
+  font-size:clamp(14px,1.56vw,30px);font-weight:400;color:var(--text-dark);
+  letter-spacing:-0.01em;max-width:900px;line-height:1.6;
+}
+.dif-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.5vw,28px)}
+.dif-card{
+  background:var(--white);border:1px solid var(--neutral);border-radius:12px;
+  padding:clamp(20px,2vw,40px) clamp(20px,2vw,40px) clamp(24px,2.2vw,44px);
+}
+.dif-icon{
+  width:clamp(48px,3.6vw,70px);height:clamp(48px,3.6vw,70px);
+  background:#e0f5e6;border-radius:8px;
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:clamp(16px,1.5vw,28px);flex-shrink:0;
+}
+.dif-icon svg{width:60%;height:60%}
+.dif-card h3{
+  font-size:clamp(15px,1.44vw,27.7px);font-weight:700;color:var(--text-dim);
+  letter-spacing:-0.02em;line-height:1.3;
+  margin-bottom:clamp(8px,.8vw,16px);
+}
+.dif-card p{
+  font-size:clamp(13px,1.44vw,27.7px);font-weight:300;color:var(--text-dim);
+  line-height:1.6;letter-spacing:-0.01em;
+}
 
-/* ─── PLATAFORMA BENTO ─── */
-.plat-bento{display:grid;grid-template-columns:repeat(3,1fr);gap:14px;max-width:1100px;margin:0 auto}
-.plat-card{background:rgba(8,16,9,0.9);border:1px solid rgba(255,255,255,0.07);border-radius:20px;overflow:hidden;cursor:default;transition:border-color .35s}
-.plat-card:hover{border-color:rgba(38,162,76,0.35)}
-.plat-card-d2{grid-column:span 2}
-.plat-visual{height:190px;background:rgba(0,0,0,0.28);border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
-.plat-body{padding:20px 24px 26px}
-.plat-body h4{font-size:14px;font-weight:700;color:var(--white);margin-bottom:7px;letter-spacing:-.25px;line-height:1.35}
-.plat-body p{font-size:12px;color:var(--muted);line-height:1.7}
-@media(max-width:900px){.plat-bento{grid-template-columns:1fr 1fr}.plat-card-d2{grid-column:span 2}}
-@media(max-width:600px){.plat-bento{grid-template-columns:1fr}.plat-card-d2{grid-column:span 1}}
-/* Card 1: Dashboard bars */
-.pd-inner{display:flex;align-items:center;gap:28px;padding:0 24px}
-.pd-kpis{display:flex;flex-direction:column;gap:8px}
-.pd-kpi{background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.08);border-radius:8px;padding:8px 13px;min-width:82px}
-.pd-kpi-n{font-size:17px;font-weight:700;color:var(--green);line-height:1}
-.pd-kpi-l{font-size:9px;color:rgba(255,255,255,0.28);margin-top:3px;text-transform:uppercase;letter-spacing:.05em}
-.pd-bars-wrap{display:flex;align-items:flex-end;gap:7px;height:110px}
-.pd-bar-col{display:flex;flex-direction:column;align-items:center;gap:4px}
-.pd-bar{width:20px;border-radius:4px 4px 0 0;animation:pd-bar-wave var(--spd,2.4s) var(--dly,0s) ease-in-out infinite alternate}
-@keyframes pd-bar-wave{from{height:var(--hf,30px)}to{height:var(--ht,90px)}}
-.pd-label{font-size:8px;color:rgba(255,255,255,0.2);text-transform:uppercase;letter-spacing:.05em}
-/* Card 2: Relatório progress */
-.pr-doc{display:flex;flex-direction:column;gap:8px;width:155px;background:rgba(255,255,255,0.05);border:1px solid rgba(255,255,255,0.1);border-radius:12px;padding:16px}
-.pr-line{height:7px;border-radius:20px;background:rgba(255,255,255,0.08)}
-.pr-track{height:7px;border-radius:20px;background:rgba(255,255,255,0.08);overflow:hidden}
-.pr-fill{height:100%;border-radius:20px;background:var(--green);animation:pr-fill 3.5s ease-in-out infinite}
-@keyframes pr-fill{0%,5%{width:0}60%{width:100%}85%,100%{width:100%}}
-.pr-cta{margin-top:4px;background:rgba(38,162,76,0.15);border:1px solid rgba(38,162,76,0.35);border-radius:6px;padding:6px 0;font-size:10px;color:var(--green);font-weight:700;text-align:center;letter-spacing:.04em;animation:pr-pop 3.5s ease-in-out infinite}
-@keyframes pr-pop{0%,55%{opacity:0.3;transform:scale(.95)}66%{opacity:1;transform:scale(1.04)}80%,100%{opacity:1;transform:scale(1)}}
-/* Card 3: SLA ring + alerts */
-.psla-wrap{display:flex;flex-direction:column;align-items:center;gap:14px}
-.psla-ring-arc{stroke:var(--green);stroke-dasharray:188;animation:psla-drain 5s linear infinite}
-@keyframes psla-drain{0%{stroke-dashoffset:0}85%{stroke-dashoffset:188}86%,100%{stroke-dashoffset:0}}
-.psla-ring-label{font-size:13px;font-weight:700;fill:var(--white);text-anchor:middle;dominant-baseline:central}
-.psla-ring-sub{font-size:7px;fill:rgba(255,255,255,0.3);text-anchor:middle}
-.psla-alerts{display:flex;flex-direction:column;gap:6px}
-.psla-alert{display:flex;align-items:center;gap:7px;font-size:9.5px;color:rgba(255,255,255,0.45)}
-.psla-dot{width:6px;height:6px;border-radius:50%;flex-shrink:0}
-.psla-dot-r{background:#ef4444;animation:psla-pulse-r 1.6s ease-in-out infinite}
-.psla-dot-y{background:#f59e0b;animation:psla-pulse-y 2s ease-in-out infinite .5s}
-.psla-dot-g{background:rgba(38,162,76,0.7)}
-@keyframes psla-pulse-r{0%,100%{box-shadow:0 0 0 0 rgba(239,68,68,.5)}50%{box-shadow:0 0 0 4px rgba(239,68,68,0)}}
-@keyframes psla-pulse-y{0%,100%{box-shadow:0 0 0 0 rgba(245,158,11,.5)}50%{box-shadow:0 0 0 4px rgba(245,158,11,0)}}
-/* Card 4: Multi-unidade lines */
-.pmulti-line{stroke:rgba(38,162,76,0.5);stroke-dasharray:65;stroke-dashoffset:65;animation:pmulti-draw 2.5s ease-in-out infinite}
-@keyframes pmulti-draw{0%,5%{stroke-dashoffset:65;opacity:.2}45%{stroke-dashoffset:0;opacity:1}80%{stroke-dashoffset:0;opacity:1}100%{stroke-dashoffset:65;opacity:.2}}
-.pmulti-unit{animation:pmulti-unit-glow 2.5s ease-in-out infinite}
-@keyframes pmulti-unit-glow{0%,5%{opacity:.3}45%{opacity:1}80%{opacity:1}100%{opacity:.3}}
-/* Card 5: API calls */
-.papi-wrap{display:flex;flex-direction:column;gap:6px;overflow:hidden;height:138px;width:210px}
-.papi-row{display:flex;align-items:center;gap:7px;background:rgba(255,255,255,0.04);border:1px solid rgba(255,255,255,0.07);border-radius:7px;padding:6px 10px;opacity:0;transform:translateY(12px);animation:papi-in 5s var(--d,0s) ease-out infinite}
-@keyframes papi-in{0%{opacity:0;transform:translateY(12px)}14%{opacity:1;transform:translateY(0)}72%{opacity:1;transform:translateY(0)}88%{opacity:0;transform:translateY(-7px)}100%{opacity:0}}
-.papi-method{font-size:8px;font-weight:700;padding:2px 5px;border-radius:3px;flex-shrink:0;font-family:monospace}
-.m-get{background:rgba(99,179,237,.15);color:#63b3ed}
-.m-post{background:rgba(38,162,76,.15);color:var(--green)}
-.papi-ep{font-size:9px;color:rgba(255,255,255,0.4);font-family:monospace;flex:1;overflow:hidden;white-space:nowrap;text-overflow:ellipsis}
-.papi-ok{font-size:8px;color:#4ade80;flex-shrink:0}
+/* ─── PLATAFORMA ─── */
+.plat-header{margin-bottom:clamp(32px,3vw,60px)}
+.plat-header h2{
+  font-size:clamp(28px,4.2vw,80px);font-weight:700;line-height:1.1;
+  letter-spacing:-0.04em;color:var(--white);margin-bottom:clamp(16px,1.5vw,32px);
+}
+.plat-header p{
+  font-size:clamp(14px,1.56vw,30px);font-weight:400;color:rgba(255,255,255,0.8);
+  letter-spacing:-0.01em;max-width:900px;line-height:1.6;
+}
+.plat-screenshot{
+  width:100%;border-radius:12px;display:block;
+  margin-bottom:clamp(48px,4.5vw,88px);
+  box-shadow:0 20px 80px rgba(0,0,0,0.5);
+}
+.plat-section-title{
+  font-size:clamp(28px,4.2vw,80px);font-weight:700;color:var(--white);
+  letter-spacing:-0.04em;line-height:1.1;
+  margin-bottom:clamp(40px,4vw,80px);
+  display:flex;align-items:center;gap:16px;
+}
+.plat-features{display:flex;flex-direction:column;gap:clamp(40px,4vw,80px)}
+.plat-feature{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,80px);align-items:center}
+.plat-feature.reverse{direction:rtl}
+.plat-feature.reverse>*{direction:ltr}
+.plat-feature-text{}
+.plat-feature-text h3{
+  font-size:clamp(22px,3.2vw,62px);font-weight:600;color:var(--white);
+  letter-spacing:-0.03em;line-height:1.1;margin-bottom:clamp(12px,1.2vw,24px);
+}
+.plat-feature-text p{
+  font-size:clamp(14px,1.53vw,29.5px);font-weight:300;color:#e3e3e3;
+  line-height:1.65;letter-spacing:-0.01em;
+}
+.plat-feature-img{border-radius:10px;overflow:hidden}
+.plat-feature-img img{width:100%;display:block}
 
 /* ─── MÉTRICAS ─── */
-.metrics-head{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;margin-bottom:50px}
-.metrics-head .sec-h2{text-align:left}
-.metrics-head .sec-eyebrow{justify-content:flex-start}
-.metrics-sub{font-size:15px;color:var(--muted);line-height:1.8;font-weight:300}
-.metrics-cards{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
-.metric-card{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:28px 24px;transition:all .25s}
-.metric-card:hover{background:rgba(255,255,255,.06);border-color:rgba(38,162,76,.2)}
-.metric-abbr{font-family:var(--serif);font-size:40px;color:var(--green);font-style:italic;line-height:1;margin-bottom:8px}
-.metric-name{font-size:11px;font-weight:600;color:rgba(184,199,217,.5);margin-bottom:12px;text-transform:uppercase;letter-spacing:.06em}
-.metric-desc{font-size:13px;color:rgba(184,199,217,.55);line-height:1.75}
-.metric-ex{margin-top:14px;padding:10px 12px;background:rgba(38,162,76,.07);border-radius:8px;font-size:11px;color:rgba(184,199,217,.5);line-height:1.6}
-.metric-ex strong{color:rgba(38,162,76,.8);font-weight:500}
+.metricas-header{margin-bottom:clamp(32px,3vw,60px)}
+.metricas-header h2{
+  font-size:clamp(28px,4.2vw,80px);font-weight:700;line-height:1.05;
+  letter-spacing:-0.04em;color:var(--text-dark);margin-bottom:clamp(12px,1vw,24px);
+}
+.metricas-header p{
+  font-size:clamp(14px,1.56vw,30px);font-weight:400;color:#2a2a2a;
+  letter-spacing:-0.01em;max-width:900px;line-height:1.6;
+}
+.metricas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.5vw,28px)}
+.metrica-card{
+  background:var(--black);border-radius:12px;
+  padding:clamp(28px,2.5vw,48px);
+}
+.metrica-abbr{
+  font-size:clamp(28px,3.2vw,62px);font-weight:700;color:var(--white);
+  letter-spacing:-0.04em;line-height:1;margin-bottom:clamp(8px,.8vw,16px);
+}
+.metrica-name{
+  font-size:clamp(14px,1.36vw,26px);font-weight:300;color:var(--white);
+  line-height:1.5;letter-spacing:-0.01em;margin-bottom:clamp(16px,1.5vw,28px);
+}
+.metrica-desc{
+  font-size:clamp(13px,1.36vw,26px);font-weight:300;color:rgba(255,255,255,0.85);
+  line-height:1.65;letter-spacing:-0.01em;margin-bottom:clamp(12px,1vw,20px);
+}
+.metrica-example{
+  font-size:clamp(12px,0.98vw,18.9px);font-weight:300;color:#303030;
+  background:rgba(255,255,255,0.95);border-radius:8px;
+  padding:12px 16px;line-height:1.6;letter-spacing:-0.01em;
+}
 
 /* ─── SEGURANÇA ─── */
-.sec-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
-.sec-left-text{font-size:15px;color:var(--muted);line-height:1.8;margin-top:16px;font-weight:300}
-.cert-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
-.cert{background:var(--card-bg);border:1px solid var(--card-border);border-radius:14px;padding:20px;display:flex;gap:14px;align-items:flex-start;transition:border-color .3s,background .3s,transform .4s cubic-bezier(.34,1.56,.64,1);cursor:default}
-.cert:hover{border-color:rgba(38,162,76,.38);background:rgba(255,255,255,.055);transform:translateY(-6px)}
-.cert-icon{width:40px;height:40px;border-radius:10px;background:rgba(38,162,76,.08);border:1px solid rgba(38,162,76,.18);display:flex;align-items:center;justify-content:center;flex-shrink:0;color:rgba(38,162,76,.7);transition:color .3s,background .3s,border-color .3s,transform .4s cubic-bezier(.34,1.56,.64,1)}
-.cert:hover .cert-icon{color:rgba(38,162,76,1);background:rgba(38,162,76,.14);border-color:rgba(38,162,76,.4);transform:scale(1.1)}
-.cert h4{font-size:13.5px;font-weight:600;color:var(--white);margin-bottom:4px;letter-spacing:-.2px}
-.cert p{font-size:12px;color:var(--muted);line-height:1.55}
+.seguranca-header{margin-bottom:clamp(40px,4vw,80px)}
+.seguranca-header h2{
+  font-size:clamp(28px,4.2vw,80px);font-weight:700;line-height:1.05;
+  letter-spacing:-0.04em;color:var(--text-dark);margin-bottom:clamp(12px,1vw,24px);
+}
+.seguranca-header p{
+  font-size:clamp(14px,1.56vw,30px);font-weight:400;color:#2a2a2a;
+  letter-spacing:-0.01em;max-width:900px;line-height:1.6;
+}
+.seguranca-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.5vw,28px)}
+.seg-item{
+  padding:clamp(20px,2vw,36px);
+  border:1px solid var(--neutral);border-radius:10px;
+}
+.seg-item h4{
+  font-size:clamp(15px,1.56vw,30px);font-weight:600;color:var(--text-dark);
+  letter-spacing:-0.02em;margin-bottom:8px;
+}
+.seg-item p{
+  font-size:clamp(13px,1.56vw,30px);font-weight:300;color:var(--text-dark);
+  line-height:1.6;letter-spacing:-0.01em;
+}
 
 /* ─── FAQ ─── */
-.faq-grid{display:grid;grid-template-columns:.7fr 1.3fr;gap:80px;align-items:start}
-.faq-left h2{font-family:var(--sans);font-size:clamp(28px,3vw,40px);font-weight:500;color:var(--white);line-height:1.15;letter-spacing:-1px;margin-bottom:16px}
-.faq-left h2 em{font-family:var(--serif);font-style:italic;font-weight:400}
-.faq-left p{font-size:14px;color:var(--muted);line-height:1.8}
-.faq-list{border-top:1px solid var(--divider)}
-.faq-item{border-bottom:1px solid var(--divider)}
-.faq-q{width:100%;background:none;border:none;text-align:left;padding:20px 0;display:flex;justify-content:space-between;align-items:center;cursor:pointer;font-family:var(--sans);font-size:14px;font-weight:500;color:var(--white);gap:16px;letter-spacing:-.2px;transition:color .2s}
-.faq-q:hover{color:var(--green)}
-.faq-plus{font-size:18px;color:var(--green);transition:transform .25s;flex-shrink:0;line-height:1;font-weight:300;opacity:.7}
-.faq-plus.open{transform:rotate(45deg);opacity:1}
-.faq-ans{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .4s}
-.faq-ans.open{max-height:400px;padding-bottom:20px}
-.faq-ans p{font-size:13px;color:var(--muted);line-height:1.9}
+.faq-header{margin-bottom:clamp(32px,3vw,60px)}
+.faq-header h2{
+  font-size:clamp(28px,4.2vw,80px);font-weight:600;line-height:1.05;
+  letter-spacing:-0.04em;color:var(--text-dark);margin-bottom:clamp(12px,1vw,24px);
+}
+.faq-header p{
+  font-size:clamp(14px,1.56vw,30px);font-weight:400;color:#2a2a2a;
+  letter-spacing:-0.01em;max-width:820px;line-height:1.6;
+}
+.faq-list{max-width:820px}
+.faq-item{
+  border-bottom:1px solid var(--neutral);
+  padding:clamp(16px,1.5vw,28px) 0;
+  cursor:pointer;
+}
+.faq-item:first-child{border-top:1px solid var(--neutral)}
+.faq-question{
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  font-size:clamp(15px,1.08vw,20.8px);font-weight:700;color:var(--text-dark);
+  letter-spacing:-0.02em;line-height:1.4;
+}
+.faq-arrow{
+  flex-shrink:0;width:28px;height:28px;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .3s;
+}
+.faq-answer{
+  font-size:clamp(13px,1.08vw,20.8px);font-weight:500;color:var(--text-dark);
+  line-height:1.7;letter-spacing:-0.01em;
+  padding-top:clamp(8px,.8vw,16px);
+  display:none;
+}
+.faq-item.open .faq-answer{display:block}
+.faq-item.open .faq-arrow{transform:rotate(180deg)}
 
-/* ─── CTA FINAL ─── */
-.cta-final{text-align:center;position:relative;overflow:hidden}
-.cta-glow{width:600px;height:600px;top:50%;left:50%;transform:translate(-50%,-50%)}
-.cta-final h2{font-family:var(--sans);font-size:clamp(32px,4vw,56px);font-weight:500;color:var(--white);line-height:1.1;letter-spacing:-1.5px;margin-bottom:16px;max-width:700px;margin-left:auto;margin-right:auto}
-.cta-final h2 em{font-family:var(--serif);font-style:italic;font-weight:400;color:var(--green)}
-.cta-final .cta-sub{font-size:15px;color:var(--muted);max-width:480px;margin:0 auto 48px;line-height:1.8;font-weight:300}
-.cta-form-wrap{max-width:520px;margin:0 auto}
-.form-card{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.1);border-radius:18px;padding:36px 32px}
-.fg{margin-bottom:14px}
-.fg label{display:block;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.07em;color:rgba(184,199,217,.5);margin-bottom:7px}
-.fg input,.fg select{width:100%;padding:12px 16px;border:1px solid rgba(255,255,255,.1);border-radius:8px;font-size:13px;font-family:var(--sans);color:var(--white);background:rgba(255,255,255,.04);outline:none;transition:border-color .2s;letter-spacing:-.01em;-webkit-appearance:none}
-.fg input:focus,.fg select:focus{border-color:rgba(38,162,76,.5)}
-.fg input::placeholder{color:rgba(184,199,217,.3)}
-.fg select option{background:#0B0F1A;color:var(--white)}
-.form-btn{width:100%;background:rgba(38,162,76,.18);color:var(--white);border:1px solid rgba(38,162,76,.4);padding:15px;border-radius:8px;font-size:14px;font-weight:500;cursor:pointer;font-family:var(--sans);margin-top:8px;transition:all .25s;letter-spacing:-.2px;display:flex;align-items:center;justify-content:center;gap:8px}
-.form-btn:hover{background:rgba(38,162,76,.28);border-color:rgba(38,162,76,.6)}
-.form-note{font-size:11px;color:rgba(184,199,217,.3);text-align:center;margin-top:14px;line-height:1.5}
-.cta-checks{display:flex;align-items:center;justify-content:center;gap:28px;margin-bottom:48px;flex-wrap:wrap}
-.cta-check{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--muted)}
-.cta-check::before{content:'✓';color:var(--green);font-weight:700;font-size:12px}
+/* ─── CTA ─── */
+.cta-green{
+  position:relative;overflow:hidden;
+  background:var(--vibrant);
+  padding:clamp(50px,5vw,100px) 8%;
+}
+.cta-green-bg{
+  position:absolute;inset:0;
+  background:url('fotos/cta-bg.png') center/cover no-repeat;
+  opacity:0.3;mix-blend-mode:multiply;
+}
+.cta-green-content{position:relative;z-index:1}
+.cta-green h2{
+  font-size:clamp(28px,4.2vw,80px);font-weight:600;line-height:1.1;
+  letter-spacing:-0.04em;color:var(--white);
+  margin-bottom:clamp(16px,1.5vw,28px);max-width:1300px;
+}
+.cta-green p{
+  font-size:clamp(14px,1.56vw,30px);font-weight:300;color:rgba(255,255,255,0.9);
+  letter-spacing:-0.01em;max-width:1140px;line-height:1.6;
+}
+.cta-form-section{
+  background:var(--black);
+  padding:clamp(50px,5vw,100px) 8%;
+  display:flex;flex-direction:column;align-items:center;
+}
+.cta-form-wrap{
+  width:100%;max-width:1140px;
+  background:rgba(255,255,255,0.04);border-radius:16px;
+  padding:clamp(40px,3.5vw,72px);
+  border:1px solid rgba(255,255,255,0.08);
+}
+.cta-form-title{
+  font-size:clamp(24px,3.2vw,62px);font-weight:600;color:var(--white);
+  letter-spacing:-0.03em;line-height:1.1;margin-bottom:clamp(8px,.6vw,12px);
+}
+.cta-form-sub{
+  font-size:clamp(14px,1.56vw,30px);font-weight:400;color:rgba(255,255,255,0.85);
+  letter-spacing:-0.01em;margin-bottom:clamp(28px,2.5vw,48px);line-height:1.5;
+}
+.form-fields{display:flex;flex-direction:column;gap:clamp(12px,1vw,20px)}
+.form-field{
+  background:#323232;border:none;border-radius:8px;
+  padding:clamp(16px,1.4vw,26px) clamp(16px,1.4vw,26px);
+  font-size:clamp(14px,1.56vw,30px);font-weight:500;color:var(--text-gray);
+  font-family:var(--font);width:100%;outline:none;
+  transition:background .2s;letter-spacing:-0.01em;
+}
+.form-field:focus{background:#3a3a3a;color:var(--white)}
+.form-select-wrap{position:relative}
+.form-select-wrap select{
+  background:#323232;border:none;border-radius:8px;
+  padding:clamp(16px,1.4vw,26px) clamp(16px,1.4vw,26px);
+  font-size:clamp(14px,1.56vw,30px);font-weight:500;color:var(--text-gray);
+  font-family:var(--font);width:100%;outline:none;
+  appearance:none;cursor:pointer;letter-spacing:-0.01em;
+}
+.form-select-arrow{
+  position:absolute;right:clamp(16px,1.4vw,26px);top:50%;transform:translateY(-50%);
+  pointer-events:none;color:var(--vibrant);font-size:18px;
+}
+.form-submit{
+  background:var(--vibrant);color:var(--white);border:none;
+  padding:clamp(16px,1.4vw,26px);width:100%;border-radius:8px;
+  font-size:clamp(18px,2.1vw,40px);font-weight:600;font-family:var(--font);
+  cursor:pointer;transition:background .2s;letter-spacing:-0.02em;
+}
+.form-submit:hover{background:#1e9442}
+.form-disclaimer{
+  text-align:center;margin-top:clamp(12px,1vw,20px);
+  font-size:clamp(13px,1.56vw,30px);font-weight:600;color:var(--text-gray);
+  letter-spacing:-0.01em;
+}
 
 /* ─── FOOTER ─── */
-footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--divider)}
-.f-logo{text-decoration:none}
-.f-links{display:flex;gap:24px}
-.f-links a{font-size:12px;color:var(--muted2);text-decoration:none;transition:color .2s;letter-spacing:-.01em}
-.f-links a:hover{color:var(--white)}
-.f-copy{font-size:11px;color:rgba(184,199,217,.2)}
+footer{
+  background:var(--black);
+  padding:clamp(24px,2vw,40px) 8%;
+  display:flex;align-items:center;justify-content:space-between;
+  border-top:1px solid rgba(255,255,255,0.07);
+  flex-wrap:wrap;gap:16px;
+}
+.footer-copy{
+  font-size:clamp(13px,1.3vw,25px);font-weight:300;color:var(--text-muted);
+  letter-spacing:-0.01em;
+}
+.footer-links{display:flex;gap:clamp(20px,2vw,40px);flex-wrap:wrap}
+.footer-links a{
+  font-size:clamp(13px,1.3vw,25px);font-weight:500;color:var(--text-muted);
+  text-decoration:none;letter-spacing:-0.01em;transition:color .2s;
+}
+.footer-links a:hover{color:var(--white)}
 
-/* ─── ANIMATIONS ─── */
-.fade{opacity:0;transform:translateY(24px);transition:opacity .7s cubic-bezier(.16,1,.3,1),transform .7s cubic-bezier(.16,1,.3,1)}
-.fade.on{opacity:1;transform:translateY(0)}
-.fade-delay-1{transition-delay:.1s}
-.fade-delay-2{transition-delay:.2s}
-.fade-delay-3{transition-delay:.3s}
+/* ─── SCROLL FADE ─── */
+.fade{opacity:0;transform:translateY(24px);transition:opacity .6s,transform .6s}
+.fade.visible{opacity:1;transform:none}
 
 /* ─── RESPONSIVE ─── */
-@media(max-width:1100px){.dan-top{grid-template-columns:1fr}}
-@media(max-width:900px){
-  .method-grid,.metrics-cards,.sec-grid-2,.metrics-head,.faq-grid{grid-template-columns:1fr;gap:30px}
-  .media-grid{grid-template-columns:1fr 1fr}
-  footer{flex-direction:column;gap:20px;text-align:center}.f-links{justify-content:center}
-  section{padding:70px 5%}
+@media(max-width:1024px){
+  .cards-grid,.dif-grid,.metricas-grid{grid-template-columns:repeat(2,1fr)}
+  .sobre-artigo,.daniela-grid,.plat-feature{grid-template-columns:1fr}
+  .plat-feature.reverse{direction:ltr}
+  .pillar{grid-template-columns:100px 1fr}
+  .seguranca-grid{grid-template-columns:repeat(2,1fr)}
 }
-@media(max-width:600px){
+@media(max-width:640px){
   .nav-links{display:none}
-  .strip-inner{grid-template-columns:1fr}
-  .strip-item{border-right:none;border-bottom:1px solid var(--divider)}
-  .cert-grid{grid-template-columns:1fr}
-  .media-grid{grid-template-columns:1fr}
-  .hero h1{letter-spacing:-1px}
+  .cards-grid,.dif-grid,.metricas-grid,.seguranca-grid{grid-template-columns:1fr}
+  .daniela-portrait{display:none}
+  .daniela-books{flex-wrap:wrap}
+  footer{flex-direction:column;text-align:center}
+  .pillar{grid-template-columns:1fr}
+  .plat-feature{grid-template-columns:1fr}
 }
 </style>
 </head>
@@ -504,1289 +557,559 @@ footer{padding:36px 5%;display:flex;justify-content:space-between;align-items:ce
 
 <!-- NAV -->
 <nav>
-  <div class="nav-logo" style="display:flex;flex-direction:column;align-items:flex-start;gap:2px;cursor:default;line-height:1;font-style:normal">
-    <span style="font-family:var(--sans);font-weight:800;font-size:17px;color:var(--green);letter-spacing:.12em">S·E·R</span>
-    <span style="font-family:var(--sans);font-weight:600;font-size:10px;color:var(--green);border:1.5px solid var(--green);border-radius:3px;padding:2px 7px;letter-spacing:.04em">cliente</span>
-  </div>
+  <a href="#" class="nav-logo" aria-label="S.E.R. Cliente">
+    <svg width="96" height="70" viewBox="0 0 96 70" fill="none" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" clip-rule="evenodd" d="M0.0213516 35.9532C0.875829 36.381 1.72612 36.8174 2.57212 37.2618V43.2295C2.57136 45.9528 2.38972 48.115 3.23814 50.749C3.90956 52.8274 5.07884 54.7103 6.64437 56.2334C9.03333 58.5782 12.1466 59.9665 15.4842 60.1045C16.7099 60.1551 17.9052 60.1513 19.1316 60.1504L25.4832 60.1484L41.1989 60.1523L44.9811 60.1406C46.4641 60.1359 46.784 59.9786 48.1354 60.6601C51.5641 62.3895 55.074 63.9988 58.4899 65.7519C58.4451 63.9621 58.4034 61.9404 58.4039 60.1494L69.2164 60.1484C71.714 60.1486 75.2536 60.3095 77.5826 59.7548C79.6555 59.2543 81.5806 58.2703 83.2007 56.8838C85.8863 54.6021 87.577 51.3631 87.9126 47.8555C88.0723 46.1698 87.9217 44.1565 87.9702 42.4326C87.9976 41.4634 87.9123 40.1926 87.9888 39.2608L87.9937 39.2061L90.5454 39.209L90.5464 43.3828C90.5481 44.6066 90.6042 46.4729 90.5132 47.6651C90.2489 51.5446 88.5895 55.1978 85.8413 57.9492C83.2383 60.5736 79.8108 62.2224 76.1353 62.6171C74.4415 62.7832 71.8361 62.7004 70.0641 62.7002L60.9996 62.705C61.0825 64.3662 61.0435 66.0758 61.0992 67.7431C61.1198 68.3598 61.0636 69.3371 61.1481 69.9159L50.7126 64.7978L47.9655 63.4492C47.783 63.3591 46.6671 62.7966 46.5221 62.7714C45.7763 62.6473 44.5281 62.6967 43.7477 62.6972L38.7536 62.7011L16.9471 62.7031C15.9701 62.7031 15.0732 62.6994 14.0984 62.5781C10.5428 62.1247 7.23918 60.5004 4.70981 57.9609C2.05895 55.3095 0.419528 51.8134 0.0760389 48.0801C-0.0430965 46.7344 0.0133161 44.8102 0.0135391 43.4248L0.0213516 35.9532ZM40.1765 43.21C41.1973 43.2937 41.96 43.3591 42.906 43.8203C44.9408 44.8125 45.7737 46.5786 45.8493 48.7461C45.4771 48.838 45.0892 48.915 44.7116 48.9834C42.4045 49.4012 40.0929 49.9318 37.781 50.3086C38.2613 51.2738 39.0566 51.7849 40.1247 51.8965C41.5061 52.0407 42.3714 51.7168 43.4226 50.875C43.7279 51.2139 44.0369 51.5495 44.3493 51.8818C44.6012 52.1386 44.8666 52.4481 45.1091 52.7187C42.9326 55.0268 38.7424 55.0039 36.3113 53.0986C33.9871 51.2505 33.7227 47.5201 35.6032 45.2686C36.8855 43.7334 38.3056 43.3974 40.1765 43.21ZM17.6863 43.208C19.9353 43.2704 21.617 43.9416 22.6795 46.0098C21.9282 46.4535 21.0004 46.9207 20.2195 47.335C19.9807 46.9729 19.7088 46.6336 19.367 46.3711C18.2116 45.4825 16.3304 45.746 15.4852 46.9434C14.5676 48.2434 14.7358 50.4643 16.116 51.3926C16.7662 51.8297 17.6155 51.9427 18.3777 51.7939C19.221 51.6292 19.7588 51.0689 20.2049 50.373C20.5548 50.5368 21.0078 50.7965 21.3562 50.9854C21.8135 51.231 22.234 51.4589 22.6765 51.7295C21.0982 54.9705 16.341 55.2337 13.7176 53.168C10.2364 50.4265 11.4117 44.5951 15.7605 43.5078C16.4551 43.3343 16.976 43.2805 17.6863 43.208ZM62.6686 40.9795L62.6705 43.6475L65.3346 43.6504L65.3385 46.1045L62.6715 46.1055C62.6679 47.1231 62.4956 50.5937 62.8434 51.2959C62.9859 51.5838 63.2249 51.8106 63.5367 51.9053C64.1249 52.0837 64.7705 51.8261 65.2799 51.5469L65.4283 51.917C65.653 52.5439 65.8872 53.1675 66.1315 53.7871C65.3691 54.2689 64.4925 54.496 63.5914 54.4814C59.0082 54.4072 59.4841 51.2062 59.486 47.877L59.4928 40.9776L62.6686 40.9795ZM71.7232 43.21C72.603 43.2793 73.2744 43.3299 74.1109 43.669C76.3338 44.5703 77.3329 46.4456 77.4039 48.7422C77.0298 48.8448 76.5908 48.9318 76.2066 48.9951C73.9367 49.3696 71.6087 49.9833 69.3375 50.2988C69.4261 50.5041 69.54 50.6975 69.6773 50.874C70.6595 52.1267 72.7591 52.1708 74.0836 51.4912C74.4189 51.3191 74.6877 51.1033 74.982 50.8721C75.296 51.2296 75.6344 51.5911 75.9556 51.9443C76.2027 52.1877 76.4281 52.4578 76.6549 52.7207C75.629 53.7555 74.6024 54.2505 73.1451 54.4209C71.3301 54.6169 69.3241 54.3001 67.8834 53.1172C64.3666 50.2292 65.7548 44.2914 70.2721 43.3955C70.7694 43.2969 71.2307 43.2587 71.7232 43.21ZM26.738 39.2627L26.7361 46.292C26.7359 47.8755 26.6244 49.6816 26.8923 51.2158C27.0455 52.0929 28.3707 51.9759 28.9929 51.7549C29.0909 52.5254 29.1109 53.4495 29.1394 54.2344C27.6065 54.596 25.808 54.6655 24.5867 53.4697C23.5736 52.4779 23.5688 51.0796 23.5886 49.7656C23.6 49.0172 23.5913 48.245 23.5916 47.4902L23.5965 39.2598L26.738 39.2627ZM53.2506 43.2647C55.5156 42.9291 57.7567 44.2681 58.1618 46.583C58.3539 47.6818 58.2955 48.7545 58.2955 49.8643V54.2969C57.2495 54.311 56.174 54.2976 55.1256 54.2978C55.1394 53.0515 55.1464 51.7724 55.1266 50.5176C55.1041 49.084 55.5149 46.7443 53.8219 46.1289C52.9777 45.8222 52.2706 45.9927 51.4889 46.3487C51.3543 46.4425 51.2272 46.5473 51.109 46.6611C50.1541 47.5974 50.3348 49.3081 50.3366 50.5459L50.3415 54.2969L47.1491 54.2988L47.1511 43.3682L50.1891 43.3701L50.1921 44.6436C51.0829 43.7112 52.0142 43.4101 53.2506 43.2647ZM33.0886 43.3721L33.0896 54.2969L29.8835 54.2988L29.8904 43.3692L33.0886 43.3721ZM74.3219 47.4736C73.763 45.9833 72.7749 45.5601 71.2447 45.6826C69.6748 46.0503 69.1783 46.9812 69.0162 48.5205C69.8265 48.3638 70.8594 48.1331 71.6578 48.0156C72.4518 47.8541 73.5646 47.6684 74.3219 47.4736ZM42.7761 47.4776C42.2108 45.9576 41.1959 45.5657 39.6589 45.6817C38.1269 46.0901 37.6156 46.9759 37.4597 48.5147L40.2302 47.9912C41.0419 47.8151 41.9986 47.668 42.7761 47.4776ZM31.3318 38.3467C32.2878 38.2937 33.2066 38.7327 33.4109 39.7344C33.5087 40.2078 33.4092 40.7012 33.1355 41.0996C32.7864 41.6017 32.3482 41.7702 31.7771 41.878C31.1926 41.9037 30.671 41.8553 30.1863 41.4912C29.8112 41.2133 29.5667 40.7934 29.5095 40.3301C29.4522 39.8747 29.5797 39.415 29.864 39.0547C30.2471 38.5755 30.7492 38.4178 31.3318 38.3467ZM15.0369 0.0441403C15.8684 -0.0319159 16.7198 0.0046566 17.5535 0.04707C21.3527 0.240348 25.1022 1.05103 28.3933 3.01386C27.3972 5.32329 26.4378 7.75006 25.4793 10.0841C24.5371 9.56268 23.5607 9.1051 22.5574 8.71403C19.6176 7.5889 15.5121 6.8912 12.4588 8.08024C10.4361 8.80085 9.8438 11.5296 12.0281 12.4542C15.6009 13.9665 19.4274 14.1916 23.1248 15.5597C28.8361 17.673 31.239 22.0716 29.1785 27.9532C27.1171 28.3935 25.8249 29.782 26.1414 31.9708C22.3607 34.9568 17.7875 35.3327 13.1619 35.1856C9.00455 34.9935 4.0649 33.8324 0.555529 31.5499C1.58872 29.1708 2.68249 26.8014 3.69712 24.4161C6.8174 26.376 10.8672 27.7311 14.576 27.7501C16.2609 27.7539 18.4459 27.7533 19.7547 26.5421C20.5794 25.6944 20.6462 24.2278 19.6746 23.4776C18.5228 22.5884 17.1067 22.2476 15.7273 21.8888C14.5553 21.584 13.355 21.3564 12.1707 21.089C10.9427 20.812 9.72879 20.4731 8.53499 20.0734C4.29037 18.6513 1.26248 16.0281 1.19127 11.3302C1.07183 3.4454 8.15719 0.228719 15.0369 0.0441403ZM92.1792 27.8624C94.0485 27.6347 95.749 28.9665 95.9751 30.836C96.201 32.7054 94.8661 34.4038 92.9966 34.628C91.1294 34.8516 89.4342 33.5202 89.2085 31.6534C88.9828 29.7866 90.3123 28.09 92.1792 27.8624ZM30.9792 0.699411C34.0969 0.650261 37.3521 0.695688 40.4792 0.695505L57.5192 0.700388V8.12614L40.4226 8.13005L40.4235 13.7931L55.4616 13.7951L55.4645 20.8986C50.5213 20.8305 45.3771 20.8802 40.4235 20.8976L40.4245 22.7032L40.4235 27.0811L57.3073 27.0841L57.3092 28.4845C57.1162 28.638 56.8729 28.8288 56.7047 29.004C56.2167 29.5055 55.8928 30.1432 55.776 30.8331C55.4091 33.1436 57.254 33.9271 57.2614 34.462C56.9611 34.6352 33.277 34.537 30.8201 34.5313C30.9936 34.4262 31.1637 34.3214 31.3347 34.209C33.0871 33.0582 33.4062 30.5513 31.9382 29.0323C31.6183 28.7013 31.3587 28.5397 30.9695 28.3009V10.5168C30.9689 7.26502 30.9344 3.94697 30.9792 0.699411ZM59.2809 0.699411C62.1839 0.653966 65.2051 0.696276 68.1168 0.695505L72.8297 0.694528C76.0712 0.69404 78.0882 0.655795 81.3033 1.63105C88.2849 3.74888 91.2108 10.6106 89.1372 17.3829C88.205 20.4273 85.9791 22.4719 83.1529 23.8995C83.887 25.0745 84.8831 26.4414 85.6812 27.6036L90.439 34.5294C88.9965 34.5643 87.4419 34.5356 85.9908 34.5362L80.1509 34.5342C78.2121 31.5634 76.0412 28.51 74.0357 25.5567C72.3287 25.5374 70.5836 25.5563 68.8736 25.5567L68.8727 34.5342L60.4078 34.5381C61.5408 33.9305 62.3626 33.082 62.5065 31.7471C62.6082 30.8441 62.3442 29.9373 61.774 29.2296C61.1367 28.4422 60.2619 28.0536 59.2672 27.9542V9.2111C59.2666 6.50479 59.1919 3.37688 59.2809 0.699411ZM80.1138 13.0734C80.0141 8.50637 75.856 8.0658 72.3004 8.2404C71.2324 8.29291 69.9623 8.22833 68.8805 8.24626L68.8736 18.1163L72.5562 18.1222C74.7447 18.1243 76.9911 18.3066 78.7515 16.713C79.8175 15.6071 80.1462 14.556 80.1138 13.0734Z" fill="white"/></svg>
+  </a>
   <div class="nav-links">
-    <a href="#plataforma">Plataforma</a>
+    <a href="#sobre">Sobre</a>
     <a href="#metodo">Método</a>
     <a href="#diferenciais">Diferenciais</a>
-    <a href="#sobre">Sobre</a>
-    <a href="#demo">Contato</a>
+    <a href="#plataforma">Plataforma</a>
+    <a href="#contato">Contato</a>
   </div>
-  <a href="#demo" class="nav-cta">
-    Agendar demo
-    <svg width="12" height="12" viewBox="0 0 12 12" fill="none"><path d="M2.5 9.5L9.5 2.5M9.5 2.5H4M9.5 2.5V8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-  </a>
+  <a href="#contato" class="nav-cta">Agendar Demo Gratuita</a>
 </nav>
 
-<!-- ══════════ HERO ══════════ -->
-<section class="hero" style="padding-top:140px;padding-bottom:120px">
-  <div class="particles" id="particles"></div>
-  <div class="glow glow-green" style="width:900px;height:900px;top:-200px;left:50%;transform:translateX(-50%);position:absolute;z-index:0"></div>
-  <div style="position:relative;z-index:1;width:100%;display:flex;flex-direction:column;align-items:center">
-    <div class="hero-badge fade">
-      <div class="badge-dot"></div>
-      <span class="badge-text">Ouvidoria · Experiência do Cliente · IA</span>
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-photo"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-content fade">
+    <div class="badge badge-white" style="margin-bottom:clamp(20px,2vw,40px)">
+      <span class="badge-arrow">
+        <svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Ouvidoria · Experiência do Cliente · IA
     </div>
-    <h1 class="fade fade-delay-1">Gestão de feedbacks<br><em>da escuta à resolução.</em></h1>
-    <p class="hero-sub fade fade-delay-2">A S.E.R. Cliente transforma a voz do cliente em direcionamento para a operação e para a gestão. Cada feedback registrado — entendido, resolvido e documentado.</p>
-    <div class="hero-actions fade fade-delay-2">
-      <a href="#demo" class="btn-primary">
-        Agendar demo gratuita
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-      </a>
-      <a href="#metodo" class="btn-ghost">Conhecer o Método</a>
-    </div>
-    <div class="hero-award fade fade-delay-3">
-      <span>🏆</span>
-      <span><strong>CX Professional of the Year 2023</strong> · Customer Centricity World Series · Daniela Fantinati</span>
-    </div>
-  </div>
-  <div class="hero-scroll">
-    <span>Scroll</span>
-    <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M7 2v10M7 12L3 8M7 12l4-4" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <h1>Gestão de feedbacks<br>da escuta à resolução.</h1>
+    <p class="hero-sub">A S.E.R. Cliente transforma a voz do cliente em direcionamento para a operação e para a gestão. Cada manifestação tratada com método, contexto e rastreabilidade.</p>
+    <a href="#contato" class="hero-btn">Agendar Demo Gratuita</a>
   </div>
 </section>
 
-<!-- FEATURES CARDS -->
-<div class="feat-cards-section">
-  <div class="feat-cards-grid">
-
-    <!-- Card 1: Formulários flexíveis -->
-    <div class="feat-card">
-      <div class="feat-card-visual">
-        <div class="obj-form-doc">
-          <div class="fline" style="width:75%;background:rgba(38,162,76,0.5)"></div>
-          <div class="fline" style="width:100%"></div>
-          <div class="fline" style="width:85%"></div>
-          <div class="fline" style="width:55%;background:rgba(38,162,76,0.28)"></div>
-          <div class="fline" style="width:100%"></div>
-          <div class="fline" style="width:70%"></div>
-        </div>
-      </div>
-      <div class="feat-card-body">
-        <h3>Formulários flexíveis</h3>
-        <p>Captação adaptada à sua operação</p>
+<!-- O QUE ENTREGAMOS -->
+<section class="section section-white fade" id="sobre">
+  <div class="badge badge-dark" style="margin-bottom:clamp(8px,.8vw,16px)">
+    <span class="badge-arrow">
+      <svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+  </div>
+  <h2 class="entregamos-title">O que entregamos</h2>
+  <div class="cards-grid">
+    <div class="card">
+      <img src="fotos/laptop-card.png" alt="Formulários flexíveis" class="card-img">
+      <div class="card-body">
+        <h3 class="card-title">Formulários flexíveis</h3>
+        <p class="card-sub">Captação adaptada à sua operação</p>
       </div>
     </div>
-
-    <!-- Card 2: Relatórios customizados -->
-    <div class="feat-card">
-      <div class="feat-card-visual">
-        <div class="obj-bars-wrap">
-          <div class="obj-bar" style="--h:52%"></div>
-          <div class="obj-bar" style="--h:88%"></div>
-          <div class="obj-bar" style="--h:40%"></div>
-          <div class="obj-bar" style="--h:72%"></div>
-          <div class="obj-bar" style="--h:58%"></div>
-        </div>
-      </div>
-      <div class="feat-card-body">
-        <h3>Relatórios customizados</h3>
-        <p>Mais clareza para a tomada de decisão</p>
+    <div class="card">
+      <img src="fotos/laptop-card.png" alt="Relatórios customizados" class="card-img">
+      <div class="card-body">
+        <h3 class="card-title">Relatórios customizados</h3>
+        <p class="card-sub">Mais clareza para a tomada de decisão</p>
       </div>
     </div>
-
-    <!-- Card 3: IA integrada -->
-    <div class="feat-card">
-      <div class="feat-card-visual">
-        <svg class="obj-network" viewBox="0 0 180 150" fill="none" xmlns="http://www.w3.org/2000/svg">
-          <line x1="90" y1="75" x2="38" y2="28" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
-          <line x1="90" y1="75" x2="148" y2="28" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
-          <line x1="90" y1="75" x2="22" y2="118" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
-          <line x1="90" y1="75" x2="158" y2="118" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
-          <line x1="90" y1="75" x2="90" y2="14" stroke="rgba(255,255,255,0.1)" stroke-width="1.5"/>
-          <circle class="net-outer" cx="38" cy="28" r="8" fill="rgba(255,255,255,0.05)" stroke-width="1.5"/>
-          <circle class="net-outer" cx="148" cy="28" r="8" fill="rgba(255,255,255,0.05)" stroke-width="1.5"/>
-          <circle class="net-outer" cx="22" cy="118" r="8" fill="rgba(255,255,255,0.05)" stroke-width="1.5"/>
-          <circle class="net-outer" cx="158" cy="118" r="8" fill="rgba(255,255,255,0.05)" stroke-width="1.5"/>
-          <circle class="net-outer" cx="90" cy="14" r="8" fill="rgba(255,255,255,0.05)" stroke-width="1.5"/>
-          <circle cx="90" cy="75" r="18" fill="rgba(38,162,76,0.1)" stroke="rgba(38,162,76,0.25)" stroke-width="1.5"/>
-          <circle cx="90" cy="75" r="10" fill="rgba(38,162,76,0.18)" stroke="rgba(38,162,76,0.55)" stroke-width="1.5"/>
-          <circle cx="90" cy="75" r="4.5" fill="#26A24C"/>
-        </svg>
-      </div>
-      <div class="feat-card-body">
-        <h3>IA integrada</h3>
-        <p>Respostas contextualizadas e analíticas</p>
+    <div class="card">
+      <img src="fotos/laptop-card.png" alt="IA integrada" class="card-img">
+      <div class="card-body">
+        <h3 class="card-title">IA integrada</h3>
+        <p class="card-sub">Respostas contextualizadas e analíticas</p>
       </div>
     </div>
+  </div>
+</section>
 
+<!-- SOBRE NÓS — GREEN BAND -->
+<section class="sobre-green fade">
+  <div class="sobre-green-bg"></div>
+  <div class="sobre-green-content">
+    <div class="badge badge-white" style="margin-bottom:clamp(16px,1.5vw,28px)">
+      <span class="badge-arrow">
+        <svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </span>
+      Sobre nós
+    </div>
+    <h2>Existimos para transformar<br>a voz do cliente em ação.</h2>
+    <p class="sobre-green-sub">A plataforma ocupa o espaço entre ouvidoria tradicional e gestão estratégica de CX, com foco em operação real, não apenas em relatórios. Cada manifestação tratada com método, contexto e rastreabilidade.</p>
+  </div>
+</section>
+
+<!-- SOBRE NÓS — ARTIGO -->
+<section class="section section-white fade">
+  <div class="sobre-artigo">
+    <div class="sobre-artigo-text">
+      <div class="badge badge-light" style="margin-bottom:clamp(16px,1.5vw,28px)">
+        <span class="badge-arrow">
+          <svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        Sobre nós
+      </div>
+      <h2>A S.E.R. Cliente<br>nasceu de uma dor real.</h2>
+      <p>Criada para ajudar empresas a lidarem com feedbacks de forma mais prática, ágil, estruturada e estratégica — sem perder a humanidade no processo.</p>
+      <p>Acreditamos que reclamações, sugestões e elogios não devem ser vistos apenas como problemas a resolver, mas como dados valiosos que, quando bem tratados, geram aprendizado, melhoria contínua e fidelização.</p>
+    </div>
+    <div class="sobre-artigo-img">
+      <img src="fotos/sobre-nos-img.png" alt="S.E.R. Cliente">
+    </div>
+  </div>
+  <div class="quote-block fade">
+    Com a S.E.R. Cliente, cada manifestação pode se tornar uma oportunidade real de gerar confiança, evolução e diferenciação competitiva.
+  </div>
+</section>
+
+<!-- 4 PILARES -->
+<section class="section section-dark fade">
+  <div class="pillars-intro">
+    <h2>Analisamos métricas, fornecemos<br>indicadores e damos contexto.</h2>
+    <p class="pillars-tagline">Transformando feedback em gestão inteligente.</p>
+  </div>
+  <div class="pillar fade">
+    <div class="pillar-num">01</div>
+    <div class="pillar-content">
+      <h3>Escuta ativa</h3>
+      <p>Feedback é oportunidade, não incômodo. Cada manifestação — reclamação, sugestão ou elogio — é capturada por canais acessíveis e organizados, garantindo que nenhuma voz seja perdida.</p>
+    </div>
+  </div>
+  <div class="pillar fade">
+    <div class="pillar-num">02</div>
+    <div class="pillar-content">
+      <h3>Decisão baseada em dados</h3>
+      <p>Números ganham valor quando contextualizados. Dashboards, métricas de CX e relatórios executivos transformam dados brutos em inteligência acionável para a gestão.</p>
+    </div>
+  </div>
+  <div class="pillar fade">
+    <div class="pillar-num">03</div>
+    <div class="pillar-content">
+      <h3>Transparência e rastreabilidade</h3>
+      <p>Tudo tem histórico, evidência e acompanhamento. Cada manifestação deixa uma trilha completa — do recebimento à resolução — com código único compartilhado com o cliente.</p>
+    </div>
+  </div>
+  <div class="pillar fade">
+    <div class="pillar-num">04</div>
+    <div class="pillar-content">
+      <h3>Responsabilidade na resposta</h3>
+      <p>Responder com contexto, ação e comprometimento real. A S.E.R. Cliente garante que cada manifestação receba uma resposta fundamentada, dentro do prazo, com qualidade e rastreabilidade.</p>
+    </div>
+  </div>
+</section>
+
+<!-- DANIELA -->
+<section class="section section-white fade" id="daniela">
+  <h2 class="daniela-header">Construída por<br>quem viveu o problema.</h2>
+  <div class="daniela-grid">
+    <div class="daniela-photos">
+      <img src="fotos/dani-bg.png" alt="Daniela Fantinati" class="daniela-bg">
+      <img src="fotos/dani-profile.png" alt="Daniela Fantinati" class="daniela-portrait">
+    </div>
+    <div class="daniela-bio">
+      <div class="badge badge-light" style="margin-bottom:16px">
+        <span class="badge-arrow">
+          <svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        </span>
+        Fundadora &amp; CEO
+      </div>
+      <h3>Daniela Fantinati</h3>
+      <p>20+ anos conectando estratégia, cultura e resultados em Experiência do Cliente.</p>
+      <p class="daniela-edu">Comunicação Social · PUC-Campinas &nbsp;+&nbsp; CX Strategy · Columbia Business School</p>
+      <p>Trajetória em governamental, educação, óleo &amp; gás e aviação civil — liderando ouvidoria, sucesso do cliente e programas de CX em organizações de grande porte.</p>
+      <p>Coautora de 3 livros: <em>Experiência do Cliente na Teoria e Muita Prática · Mulheres na Aviação · Pérolas da Aviação</em></p>
+      <div class="daniela-books">
+        <img src="fotos/livro-1.png" alt="Livro 1">
+        <img src="fotos/livro-2.png" alt="Livro 2">
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- NOSSO MÉTODO -->
+<div class="metodo-intro section-white fade" id="metodo">
+  <div class="badge badge-mid" style="padding:clamp(40px,4vw,80px) 8% 0">
+    <span class="badge-arrow">
+      <svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </span>
+    Nosso método
+  </div>
+  <div style="padding:0 8% clamp(40px,4vw,80px)">
+    <h2 class="metodo-intro-title" style="font-size:clamp(28px,4.2vw,80px);font-weight:700;line-height:1.05;letter-spacing:-0.04em;color:var(--text-dark);margin:clamp(12px,1vw,20px) 0">Saber. Entender.<br>Resolver e Responder.</h2>
+    <p style="font-size:clamp(14px,1.56vw,30px);font-weight:300;color:#2a2a2a;line-height:1.65;letter-spacing:-0.01em;max-width:900px">O Método S.E.R. Cliente auxilia no entendimento da manifestação, na identificação da causa-raíz e melhora a capacidade de resposta, com foco em qualidade, contexto e resultado.</p>
+  </div>
+</div>
+<div class="premissas">
+  <div class="premissa fade">
+    <div class="premissa-label">
+      <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Premissa 01
+    </div>
+    <h3>Saber</h3>
+    <p class="premissa-lead">O primeiro passo é garantir um canal acessível e ágil para que o cliente possa se expressar. Reclamações, sugestões e elogios têm igual valor.</p>
+    <ul class="premissa-list">
+      <li>Formulários customizados</li>
+      <li>Multi-canal: e-mail, formulário, presencial, telefone</li>
+      <li>Token de acesso — sem proliferação de logins</li>
+    </ul>
+  </div>
+  <div class="premissa fade">
+    <div class="premissa-label">
+      <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Premissa 02
+    </div>
+    <h3>Entender</h3>
+    <p class="premissa-lead">Para um diagnóstico preciso, é fundamental analisar o feedback de forma profunda e contextualizada. Dados sem análise são ruído.</p>
+    <ul class="premissa-list">
+      <li>IA para análise e categorização automática</li>
+      <li>Dashboard executivo consolidado e por unidade</li>
+      <li>Relatórios com métricas de CX: NPS, CSAT, CES</li>
+    </ul>
+  </div>
+  <div class="premissa fade">
+    <div class="premissa-label">
+      <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Premissa 03
+    </div>
+    <h3>Resolver &amp; Responder</h3>
+    <p class="premissa-lead">Iniciativas estratégicas implementadas com base nas etapas anteriores. Agir de forma assertiva para que o cliente sinta que foi ouvido e atendido.</p>
+    <ul class="premissa-list">
+      <li>SLA configurável com alertas antes do vencimento</li>
+      <li>Perfis de responsabilidade e fluxos de aprovação</li>
+      <li>Histórico completo com código único ao cliente</li>
+    </ul>
   </div>
 </div>
 
-<div class="divider"></div>
-
-<!-- ══════════ DOR / CENÁRIOS ══════════ -->
-<section class="fade">
-  <div class="sec-eyebrow">
-    <span class="eyebrow-icon">✦</span>
-    <span class="eyebrow-text">Você reconhece isso?</span>
-  </div>
-  <h2 class="sec-h2">A ouvidoria existe.<br><em>A gestão, ainda não.</em></h2>
-  <p class="sec-sub" style="margin-bottom:52px">Manifestações chegam. Prazos correm. Auditorias aparecem. E a equipe ainda está montando relatório em planilha.</p>
-
-  <div class="pain-wrap">
-    <div class="pain-stack">
-
-      <!-- Card 1: Saúde — pos-0 (frente) -->
-      <div class="pain-card pos-0" data-idx="0">
-        <div class="pc-top">
-          <div class="pc-sector">Saúde · ONA / JCI</div>
-          <div class="pc-dots-ui"><div class="pc-dot-ui"></div><div class="pc-dot-ui"></div><div class="pc-dot-ui"></div></div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-left">
-            <div class="pc-title">A auditoria chegou. O relatório, ainda não.</div>
-            <p class="pc-desc">600+ manifestações por mês em 8 unidades. Cada uma usa um sistema diferente. Quando o CEO pede um relatório consolidado, sua equipe passa 2 dias organizando dados manualmente.</p>
-            <div class="pc-metrics">
-              <div class="pc-metric"><div class="pc-metric-n">600+</div><div class="pc-metric-l">manifestações por mês</div></div>
-              <div class="pc-metric"><div class="pc-metric-n">2 dias</div><div class="pc-metric-l">para montar 1 relatório</div></div>
-            </div>
-          </div>
-          <div class="pc-right">
-            <div class="pc-avatar av-a">AC</div>
-            <p class="pc-quote">"Eu sei o impacto que o meu trabalho tem no paciente. Só preciso de um sistema que me ajude a provar isso para o meu CEO."</p>
-            <div>
-              <div class="pc-author-name">Adriana Costa</div>
-              <div class="pc-author-role">Diretora de CX e Ouvidoria · Rede Hospitalar SP</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 2: Infraestrutura — pos-1 (meio) -->
-      <div class="pain-card pos-1" data-idx="1">
-        <div class="pc-top">
-          <div class="pc-sector">Infraestrutura · ANTT / ANAC</div>
-          <div class="pc-dots-ui"><div class="pc-dot-ui"></div><div class="pc-dot-ui"></div><div class="pc-dot-ui"></div></div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-left">
-            <div class="pc-title">A ANTT pode auditar amanhã. E daí?</div>
-            <p class="pc-desc">O sistema atual é um e-mail compartilhado e uma planilha. Não há SLA, não há rastreabilidade, não há como provar que o usuário recebeu resposta. É uma bomba-relógio.</p>
-            <div class="pc-metrics">
-              <div class="pc-metric"><div class="pc-metric-n">0</div><div class="pc-metric-l">SLA configurado</div></div>
-              <div class="pc-metric"><div class="pc-metric-n">Sem trilha</div><div class="pc-metric-l">de auditoria</div></div>
-            </div>
-          </div>
-          <div class="pc-right">
-            <div class="pc-avatar av-b">RM</div>
-            <p class="pc-quote">"Não posso arriscar a renovação da concessão por falta de um sistema que prove que tratamos cada reclamação. Isso não é opcional."</p>
-            <div>
-              <div class="pc-author-name">Rafael Mendes</div>
-              <div class="pc-author-role">Gerente de Qualidade · Concessionária Rodoviária Nacional</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Card 3: Educação — pos-2 (fundo) -->
-      <div class="pain-card pos-2" data-idx="2">
-        <div class="pc-top">
-          <div class="pc-sector">Educação Superior · MEC</div>
-          <div class="pc-dots-ui"><div class="pc-dot-ui"></div><div class="pc-dot-ui"></div><div class="pc-dot-ui"></div></div>
-        </div>
-        <div class="pc-body">
-          <div class="pc-left">
-            <div class="pc-title">O aluno saiu. Sem dizer por quê.</div>
-            <p class="pc-desc">A maioria cancela a matrícula enviando um e-mail de uma linha. Você só descobre o problema quando a turma já está com 30% de evasão. Não há sistema de alerta precoce.</p>
-            <div class="pc-metrics">
-              <div class="pc-metric"><div class="pc-metric-n">30%</div><div class="pc-metric-l">evasão silenciosa</div></div>
-              <div class="pc-metric"><div class="pc-metric-n">0</div><div class="pc-metric-l">alertas antecipados</div></div>
-            </div>
-          </div>
-          <div class="pc-right">
-            <div class="pc-avatar av-c">CO</div>
-            <p class="pc-quote">"Cada aluno que sai sem falar comigo é uma oportunidade perdida de fazer diferente. Preciso saber antes que seja tarde demais."</p>
-            <div>
-              <div class="pc-author-name">Carla Oliveira</div>
-              <div class="pc-author-role">Diretora de Relacionamento · Grupo Educacional Minas</div>
-            </div>
-          </div>
-        </div>
-      </div>
-
+<!-- DIFERENCIAIS -->
+<section class="section section-white fade" id="diferenciais">
+  <div class="dif-header">
+    <div class="badge badge-dark" style="margin-bottom:clamp(12px,1vw,20px)">
+      <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
     </div>
-
-    <!-- Dots de navegação -->
-    <div class="pain-dots">
-      <button class="pain-nav-dot active" onclick="painGo(0)" aria-label="Card 1"></button>
-      <button class="pain-nav-dot" onclick="painGo(1)" aria-label="Card 2"></button>
-      <button class="pain-nav-dot" onclick="painGo(2)" aria-label="Card 3"></button>
+    <h2>O que torna a<br>S.E.R. Cliente diferente.</h2>
+    <p>Construída com conceitos de Experiência do Cliente, princípios de Qualidade Total e alavancada por Inteligência Artificial.</p>
+  </div>
+  <div class="dif-grid">
+    <div class="dif-card fade">
+      <div class="dif-icon">
+        <svg viewBox="0 0 34 34" fill="none"><circle cx="17" cy="17" r="12" stroke="#26A24C" stroke-width="2"/><path d="M12 17l3 3 7-7" stroke="#26A24C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Inteligência Artificial integrada</h3>
+      <p>IA para sugerir respostas contextualizadas e personalizadas, auxiliar no tratamento das manifestações e emissão de relatórios executivos.</p>
+    </div>
+    <div class="dif-card fade">
+      <div class="dif-icon">
+        <svg viewBox="0 0 34 34" fill="none"><rect x="6" y="4" width="22" height="26" rx="3" stroke="#26A24C" stroke-width="2"/><path d="M11 12h12M11 17h12M11 22h7" stroke="#26A24C" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Código de acompanhamento único</h3>
+      <p>Cada relato recebe um número único compartilhado com o cliente, garantindo rastreabilidade e fácil acesso ao histórico.</p>
+    </div>
+    <div class="dif-card fade">
+      <div class="dif-icon">
+        <svg viewBox="0 0 34 34" fill="none"><path d="M17 5l3 9h9l-7 5 3 9-8-6-8 6 3-9-7-5h9z" stroke="#26A24C" stroke-width="2" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>Metodologias de Qualidade e CX</h3>
+      <p>Princípios de qualidade e conceitos de CX incorporados nas análises e resoluções, garantindo tratamento fundamentado em boas práticas.</p>
+    </div>
+    <div class="dif-card fade">
+      <div class="dif-icon">
+        <svg viewBox="0 0 34 34" fill="none"><circle cx="17" cy="13" r="5" stroke="#26A24C" stroke-width="2"/><path d="M9 28c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#26A24C" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Perfis e permissões configuráveis</h3>
+      <p>Perfis de acesso com base em responsabilidades, permissões e níveis de autonomia — gestão segura para qualquer equipe.</p>
+    </div>
+    <div class="dif-card fade">
+      <div class="dif-icon">
+        <svg viewBox="0 0 34 34" fill="none"><rect x="6" y="10" width="22" height="16" rx="2" stroke="#26A24C" stroke-width="2"/><path d="M11 10V7a6 6 0 0112 0v3" stroke="#26A24C" stroke-width="2"/></svg>
+      </div>
+      <h3>Token de acesso</h3>
+      <p>Links exclusivos com acesso via token — sem proliferação de logins e senhas. Acesso seguro e rastreável.</p>
+    </div>
+    <div class="dif-card fade">
+      <div class="dif-icon">
+        <svg viewBox="0 0 34 34" fill="none"><rect x="4" y="8" width="18" height="14" rx="2" stroke="#26A24C" stroke-width="2"/><rect x="20" y="16" width="10" height="8" rx="1.5" stroke="#26A24C" stroke-width="2"/><path d="M13 22v3M13 25h-4M13 25h4" stroke="#26A24C" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Desktop e mobile</h3>
+      <p>Plataforma acessível e funcional em desktops e dispositivos móveis. Gerencie feedbacks com agilidade de qualquer lugar.</p>
+    </div>
+    <div class="dif-card fade">
+      <div class="dif-icon">
+        <svg viewBox="0 0 34 34" fill="none"><path d="M17 6c-6.1 0-11 4.9-11 11s4.9 11 11 11 11-4.9 11-11" stroke="#26A24C" stroke-width="2" stroke-linecap="round"/><path d="M23 6v5h5" stroke="#26A24C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </div>
+      <h3>SaaS — serviço em nuvem</h3>
+      <p>Acesso seguro e escalável via nuvem. Disponibilidade garantida, segurança dos dados e atualizações contínuas.</p>
+    </div>
+    <div class="dif-card fade">
+      <div class="dif-icon">
+        <svg viewBox="0 0 34 34" fill="none"><rect x="6" y="6" width="22" height="22" rx="3" stroke="#26A24C" stroke-width="2"/><path d="M11 11h12M11 17h8M11 23h5" stroke="#26A24C" stroke-width="2" stroke-linecap="round"/></svg>
+      </div>
+      <h3>Formulários customizados</h3>
+      <p>Formulários personalizados e intuitivos, alinhados às necessidades da empresa. Feedbacks estruturados para melhor análise.</p>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- ══════════ SOBRE NÓS ══════════ -->
-<section class="fade" id="sobre">
-  <div class="sec-eyebrow">
-    <span class="eyebrow-icon">✦</span>
-    <span class="eyebrow-text">Sobre nós</span>
+<!-- PLATAFORMA -->
+<section class="section section-dark fade" id="plataforma">
+  <div class="plat-header">
+    <div class="badge badge-white" style="margin-bottom:clamp(12px,1vw,20px)">
+      <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Plataforma
+    </div>
+    <h2>Desenvolvida com<br>quem vive o problema.</h2>
+    <p>Não é produto de prateleira. A S.E.R. Cliente foi desenvolvida e validada com clientes reais em ambientes de alta complexidade operacional.</p>
   </div>
-  <h2 class="sec-h2">Existimos para transformar<br><em>a voz do cliente em ação.</em></h2>
-  <p class="sec-sub" style="margin-bottom:48px">A plataforma ocupa o espaço entre ouvidoria tradicional e gestão estratégica de CX, com foco em operação e decisão.</p>
-
-  <!-- Texto de cabeça -->
-  <div class="sobre-intro fade fade-delay-1">
-    <div class="sobre-intro-h">A S.E.R. Cliente nasceu de uma dor real.</div>
-    <p>Criada para ajudar empresas a lidarem com feedbacks de forma mais prática, ágil, estruturada e estratégica.</p>
-    <p>Acreditamos que reclamações, sugestões e elogios não devem ser vistos apenas como problemas a resolver, mas como consultoria gratuita — ganhos valiosos para melhorar processos, fortalecer relações e evoluir a experiência do cliente.</p>
-    <p>Com a S.E.R. Cliente, cada manifestação pode se tornar uma oportunidade real de gerar confiança, evolução e impacto.</p>
-    <div class="sobre-quote-block">
-      <p>Analisamos métricas, fornecemos indicadores e damos contexto — transformando feedback em gestão inteligente.</p>
-    </div>
+  <img src="fotos/plataforma-screenshot.png" alt="Plataforma S.E.R. Cliente" class="plat-screenshot fade">
+  <div class="plat-section-title fade">
+    <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+    Por dentro da plataforma
   </div>
-
-  <!-- Tabs com animação automática -->
-  <div class="sobre-steps fade fade-delay-2">
-    <div class="sobre-tabs-row">
-      <div class="sobre-tab active" onclick="sobreTab(0)">Escuta ativa<div class="sobre-tab-bar"></div></div>
-      <div class="sobre-tab" onclick="sobreTab(1)">Decisão baseada em dados<div class="sobre-tab-bar"></div></div>
-      <div class="sobre-tab" onclick="sobreTab(2)">Transparência e rastreabilidade<div class="sobre-tab-bar"></div></div>
-      <div class="sobre-tab" onclick="sobreTab(3)">Responsabilidade na resposta<div class="sobre-tab-bar"></div></div>
-    </div>
-
-    <!-- Panel 1: Escuta ativa -->
-    <div class="sobre-panel active">
-      <div class="sobre-visual-area">
-        <div class="sv1-wrap">
-          <div class="sv1-bubble">
-            <div class="sv1-tag">Feedback recebido</div>
-            <div class="sv1-l" style="width:88%"></div>
-            <div class="sv1-l" style="width:65%"></div>
-            <div class="sv1-l" style="width:75%"></div>
-          </div>
-          <div class="sv1-bubble">
-            <div class="sv1-tag">Sugestão de melhoria</div>
-            <div class="sv1-l" style="width:100%"></div>
-            <div class="sv1-l" style="width:70%"></div>
-          </div>
-          <div class="sv1-bubble rt">
-            <div class="sv1-tag">Respondendo…</div>
-            <div class="sv1-typing">
-              <div class="sv1-dot"></div>
-              <div class="sv1-dot"></div>
-              <div class="sv1-dot"></div>
-            </div>
-          </div>
-        </div>
+  <div class="plat-features">
+    <div class="plat-feature fade">
+      <div class="plat-feature-text">
+        <h3>Dashboard<br>executivo e gerencial</h3>
+        <p>Visão consolidada de todas as unidades. Relatórios operacionais e executivos customizados, em xls, pdf ou acesso direto na plataforma.</p>
       </div>
-      <div class="sobre-text-area">
-        <div class="sobre-panel-num">01</div>
-        <div class="sobre-panel-title">Escuta ativa</div>
-        <div class="sobre-panel-desc">Feedback é oportunidade, não incômodo. Cada manifestação — reclamação, sugestão ou elogio — é capturada, registrada e transformada em insumo estratégico para a sua operação.</div>
+      <div class="plat-feature-img">
+        <img src="fotos/plataforma-dashboard.png" alt="Dashboard executivo">
       </div>
     </div>
-
-    <!-- Panel 2: Decisão baseada em dados -->
-    <div class="sobre-panel">
-      <div class="sobre-visual-area">
-        <div class="sv2-inner">
-          <div class="sv2-bars">
-            <div class="sv2-col">
-              <div class="sv2-bar" style="background:rgba(38,162,76,.22);--hf:28px;--ht:72px;--spd:3.1s;--dly:0s"></div>
-              <div class="sv2-lbl">Jan</div>
-            </div>
-            <div class="sv2-col">
-              <div class="sv2-bar" style="background:rgba(38,162,76,.22);--hf:55px;--ht:95px;--spd:2.7s;--dly:.4s"></div>
-              <div class="sv2-lbl">Fev</div>
-            </div>
-            <div class="sv2-col">
-              <div class="sv2-bar" style="background:rgba(38,162,76,.65);--hf:40px;--ht:88px;--spd:3.5s;--dly:.7s"></div>
-              <div class="sv2-lbl">Mar</div>
-            </div>
-            <div class="sv2-col">
-              <div class="sv2-bar" style="background:rgba(38,162,76,.22);--hf:35px;--ht:78px;--spd:2.9s;--dly:1s"></div>
-              <div class="sv2-lbl">Abr</div>
-            </div>
-            <div class="sv2-col">
-              <div class="sv2-bar" style="background:rgba(38,162,76,.75);--hf:62px;--ht:105px;--spd:2.8s;--dly:1.3s"></div>
-              <div class="sv2-lbl">Mai</div>
-            </div>
-          </div>
-          <div class="sv2-kpis">
-            <div class="sv2-kpi"><div class="sv2-kpi-n">NPS 68</div><div class="sv2-kpi-l">Pós-resolução</div></div>
-            <div class="sv2-kpi"><div class="sv2-kpi-n">96%</div><div class="sv2-kpi-l">SLA cumprido</div></div>
-          </div>
-        </div>
+    <div class="plat-feature reverse fade">
+      <div class="plat-feature-text">
+        <h3>Relatório de conformidade<br>em 1 clique</h3>
+        <p>Visão consolidada de todas as unidades. Relatórios operacionais e executivos customizados, em xls, pdf ou acesso direto na plataforma.</p>
       </div>
-      <div class="sobre-text-area">
-        <div class="sobre-panel-num">02</div>
-        <div class="sobre-panel-title">Decisão baseada em dados</div>
-        <div class="sobre-panel-desc">Números ganham valor quando contextualizados. Dashboards, métricas de CX e relatórios executivos transformam dados brutos em decisões claras para lideranças e auditorias.</div>
+      <div class="plat-feature-img">
+        <img src="fotos/plataforma-relatorio.png" alt="Relatório de conformidade">
       </div>
     </div>
-
-    <!-- Panel 3: Transparência e rastreabilidade -->
-    <div class="sobre-panel">
-      <div class="sobre-visual-area">
-        <div class="sv3-wrap">
-          <div class="sv3-row">
-            <div class="sv3-track">
-              <div class="sv3-dot">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(38,162,76,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <div class="sv3-connector"></div>
-            </div>
-            <div class="sv3-body"><div class="sv3-label">Manifestação recebida</div><div class="sv3-sub">Registro automático com data e hora</div></div>
-          </div>
-          <div class="sv3-row">
-            <div class="sv3-track">
-              <div class="sv3-dot">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(38,162,76,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <div class="sv3-connector"></div>
-            </div>
-            <div class="sv3-body"><div class="sv3-label">SLA ativado</div><div class="sv3-sub">Prazo calculado e alertas configurados</div></div>
-          </div>
-          <div class="sv3-row">
-            <div class="sv3-track">
-              <div class="sv3-dot">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(38,162,76,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-              <div class="sv3-connector"></div>
-            </div>
-            <div class="sv3-body"><div class="sv3-label">Resposta registrada</div><div class="sv3-sub">Trilha de auditoria completa</div></div>
-          </div>
-          <div class="sv3-row">
-            <div class="sv3-track">
-              <div class="sv3-dot">
-                <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="rgba(38,162,76,.9)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              </div>
-            </div>
-            <div class="sv3-body"><div class="sv3-label">Encerrado com evidência</div><div class="sv3-sub">Disponível para relatório regulatório</div></div>
-          </div>
-        </div>
+    <div class="plat-feature fade">
+      <div class="plat-feature-text">
+        <h3>SLA automático<br>e alertas de prazo</h3>
+        <p>SLA configurável por tipo de manifestação com alertas antes do vencimento. Zero prazo perdido em e-mail ou planilha.</p>
       </div>
-      <div class="sobre-text-area">
-        <div class="sobre-panel-num">03</div>
-        <div class="sobre-panel-title">Transparência e rastreabilidade</div>
-        <div class="sobre-panel-desc">Tudo tem histórico, evidência e acompanhamento. Cada manifestação deixa uma trilha completa — do recebimento ao encerramento — pronta para auditorias e agências reguladoras.</div>
+      <div class="plat-feature-img">
+        <img src="fotos/plataforma-sla.png" alt="SLA automático">
       </div>
     </div>
-
-    <!-- Panel 4: Responsabilidade na resposta -->
-    <div class="sobre-panel">
-      <div class="sobre-visual-area">
-        <div class="sv4-wrap">
-          <div class="sv4-msg">
-            <div class="sv4-header">
-              <div class="sv4-av">CL</div>
-              <div class="sv4-from">Cliente · há 2h</div>
-            </div>
-            <div class="sv4-l" style="width:90%"></div>
-            <div class="sv4-l" style="width:72%"></div>
-            <div class="sv4-l" style="width:80%"></div>
-          </div>
-          <div class="sv4-reply">
-            <div class="sv4-header-g">
-              <div class="sv4-av-g">SER</div>
-              <div class="sv4-from-g">S.E.R. Cliente · agora</div>
-            </div>
-            <div class="sv4-l" style="width:100%;background:rgba(38,162,76,.25)"></div>
-            <div class="sv4-l" style="width:78%;background:rgba(38,162,76,.18)"></div>
-            <div class="sv4-badge">
-              <svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"/></svg>
-              Respondido dentro do SLA
-            </div>
-          </div>
-        </div>
+    <div class="plat-feature reverse fade">
+      <div class="plat-feature-text">
+        <h3>Multi-unidade com<br>visão consolidada</h3>
+        <p>Cada unidade opera com autonomia dentro do padrão da organização. Dashboard corporativo sem perder a granularidade de cada operação.</p>
       </div>
-      <div class="sobre-text-area">
-        <div class="sobre-panel-num">04</div>
-        <div class="sobre-panel-title">Responsabilidade na resposta</div>
-        <div class="sobre-panel-desc">Responder com contexto, ação e comprometimento real. A S.E.R. Cliente garante que cada manifestação receba uma resposta dentro do prazo, com documentação e rastreabilidade total.</div>
+      <div class="plat-feature-img">
+        <img src="fotos/plataforma-multiunit.png" alt="Multi-unidade">
       </div>
     </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ══════════ DANIELA ══════════ -->
-<section class="fade" id="daniela">
-  <div class="sec-eyebrow">
-    <span class="eyebrow-icon">✦</span>
-    <span class="eyebrow-text">Fundadora</span>
-  </div>
-  <h2 class="sec-h2" style="margin-bottom:48px">Construída por quem<br><em>viveu o problema.</em></h2>
-
-  <!-- Top: photo + bio -->
-  <div class="dan-top">
-
-    <!-- Foto principal -->
-    <div class="dan-photo-wrap fade fade-delay-1">
-      <img src="fotos/dani-headshot.jpg" alt="Daniela Fantinati" loading="lazy">
-      <div class="dan-photo-badge">
-        <strong>Daniela Fantinati</strong>
-        <span>Fundadora & CEO · S.E.R. Cliente</span>
-      </div>
-    </div>
-
-    <!-- Bio -->
-    <div class="dan-bio-col fade fade-delay-2">
-      <div class="dan-label">Fundadora & CEO</div>
-      <div class="dan-name">Daniela Fantinati</div>
-      <p class="dan-tagline">20+ anos conectando estratégia, cultura e resultados<br>em Experiência do Cliente.</p>
-
-      <ul class="dan-bullets">
-        <li>
-          <div class="dan-bi">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
-            </svg>
-          </div>
-          <span><strong style="color:var(--white)">Comunicação Social</strong> · PUC-Campinas &nbsp;+&nbsp; <strong style="color:var(--white)">CX Strategy</strong> · Columbia Business School</span>
-        </li>
-        <li>
-          <div class="dan-bi">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/><line x1="12" y1="12" x2="12" y2="12"/>
-            </svg>
-          </div>
-          <span>Trajetória em <strong style="color:var(--white)">governamental, educação, óleo & gás e aviação civil</strong> — liderando ouvidoria, sucesso do cliente e estratégias estruturadas de CX</span>
-        </li>
-        <li>
-          <div class="dan-bi">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
-            </svg>
-          </div>
-          <span>Coautora de <strong style="color:var(--white)">3 livros</strong>: Experiência do Cliente na Teoria e Muita Prática · Mulheres na Aviação · Pérolas de Gestão</span>
-        </li>
-      </ul>
-
-      <div class="dan-awards">
-        <div class="dan-award">
-          <div class="dan-award-trophy">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <circle cx="12" cy="15" r="5"/><path d="M9.5 4h5L16 9l-4 2-4-2z"/><line x1="12" y1="20" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/>
-            </svg>
-          </div>
-          <div class="dan-award-text">
-            <div class="dan-award-title">CX Emerging Leader</div>
-            <div class="dan-award-sub">2022 · CX Professional Association (CXPA) · Internacional</div>
-          </div>
-        </div>
-        <div class="dan-award">
-          <div class="dan-award-trophy">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/>
-            </svg>
-          </div>
-          <div class="dan-award-text">
-            <div class="dan-award-title">Profissional de Sucesso e CX do Ano · Brasil</div>
-            <div class="dan-award-sub">2023 · CSX Week</div>
-          </div>
-        </div>
-        <div class="dan-award">
-          <div class="dan-award-trophy">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6"/><path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18"/><path d="M4 22h16"/><path d="M10 14.66V17c0 .55-.47.98-.97 1.21C7.85 18.75 7 20.24 7 22"/><path d="M14 14.66V17c0 .55.47.98.97 1.21C16.15 18.75 17 20.24 17 22"/><path d="M18 2H6v7a6 6 0 0 0 12 0V2z"/>
-            </svg>
-          </div>
-          <div class="dan-award-text">
-            <div class="dan-award-title">CX Professional of the Year · <span style="color:rgba(228,237,230,.5);font-weight:400">única brasileira</span></div>
-            <div class="dan-award-sub">2023 · Customer Centricity World Series · Mundial</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="dan-books">
-        <span class="dan-book">📘 CX na Teoria e Muita Prática</span>
-        <span class="dan-book">✈️ Mulheres na Aviação</span>
-        <span class="dan-book">💼 Pérolas de Gestão</span>
-      </div>
-    </div>
-  </div>
-
-  <!-- Carrossel de fotos -->
-  <div class="dan-carousel-section fade">
-    <div class="dan-carousel-label">Daniela em palestras & eventos</div>
-    <div class="dan-carousel-wrap">
-      <div class="dan-carousel-track">
-        <!-- Fotos duplicadas para loop seamless -->
-        <img class="dan-carousel-img" src="fotos/dani-evento-1.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-evento-2.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-evento-3.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-evento-4.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-evento-5.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-evento-6.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-wow-1.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-wow-2.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-headshot.jpg" alt="" loading="lazy">
-        <!-- Duplicadas para loop -->
-        <img class="dan-carousel-img" src="fotos/dani-evento-1.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-evento-2.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-evento-3.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-evento-4.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-evento-5.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-evento-6.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-wow-1.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-wow-2.jpg" alt="" loading="lazy">
-        <img class="dan-carousel-img" src="fotos/dani-headshot.jpg" alt="" loading="lazy">
-      </div>
-    </div>
-  </div>
-
-  <!-- Vídeos YouTube -->
-  <div class="dan-videos-label fade">Daniela em vídeo</div>
-  <div class="dan-videos-grid fade">
-    <a class="dan-yt" href="https://www.youtube.com/watch?v=ErQcElJiqng" target="_blank" rel="noopener">
-      <div class="dan-yt-thumb">
-        <img src="https://img.youtube.com/vi/ErQcElJiqng/hqdefault.jpg" alt="" loading="lazy">
-        <div class="dan-yt-overlay">
-          <div class="dan-yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-      </div>
-      <div class="dan-yt-info">
-        <div class="dan-yt-tag">Palestra</div>
-        <div class="dan-yt-title">Daniela Fantinati · Assista no YouTube</div>
-      </div>
-    </a>
-    <a class="dan-yt" href="https://www.youtube.com/watch?v=IX4Y40JiFzk" target="_blank" rel="noopener">
-      <div class="dan-yt-thumb">
-        <img src="https://img.youtube.com/vi/IX4Y40JiFzk/hqdefault.jpg" alt="" loading="lazy">
-        <div class="dan-yt-overlay">
-          <div class="dan-yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-      </div>
-      <div class="dan-yt-info">
-        <div class="dan-yt-tag">Palestra</div>
-        <div class="dan-yt-title">Daniela Fantinati · Assista no YouTube</div>
-      </div>
-    </a>
-    <a class="dan-yt" href="https://www.youtube.com/watch?v=4kXdMalIFk4" target="_blank" rel="noopener">
-      <div class="dan-yt-thumb">
-        <img src="https://img.youtube.com/vi/4kXdMalIFk4/hqdefault.jpg" alt="" loading="lazy">
-        <div class="dan-yt-overlay">
-          <div class="dan-yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-      </div>
-      <div class="dan-yt-info">
-        <div class="dan-yt-tag">Palestra</div>
-        <div class="dan-yt-title">Daniela Fantinati · Assista no YouTube</div>
-      </div>
-    </a>
-    <a class="dan-yt" href="https://www.youtube.com/watch?v=74WAFYGKDiQ" target="_blank" rel="noopener">
-      <div class="dan-yt-thumb">
-        <img src="https://img.youtube.com/vi/74WAFYGKDiQ/hqdefault.jpg" alt="" loading="lazy">
-        <div class="dan-yt-overlay">
-          <div class="dan-yt-play"><svg viewBox="0 0 24 24"><path d="M8 5v14l11-7z"/></svg></div>
-        </div>
-      </div>
-      <div class="dan-yt-info">
-        <div class="dan-yt-tag">Palestra</div>
-        <div class="dan-yt-title">Daniela Fantinati · Assista no YouTube</div>
-      </div>
-    </a>
-  </div>
-
-</section>
-
-<div class="divider"></div>
-
-<!-- ══════════ MÉTODO ══════════ -->
-<section class="fade" id="metodo">
-  <div class="sec-eyebrow">
-    <span class="eyebrow-icon">✦</span>
-    <span class="eyebrow-text">Método</span>
-  </div>
-  <h2 class="sec-h2">Saber. Entender.<br><em>Resolver e Responder.</em></h2>
-  <p class="sec-sub">O Método S.E.R. Cliente auxilia no entendimento da manifestação, na identificação da causa-raíz e melhorias contínuas. Um ciclo completo — da captura à evidência documentada para o seu board e para as agências reguladoras.</p>
-  <div class="method-grid">
-    <div class="method-card fade fade-delay-1">
-      <div class="method-letter">S</div>
-      <div class="method-num">Premissa 01</div>
-      <h3>Saber</h3>
-      <div class="method-tags">
-        <span class="method-tag">Captura</span>
-        <span class="method-tag">Multi-canal</span>
-        <span class="method-tag">SLA automático</span>
-      </div>
-      <p>O primeiro passo é garantir um canal acessível e ágil para que o cliente possa se expressar. Reclamações, sugestões e elogios — tudo centralizado, estruturado e pronto para análise.</p>
-      <ul>
-        <li>Formulários customizados</li>
-        <li>Multi-canal: e-mail, formulário, presencial, telefone</li>
-        <li>Token de acesso — sem logins adicionais</li>
-        <li>Código de rastreamento único por relato</li>
-        <li>SLA automático configurável</li>
-      </ul>
-    </div>
-    <div class="method-card fade fade-delay-2">
-      <div class="method-letter">E</div>
-      <div class="method-num">Premissa 02</div>
-      <h3>Entender</h3>
-      <div class="method-tags">
-        <span class="method-tag">Análise</span>
-        <span class="method-tag">IA integrada</span>
-        <span class="method-tag">Insights estratégicos</span>
-      </div>
-      <p>Para um diagnóstico preciso, é fundamental analisar o feedback de forma profunda e contextualizada. Entender vai além de ouvir — significa transformar dados em decisões estratégicas.</p>
-      <ul>
-        <li>IA para análise e categorização automática</li>
-        <li>Dashboard executivo consolidado e por unidade</li>
-        <li>Relatórios estatísticos com filtros avançados</li>
-        <li>Alertas de tendências e padrões de recorrência</li>
-        <li>Uso de ferramentas de Qualidade Total</li>
-      </ul>
-    </div>
-    <div class="method-card fade fade-delay-3">
-      <div class="method-letter">R</div>
-      <div class="method-num">Premissa 03</div>
-      <h3>Resolver · Responder</h3>
-      <div class="method-tags">
-        <span class="method-tag">Ação</span>
-        <span class="method-tag">Fechamento</span>
-        <span class="method-tag">Conformidade</span>
-      </div>
-      <p>Iniciativas estratégicas implementadas com base nas etapas anteriores. Agir de forma assertiva para minimizar impactos negativos, solucionar problemas e prevenir recorrências.</p>
-      <ul>
-        <li>IA para respostas contextualizadas ao cliente</li>
-        <li>Relatório de conformidade (Agências reguladoras)</li>
-        <li>Fechamento documentado com trilha completa</li>
-        <li>CSAT e NPS integrado no pós-resolução</li>
-        <li>Interação com o cliente por multi-canal</li>
-      </ul>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ══════════ DIFERENCIAIS ══════════ -->
-<section class="fade" id="diferenciais">
-  <div class="sec-eyebrow">
-    <span class="eyebrow-icon">✦</span>
-    <span class="eyebrow-text">Diferenciais</span>
-  </div>
-  <h2 class="sec-h2">O que torna a S.E.R. Cliente<br><em>diferente.</em></h2>
-  <p class="sec-sub">Construída com conceitos de Experiência do Cliente, princípios de Qualidade Total e alavancada por Inteligência Artificial.</p>
-  <div class="diff-grid">
-
-    <!-- 1. IA integrada -->
-    <div class="diff-card fade fade-delay-1">
-      <div class="diff-visual">
-        <div class="diff-icon-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="8" width="18" height="12" rx="3"/><circle cx="9" cy="14" r="1.5" fill="currentColor" stroke="none"/><circle cx="15" cy="14" r="1.5" fill="currentColor" stroke="none"/><path d="M12 8V5"/><circle cx="12" cy="4" r="1.2" fill="currentColor" stroke="none"/><path d="M7 20v1.5M17 20v1.5"/></svg>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9.937 15.5A2 2 0 0 0 8.5 14.063l-6.135-1.582a.5.5 0 0 1 0-.962L8.5 9.936A2 2 0 0 0 9.937 8.5l1.582-6.135a.5.5 0 0 1 .963 0L14.063 8.5A2 2 0 0 0 15.5 9.937l6.135 1.581a.5.5 0 0 1 0 .964L15.5 14.063a2 2 0 0 0-1.437 1.437l-1.582 6.135a.5.5 0 0 1-.963 0z"/><path d="M20 3v4M22 5h-4"/></svg>
-        </div>
-      </div>
-      <div class="diff-body">
-        <h4>Inteligência Artificial integrada</h4>
-        <p>IA para sugerir respostas contextualizadas e personalizadas, auxiliar no tratamento das manifestações e emissão de relatórios executivos.</p>
-      </div>
-    </div>
-
-    <!-- 2. Token de acesso -->
-    <div class="diff-card fade fade-delay-1">
-      <div class="diff-visual">
-        <div class="diff-icon-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="M21 2l-9.6 9.6M15.5 7.5l2 2M18.5 4.5l2 2"/></svg>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="M9 12l2 2 4-4"/></svg>
-        </div>
-      </div>
-      <div class="diff-body">
-        <h4>Token de acesso</h4>
-        <p>Links exclusivos com acesso via token — sem proliferação de logins e senhas. Acesso seguro e rastreável.</p>
-      </div>
-    </div>
-
-    <!-- 3. Código único -->
-    <div class="diff-card fade fade-delay-2">
-      <div class="diff-visual">
-        <div class="diff-icon-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 7h16M4 12h16M4 17h16M9 3v18M15 3v18"/></svg>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21a9 9 0 1 1 0-18 9 9 0 0 1 0 18z"/><path d="M12 8v4l3 3"/></svg>
-        </div>
-      </div>
-      <div class="diff-body">
-        <h4>Código de acompanhamento único</h4>
-        <p>Cada relato recebe um número único compartilhado com o cliente, garantindo rastreabilidade e fácil acesso ao histórico.</p>
-      </div>
-    </div>
-
-    <!-- 4. Qualidade e CX -->
-    <div class="diff-card fade fade-delay-2">
-      <div class="diff-visual">
-        <div class="diff-icon-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"/></svg>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z"/></svg>
-        </div>
-      </div>
-      <div class="diff-body">
-        <h4>Metodologias de Qualidade e CX</h4>
-        <p>Princípios de qualidade e conceitos de CX incorporados nas análises e resoluções, garantindo tratamento fundamentado em boas práticas.</p>
-      </div>
-    </div>
-
-    <!-- 5. Perfis e permissões -->
-    <div class="diff-card fade fade-delay-3">
-      <div class="diff-visual">
-        <div class="diff-icon-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        </div>
-      </div>
-      <div class="diff-body">
-        <h4>Perfis e permissões configuráveis</h4>
-        <p>Perfis de acesso com base em responsabilidades, permissões e níveis de autonomia — gestão segura para qualquer equipe.</p>
-      </div>
-    </div>
-
-    <!-- 6. Desktop e mobile -->
-    <div class="diff-card fade fade-delay-3">
-      <div class="diff-visual">
-        <div class="diff-icon-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="5" y="2" width="14" height="20" rx="2"/><path d="M12 18h.01"/></svg>
-        </div>
-      </div>
-      <div class="diff-body">
-        <h4>Desktop e mobile</h4>
-        <p>Plataforma acessível e funcional em desktops e dispositivos móveis. Gerencie feedbacks com agilidade de qualquer lugar.</p>
-      </div>
-    </div>
-
-    <!-- 7. SaaS / nuvem -->
-    <div class="diff-card fade fade-delay-3">
-      <div class="diff-visual">
-        <div class="diff-icon-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19H9a7 7 0 1 1 6.71-9h1.79a4.5 4.5 0 1 1 0 9z"/></svg>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M3 5v14c0 1.66 4.03 3 9 3s9-1.34 9-3V5"/><path d="M3 12c0 1.66 4.03 3 9 3s9-1.34 9-3"/></svg>
-        </div>
-      </div>
-      <div class="diff-body">
-        <h4>SaaS — serviço em nuvem</h4>
-        <p>Acesso seguro e escalável via nuvem. Disponibilidade garantida, segurança dos dados e atualizações contínuas.</p>
-      </div>
-    </div>
-
-    <!-- 8. Formulários -->
-    <div class="diff-card fade fade-delay-3">
-      <div class="diff-visual">
-        <div class="diff-icon-box">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/></svg>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M11 4H4a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7"/><path d="M18.5 2.5a2.121 2.121 0 0 1 3 3L12 15l-4 1 1-4 9.5-9.5z"/></svg>
-        </div>
-      </div>
-      <div class="diff-body">
-        <h4>Formulários customizados</h4>
-        <p>Formulários personalizados e intuitivos, alinhados às necessidades da empresa. Feedbacks estruturados para melhor análise.</p>
-      </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ══════════ PLATAFORMA ══════════ -->
-<section class="fade" id="plataforma">
-  <div class="sec-eyebrow">
-    <span class="eyebrow-icon">✦</span>
-    <span class="eyebrow-text">Plataforma</span>
-  </div>
-  <h2 class="sec-h2">Desenvolvida com quem<br><em>vive o problema.</em></h2>
-  <p class="sec-sub" style="margin-bottom:48px">Não é produto de prateleira. A S.E.R. Cliente foi desenvolvida e validada com clientes reais em ambientes de alta complexidade regulada.</p>
-
-  <div class="plat-bento">
-
-    <!-- Card 1: Dashboard executivo (span 2 cols) -->
-    <div class="plat-card plat-card-d2 fade fade-delay-1">
-      <div class="plat-visual">
-        <div class="pd-inner">
-          <div class="pd-kpis">
-            <div class="pd-kpi">
-              <div class="pd-kpi-n">247</div>
-              <div class="pd-kpi-l">Manifestações/mês</div>
-            </div>
-            <div class="pd-kpi">
-              <div class="pd-kpi-n">96%</div>
-              <div class="pd-kpi-l">SLA cumprido</div>
-            </div>
-            <div class="pd-kpi">
-              <div class="pd-kpi-n">NPS 68</div>
-              <div class="pd-kpi-l">Pós-resolução</div>
-            </div>
-          </div>
-          <div class="pd-bars-wrap">
-            <div class="pd-bar-col">
-              <div class="pd-bar" style="background:rgba(38,162,76,.22);--hf:28px;--ht:72px;--spd:3.1s;--dly:0s"></div>
-              <div class="pd-label">Jan</div>
-            </div>
-            <div class="pd-bar-col">
-              <div class="pd-bar" style="background:rgba(38,162,76,.22);--hf:55px;--ht:95px;--spd:2.7s;--dly:.4s"></div>
-              <div class="pd-label">Fev</div>
-            </div>
-            <div class="pd-bar-col">
-              <div class="pd-bar" style="background:rgba(38,162,76,.6);--hf:40px;--ht:88px;--spd:3.5s;--dly:.7s"></div>
-              <div class="pd-label">Mar</div>
-            </div>
-            <div class="pd-bar-col">
-              <div class="pd-bar" style="background:rgba(38,162,76,.22);--hf:35px;--ht:78px;--spd:2.9s;--dly:1s"></div>
-              <div class="pd-label">Abr</div>
-            </div>
-            <div class="pd-bar-col">
-              <div class="pd-bar" style="background:rgba(38,162,76,.22);--hf:52px;--ht:90px;--spd:3.2s;--dly:1.3s"></div>
-              <div class="pd-label">Mai</div>
-            </div>
-            <div class="pd-bar-col">
-              <div class="pd-bar" style="background:rgba(38,162,76,.75);--hf:62px;--ht:100px;--spd:2.8s;--dly:1.6s"></div>
-              <div class="pd-label">Jun</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="plat-body">
-        <h4>Dashboard executivo e gerencial</h4>
-        <p>Visão consolidada de todas as unidades. Relatórios operacionais e executivos customizados, em xls, ppt e BI, prontos para apresentar.</p>
-      </div>
-    </div>
-
-    <!-- Card 2: Relatório de conformidade -->
-    <div class="plat-card fade fade-delay-2">
-      <div class="plat-visual">
-        <div class="pr-doc">
-          <div class="pr-line" style="width:75%;background:rgba(38,162,76,.3)"></div>
-          <div class="pr-line" style="width:100%"></div>
-          <div class="pr-line" style="width:85%"></div>
-          <div class="pr-track"><div class="pr-fill"></div></div>
-          <div class="pr-line" style="width:60%"></div>
-          <div class="pr-cta">✓&nbsp; Gerar Relatório</div>
-        </div>
-      </div>
-      <div class="plat-body">
-        <h4>Relatório de conformidade em 1 clique</h4>
-        <p>Trilha completa de cada manifestação — exatamente como exigem as agências reguladoras. Auditorias sem surpresas.</p>
-      </div>
-    </div>
-
-    <!-- Card 3: SLA automático -->
-    <div class="plat-card fade fade-delay-1">
-      <div class="plat-visual">
-        <div class="psla-wrap">
-          <svg width="84" height="84" viewBox="0 0 84 84" fill="none">
-            <circle cx="42" cy="42" r="30" stroke="rgba(255,255,255,0.07)" stroke-width="5"/>
-            <circle class="psla-ring-arc" cx="42" cy="42" r="30" stroke-linecap="round" stroke-width="5" transform="rotate(-90 42 42)"/>
-            <text class="psla-ring-label" x="42" y="40">SLA</text>
-            <text class="psla-ring-sub" x="42" y="52">automático</text>
-          </svg>
-          <div class="psla-alerts">
-            <div class="psla-alert"><div class="psla-dot psla-dot-r"></div>Vence em 2h · UTI</div>
-            <div class="psla-alert"><div class="psla-dot psla-dot-y"></div>Vence em 1d · Edu</div>
-            <div class="psla-alert"><div class="psla-dot psla-dot-g"></div>Resolvido · Infra</div>
-          </div>
-        </div>
-      </div>
-      <div class="plat-body">
-        <h4>SLA automático e alertas de prazo</h4>
-        <p>SLA configurável por tipo de manifestação com alertas antes do vencimento. Zero prazo perdido em e-mail compartilhado.</p>
-      </div>
-    </div>
-
-    <!-- Card 4: Multi-unidade -->
-    <div class="plat-card fade fade-delay-2">
-      <div class="plat-visual">
-        <svg width="210" height="148" viewBox="0 0 210 148" fill="none">
-          <!-- Lines (draw first so they appear behind units) -->
-          <line x1="88" y1="65" x2="38" y2="30" stroke-width="1.3" class="pmulti-line" style="animation-delay:0s"/>
-          <line x1="122" y1="65" x2="172" y2="30" stroke-width="1.3" class="pmulti-line" style="animation-delay:.5s"/>
-          <line x1="88" y1="83" x2="38" y2="118" stroke-width="1.3" class="pmulti-line" style="animation-delay:1s"/>
-          <line x1="122" y1="83" x2="172" y2="118" stroke-width="1.3" class="pmulti-line" style="animation-delay:1.5s"/>
-          <!-- Center hub -->
-          <circle cx="105" cy="74" r="18" fill="rgba(38,162,76,.1)" stroke="rgba(38,162,76,.3)" stroke-width="1.5"/>
-          <circle cx="105" cy="74" r="10" fill="rgba(38,162,76,.18)" stroke="rgba(38,162,76,.6)" stroke-width="1.5"/>
-          <circle cx="105" cy="74" r="4.5" fill="#26A24C"/>
-          <!-- Unit boxes -->
-          <g class="pmulti-unit" style="animation-delay:0s">
-            <rect x="14" y="16" width="42" height="26" rx="5" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
-            <rect x="20" y="22" width="10" height="6" rx="1.5" fill="rgba(255,255,255,.18)"/>
-            <rect x="33" y="22" width="16" height="2.5" rx="1" fill="rgba(255,255,255,.08)"/>
-            <rect x="33" y="27" width="11" height="2.5" rx="1" fill="rgba(255,255,255,.06)"/>
-          </g>
-          <g class="pmulti-unit" style="animation-delay:.5s">
-            <rect x="154" y="16" width="42" height="26" rx="5" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
-            <rect x="160" y="22" width="10" height="6" rx="1.5" fill="rgba(255,255,255,.18)"/>
-            <rect x="173" y="22" width="16" height="2.5" rx="1" fill="rgba(255,255,255,.08)"/>
-            <rect x="173" y="27" width="11" height="2.5" rx="1" fill="rgba(255,255,255,.06)"/>
-          </g>
-          <g class="pmulti-unit" style="animation-delay:1s">
-            <rect x="14" y="106" width="42" height="26" rx="5" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
-            <rect x="20" y="112" width="10" height="6" rx="1.5" fill="rgba(255,255,255,.18)"/>
-            <rect x="33" y="112" width="16" height="2.5" rx="1" fill="rgba(255,255,255,.08)"/>
-            <rect x="33" y="117" width="11" height="2.5" rx="1" fill="rgba(255,255,255,.06)"/>
-          </g>
-          <g class="pmulti-unit" style="animation-delay:1.5s">
-            <rect x="154" y="106" width="42" height="26" rx="5" fill="rgba(255,255,255,.04)" stroke="rgba(255,255,255,.12)" stroke-width="1"/>
-            <rect x="160" y="112" width="10" height="6" rx="1.5" fill="rgba(255,255,255,.18)"/>
-            <rect x="173" y="112" width="16" height="2.5" rx="1" fill="rgba(255,255,255,.08)"/>
-            <rect x="173" y="117" width="11" height="2.5" rx="1" fill="rgba(255,255,255,.06)"/>
-          </g>
-        </svg>
-      </div>
-      <div class="plat-body">
-        <h4>Multi-unidade com visão consolidada</h4>
-        <p>Cada unidade opera com autonomia dentro do padrão da organização. Dashboard corporativo sem perder a granularidade local.</p>
-      </div>
-    </div>
-
-    <!-- Card 5: Integrações e API -->
-    <div class="plat-card fade fade-delay-3">
-      <div class="plat-visual">
-        <div class="papi-wrap">
-          <div class="papi-row" style="--d:0s">
-            <span class="papi-method m-get">GET</span>
-            <span class="papi-ep">/manifestacoes</span>
-            <span class="papi-ok">200 ✓</span>
-          </div>
-          <div class="papi-row" style="--d:.9s">
-            <span class="papi-method m-post">POST</span>
-            <span class="papi-ep">/sla/config</span>
-            <span class="papi-ok">201 ✓</span>
-          </div>
-          <div class="papi-row" style="--d:1.8s">
-            <span class="papi-method m-get">GET</span>
-            <span class="papi-ep">/relatorios/conformidade</span>
-            <span class="papi-ok">200 ✓</span>
-          </div>
-          <div class="papi-row" style="--d:2.7s">
-            <span class="papi-method m-post">POST</span>
-            <span class="papi-ep">/alertas/prazo</span>
-            <span class="papi-ok">201 ✓</span>
-          </div>
-        </div>
-      </div>
-      <div class="plat-body">
-        <h4>Integrações e API documentada</h4>
+    <div class="plat-feature fade">
+      <div class="plat-feature-text">
+        <h3>Integrações e<br>API documentada</h3>
         <p>API REST para integração com CRM, ERP e sistemas legados. Levantamento técnico gratuito no onboarding.</p>
       </div>
-    </div>
-
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ══════════ MÉTRICAS ══════════ -->
-<section class="fade" id="metricas">
-  <div class="metrics-head">
-    <div>
-      <div class="sec-eyebrow" style="justify-content:flex-start">
-        <span class="eyebrow-icon">✦</span>
-        <span class="eyebrow-text">Métricas de experiência</span>
-      </div>
-      <h2 class="sec-h2" style="text-align:left">CES · CSAT · NPS<br><em>integrados e automatizados.</em></h2>
-    </div>
-    <p class="metrics-sub">Analisamos métricas, fornecemos indicadores e damos contexto — transformando feedback em gestão inteligente. Dashboards que consolidam as métricas essenciais de CX em uma visão única e acionável.</p>
-  </div>
-  <div class="metrics-cards">
-    <div class="metric-card fade fade-delay-1">
-      <div class="metric-abbr">NPS</div>
-      <div class="metric-name">Net Promoter Score</div>
-      <div class="metric-desc">Mede a lealdade do cliente e a probabilidade de recomendação da empresa. Coletado automaticamente após cada resolução de manifestação.</div>
-      <div class="metric-ex"><strong>Como aparece:</strong> "Em uma escala de 0 a 10, o quanto você recomendaria nossa empresa a um colega?" — enviado automaticamente após fechamento.</div>
-    </div>
-    <div class="metric-card fade fade-delay-2">
-      <div class="metric-abbr">CES</div>
-      <div class="metric-name">Customer Effort Score</div>
-      <div class="metric-desc">Mede o esforço que o cliente precisou para resolver seu problema. Quanto menor o esforço, maior a fidelização — e menor o risco de churn silencioso.</div>
-      <div class="metric-ex"><strong>Como aparece:</strong> "Quanto esforço você precisou fazer para resolver sua solicitação?" — métrica crítica para redução de evasão em educação.</div>
-    </div>
-    <div class="metric-card fade fade-delay-3">
-      <div class="metric-abbr">CSAT</div>
-      <div class="metric-name">Customer Satisfaction Score</div>
-      <div class="metric-desc">Mede a satisfação pontual com o atendimento e a resolução. Complementa o NPS com uma leitura imediata da qualidade do tratamento.</div>
-      <div class="metric-ex"><strong>Como aparece:</strong> "Como você avalia a resolução da sua solicitação?" — alimenta o dashboard executivo e os relatórios de conformidade.</div>
-    </div>
-  </div>
-</section>
-
-<div class="divider"></div>
-
-<!-- ══════════ SEGURANÇA ══════════ -->
-<section class="fade">
-  <div class="sec-grid-2">
-    <div>
-      <div class="sec-eyebrow" style="justify-content:flex-start">
-        <span class="eyebrow-icon">✦</span>
-        <span class="eyebrow-text">Segurança & Conformidade</span>
-      </div>
-      <h2 class="sec-h2" style="text-align:left">Banco de dados<br><em>seguro e certificado.</em></h2>
-      <p class="sec-left-text">Conformidade com os principais padrões globais de segurança. Seus dados e os dados dos seus clientes protegidos com os mais altos padrões da indústria.</p>
-    </div>
-    <div class="cert-grid fade fade-delay-1">
-      <!-- LGPD: escudo com check -->
-      <div class="cert">
-        <div class="cert-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
-            <polyline points="9 12 11 14 15 10"/>
-          </svg>
-        </div>
-        <div><h4>LGPD</h4><p>Conformidade total com a Lei Geral de Proteção de Dados brasileira.</p></div>
-      </div>
-      <!-- GDPR: globo com meridianos -->
-      <div class="cert">
-        <div class="cert-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="12" r="10"/>
-            <line x1="2" y1="12" x2="22" y2="12"/>
-            <path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
-          </svg>
-        </div>
-        <div><h4>GDPR</h4><p>Padrão europeu de proteção de dados pessoais.</p></div>
-      </div>
-      <!-- ISO 27001: cadeado -->
-      <div class="cert">
-        <div class="cert-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="11" width="18" height="11" rx="2"/>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
-            <circle cx="12" cy="16" r="1" fill="currentColor" stroke="none"/>
-          </svg>
-        </div>
-        <div><h4>ISO 27001</h4><p>Certificação internacional para gestão de segurança da informação.</p></div>
-      </div>
-      <!-- SOC 2: checklist auditoria -->
-      <div class="cert">
-        <div class="cert-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M9 11l3 3L22 4"/>
-            <path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>
-          </svg>
-        </div>
-        <div><h4>SOC 2</h4><p>Auditoria independente de segurança, disponibilidade e confidencialidade.</p></div>
-      </div>
-      <!-- Microsoft AD: hierarquia de rede -->
-      <div class="cert">
-        <div class="cert-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="12" cy="4" r="2"/>
-            <circle cx="5" cy="20" r="2"/>
-            <circle cx="19" cy="20" r="2"/>
-            <line x1="12" y1="6" x2="12" y2="13"/>
-            <line x1="12" y1="13" x2="5" y2="18"/>
-            <line x1="12" y1="13" x2="19" y2="18"/>
-          </svg>
-        </div>
-        <div><h4>Microsoft Active Directory</h4><p>Autenticação centralizada e gestão de acessos corporativos via AD.</p></div>
-      </div>
-      <!-- Google SSO: chave -->
-      <div class="cert">
-        <div class="cert-icon">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-            <circle cx="7.5" cy="9.5" r="4.5"/>
-            <path d="M10.5 12.5L20 22"/>
-            <path d="M17 20l2-2"/>
-            <path d="M14.5 17.5l2-2"/>
-          </svg>
-        </div>
-        <div><h4>Google SSO</h4><p>Acesso via Google Single Sign-On — sem senhas adicionais.</p></div>
+      <div class="plat-feature-img">
+        <img src="fotos/plataforma-api.png" alt="Integrações e API">
       </div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
-
-<!-- ══════════ FAQ ══════════ -->
-<section class="fade">
-  <div class="faq-grid">
-    <div class="faq-left">
-      <div class="sec-eyebrow" style="justify-content:flex-start;margin-bottom:16px">
-        <span class="eyebrow-icon">✦</span>
-        <span class="eyebrow-text">FAQ</span>
-      </div>
-      <h2>Respostas diretas.<br><em>Sem eufemismo.</em></h2>
-      <p style="margin-top:16px">Se sua pergunta não está aqui, traga para a demonstração da plataforma — que responderemos durante a demo.</p>
+<!-- MÉTRICAS -->
+<section class="section section-white fade" id="metricas">
+  <div class="metricas-header">
+    <div class="badge badge-mid" style="margin-bottom:clamp(12px,1vw,20px)">
+      <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Métricas de experiência
     </div>
-    <div class="faq-list fade fade-delay-1">
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">O que significa S.E.R.?<span class="faq-plus">+</span></button>
-        <div class="faq-ans"><p><strong style="color:var(--white)">S</strong> de Saber (ouvir a voz do cliente e entender suas percepções, oferecendo um canal fácil e acessível para o registro dos feedbacks), <strong style="color:var(--white)">E</strong> de Entender (analisar profundamente com contexto e gerar insights estratégicos) e <strong style="color:var(--white)">R</strong> de Resolver e Responder (agir de forma assertiva, fechar o ciclo com o cliente e gerar evidência documentada). É um ciclo completo — não apenas um repositório de reclamações.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Quanto custa a plataforma?<span class="faq-plus">+</span></button>
-        <div class="faq-ans"><p>A assinatura da plataforma varia com base na quantidade de feedbacks. Há pacotes fixos e variáveis. Na demo, apresentamos os planos e condições de pagamento.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Integra com nosso sistema atual?<span class="faq-plus">+</span></button>
-        <div class="faq-ans"><p>A S.E.R. Cliente possui condições de integração via API, permitindo conexão com outros sistemas de acordo com a necessidade de cada operação. As possibilidades podem ser avaliadas conforme o contexto, os objetivos do projeto e os requisitos técnicos envolvidos.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">Quanto tempo leva o onboarding?<span class="faq-plus">+</span></button>
-        <div class="faq-ans"><p>Em 30 minutos o acesso à plataforma é liberado e o onboarding é feito em até três encontros de 1h.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">A plataforma funciona para Angola e Moçambique?<span class="faq-plus">+</span></button>
-        <div class="faq-ans"><p>Sim. A S.E.R. Cliente está disponível para todos os países, incluindo Angola e Moçambique.</p></div>
-      </div>
-      <div class="faq-item">
-        <button class="faq-q" onclick="toggleFaq(this)">A plataforma é apenas para grandes empresas?<span class="faq-plus">+</span></button>
-        <div class="faq-ans"><p>Não! A plataforma é para todas as empresas que querem ouvir o feedback dos clientes. Se você já possui um canal de Ouvidoria, pode modernizá-lo e usufruir dos diferenciais da S.E.R. Cliente. Temos condições especiais para pequenas e médias empresas.</p></div>
-      </div>
+    <h2>CES · CSAT · NPS<br>Integrados e Automatizados</h2>
+    <p>Analisamos métricas, fornecemos indicadores e damos contexto.<br>Transformando feedback em gestão inteligente.</p>
+  </div>
+  <div class="metricas-grid">
+    <div class="metrica-card fade">
+      <div class="metrica-abbr">NPS</div>
+      <div class="metrica-name">Net Promoter Score</div>
+      <p class="metrica-desc">Mede a lealdade do cliente e a probabilidade de recomendação da empresa. Coletado automaticamente ao final de interações-chave.</p>
+      <div class="metrica-example">"Em uma escala de 0 a 10, o quanto você recomendaria nossa empresa a um colega?" — enviado automaticamente após o fechamento de uma manifestação.</div>
+    </div>
+    <div class="metrica-card fade">
+      <div class="metrica-abbr">CES</div>
+      <div class="metrica-name">Customer Effort Score</div>
+      <p class="metrica-desc">Mede o esforço que o cliente precisou para resolver seu problema. Quanto menor o esforço, maior a fidelização.</p>
+      <div class="metrica-example">"Quanto esforço você precisou fazer para resolver sua solicitação?" — métrica crítica para identificar fricções no processo.</div>
+    </div>
+    <div class="metrica-card fade">
+      <div class="metrica-abbr">CSAT</div>
+      <div class="metrica-name">Customer Satisfaction Score</div>
+      <p class="metrica-desc">Mede a satisfação pontual com o atendimento e a resolução. Complementa NPS e CES com visão tática de curto prazo.</p>
+      <div class="metrica-example">"Como você avalia a resolução da sua solicitação?" — alimenta o dashboard executivo e relatórios de desempenho por unidade.</div>
     </div>
   </div>
 </section>
 
-<div class="divider"></div>
+<!-- SEGURANÇA -->
+<section class="section section-white fade">
+  <div class="seguranca-header">
+    <div class="badge badge-mid" style="margin-bottom:clamp(12px,1vw,20px)">
+      <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Segurança &amp; Conformidade
+    </div>
+    <h2>Banco de dados<br>seguro e certificado.</h2>
+    <p>Conformidade com os principais padrões globais de segurança. Seus dados e os dados dos seus clientes estão protegidos.</p>
+  </div>
+  <div class="seguranca-grid">
+    <div class="seg-item fade">
+      <h4>LGPD</h4>
+      <p>Conformidade total com a Lei Geral de Proteção de Dados brasileira.</p>
+    </div>
+    <div class="seg-item fade">
+      <h4>GDPR</h4>
+      <p>Padrão europeu de proteção de dados pessoais.</p>
+    </div>
+    <div class="seg-item fade">
+      <h4>ISO 27001</h4>
+      <p>Certificação internacional para gestão de segurança da informação.</p>
+    </div>
+    <div class="seg-item fade">
+      <h4>SOC 2</h4>
+      <p>Auditoria independente de segurança, disponibilidade e confidencialidade.</p>
+    </div>
+    <div class="seg-item fade">
+      <h4>Microsoft Active Directory</h4>
+      <p>Autenticação centralizada e gestão de acessos corporativos via AD.</p>
+    </div>
+    <div class="seg-item fade">
+      <h4>Google SSO</h4>
+      <p>Acesso via Google Single Sign-On — sem senhas adicionais.</p>
+    </div>
+  </div>
+</section>
 
-<!-- ══════════ CTA FINAL ══════════ -->
-<section class="cta-final fade" id="demo">
-  <div class="glow glow-green cta-glow" style="position:absolute;pointer-events:none"></div>
-  <div style="position:relative;z-index:1">
-    <div class="sec-eyebrow">
-      <span class="eyebrow-icon">✦</span>
-      <span class="eyebrow-text">Comece agora</span>
+<!-- FAQ -->
+<section class="section section-white fade">
+  <div class="faq-header">
+    <div class="badge badge-mid" style="margin-bottom:clamp(12px,1vw,20px)">
+      <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      FAQ
     </div>
-    <h2>30 minutos para ter o acesso<br>à plataforma e <em>já começar a usar.</em></h2>
-    <p class="cta-sub">Agende sua demo e conheça os benefícios da S.E.R. Cliente para a sua operação e sua gestão.</p>
-    <div class="cta-checks">
-      <div class="cta-check">Sem compromisso. Sem pitch. Só dados.</div>
-      <div class="cta-check">Acesso em 30 minutos</div>
-      <div class="cta-check">Onboarding em até 3 encontros de 1h</div>
+    <h2>Respostas diretas.<br>Sem eufemismo.</h2>
+    <p>Se sua pergunta não está aqui, traga para a demonstração da plataforma — que responderemos durante a demo.</p>
+  </div>
+  <div class="faq-list">
+    <div class="faq-item open">
+      <div class="faq-question">
+        O que significa S.E.R.?
+        <span class="faq-arrow"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M8 11l6 6 6-6" stroke="#11b760" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="faq-answer">S de Saber (ouvir a voz do cliente e entender suas percepções, oferecendo um canal fácil e acessível). E de Entender (analisar o feedback de forma profunda). R de Resolver e Responder (agir de forma assertiva).</div>
     </div>
-    <div class="cta-form-wrap">
-      <div class="form-card">
-        <div style="text-align:left;margin-bottom:24px">
-          <p style="font-family:var(--serif);font-style:italic;font-size:22px;color:var(--white);line-height:1.3">Agende sua demo</p>
-          <p style="font-size:13px;color:var(--muted);margin-top:6px">Preencha em 30 segundos. Nossa equipe confirma em até 24 horas.</p>
-        </div>
-        <div class="fg"><label>Nome completo</label><input type="text" placeholder="Seu nome"></div>
-        <div class="fg"><label>Empresa</label><input type="text" placeholder="Nome da sua organização"></div>
-        <div class="fg">
-          <label>Setor</label>
-          <select>
-            <option value="">Selecione seu setor</option>
-            <option>Saúde (Hospital, Operadora, Clínica)</option>
-            <option>Infraestrutura e Transporte</option>
-            <option>Educação Superior</option>
-            <option>Seguros e Financeiro</option>
-            <option>Angola ou Moçambique</option>
-            <option>Outro setor regulado</option>
+    <div class="faq-item">
+      <div class="faq-question">
+        Quanto custa a plataforma?
+        <span class="faq-arrow"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M8 11l6 6 6-6" stroke="#11b760" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="faq-answer">O valor é definido conforme o porte da operação, número de unidades e funcionalidades necessárias. Agende uma demo para receber uma proposta personalizada.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">
+        Integra com nosso sistema atual?
+        <span class="faq-arrow"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M8 11l6 6 6-6" stroke="#11b760" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="faq-answer">Sim. A plataforma conta com API REST documentada para integração com CRM, ERP e sistemas legados. O levantamento técnico é gratuito durante o onboarding.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">
+        Quanto tempo leva o onboarding?
+        <span class="faq-arrow"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M8 11l6 6 6-6" stroke="#11b760" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="faq-answer">Em média 30 minutos para o primeiro acesso. A configuração completa da operação pode levar de 1 a 5 dias úteis dependendo da complexidade.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">
+        A plataforma funciona para Angola e Moçambique?
+        <span class="faq-arrow"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M8 11l6 6 6-6" stroke="#11b760" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="faq-answer">Sim. A S.E.R. Cliente opera em português e já atende organizações em países lusófonos, com suporte dedicado.</div>
+    </div>
+    <div class="faq-item">
+      <div class="faq-question">
+        A plataforma é apenas para grandes empresas?
+        <span class="faq-arrow"><svg width="28" height="28" viewBox="0 0 28 28" fill="none"><path d="M8 11l6 6 6-6" stroke="#11b760" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      </div>
+      <div class="faq-answer">Não. A S.E.R. Cliente foi desenhada para se adaptar a diferentes portes e setores. Temos planos para operações de médio a grande porte.</div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA -->
+<section id="contato">
+  <div class="cta-green fade">
+    <div class="cta-green-bg"></div>
+    <div class="cta-green-content">
+      <div class="badge badge-white" style="margin-bottom:clamp(16px,1.5vw,28px)">
+        <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Comece agora
+      </div>
+      <h2>30 minutos para ter o acesso à plataforma e&nbsp;já começar a usar.</h2>
+      <p>Agende sua demo e conheça os benefícios da S.E.R. Cliente para a sua operação e sua gestão.</p>
+    </div>
+  </div>
+  <div class="cta-form-section">
+    <div class="cta-form-wrap fade">
+      <h2 class="cta-form-title">Agende sua demo</h2>
+      <p class="cta-form-sub">Preencha em 30 segundos. Nossa equipe confirma em até 24 horas.</p>
+      <form class="form-fields" onsubmit="return false">
+        <input class="form-field" type="text" placeholder="Nome*" required>
+        <input class="form-field" type="text" placeholder="Nome da empresa:">
+        <div class="form-select-wrap">
+          <select class="form-field">
+            <option value="" disabled selected>Selecione seu setor</option>
+            <option>Aviação Civil</option>
+            <option>Saúde</option>
+            <option>Educação</option>
+            <option>Óleo &amp; Gás</option>
+            <option>Governamental</option>
+            <option>Varejo</option>
+            <option>Outro</option>
           </select>
+          <span class="form-select-arrow">▾</span>
         </div>
-        <div class="fg"><label>Telefone (WhatsApp)</label><input type="tel" placeholder="+55 (19) 99752-5516"></div>
-        <div class="fg"><label>E-mail corporativo</label><input type="email" placeholder="seu@empresa.com.br"></div>
-        <button class="form-btn">
-          Agendar demonstração gratuita
-          <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M3 11L11 3M11 3H5M11 3V9" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-        </button>
-        <p class="form-note">Sem spam. Sem compromisso. Respondemos em até 24 horas úteis.</p>
-      </div>
+        <input class="form-field" type="tel" placeholder="Telefone (WhatsApp):">
+        <input class="form-field" type="email" placeholder="E-mail corporativo:">
+        <button class="form-submit" type="submit">Agendar demonstração gratuita</button>
+      </form>
+      <p class="form-disclaimer">Sem spam. Sem compromisso. Respondemos em até 24 horas úteis.</p>
     </div>
   </div>
 </section>
 
-<!-- ══════════ FOOTER ══════════ -->
+<!-- FOOTER -->
 <footer>
-  <div class="f-logo" style="display:flex;flex-direction:column;align-items:flex-start;gap:2px;font-style:normal">
-    <span style="font-family:var(--sans);font-weight:800;font-size:15px;color:var(--green);letter-spacing:.12em">S·E·R</span>
-    <span style="font-family:var(--sans);font-weight:600;font-size:9px;color:var(--green);border:1.5px solid var(--green);border-radius:3px;padding:1px 6px;letter-spacing:.04em">cliente</span>
-  </div>
-  <div class="f-links">
-    <a href="#metodo">Método S.E.R.</a>
-    <a href="#plataforma">Plataforma</a>
-    <a href="#metricas">Métricas CX</a>
+  <span class="footer-copy">© 2026 S.E.R. Cliente · Toronto, Canadá</span>
+  <nav class="footer-links">
     <a href="#sobre">Sobre</a>
-    <a href="#demo">Contato</a>
-  </div>
-  <div class="f-copy">© 2026 S.E.R. Cliente · Toronto, Canadá</div>
+    <a href="#metodo">Método</a>
+    <a href="#diferenciais">Diferenciais</a>
+    <a href="#plataforma">Plataforma</a>
+    <a href="#contato">Contato</a>
+  </nav>
 </footer>
 
 <script>
-/* ─── PARTICLES ─── */
-(function(){
-  const container = document.getElementById('particles');
-  const count = 28;
-  for(let i = 0; i < count; i++){
-    const p = document.createElement('div');
-    p.className = 'particle';
-    p.style.cssText = `
-      left:${Math.random()*100}%;
-      top:${20 + Math.random()*70}%;
-      animation-duration:${4 + Math.random()*6}s;
-      animation-delay:${Math.random()*6}s;
-      width:${1 + Math.random()*2}px;
-      height:${1 + Math.random()*2}px;
-      opacity:${.2 + Math.random()*.4};
-    `;
-    container.appendChild(p);
-  }
-})();
+// Fade on scroll
+const observer=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
+},{threshold:0.08});
+document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
 
-/* ─── PAIN CAROUSEL ─── */
-(function(){
-  const cards = document.querySelectorAll('.pain-card');
-  const dots  = document.querySelectorAll('.pain-nav-dot');
-  const pos   = ['pos-0','pos-1','pos-2'];
-  let cur = 0, timer;
-  function activate(front){
-    cards.forEach((c,i)=>{
-      c.classList.remove('pos-0','pos-1','pos-2');
-      c.classList.add(pos[(i - front + 3) % 3]);
-    });
-    dots.forEach((d,i)=>d.classList.toggle('active', i===front));
-    cur = front;
-  }
-  function reset(){ clearInterval(timer); timer = setInterval(()=>activate((cur+1)%3), 5000); }
-  window.painGo = function(i){ activate(i); reset(); };
-  activate(0); reset();
-})();
-
-/* ─── SOBRE TABS ─── */
-(function(){
-  const tabs = document.querySelectorAll('.sobre-tab');
-  const panels = document.querySelectorAll('.sobre-panel');
-  let cur = 0, timer;
-  function activate(i){
-    tabs.forEach((t,j)=>{ t.classList.toggle('active',j===i); });
-    panels.forEach((p,j)=>{ p.classList.toggle('active',j===i); });
-    cur = i;
-  }
-  function next(){ activate((cur+1)%tabs.length); }
-  function reset(){ clearInterval(timer); timer=setInterval(next,4000); }
-  window.sobreTab = function(i){ activate(i); reset(); };
-  activate(0); reset();
-})();
-
-/* ─── SCROLL REVEAL ─── */
-const obs = new IntersectionObserver(entries => {
-  entries.forEach(e => { if(e.isIntersecting){ e.target.classList.add('on'); obs.unobserve(e.target); } })
-}, {threshold:.08});
-document.querySelectorAll('.fade').forEach(el => obs.observe(el));
-
-/* ─── FAQ ─── */
-function toggleFaq(btn){
-  const ans = btn.nextElementSibling;
-  const icon = btn.querySelector('.faq-plus');
-  const isOpen = ans.classList.contains('open');
-  document.querySelectorAll('.faq-ans').forEach(a => a.classList.remove('open'));
-  document.querySelectorAll('.faq-plus').forEach(i => i.classList.remove('open'));
-  if(!isOpen){ ans.classList.add('open'); icon.classList.add('open'); }
-}
-
-/* ─── SMOOTH SCROLL ─── */
-document.querySelectorAll('a[href^="#"]').forEach(a => {
-  a.addEventListener('click', e => {
-    const t = document.querySelector(a.getAttribute('href'));
-    if(t){ e.preventDefault(); t.scrollIntoView({behavior:'smooth',block:'start'}); }
+// FAQ accordion
+document.querySelectorAll('.faq-item').forEach(item=>{
+  item.querySelector('.faq-question').addEventListener('click',()=>{
+    const wasOpen=item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
+    if(!wasOpen)item.classList.add('open');
   });
 });
 
-/* ─── NAV SCROLL EFFECT ─── */
-const nav = document.querySelector('nav');
-window.addEventListener('scroll', () => {
-  nav.style.background = window.scrollY > 60
-    ? 'rgba(4,7,13,0.95)'
-    : 'rgba(4,7,13,0.8)';
+// Nav scroll style
+window.addEventListener('scroll',()=>{
+  document.querySelector('nav').style.background=
+    window.scrollY>60?'rgba(9,9,9,0.96)':'rgba(9,9,9,0.88)';
 });
 </script>
 </body>
