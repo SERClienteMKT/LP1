@@ -289,35 +289,78 @@ nav{
   .sa-row.img-first .sa-media{order:0}
 }
 
-/* ─── 4 PILLARS ─── */
-.pillars-intro{margin-bottom:clamp(32px,3vw,60px)}
-.pillars-intro h2{
-  font-size:clamp(28px,4.2vw,80px);font-weight:600;line-height:1.1;
-  letter-spacing:-0.03em;color:var(--white);margin-bottom:16px;
-  max-width:900px;
+/* ─── 4 PILARES (card design) ─── */
+.pilares-section{
+  background:var(--dark-section);
+  padding:clamp(80px,8vw,140px) 8%;
 }
-.pillars-tagline{
-  font-size:clamp(15px,1.56vw,30px);font-weight:700;
+.pilares-header{
+  text-align:center;
+  margin-bottom:clamp(48px,5vw,80px);
+}
+.pilares-chevron{
+  display:flex;align-items:center;justify-content:center;
+  margin-bottom:clamp(16px,1.5vw,24px);
+}
+.pilares-chevron svg{width:28px;height:28px}
+.pilares-header h2{
+  font-size:clamp(24px,2.8vw,52px);font-weight:700;line-height:1.15;
+  letter-spacing:-0.035em;color:var(--white);
+  margin:0 auto clamp(12px,1vw,16px);max-width:720px;
+}
+.pilares-tagline{
+  font-size:clamp(14px,1vw,18px);font-weight:700;
   color:var(--bright);letter-spacing:-0.01em;
 }
-.pillar{
-  display:grid;grid-template-columns:140px 1fr;gap:clamp(20px,2.5vw,48px);
-  padding:clamp(32px,2.5vw,48px) 0;
-  border-top:1px solid rgba(255,255,255,0.1);
-  align-items:start;
+.pilares-list{
+  display:flex;flex-direction:column;
+  gap:clamp(14px,1.2vw,20px);
 }
-.pillar:last-child{border-bottom:1px solid rgba(255,255,255,0.1)}
-.pillar-num{
-  font-size:clamp(36px,3.3vw,63px);font-weight:700;
-  color:var(--bright);letter-spacing:-0.04em;line-height:1;flex-shrink:0;
+/* card */
+.pilar-card{
+  display:grid;grid-template-columns:38% 1fr;
+  background:#272727;border-radius:20px;overflow:hidden;
+  border:1px solid rgba(255,255,255,0.06);
+  transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,border-color .35s ease;
+  will-change:transform;
 }
-.pillar-content h3{
-  font-size:clamp(22px,3.2vw,62px);font-weight:600;color:var(--white);
-  letter-spacing:-0.03em;line-height:1.1;margin-bottom:clamp(12px,1vw,20px);
+.pilar-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 60px rgba(0,0,0,0.4);
+  border-color:rgba(50,204,97,0.2);
 }
-.pillar-content p{
-  font-size:clamp(14px,1.56vw,30px);font-weight:300;color:rgba(255,255,255,0.85);
-  line-height:1.65;letter-spacing:-0.01em;max-width:900px;
+.pilar-img{overflow:hidden;min-height:clamp(220px,22vw,360px)}
+.pilar-img img{
+  width:100%;height:100%;object-fit:cover;display:block;
+  transition:transform .6s cubic-bezier(.22,1,.36,1);
+}
+.pilar-card:hover .pilar-img img{transform:scale(1.07)}
+.pilar-body{
+  padding:clamp(28px,2.8vw,52px) clamp(28px,2.8vw,52px);
+  display:flex;flex-direction:column;justify-content:center;
+}
+.pilar-num{
+  font-size:clamp(32px,3vw,56px);font-weight:700;
+  color:var(--bright);letter-spacing:-0.04em;line-height:1;
+  display:block;margin-bottom:clamp(6px,.6vw,10px);
+}
+.pilar-title{
+  font-size:clamp(22px,2.2vw,42px);font-weight:700;color:var(--white);
+  letter-spacing:-0.03em;line-height:1.1;
+  margin-bottom:clamp(12px,1.2vw,20px);
+}
+.pilar-text{
+  font-size:clamp(14px,1.05vw,19px);font-weight:400;
+  color:rgba(255,255,255,0.72);line-height:1.7;letter-spacing:-0.01em;
+}
+.pilar-text strong{color:rgba(255,255,255,0.95);font-weight:700}
+/* stagger */
+.pilar-card:nth-child(2){transition-delay:.08s}
+.pilar-card:nth-child(3){transition-delay:.16s}
+.pilar-card:nth-child(4){transition-delay:.24s}
+@media(max-width:768px){
+  .pilar-card{grid-template-columns:1fr}
+  .pilar-img{min-height:220px}
 }
 
 /* ─── DANIELA ─── */
@@ -835,38 +878,67 @@ a{cursor:pointer}
 </section>
 
 <!-- 4 PILARES -->
-<section class="section section-dark fade">
-  <div class="pillars-intro">
-    <h2>Analisamos métricas, fornecemos<br>indicadores e damos contexto.</h2>
-    <p class="pillars-tagline">Transformando feedback em gestão inteligente.</p>
-  </div>
-  <div class="pillar fade">
-    <div class="pillar-num">01</div>
-    <div class="pillar-content">
-      <h3>Escuta ativa</h3>
-      <p>Feedback é oportunidade, não incômodo. Cada manifestação — reclamação, sugestão ou elogio — é capturada por canais acessíveis e organizados, garantindo que nenhuma voz seja perdida.</p>
+<section class="pilares-section" id="diferenciais">
+  <div class="pilares-header fade">
+    <div class="pilares-chevron">
+      <svg viewBox="0 0 28 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M2 2l12 12L26 2" stroke="#32CC61" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
     </div>
+    <h2>Analisamos métricas, fornecemos indicadores e damos contexto.</h2>
+    <p class="pilares-tagline">Transformando feedback em gestão inteligente.</p>
   </div>
-  <div class="pillar fade">
-    <div class="pillar-num">02</div>
-    <div class="pillar-content">
-      <h3>Decisão baseada em dados</h3>
-      <p>Números ganham valor quando contextualizados. Dashboards, métricas de CX e relatórios executivos transformam dados brutos em inteligência acionável para a gestão.</p>
+
+  <div class="pilares-list">
+
+    <!-- 01 -->
+    <div class="pilar-card fade">
+      <div class="pilar-img">
+        <img src="fotos/lp4.png" alt="Escuta ativa — atendente com headset">
+      </div>
+      <div class="pilar-body">
+        <span class="pilar-num">01</span>
+        <h3 class="pilar-title">Escuta ativa</h3>
+        <p class="pilar-text">Feedback é oportunidade, não incômodo. Cada manifestação — reclamação, sugestão ou elogio — <strong>é capturada, registrada e transformada em insumo estratégico para a sua operação.</strong></p>
+      </div>
     </div>
-  </div>
-  <div class="pillar fade">
-    <div class="pillar-num">03</div>
-    <div class="pillar-content">
-      <h3>Transparência e rastreabilidade</h3>
-      <p>Tudo tem histórico, evidência e acompanhamento. Cada manifestação deixa uma trilha completa — do recebimento à resolução — com código único compartilhado com o cliente.</p>
+
+    <!-- 02 -->
+    <div class="pilar-card fade">
+      <div class="pilar-img">
+        <img src="fotos/lp5.png" alt="Decisão baseada em dados — reunião com dashboard">
+      </div>
+      <div class="pilar-body">
+        <span class="pilar-num">02</span>
+        <h3 class="pilar-title">Decisão baseada<br>em dados</h3>
+        <p class="pilar-text">Números ganham valor quando contextualizados. <strong>Dashboards, métricas de CX e relatórios executivos</strong> transformam dados brutos em decisões claras para lideranças e auditorias.</p>
+      </div>
     </div>
-  </div>
-  <div class="pillar fade">
-    <div class="pillar-num">04</div>
-    <div class="pillar-content">
-      <h3>Responsabilidade na resposta</h3>
-      <p>Responder com contexto, ação e comprometimento real. A S.E.R. Cliente garante que cada manifestação receba uma resposta fundamentada, dentro do prazo, com qualidade e rastreabilidade.</p>
+
+    <!-- 03 -->
+    <div class="pilar-card fade">
+      <div class="pilar-img">
+        <img src="fotos/lp6.png" alt="Transparência e rastreabilidade — dois profissionais com laptop">
+      </div>
+      <div class="pilar-body">
+        <span class="pilar-num">03</span>
+        <h3 class="pilar-title">Transparência e<br>rastreabilidade</h3>
+        <p class="pilar-text"><strong>Tudo tem histórico, evidência e acompanhamento.</strong> Cada manifestação deixa uma trilha completa, do recebimento ao encerramento, pronta para auditorias e agências reguladoras.</p>
+      </div>
     </div>
+
+    <!-- 04 -->
+    <div class="pilar-card fade">
+      <div class="pilar-img">
+        <img src="fotos/lp7.png" alt="Responsabilidade na resposta — profissional ao telefone">
+      </div>
+      <div class="pilar-body">
+        <span class="pilar-num">04</span>
+        <h3 class="pilar-title">Responsabilidade<br>na resposta</h3>
+        <p class="pilar-text">Responder com contexto, ação e comprometimento real. A S.E.R. Cliente auxilia que cada manifestação seja analisada, resolvida e respondida de forma <strong>estruturada e personalizada</strong>, com documentação e rastreabilidade total.</p>
+      </div>
+    </div>
+
   </div>
 </section>
 
