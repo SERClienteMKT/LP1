@@ -191,7 +191,7 @@ nav{
   margin-bottom:clamp(32px,3vw,60px);
 }
 .cards-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.5vw,28px)}
-.card{background:var(--white);border-radius:12px;overflow:hidden;border:1px solid var(--neutral)}
+.card{background:var(--white);border-radius:16px;overflow:hidden;border:1px solid rgba(0,0,0,0.07)}
 .card-img{width:100%;height:clamp(180px,18vw,335px);object-fit:cover;object-position:top;display:block}
 .card-body{padding:clamp(20px,1.8vw,36px) clamp(20px,1.8vw,36px) clamp(24px,2vw,40px)}
 .card-title{font-size:clamp(18px,1.8vw,35px);font-weight:700;color:var(--text-dark);letter-spacing:-0.02em;margin-bottom:8px}
@@ -200,24 +200,48 @@ nav{
 /* ─── SOBRE NÓS GREEN ─── */
 .sobre-green{
   position:relative;overflow:hidden;
-  background:#00803c;
-  padding:clamp(50px,5vw,100px) 8%;
+  background:radial-gradient(ellipse at 50% -10%, #009944 0%, #005A28 55%, #003018 100%);
+  padding:clamp(80px,8vw,160px) 8%;
+  text-align:center;
 }
 .sobre-green-bg{
   position:absolute;inset:0;
   background:url('fotos/sobre-nos-green.png') center/cover no-repeat;
-  mix-blend-mode:multiply;opacity:0.4;
+  mix-blend-mode:overlay;opacity:0.18;
 }
-.sobre-green-content{position:relative;z-index:1;max-width:960px}
+/* top wave */
+.sobre-green::before{
+  content:'';position:absolute;top:-2px;left:0;width:100%;height:80px;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 80' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,0 L0,0 Z' fill='%23ffffff'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+  pointer-events:none;z-index:2;
+}
+/* bottom wave */
+.sobre-green::after{
+  content:'';position:absolute;bottom:-2px;left:0;width:100%;height:80px;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 80' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,80 L0,80 Z' fill='%23ffffff'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+  pointer-events:none;z-index:2;
+}
+.sobre-green-content{position:relative;z-index:1;max-width:900px;margin:0 auto}
+/* dark pill badge */
+.sobre-badge{
+  display:inline-flex;align-items:center;gap:10px;
+  background:rgba(0,0,0,0.35);border:1px solid rgba(255,255,255,0.18);
+  border-radius:100px;padding:8px 22px 8px 14px;
+  font-size:clamp(13px,.9vw,16px);font-weight:500;color:rgba(255,255,255,0.92);
+  letter-spacing:-.01em;margin-bottom:clamp(24px,2.5vw,44px);
+}
 .sobre-green h2{
-  font-size:clamp(28px,4.2vw,80px);font-weight:300;line-height:1.1;
-  letter-spacing:-0.03em;color:var(--white);
-  margin-bottom:clamp(16px,1.5vw,32px);
+  font-size:clamp(30px,4.4vw,84px);font-weight:300;line-height:1.08;
+  letter-spacing:-0.035em;color:var(--white);
+  margin-bottom:clamp(20px,2vw,36px);
 }
+.sobre-green h2 strong{font-weight:700;display:block}
 .sobre-green-sub{
-  font-size:clamp(14px,1.56vw,30px);font-weight:300;line-height:1.6;
-  color:rgba(255,255,255,0.85);max-width:820px;letter-spacing:-0.01em;
+  font-size:clamp(15px,1.35vw,26px);font-weight:400;line-height:1.65;
+  color:rgba(255,255,255,0.8);max-width:780px;letter-spacing:-0.01em;
+  margin:0 auto;
 }
+.sobre-green-sub .g{color:var(--neon);font-weight:700;font-style:normal}
 
 /* ─── SOBRE NÓS ARTIGO ─── */
 .sobre-artigo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,80px);align-items:start}
@@ -599,9 +623,29 @@ footer{
 }
 .footer-links a:hover{color:var(--white)}
 
-/* ─── SCROLL FADE ─── */
-.fade{opacity:0;transform:translateY(28px);transition:opacity .65s cubic-bezier(.22,1,.36,1),transform .65s cubic-bezier(.22,1,.36,1)}
+/* ─── SCROLL ANIMATIONS ─── */
+.fade{opacity:0;transform:translateY(36px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
 .fade.visible{opacity:1;transform:none}
+.fade-left{opacity:0;transform:translateX(-40px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+.fade-left.visible{opacity:1;transform:none}
+.fade-right{opacity:0;transform:translateX(40px);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+.fade-right.visible{opacity:1;transform:none}
+.fade-scale{opacity:0;transform:scale(.94);transition:opacity .75s cubic-bezier(.22,1,.36,1),transform .75s cubic-bezier(.22,1,.36,1)}
+.fade-scale.visible{opacity:1;transform:scale(1)}
+/* nth-child stagger — cards */
+.cards-grid .card:nth-child(2){transition-delay:.12s}
+.cards-grid .card:nth-child(3){transition-delay:.24s}
+/* nth-child stagger — dif-cards */
+.dif-grid .dif-card:nth-child(2){transition-delay:.07s}
+.dif-grid .dif-card:nth-child(3){transition-delay:.14s}
+.dif-grid .dif-card:nth-child(4){transition-delay:.21s}
+.dif-grid .dif-card:nth-child(5){transition-delay:.28s}
+.dif-grid .dif-card:nth-child(6){transition-delay:.35s}
+.dif-grid .dif-card:nth-child(7){transition-delay:.42s}
+.dif-grid .dif-card:nth-child(8){transition-delay:.49s}
+/* card hover lift */
+.card{transition:transform .35s cubic-bezier(.22,1,.36,1),box-shadow .35s ease,border-color .35s ease;will-change:transform}
+.card:hover{transform:translateY(-8px);box-shadow:0 24px 64px rgba(0,0,0,0.13);border-color:rgba(50,204,97,0.25)}
 
 /* ─── GLOBAL BUTTON HOVER POLISH ─── */
 .hero-btn,.hero-btn-circle,.nav-cta,.form-submit{cursor:pointer}
@@ -683,21 +727,21 @@ a{cursor:pointer}
   </div>
   <h2 class="entregamos-title">O que entregamos</h2>
   <div class="cards-grid">
-    <div class="card">
+    <div class="card fade">
       <img src="fotos/laptop-card.png" alt="Formulários flexíveis" class="card-img">
       <div class="card-body">
         <h3 class="card-title">Formulários flexíveis</h3>
         <p class="card-sub">Captação adaptada à sua operação</p>
       </div>
     </div>
-    <div class="card">
+    <div class="card fade">
       <img src="fotos/laptop-card.png" alt="Relatórios customizados" class="card-img">
       <div class="card-body">
         <h3 class="card-title">Relatórios customizados</h3>
         <p class="card-sub">Mais clareza para a tomada de decisão</p>
       </div>
     </div>
-    <div class="card">
+    <div class="card fade">
       <img src="fotos/laptop-card.png" alt="IA integrada" class="card-img">
       <div class="card-body">
         <h3 class="card-title">IA integrada</h3>
@@ -708,17 +752,17 @@ a{cursor:pointer}
 </section>
 
 <!-- SOBRE NÓS — GREEN BAND -->
-<section class="sobre-green fade">
+<section class="sobre-green">
   <div class="sobre-green-bg"></div>
   <div class="sobre-green-content">
-    <div class="badge badge-white" style="margin-bottom:clamp(16px,1.5vw,28px)">
+    <div class="sobre-badge fade">
       <span class="badge-arrow">
-        <svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#71F973" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </span>
       Sobre nós
     </div>
-    <h2>Existimos para transformar<br>a voz do cliente em ação.</h2>
-    <p class="sobre-green-sub">A plataforma ocupa o espaço entre ouvidoria tradicional e gestão estratégica de CX, com foco em operação real, não apenas em relatórios. Cada manifestação tratada com método, contexto e rastreabilidade.</p>
+    <h2 class="fade">Existimos para transformar<strong>a voz do cliente em ação.</strong></h2>
+    <p class="sobre-green-sub fade">A plataforma S.E.R. Cliente ocupa o espaço entre ouvidoria tradicional e gestão estratégica de CX, <em class="g">com foco em operação e decisão.</em></p>
   </div>
 </section>
 
@@ -1178,11 +1222,18 @@ a{cursor:pointer}
 </footer>
 
 <script>
-// ── Fade on scroll ──
-const observer=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')})
-},{threshold:0.07,rootMargin:'0px 0px -40px 0px'});
-document.querySelectorAll('.fade').forEach(el=>observer.observe(el));
+// ── Scroll reveal (fade, fade-left, fade-right, fade-scale) ──
+const revealObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('visible');
+      revealObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.08,rootMargin:'0px 0px -48px 0px'});
+document.querySelectorAll('.fade,.fade-left,.fade-right,.fade-scale').forEach(el=>revealObs.observe(el));
+// alias for legacy usage
+const observer=revealObs;
 
 // ── FAQ accordion ──
 document.querySelectorAll('.faq-item').forEach(item=>{
