@@ -243,24 +243,50 @@ nav{
 }
 .sobre-green-sub .g{color:var(--neon);font-weight:700;font-style:normal}
 
-/* ─── SOBRE NÓS ARTIGO ─── */
-.sobre-artigo{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,80px);align-items:start}
-.sobre-artigo-text{}
-.sobre-artigo h2{
-  font-size:clamp(24px,3.2vw,62px);font-weight:600;line-height:1.1;
-  letter-spacing:-0.03em;color:var(--text-dark);
-  margin-bottom:clamp(16px,1.5vw,32px);
+/* ─── SOBRE NÓS ARTIGO (3-row alternating) ─── */
+.sa-section{
+  background:#EEECEA;
+  padding:clamp(80px,8vw,140px) 8%;
 }
-.sobre-artigo p{
-  font-size:clamp(14px,1.56vw,30px);font-weight:400;line-height:1.65;
-  color:var(--text-dark);letter-spacing:-0.01em;margin-bottom:clamp(16px,1.3vw,26px);
+.sa-row{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(40px,5vw,96px);align-items:center;
+  margin-bottom:clamp(64px,7vw,120px);
 }
-.sobre-artigo-img{border-radius:12px;overflow:hidden;align-self:start}
-.sobre-artigo-img img{width:100%;display:block;border-radius:12px}
-.quote-block{
-  font-size:clamp(20px,2.4vw,46px);font-weight:700;line-height:1.2;
-  letter-spacing:-0.03em;color:var(--text-dark);
-  padding:clamp(32px,3vw,60px) 0;
+.sa-row:last-child{margin-bottom:0}
+.sa-row.img-first .sa-media{order:-1}
+.sa-media img{
+  width:100%;border-radius:20px;display:block;
+  height:clamp(300px,32vw,520px);object-fit:cover;object-position:center top;
+  box-shadow:0 8px 48px rgba(0,0,0,0.12);
+}
+/* light pill badge */
+.sa-badge{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,0,0,0.06);border:1px solid rgba(0,0,0,0.1);
+  border-radius:100px;padding:7px 18px 7px 10px;
+  font-size:clamp(13px,.85vw,15px);font-weight:500;color:#222;
+  letter-spacing:-.01em;margin-bottom:clamp(20px,2vw,32px);
+}
+.sa-h2{
+  font-size:clamp(28px,3.4vw,64px);font-weight:700;line-height:1.08;
+  letter-spacing:-0.038em;color:var(--text-dark);
+  margin-bottom:clamp(20px,1.8vw,32px);
+}
+.sa-h2 .g{color:var(--vibrant)}
+.sa-p{
+  font-size:clamp(15px,1.15vw,21px);font-weight:400;line-height:1.72;
+  color:#3a3a3a;letter-spacing:-0.01em;
+}
+.sa-p strong{font-weight:700;color:var(--text-dark)}
+.sa-quote{
+  font-size:clamp(26px,3.2vw,60px);font-weight:700;line-height:1.1;
+  letter-spacing:-0.038em;color:var(--text-dark);
+}
+.sa-quote .g{color:var(--vibrant)}
+@media(max-width:768px){
+  .sa-row{grid-template-columns:1fr}
+  .sa-row.img-first .sa-media{order:0}
 }
 
 /* ─── 4 PILLARS ─── */
@@ -766,27 +792,46 @@ a{cursor:pointer}
   </div>
 </section>
 
-<!-- SOBRE NÓS — ARTIGO -->
-<section class="section section-white fade">
-  <div class="sobre-artigo">
-    <div class="sobre-artigo-text">
-      <div class="badge badge-light" style="margin-bottom:clamp(16px,1.5vw,28px)">
+<!-- SOBRE NÓS — ARTIGO (3-row alternating) -->
+<section class="sa-section">
+
+  <!-- Row 1: texto | imagem -->
+  <div class="sa-row">
+    <div class="sa-text fade">
+      <div class="sa-badge">
         <span class="badge-arrow">
           <svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
         </span>
         Sobre nós
       </div>
-      <h2>A S.E.R. Cliente<br>nasceu de uma dor real.</h2>
-      <p>Criada para ajudar empresas a lidarem com feedbacks de forma mais prática, ágil, estruturada e estratégica — sem perder a humanidade no processo.</p>
-      <p>Acreditamos que reclamações, sugestões e elogios não devem ser vistos apenas como problemas a resolver, mas como dados valiosos que, quando bem tratados, geram aprendizado, melhoria contínua e fidelização.</p>
+      <h2 class="sa-h2">A S.E.R. Cliente<br>nasceu de <span class="g">uma dor real.</span></h2>
+      <p class="sa-p">Criada para <strong>ajudar empresas a lidarem com feedbacks</strong> de forma mais prática, ágil, estruturada e estratégica.</p>
     </div>
-    <div class="sobre-artigo-img">
-      <img src="fotos/sobre-nos-img.png" alt="S.E.R. Cliente">
+    <div class="sa-media fade-right">
+      <img src="fotos/sobre-nos-img.png" alt="Gestor frustrado com processos manuais de feedback">
     </div>
   </div>
-  <div class="quote-block fade">
-    Com a S.E.R. Cliente, cada manifestação pode se tornar uma oportunidade real de gerar confiança, evolução e diferenciação competitiva.
+
+  <!-- Row 2: imagem | texto -->
+  <div class="sa-row img-first">
+    <div class="sa-media fade-left">
+      <img src="fotos/laptop-card.png" alt="Avaliações e feedbacks de clientes em tempo real">
+    </div>
+    <div class="sa-text fade">
+      <p class="sa-p">Acreditamos que reclamações, sugestões e elogios não devem ser vistos apenas como problemas a resolver, mas como consultoria gratuita — <strong>ganhos valiosos para melhorar processos, fortalecer relações e evoluir a experiência do cliente.</strong></p>
+    </div>
   </div>
+
+  <!-- Row 3: pull-quote | imagem -->
+  <div class="sa-row">
+    <div class="sa-quote fade">
+      Com a S.E.R. Cliente, cada manifestação pode se tornar uma <span class="g">oportunidade real de gerar confiança, evolução e impacto.</span>
+    </div>
+    <div class="sa-media fade-right">
+      <img src="fotos/dani-wow-1.jpg" alt="Equipe celebrando resultados positivos">
+    </div>
+  </div>
+
 </section>
 
 <!-- 4 PILARES -->
