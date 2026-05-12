@@ -430,13 +430,13 @@ nav{
 /* right — photo + award */
 .dani-photo-col{display:flex;flex-direction:column;gap:clamp(16px,1.6vw,24px)}
 .dani-photo-wrap{
-  display:flex;justify-content:center;
+  display:block;
   flex-shrink:0;
 }
 .dani-photo-wrap img{
-  width:auto;display:block;
-  max-height:clamp(280px,34vw,430px);
-  max-width:100%;
+  width:100%;display:block;
+  max-height:clamp(420px,52vw,660px);
+  object-fit:contain;object-position:top center;
   filter:drop-shadow(0 16px 48px rgba(0,0,0,0.18));
   transition:filter .4s ease;
 }
