@@ -213,10 +213,10 @@ nav{
   background:url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 80' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,0 L0,0 Z' fill='%23090909'/%3E%3C/svg%3E") center/100% 100% no-repeat;
   pointer-events:none;z-index:2;
 }
-/* bottom wave — transitions into the next section (#F4F3F0) */
+/* bottom wave — transitions into sa-section (#EEECEA) */
 .sobre-green::after{
   content:'';position:absolute;bottom:-2px;left:0;width:100%;height:80px;
-  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 80' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,80 L0,80 Z' fill='%23F4F3F0'/%3E%3C/svg%3E") center/100% 100% no-repeat;
+  background:url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 80' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,80 L0,80 Z' fill='%23EEECEA'/%3E%3C/svg%3E") center/100% 100% no-repeat;
   pointer-events:none;z-index:2;
 }
 .sobre-green-content{position:relative;z-index:1;max-width:900px;margin:0 auto}
@@ -377,11 +377,18 @@ nav{
 }
 .dani-title strong{font-weight:700;display:block}
 .dani-title span{font-weight:300;display:block}
-/* 2-col grid */
+/* 2-col grid — stretch so both cols share height; last items align at bottom */
 .dani-grid{
   display:grid;grid-template-columns:1fr 1fr;
-  gap:clamp(40px,5vw,88px);align-items:start;
+  gap:clamp(40px,5vw,88px);align-items:stretch;
   margin-bottom:clamp(52px,5vw,80px);
+}
+/* left col stretches vertically so creds fill the space */
+.dani-grid > .fade-left{
+  display:flex;flex-direction:column;
+}
+.dani-grid > .fade-left .dani-creds{
+  flex:1;
 }
 /* left — bio */
 .dani-badge{
@@ -416,27 +423,34 @@ nav{
 }
 .dani-cred-icon svg{width:55%;height:55%}
 .dani-cred-text{
-  font-size:clamp(13px,.92vw,16px);line-height:1.55;
+  font-size:clamp(14px,1vw,17px);line-height:1.6;
   color:var(--text-dim);letter-spacing:-0.01em;padding-top:3px;
 }
 .dani-cred-text strong{color:var(--text-dark);font-weight:700}
 /* right — photo + award */
-.dani-photo-col{display:flex;flex-direction:column;gap:clamp(20px,2vw,32px)}
-.dani-photo-wrap{display:block}
+.dani-photo-col{display:flex;flex-direction:column;gap:clamp(16px,1.6vw,24px)}
+.dani-photo-wrap{
+  display:flex;justify-content:center;
+  flex-shrink:0;
+}
 .dani-photo-wrap img{
-  width:100%;display:block;
+  width:auto;display:block;
+  max-height:clamp(280px,34vw,430px);
+  max-width:100%;
   filter:drop-shadow(0 16px 48px rgba(0,0,0,0.18));
   transition:filter .4s ease;
 }
 .dani-photo-wrap img:hover{filter:drop-shadow(0 24px 64px rgba(0,0,0,0.28))}
+/* award text sits at the bottom of the right col */
+.dani-photo-col > div:last-child{margin-top:auto}
 .dani-award-main{
-  font-size:clamp(14px,1.1vw,19px);font-weight:700;
+  font-size:clamp(15px,1.15vw,20px);font-weight:700;
   color:var(--text-dark);line-height:1.55;letter-spacing:-0.02em;
   margin-bottom:clamp(8px,.7vw,12px);
 }
 .dani-award-sub{
-  font-size:clamp(13px,.92vw,16px);color:var(--text-dim);
-  line-height:1.55;letter-spacing:-0.01em;
+  font-size:clamp(14px,.95vw,17px);color:var(--text-dim);
+  line-height:1.6;letter-spacing:-0.01em;
 }
 /* ── mural infinito ── */
 .dani-mural{
