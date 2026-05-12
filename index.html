@@ -459,7 +459,9 @@ nav{
 .dani-mural-track:hover{animation-play-state:paused}
 .dani-mural-img{
   height:clamp(220px,24vw,400px);width:auto;
-  display:block;flex-shrink:0;border-radius:0;
+  display:block;flex-shrink:0;
+  /* gap between repetitions — usando margin-right faz o -50% ser exato */
+  margin-right:clamp(16px,2vw,32px);
 }
 @keyframes muralScroll{
   0%{transform:translateX(0)}
@@ -1090,8 +1092,8 @@ a{cursor:pointer}
   <!-- Mural infinito -->
   <div class="dani-mural">
     <div class="dani-mural-track">
-      <img src="fotos/Daniela Fantinati.mural.png" alt="Daniela Fantinati — momentos e eventos" class="dani-mural-img">
-      <img src="fotos/Daniela Fantinati.mural.png" alt="" aria-hidden="true" class="dani-mural-img">
+      <img src="fotos/Daniela Fantinati.askbox.png" alt="Daniela Fantinati — momentos e eventos" class="dani-mural-img">
+      <img src="fotos/Daniela Fantinati.askbox.png" alt="" aria-hidden="true" class="dani-mural-img">
     </div>
   </div>
 
