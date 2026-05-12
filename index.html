@@ -801,27 +801,87 @@ nav{
 }
 
 /* ─── SEGURANÇA ─── */
-.seguranca-header{margin-bottom:clamp(40px,4vw,80px)}
-.seguranca-header h2{
-  font-size:clamp(28px,4.2vw,80px);font-weight:700;line-height:1.05;
-  letter-spacing:-0.04em;color:var(--text-dark);margin-bottom:clamp(12px,1vw,24px);
+.seg-section{
+  background:#EEECEA;
+  padding:clamp(80px,8vw,140px) 8%;
 }
-.seguranca-header p{
-  font-size:clamp(14px,1.56vw,30px);font-weight:400;color:#2a2a2a;
-  letter-spacing:-0.01em;max-width:900px;line-height:1.6;
+/* title */
+.seg-title{
+  font-size:clamp(32px,4.5vw,86px);letter-spacing:-0.04em;line-height:1.08;
+  color:var(--text-dark);
+  margin:clamp(14px,1.3vw,24px) 0 clamp(28px,2.8vw,52px);
 }
-.seguranca-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.5vw,28px)}
-.seg-item{
+.seg-title strong{font-weight:700;display:block}
+.seg-title span{font-weight:300}
+/* hero image */
+.seg-hero{
+  width:100%;display:block;border-radius:clamp(12px,1.5vw,24px);
+  box-shadow:0 20px 80px rgba(0,0,0,0.14);
+  margin-bottom:clamp(28px,2.8vw,52px);
+  transition:transform .6s cubic-bezier(.22,1,.36,1),box-shadow .6s ease;
+  will-change:transform;
+}
+.seg-hero:hover{transform:scale(1.01);box-shadow:0 32px 100px rgba(0,0,0,0.2)}
+/* sub texts */
+.seg-green{
+  font-size:clamp(14px,1.44vw,27px);font-weight:700;color:var(--vibrant);
+  letter-spacing:-0.01em;line-height:1.5;
+  margin-bottom:clamp(6px,.5vw,10px);
+}
+.seg-sub{
+  font-size:clamp(14px,1.44vw,27px);font-weight:300;color:#2a2a2a;
+  letter-spacing:-0.01em;line-height:1.6;
+  margin-bottom:clamp(40px,4.5vw,80px);
+}
+/* 2-col grid */
+.seg-grid{
+  display:grid;grid-template-columns:1fr 1fr;
+  gap:clamp(14px,1.5vw,26px);
+}
+/* card */
+.seg-card{
+  background:#fff;border-radius:clamp(12px,1.2vw,20px);
   padding:clamp(20px,2vw,36px);
-  border:1px solid var(--neutral);border-radius:10px;
+  display:flex;align-items:flex-start;gap:clamp(14px,1.3vw,22px);
+  border:1.5px solid transparent;
+  box-shadow:0 4px 24px rgba(0,0,0,0.06);
+  transition:transform .35s cubic-bezier(.22,1,.36,1),
+             box-shadow .35s ease,border-color .35s ease;
+  will-change:transform;
 }
-.seg-item h4{
-  font-size:clamp(15px,1.56vw,30px);font-weight:600;color:var(--text-dark);
-  letter-spacing:-0.02em;margin-bottom:8px;
+.seg-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 60px rgba(0,0,0,0.12);
+  border-color:rgba(50,204,97,0.28);
 }
-.seg-item p{
-  font-size:clamp(13px,1.56vw,30px);font-weight:300;color:var(--text-dark);
+/* stagger */
+.seg-grid .seg-card:nth-child(2){transition-delay:.06s}
+.seg-grid .seg-card:nth-child(3){transition-delay:.12s}
+.seg-grid .seg-card:nth-child(4){transition-delay:.18s}
+.seg-grid .seg-card:nth-child(5){transition-delay:.24s}
+.seg-grid .seg-card:nth-child(6){transition-delay:.30s}
+/* icon box */
+.seg-icon{
+  width:clamp(40px,3.2vw,56px);height:clamp(40px,3.2vw,56px);flex-shrink:0;
+  background:rgba(50,204,97,0.12);border-radius:10px;
+  display:flex;align-items:center;justify-content:center;
+  transition:background .3s;
+}
+.seg-card:hover .seg-icon{background:rgba(50,204,97,0.22)}
+.seg-icon svg{width:52%;height:52%}
+/* text */
+.seg-card-text h4{
+  font-size:clamp(14px,1.3vw,24px);font-weight:700;color:var(--text-dark);
+  letter-spacing:-0.02em;line-height:1.3;
+  margin-bottom:clamp(4px,.4vw,8px);
+}
+.seg-card-text p{
+  font-size:clamp(13px,1.2vw,22px);font-weight:300;color:#3a3a3a;
   line-height:1.6;letter-spacing:-0.01em;
+}
+@media(max-width:680px){
+  .seg-grid{grid-template-columns:1fr}
+  .seg-grid .seg-card:nth-child(n){transition-delay:0s}
 }
 
 /* ─── FAQ ─── */
@@ -1606,40 +1666,117 @@ a{cursor:pointer}
 </section>
 
 <!-- SEGURANÇA -->
-<section class="section section-white fade">
-  <div class="seguranca-header">
-    <div class="badge badge-mid" style="margin-bottom:clamp(12px,1vw,20px)">
+<section class="seg-section">
+
+  <!-- Header -->
+  <div class="fade">
+    <div class="badge badge-mid" style="margin-bottom:clamp(12px,1vw,20px);display:inline-flex">
       <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       Segurança &amp; Conformidade
     </div>
-    <h2>Banco de dados<br>seguro e certificado.</h2>
-    <p>Conformidade com os principais padrões globais de segurança. Seus dados e os dados dos seus clientes estão protegidos.</p>
+    <h2 class="seg-title"><strong>Solução</strong><span>segura e certificada</span></h2>
   </div>
-  <div class="seguranca-grid">
-    <div class="seg-item fade">
-      <h4>LGPD</h4>
-      <p>Conformidade total com a Lei Geral de Proteção de Dados brasileira.</p>
+
+  <!-- Hero image -->
+  <img src="fotos/cadeado-nuvem.png" alt="Segurança e conformidade — S.E.R. Cliente" class="seg-hero fade-scale">
+
+  <!-- Sub texts -->
+  <p class="seg-green fade">Banco de dados seguro e certificado, em conformidade com os principais padrões globais de segurança.</p>
+  <p class="seg-sub fade">Seus dados e os dados dos seus clientes protegidos com os mais altos padrões da indústria.</p>
+
+  <!-- 2-col grid -->
+  <div class="seg-grid">
+
+    <!-- LGPD -->
+    <div class="seg-card fade">
+      <div class="seg-icon">
+        <svg viewBox="0 0 28 28" fill="none">
+          <path d="M14 3L5 7v8c0 5 3.8 9.7 9 11 5.2-1.3 9-6 9-11V7L14 3z" stroke="#26A24C" stroke-width="2" stroke-linejoin="round"/>
+          <path d="M10 14l3 3 5-5" stroke="#26A24C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="seg-card-text">
+        <h4>LGPD</h4>
+        <p>Lei Geral de Proteção de Dados brasileira.</p>
+      </div>
     </div>
-    <div class="seg-item fade">
-      <h4>GDPR</h4>
-      <p>Padrão europeu de proteção de dados pessoais.</p>
+
+    <!-- Rastreabilidade -->
+    <div class="seg-card fade">
+      <div class="seg-icon">
+        <svg viewBox="0 0 28 28" fill="none">
+          <rect x="3" y="5" width="22" height="15" rx="2" stroke="#26A24C" stroke-width="2"/>
+          <path d="M9 24h10M14 20v4" stroke="#26A24C" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="14" cy="12" r="3" stroke="#26A24C" stroke-width="2"/>
+          <path d="M8 12c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#26A24C" stroke-width="1.5" stroke-linecap="round"/>
+        </svg>
+      </div>
+      <div class="seg-card-text">
+        <h4>Rastreabilidade completa</h4>
+        <p>Tenha visibilidade total sobre cada ação dentro do sistema.</p>
+      </div>
     </div>
-    <div class="seg-item fade">
-      <h4>ISO 27001</h4>
-      <p>Certificação internacional para gestão de segurança da informação.</p>
+
+    <!-- ISO 27001 -->
+    <div class="seg-card fade">
+      <div class="seg-icon">
+        <svg viewBox="0 0 28 28" fill="none">
+          <rect x="8" y="12" width="12" height="11" rx="2" stroke="#26A24C" stroke-width="2"/>
+          <path d="M10 12V9a4 4 0 0 1 8 0v3" stroke="#26A24C" stroke-width="2" stroke-linecap="round"/>
+          <circle cx="14" cy="17.5" r="1.5" fill="#26A24C"/>
+        </svg>
+      </div>
+      <div class="seg-card-text">
+        <h4>ISO 27001</h4>
+        <p>Certificação internacional para gestão de segurança da informação.</p>
+      </div>
     </div>
-    <div class="seg-item fade">
-      <h4>SOC 2</h4>
-      <p>Auditoria independente de segurança, disponibilidade e confidencialidade.</p>
+
+    <!-- SOC 2 -->
+    <div class="seg-card fade">
+      <div class="seg-icon">
+        <svg viewBox="0 0 28 28" fill="none">
+          <rect x="5" y="5" width="18" height="18" rx="3" stroke="#26A24C" stroke-width="2"/>
+          <path d="M10 14l3 3 5-5" stroke="#26A24C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+      </div>
+      <div class="seg-card-text">
+        <h4>SOC 2</h4>
+        <p>Auditoria independente de segurança, disponibilidade e confidencialidade.</p>
+      </div>
     </div>
-    <div class="seg-item fade">
-      <h4>Microsoft Active Directory</h4>
-      <p>Autenticação centralizada e gestão de acessos corporativos via AD.</p>
+
+    <!-- Microsoft Active Directory -->
+    <div class="seg-card fade">
+      <div class="seg-icon">
+        <svg viewBox="0 0 28 28" fill="none">
+          <rect x="3" y="3" width="10" height="10" rx="1.5" fill="#26A24C" fill-opacity=".8"/>
+          <rect x="15" y="3" width="10" height="10" rx="1.5" fill="#26A24C" fill-opacity=".6"/>
+          <rect x="3" y="15" width="10" height="10" rx="1.5" fill="#26A24C" fill-opacity=".6"/>
+          <rect x="15" y="15" width="10" height="10" rx="1.5" fill="#26A24C" fill-opacity=".4"/>
+        </svg>
+      </div>
+      <div class="seg-card-text">
+        <h4>Microsoft Active Directory</h4>
+        <p>Autenticação centralizada e gestão de acessos corporativos via AD.</p>
+      </div>
     </div>
-    <div class="seg-item fade">
-      <h4>Google SSO</h4>
-      <p>Acesso via Google Single Sign-On — sem senhas adicionais.</p>
+
+    <!-- Google SSO -->
+    <div class="seg-card fade">
+      <div class="seg-icon">
+        <svg viewBox="0 0 28 28" fill="none">
+          <circle cx="11" cy="12" r="5" stroke="#26A24C" stroke-width="2"/>
+          <path d="M15 16l8 8" stroke="#26A24C" stroke-width="2.5" stroke-linecap="round"/>
+          <circle cx="11" cy="12" r="2" fill="#26A24C" fill-opacity=".3"/>
+        </svg>
+      </div>
+      <div class="seg-card-text">
+        <h4>Google SSO</h4>
+        <p>Acesso via Google Single Sign-On, sem senhas adicionais.</p>
+      </div>
     </div>
+
   </div>
 </section>
 
