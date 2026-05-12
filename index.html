@@ -714,36 +714,90 @@ nav{
 }
 
 /* ─── MÉTRICAS ─── */
-.metricas-header{margin-bottom:clamp(32px,3vw,60px)}
+.metricas-section{
+  background:#EEECEA;
+  padding:clamp(80px,8vw,140px) 8%;
+}
+.metricas-header{text-align:center;margin-bottom:clamp(48px,5vw,88px)}
 .metricas-header h2{
-  font-size:clamp(28px,4.2vw,80px);font-weight:700;line-height:1.05;
-  letter-spacing:-0.04em;color:var(--text-dark);margin-bottom:clamp(12px,1vw,24px);
+  font-size:clamp(28px,4.5vw,86px);font-weight:700;line-height:1.05;
+  letter-spacing:-0.04em;color:var(--text-dark);
+  margin:clamp(14px,1.3vw,24px) auto clamp(16px,1.5vw,28px);
 }
-.metricas-header p{
-  font-size:clamp(14px,1.56vw,30px);font-weight:400;color:#2a2a2a;
-  letter-spacing:-0.01em;max-width:900px;line-height:1.6;
+.metricas-header h2 strong{font-weight:700;display:block}
+.metricas-header .met-green{
+  font-size:clamp(14px,1.44vw,27px);font-weight:700;color:var(--vibrant);
+  letter-spacing:-0.01em;line-height:1.5;
+  margin-bottom:clamp(8px,.7vw,14px);
 }
-.metricas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.5vw,28px)}
+.metricas-header .met-sub{
+  font-size:clamp(14px,1.44vw,27px);font-weight:300;color:#2a2a2a;
+  letter-spacing:-0.01em;line-height:1.6;max-width:780px;margin:0 auto;
+}
+/* grid */
+.metricas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.8vw,32px)}
+/* card */
 .metrica-card{
-  background:var(--black);border-radius:12px;
-  padding:clamp(28px,2.5vw,48px);
+  border-radius:clamp(14px,1.4vw,24px);overflow:hidden;
+  display:flex;flex-direction:column;
+  box-shadow:0 8px 40px rgba(0,0,0,0.10);
+  transition:transform .4s cubic-bezier(.22,1,.36,1),
+             box-shadow .4s ease,
+             border-color .4s ease;
+  border:1.5px solid transparent;
+  will-change:transform;
 }
+.metrica-card:hover{
+  transform:translateY(-10px);
+  box-shadow:0 28px 72px rgba(0,0,0,0.18);
+  border-color:rgba(50,204,97,0.30);
+}
+/* stagger */
+.metricas-grid .metrica-card:nth-child(2){transition-delay:.1s}
+.metricas-grid .metrica-card:nth-child(3){transition-delay:.2s}
+/* dark top */
+.metrica-top{
+  background:#2B2B2B;
+  padding:clamp(24px,2.2vw,40px) clamp(24px,2.2vw,40px) clamp(20px,2vw,36px);
+  flex:1;
+}
+.metrica-icon-row{
+  display:flex;align-items:center;gap:clamp(10px,1vw,16px);
+  margin-bottom:clamp(16px,1.5vw,28px);
+}
+.metrica-icon{
+  width:clamp(36px,3vw,52px);height:clamp(36px,3vw,52px);
+  background:rgba(50,204,97,0.15);border-radius:8px;flex-shrink:0;
+  display:flex;align-items:center;justify-content:center;
+}
+.metrica-icon svg{width:55%;height:55%}
 .metrica-abbr{
-  font-size:clamp(28px,3.2vw,62px);font-weight:700;color:var(--white);
-  letter-spacing:-0.04em;line-height:1;margin-bottom:clamp(8px,.8vw,16px);
+  font-size:clamp(32px,3.8vw,72px);font-weight:800;color:var(--white);
+  letter-spacing:-0.05em;line-height:1;
 }
 .metrica-name{
-  font-size:clamp(14px,1.36vw,26px);font-weight:300;color:var(--white);
-  line-height:1.5;letter-spacing:-0.01em;margin-bottom:clamp(16px,1.5vw,28px);
+  font-size:clamp(13px,1.25vw,24px);font-weight:700;color:var(--white);
+  letter-spacing:-0.01em;line-height:1.3;
+  margin-bottom:clamp(12px,1.1vw,20px);
 }
 .metrica-desc{
-  font-size:clamp(13px,1.36vw,26px);font-weight:300;color:rgba(255,255,255,0.85);
-  line-height:1.65;letter-spacing:-0.01em;margin-bottom:clamp(12px,1vw,20px);
+  font-size:clamp(13px,1.25vw,24px);font-weight:300;color:rgba(255,255,255,0.80);
+  line-height:1.65;letter-spacing:-0.01em;
 }
-.metrica-example{
-  font-size:clamp(12px,0.98vw,18.9px);font-weight:300;color:#303030;
-  background:rgba(255,255,255,0.95);border-radius:8px;
-  padding:12px 16px;line-height:1.6;letter-spacing:-0.01em;
+/* white footer */
+.metrica-footer{
+  background:#fff;
+  padding:clamp(16px,1.5vw,26px) clamp(24px,2.2vw,40px);
+  font-size:clamp(12px,1.1vw,20px);font-weight:300;color:#303030;
+  line-height:1.6;letter-spacing:-0.01em;
+}
+.metrica-footer .met-label{
+  color:var(--vibrant);font-weight:700;font-style:normal;
+}
+@media(max-width:860px){
+  .metricas-grid{grid-template-columns:1fr}
+  .metricas-grid .metrica-card:nth-child(2),
+  .metricas-grid .metrica-card:nth-child(3){transition-delay:0s}
 }
 
 /* ─── SEGURANÇA ─── */
@@ -1467,34 +1521,87 @@ a{cursor:pointer}
 </section>
 
 <!-- MÉTRICAS -->
-<section class="section section-white fade" id="metricas">
-  <div class="metricas-header">
-    <div class="badge badge-mid" style="margin-bottom:clamp(12px,1vw,20px)">
+<section class="metricas-section" id="metricas">
+  <div class="metricas-header fade">
+    <div class="badge badge-mid" style="margin-bottom:clamp(12px,1vw,20px);display:inline-flex">
       <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       Métricas de experiência
     </div>
-    <h2>CES · CSAT · NPS<br>Integrados e Automatizados</h2>
-    <p>Analisamos métricas, fornecemos indicadores e damos contexto.<br>Transformando feedback em gestão inteligente.</p>
+    <h2>CES, CSAT e NPS<br><strong>Integrados e Automatizados</strong></h2>
+    <p class="met-green">Analisamos métricas, fornecemos indicadores e damos contexto.</p>
+    <p class="met-sub">Transformando feedback em gestão inteligente. Dashboards que consolidam as métricas essenciais de CX em uma visão única e acionável.</p>
   </div>
+
   <div class="metricas-grid">
+
+    <!-- CES -->
     <div class="metrica-card fade">
-      <div class="metrica-abbr">NPS</div>
-      <div class="metrica-name">Net Promoter Score</div>
-      <p class="metrica-desc">Mede a lealdade do cliente e a probabilidade de recomendação da empresa. Coletado automaticamente ao final de interações-chave.</p>
-      <div class="metrica-example">"Em uma escala de 0 a 10, o quanto você recomendaria nossa empresa a um colega?" — enviado automaticamente após o fechamento de uma manifestação.</div>
+      <div class="metrica-top">
+        <div class="metrica-icon-row">
+          <div class="metrica-icon">
+            <!-- grid/dashboard icon -->
+            <svg viewBox="0 0 28 28" fill="none">
+              <rect x="3" y="3" width="9" height="9" rx="2" stroke="#32CC61" stroke-width="2"/>
+              <rect x="16" y="3" width="9" height="9" rx="2" stroke="#32CC61" stroke-width="2"/>
+              <rect x="3" y="16" width="9" height="9" rx="2" stroke="#32CC61" stroke-width="2"/>
+              <rect x="16" y="16" width="9" height="9" rx="2" stroke="#32CC61" stroke-width="2"/>
+            </svg>
+          </div>
+          <div class="metrica-abbr">CES</div>
+        </div>
+        <div class="metrica-name">Customer Effort Score</div>
+        <p class="metrica-desc">Mede o esforço que o cliente teve para registrar sua manifestação. Quanto menor o esforço, maior a confiança e menos risco de churn silencioso.</p>
+      </div>
+      <div class="metrica-footer">
+        <em class="met-label">Como aparece:</em> "Nos conte como foi registrar seu feedback por aqui?" — Métrica crítica para o abandono de clientes.
+      </div>
     </div>
+
+    <!-- CSAT -->
     <div class="metrica-card fade">
-      <div class="metrica-abbr">CES</div>
-      <div class="metrica-name">Customer Effort Score</div>
-      <p class="metrica-desc">Mede o esforço que o cliente precisou para resolver seu problema. Quanto menor o esforço, maior a fidelização.</p>
-      <div class="metrica-example">"Quanto esforço você precisou fazer para resolver sua solicitação?" — métrica crítica para identificar fricções no processo.</div>
+      <div class="metrica-top">
+        <div class="metrica-icon-row">
+          <div class="metrica-icon">
+            <!-- smiley icon -->
+            <svg viewBox="0 0 28 28" fill="none">
+              <circle cx="14" cy="14" r="11" stroke="#32CC61" stroke-width="2"/>
+              <circle cx="10" cy="11" r="1.5" fill="#32CC61"/>
+              <circle cx="18" cy="11" r="1.5" fill="#32CC61"/>
+              <path d="M9 17c1.2 2.2 8.8 2.2 10 0" stroke="#32CC61" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="metrica-abbr">CSAT</div>
+        </div>
+        <div class="metrica-name">Customer Satisfaction Score</div>
+        <p class="metrica-desc">Mede a satisfação pontual com o atendimento e a resolução. Complementa o NPS com uma leitura imediata da qualidade do tratamento.</p>
+      </div>
+      <div class="metrica-footer">
+        <em class="met-label">Como aparece:</em> "Como você avalia a tratativa dada para seu feedback?"
+      </div>
     </div>
+
+    <!-- NPS -->
     <div class="metrica-card fade">
-      <div class="metrica-abbr">CSAT</div>
-      <div class="metrica-name">Customer Satisfaction Score</div>
-      <p class="metrica-desc">Mede a satisfação pontual com o atendimento e a resolução. Complementa NPS e CES com visão tática de curto prazo.</p>
-      <div class="metrica-example">"Como você avalia a resolução da sua solicitação?" — alimenta o dashboard executivo e relatórios de desempenho por unidade.</div>
+      <div class="metrica-top">
+        <div class="metrica-icon-row">
+          <div class="metrica-icon">
+            <!-- gauge/speedometer icon -->
+            <svg viewBox="0 0 28 28" fill="none">
+              <path d="M5 20a10 10 0 1 1 18 0" stroke="#32CC61" stroke-width="2" stroke-linecap="round"/>
+              <path d="M14 20l-4-6" stroke="#32CC61" stroke-width="2" stroke-linecap="round"/>
+              <circle cx="14" cy="20" r="2" fill="#32CC61"/>
+            </svg>
+          </div>
+          <div class="metrica-abbr">NPS</div>
+        </div>
+        <div class="metrica-name">Net Promoter Score</div>
+        <p class="metrica-desc">Mede a lealdade do cliente e a probabilidade de recomendação da empresa. Coletado automaticamente após cada resolução de manifestação.</p>
+      </div>
+      <div class="metrica-footer">
+        <em class="met-label">Como aparece:</em> "Em uma escala de 0 a 10, o quanto você indicaria a nossa empresa para um amigo ou familiar?"
+      </div>
     </div>
+
   </div>
 </section>
 
