@@ -40,10 +40,10 @@ body{font-family:var(--font);background:var(--black);color:var(--white);overflow
 
 /* ─── NAV ─── */
 nav{
-  position:fixed;top:0;left:0;width:100%;z-index:300;height:76px;
-  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  position:fixed;top:0;left:0;width:100%;z-index:300;height:72px;
+  display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px;
   padding:0 5%;
-  background:rgba(9,9,9,0.85);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
+  background:rgba(9,9,9,0.90);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
   border-bottom:1px solid rgba(255,255,255,0.07);
   animation:navIn .5s ease both;
 }
@@ -51,35 +51,34 @@ nav{
   display:flex;align-items:center;text-decoration:none;flex-shrink:0;
   transition:opacity .25s;
 }
-.nav-logo:hover{opacity:0.8}
-.nav-logo img{height:46px;width:auto;display:block;}
-.nav-links{display:flex;gap:4px;align-items:center;flex:1;justify-content:center}
+.nav-logo:hover{opacity:0.75}
+.nav-logo img{height:40px;width:auto;display:block;}
+.nav-links{
+  display:flex;flex-direction:row;gap:2px;
+  align-items:center;flex:1;justify-content:center;
+}
 .nav-links a{
-  font-size:clamp(13px,.95vw,16px);font-weight:500;
-  color:rgba(255,255,255,0.7);
+  font-size:clamp(13px,.9vw,15px);font-weight:500;
+  color:rgba(255,255,255,0.72);
   text-decoration:none;letter-spacing:-0.01em;
-  padding:8px 18px;border-radius:100px;
+  padding:7px 16px;border-radius:100px;
   transition:color .2s,background .2s;white-space:nowrap;
 }
 .nav-links a:hover{color:var(--bright);background:rgba(50,204,97,0.1)}
-.nav-links a.active{
-  color:#000;background:var(--vibrant);font-weight:700;
-}
-.nav-links a.active:hover{background:var(--bright);color:#000}
+.nav-links a.active{color:var(--bright);font-weight:700;}
 .nav-cta{
   display:inline-flex;align-items:center;flex-shrink:0;
-  background:transparent;color:var(--white);
-  border:1.5px solid rgba(255,255,255,0.4);
+  background:var(--vibrant);color:#fff;
+  border:none;
   padding:9px 22px;border-radius:100px;
-  font-size:clamp(12px,.9vw,15px);font-weight:600;font-family:var(--font);
+  font-size:clamp(12px,.85vw,14px);font-weight:700;font-family:var(--font);
   text-decoration:none;letter-spacing:-0.01em;white-space:nowrap;
   transition:all .25s;
 }
 .nav-cta:hover{
-  background:rgba(255,255,255,0.1);
-  border-color:rgba(255,255,255,0.7);
-  color:#fff;
+  background:var(--bright);color:#000;
   transform:translateY(-1px);
+  box-shadow:0 6px 20px rgba(50,204,97,0.35);
 }
 
 /* ─── BADGE (section label) ─── */
@@ -1152,7 +1151,7 @@ a{cursor:pointer}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 /* mobile overlay */
 .nav-mobile{
-  display:none;position:fixed;inset:0;top:76px;
+  display:none;position:fixed;inset:0;top:72px;
   background:rgba(9,9,9,0.97);backdrop-filter:blur(16px);
   z-index:299;
   flex-direction:column;align-items:center;justify-content:center;
@@ -1160,13 +1159,14 @@ a{cursor:pointer}
 }
 .nav-mobile.open{display:flex}
 .nav-mobile a{
-  font-size:clamp(20px,4vw,32px);font-weight:600;color:rgba(255,255,255,0.85);
+  font-size:clamp(22px,4vw,34px);font-weight:600;color:rgba(255,255,255,0.85);
   text-decoration:none;letter-spacing:-0.02em;
   transition:color .2s;
 }
 .nav-mobile a:hover{color:var(--bright)}
 .nav-mobile .nav-cta{
   margin-top:8px;font-size:clamp(15px,2.5vw,22px);
+  background:var(--vibrant);color:#fff;padding:12px 28px;
 }
 
 /* ─── RESPONSIVE ─── */
@@ -1176,6 +1176,14 @@ a{cursor:pointer}
   .plat-feature.reverse{direction:ltr}
   .pillar{grid-template-columns:100px 1fr}
   .seguranca-grid{grid-template-columns:repeat(2,1fr)}
+}
+/* ── Desktop: force horizontal nav (never column) ── */
+@media(min-width:861px){
+  nav{flex-direction:row !important}
+  .nav-links{display:flex !important;flex-direction:row !important}
+  .nav-cta{display:inline-flex !important}
+  .nav-hamburger{display:none !important}
+  .nav-mobile{display:none !important}
 }
 @media(max-width:860px){
   .nav-links,.nav-cta{display:none}
@@ -1196,10 +1204,10 @@ a{cursor:pointer}
 <!-- NAV -->
 <nav id="main-nav">
   <a href="#" class="nav-logo" aria-label="S.E.R. Cliente">
-    <img src="fotos/logo-nav.svg" alt="S.E.R. Cliente" height="46" style="width:auto;display:block;">
+    <img src="fotos/Logo%20branco.png" alt="S.E.R. Cliente" height="40" style="width:auto;display:block;">
   </a>
   <div class="nav-links">
-    <a href="#sobre" class="active">Sobre</a>
+    <a href="#sobre">Sobre</a>
     <a href="#metodo">Método</a>
     <a href="#diferenciais">Diferenciais</a>
     <a href="#plataforma">Plataforma</a>
