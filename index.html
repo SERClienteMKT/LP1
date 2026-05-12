@@ -56,6 +56,7 @@ nav{
 .nav-links{
   display:flex;flex-direction:row;gap:2px;
   align-items:center;flex:1;justify-content:center;
+  min-width:0;overflow:hidden;
 }
 .nav-links a{
   font-size:clamp(13px,.9vw,15px);font-weight:500;
@@ -64,21 +65,22 @@ nav{
   padding:7px 16px;border-radius:100px;
   transition:color .2s,background .2s;white-space:nowrap;
 }
-.nav-links a:hover{color:var(--bright);background:rgba(50,204,97,0.1)}
-.nav-links a.active{color:var(--bright);font-weight:700;}
+.nav-links a:hover{color:var(--bright)}
+.nav-links a.active{color:var(--bright);font-weight:600;}
 .nav-cta{
   display:inline-flex;align-items:center;flex-shrink:0;
   background:var(--vibrant);color:#fff;
   border:none;
-  padding:9px 22px;border-radius:100px;
+  padding:10px 24px;border-radius:100px;
   font-size:clamp(12px,.85vw,14px);font-weight:700;font-family:var(--font);
   text-decoration:none;letter-spacing:-0.01em;white-space:nowrap;
   transition:all .25s;
+  box-shadow:0 2px 12px rgba(38,162,76,0.3);
 }
 .nav-cta:hover{
   background:var(--bright);color:#000;
   transform:translateY(-1px);
-  box-shadow:0 6px 20px rgba(50,204,97,0.35);
+  box-shadow:0 6px 24px rgba(50,204,97,0.45);
 }
 
 /* ─── BADGE (section label) ─── */
