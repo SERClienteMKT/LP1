@@ -640,41 +640,78 @@ nav{
 }
 
 /* ─── PLATAFORMA ─── */
-.plat-header{margin-bottom:clamp(32px,3vw,60px)}
+.plat-section{background:var(--dark-section);padding:clamp(80px,8vw,140px) 8%}
+.plat-header{text-align:center;margin-bottom:0}
 .plat-header h2{
   font-size:clamp(28px,4.2vw,80px);font-weight:700;line-height:1.1;
-  letter-spacing:-0.04em;color:var(--white);margin-bottom:clamp(16px,1.5vw,32px);
+  letter-spacing:-0.04em;color:var(--white);
+  margin:clamp(14px,1.3vw,24px) auto clamp(28px,2.8vw,52px);
+  max-width:860px;
 }
-.plat-header p{
-  font-size:clamp(14px,1.56vw,30px);font-weight:400;color:rgba(255,255,255,0.8);
-  letter-spacing:-0.01em;max-width:900px;line-height:1.6;
+/* hero screenshot */
+.plat-hero{
+  width:100%;max-width:820px;display:block;margin:0 auto;
+  border-radius:clamp(12px,1.5vw,24px);
+  box-shadow:0 32px 120px rgba(0,0,0,0.65);
 }
-.plat-screenshot{
-  width:100%;border-radius:12px;display:block;
-  margin-bottom:clamp(48px,4.5vw,88px);
-  box-shadow:0 20px 80px rgba(0,0,0,0.5);
+/* sub-text below hero */
+.plat-sub{
+  text-align:center;max-width:680px;margin:clamp(24px,2.5vw,44px) auto clamp(40px,4vw,72px);
+  font-size:clamp(13px,1.35vw,25px);font-weight:300;
+  color:rgba(255,255,255,0.72);line-height:1.7;letter-spacing:-0.01em;
 }
-.plat-section-title{
-  font-size:clamp(28px,4.2vw,80px);font-weight:700;color:var(--white);
-  letter-spacing:-0.04em;line-height:1.1;
-  margin-bottom:clamp(40px,4vw,80px);
-  display:flex;align-items:center;gap:16px;
+.plat-sub strong{color:var(--bright);font-weight:600;font-style:normal}
+/* divider chevron */
+.plat-divider{display:flex;justify-content:center;margin-bottom:clamp(24px,2.5vw,44px)}
+/* "Por dentro" title */
+.plat-inside-title{
+  font-size:clamp(26px,3.8vw,72px);font-weight:700;color:var(--white);
+  letter-spacing:-0.04em;text-align:center;
+  margin-bottom:clamp(48px,5vw,88px);
 }
-.plat-features{display:flex;flex-direction:column;gap:clamp(40px,4vw,80px)}
-.plat-feature{display:grid;grid-template-columns:1fr 1fr;gap:clamp(32px,4vw,80px);align-items:center}
-.plat-feature.reverse{direction:rtl}
-.plat-feature.reverse>*{direction:ltr}
-.plat-feature-text{}
-.plat-feature-text h3{
-  font-size:clamp(22px,3.2vw,62px);font-weight:600;color:var(--white);
-  letter-spacing:-0.03em;line-height:1.1;margin-bottom:clamp(12px,1.2vw,24px);
+/* feature rows */
+.plat-rows{display:flex;flex-direction:column}
+.plat-row{
+  display:grid;grid-template-columns:1fr 52%;
+  gap:clamp(32px,4.5vw,96px);align-items:center;
+  padding:clamp(40px,4.5vw,80px) 0;
+  border-top:1px solid rgba(255,255,255,0.09);
 }
-.plat-feature-text p{
-  font-size:clamp(14px,1.53vw,29.5px);font-weight:300;color:#e3e3e3;
-  line-height:1.65;letter-spacing:-0.01em;
+.plat-rows .plat-row:last-child{border-bottom:1px solid rgba(255,255,255,0.09)}
+/* green accent line */
+.plat-row-line{
+  width:32px;height:3px;background:var(--bright);
+  border-radius:2px;margin-bottom:clamp(14px,1.3vw,24px);
 }
-.plat-feature-img{border-radius:10px;overflow:hidden}
-.plat-feature-img img{width:100%;display:block}
+.plat-row-text h3{
+  font-size:clamp(20px,2.6vw,50px);font-weight:700;color:var(--white);
+  letter-spacing:-0.03em;line-height:1.1;
+  margin-bottom:clamp(10px,1vw,18px);
+}
+.plat-row-text p{
+  font-size:clamp(13px,1.3vw,25px);font-weight:300;
+  color:rgba(255,255,255,0.70);line-height:1.7;letter-spacing:-0.01em;
+  max-width:440px;
+}
+/* image column */
+.plat-row-img{
+  border-radius:clamp(10px,1.2vw,20px);overflow:hidden;
+  transition:transform .5s cubic-bezier(.22,1,.36,1),box-shadow .5s ease;
+  will-change:transform;
+}
+.plat-row-img:hover{
+  transform:translateY(-6px) scale(1.01);
+  box-shadow:0 28px 80px rgba(0,0,0,0.5);
+}
+.plat-row-img img{
+  width:100%;display:block;
+  transition:transform .7s cubic-bezier(.22,1,.36,1);
+}
+.plat-row-img:hover img{transform:scale(1.04)}
+@media(max-width:860px){
+  .plat-row{grid-template-columns:1fr}
+  .plat-row-img{order:-1}
+}
 
 /* ─── MÉTRICAS ─── */
 .metricas-header{margin-bottom:clamp(32px,3vw,60px)}
@@ -1348,66 +1385,84 @@ a{cursor:pointer}
 </section>
 
 <!-- PLATAFORMA -->
-<section class="section section-dark fade" id="plataforma">
-  <div class="plat-header">
-    <div class="badge badge-white" style="margin-bottom:clamp(12px,1vw,20px)">
+<section class="plat-section" id="plataforma">
+
+  <!-- Header -->
+  <div class="plat-header fade">
+    <div class="badge badge-white" style="margin-bottom:clamp(12px,1vw,20px);display:inline-flex">
       <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       Plataforma
     </div>
-    <h2>Desenvolvida com<br>quem vive o problema.</h2>
-    <p>Não é produto de prateleira. A S.E.R. Cliente foi desenvolvida e validada com clientes reais em ambientes de alta complexidade operacional.</p>
+    <h2>Desenvolvida com<br>quem vivia o problema.</h2>
   </div>
-  <img src="fotos/plataforma-screenshot.png" alt="Plataforma S.E.R. Cliente" class="plat-screenshot fade">
-  <div class="plat-section-title fade">
-    <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-    Por dentro da plataforma
+
+  <!-- Hero screenshot -->
+  <img src="fotos/screen1.png" alt="Plataforma S.E.R. Cliente" class="plat-hero fade-scale">
+
+  <!-- Sub-text -->
+  <p class="plat-sub fade">Não é produto de prateleira. A S.E.R. Cliente foi <strong>desenvolvida e validada com clientes reais em ambientes de alta complexidade regulada.</strong></p>
+
+  <!-- Chevron divider -->
+  <div class="plat-divider fade">
+    <svg width="32" height="20" viewBox="0 0 32 20" fill="none">
+      <path d="M2 2l14 15L30 2" stroke="#32CC61" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    </svg>
   </div>
-  <div class="plat-features">
-    <div class="plat-feature fade">
-      <div class="plat-feature-text">
-        <h3>Dashboard<br>executivo e gerencial</h3>
-        <p>Visão consolidada de todas as unidades. Relatórios operacionais e executivos customizados, em xls, pdf ou acesso direto na plataforma.</p>
-      </div>
-      <div class="plat-feature-img">
-        <img src="fotos/plataforma-dashboard.png" alt="Dashboard executivo">
-      </div>
-    </div>
-    <div class="plat-feature reverse fade">
-      <div class="plat-feature-text">
-        <h3>Relatório de conformidade<br>em 1 clique</h3>
-        <p>Visão consolidada de todas as unidades. Relatórios operacionais e executivos customizados, em xls, pdf ou acesso direto na plataforma.</p>
-      </div>
-      <div class="plat-feature-img">
-        <img src="fotos/plataforma-relatorio.png" alt="Relatório de conformidade">
-      </div>
-    </div>
-    <div class="plat-feature fade">
-      <div class="plat-feature-text">
-        <h3>SLA automático<br>e alertas de prazo</h3>
-        <p>SLA configurável por tipo de manifestação com alertas antes do vencimento. Zero prazo perdido em e-mail ou planilha.</p>
-      </div>
-      <div class="plat-feature-img">
-        <img src="fotos/plataforma-sla.png" alt="SLA automático">
-      </div>
-    </div>
-    <div class="plat-feature reverse fade">
-      <div class="plat-feature-text">
+
+  <!-- Section title -->
+  <h3 class="plat-inside-title fade">Por dentro da plataforma</h3>
+
+  <!-- Feature rows -->
+  <div class="plat-rows">
+
+    <!-- 1 · Multi-unidade -->
+    <div class="plat-row">
+      <div class="plat-row-text fade-left">
+        <div class="plat-row-line"></div>
         <h3>Multi-unidade com<br>visão consolidada</h3>
-        <p>Cada unidade opera com autonomia dentro do padrão da organização. Dashboard corporativo sem perder a granularidade de cada operação.</p>
+        <p>Cada unidade de negócio opera com autonomia dentro do padrão da organização. Dashboard corporativo sem perder a granularidade local.</p>
       </div>
-      <div class="plat-feature-img">
-        <img src="fotos/plataforma-multiunit.png" alt="Multi-unidade">
-      </div>
-    </div>
-    <div class="plat-feature fade">
-      <div class="plat-feature-text">
-        <h3>Integrações e<br>API documentada</h3>
-        <p>API REST para integração com CRM, ERP e sistemas legados. Levantamento técnico gratuito no onboarding.</p>
-      </div>
-      <div class="plat-feature-img">
-        <img src="fotos/plataforma-api.png" alt="Integrações e API">
+      <div class="plat-row-img fade-right">
+        <img src="fotos/screen2.png" alt="Multi-unidade com visão consolidada">
       </div>
     </div>
+
+    <!-- 2 · Dashboard executivo -->
+    <div class="plat-row">
+      <div class="plat-row-text fade-left">
+        <div class="plat-row-line"></div>
+        <h3>Dashboard<br>executivo e gerencial</h3>
+        <p>Visão consolidada de todas as unidades. Acompanhamento intuitivo e em tempo real dos volumes e tendências.</p>
+      </div>
+      <div class="plat-row-img fade-right">
+        <img src="fotos/screen3.png" alt="Dashboard executivo e gerencial">
+      </div>
+    </div>
+
+    <!-- 3 · Relatório -->
+    <div class="plat-row">
+      <div class="plat-row-text fade-left">
+        <div class="plat-row-line"></div>
+        <h3>Relatório de<br>conformidade em 1 clique</h3>
+        <p>Análise comentada dos dados por IA. Relatórios operacionais e executivos customizados.</p>
+      </div>
+      <div class="plat-row-img fade-right">
+        <img src="fotos/screen4.png" alt="Relatório de conformidade em 1 clique">
+      </div>
+    </div>
+
+    <!-- 4 · SLA -->
+    <div class="plat-row">
+      <div class="plat-row-text fade-left">
+        <div class="plat-row-line"></div>
+        <h3>SLA automático<br>e alertas de prazo</h3>
+        <p>SLA configurável por tipo de manifestação com alertas antes do vencimento. Zero prazo perdido em e-mail compartilhado.</p>
+      </div>
+      <div class="plat-row-img fade-right">
+        <img src="fotos/screen5.png" alt="SLA automático e alertas de prazo">
+      </div>
+    </div>
+
   </div>
 </section>
 
