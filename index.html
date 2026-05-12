@@ -424,11 +424,13 @@ nav{
 .dani-cred-text strong{color:var(--text-dark);font-weight:700}
 /* right — photo + award */
 .dani-photo-col{display:flex;flex-direction:column;gap:clamp(20px,2vw,32px)}
-.dani-photo-wrap{
-  border-radius:24px;overflow:hidden;
-  box-shadow:0 16px 64px rgba(0,0,0,0.12);
+.dani-photo-wrap{display:block}
+.dani-photo-wrap img{
+  width:100%;display:block;
+  filter:drop-shadow(0 16px 48px rgba(0,0,0,0.18));
+  transition:filter .4s ease;
 }
-.dani-photo-wrap img{width:100%;display:block}
+.dani-photo-wrap img:hover{filter:drop-shadow(0 24px 64px rgba(0,0,0,0.28))}
 .dani-award-main{
   font-size:clamp(14px,1.1vw,19px);font-weight:700;
   color:var(--text-dark);line-height:1.55;letter-spacing:-0.02em;
@@ -477,10 +479,12 @@ nav{
 .metodo-intro{
   background:#F4F3F0;
   padding:clamp(72px,7.5vw,140px) 8% clamp(40px,4vw,72px);
+  text-align:center;
 }
 .metodo-intro-sub{
   font-size:clamp(14px,1.56vw,28px);font-weight:300;color:#2a2a2a;
   line-height:1.7;letter-spacing:-0.01em;max-width:860px;
+  margin:0 auto;
 }
 .metodo-intro-sub strong{
   font-weight:700;color:var(--vibrant);font-style:normal;
@@ -607,7 +611,7 @@ nav{
 }
 
 /* ─── DIFERENCIAIS ─── */
-.dif-header{margin-bottom:clamp(32px,3vw,60px)}
+.dif-header{margin-bottom:clamp(32px,3vw,60px);text-align:center}
 .dif-header h2{
   font-size:clamp(28px,4.2vw,80px);font-weight:700;line-height:1.1;
   letter-spacing:-0.04em;color:var(--text-dark);
@@ -615,28 +619,38 @@ nav{
 }
 .dif-header p{
   font-size:clamp(14px,1.56vw,30px);font-weight:400;color:var(--text-dark);
-  letter-spacing:-0.01em;max-width:900px;line-height:1.6;
+  letter-spacing:-0.01em;max-width:760px;line-height:1.6;margin:0 auto;
 }
-.dif-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(12px,1.5vw,28px)}
+.dif-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:clamp(14px,1.5vw,28px)}
 .dif-card{
-  background:var(--white);border:1px solid var(--neutral);border-radius:12px;
-  padding:clamp(20px,2vw,40px) clamp(20px,2vw,40px) clamp(24px,2.2vw,44px);
+  background:var(--white);border:1.5px solid var(--neutral);border-radius:16px;
+  padding:clamp(24px,2.2vw,44px);
+  transition:transform .35s cubic-bezier(.22,1,.36,1),
+             box-shadow .35s ease,border-color .35s ease;
+  will-change:transform;
+}
+.dif-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 20px 56px rgba(0,0,0,0.10);
+  border-color:rgba(50,204,97,0.30);
 }
 .dif-icon{
-  width:clamp(48px,3.6vw,70px);height:clamp(48px,3.6vw,70px);
-  background:#e0f5e6;border-radius:8px;
+  width:clamp(44px,3.6vw,64px);height:clamp(44px,3.6vw,64px);
+  background:#e8f7ee;border-radius:10px;
   display:flex;align-items:center;justify-content:center;
-  margin-bottom:clamp(16px,1.5vw,28px);flex-shrink:0;
+  margin-bottom:clamp(16px,1.5vw,24px);flex-shrink:0;
+  transition:background .3s;
 }
-.dif-icon svg{width:60%;height:60%}
+.dif-card:hover .dif-icon{background:#d0f0da}
+.dif-icon svg{width:56%;height:56%}
 .dif-card h3{
-  font-size:clamp(15px,1.44vw,27.7px);font-weight:700;color:var(--text-dim);
+  font-size:clamp(15px,1.44vw,27px);font-weight:700;color:var(--text-dim);
   letter-spacing:-0.02em;line-height:1.3;
-  margin-bottom:clamp(8px,.8vw,16px);
+  margin-bottom:clamp(8px,.8vw,14px);
 }
 .dif-card p{
-  font-size:clamp(13px,1.44vw,27.7px);font-weight:300;color:var(--text-dim);
-  line-height:1.6;letter-spacing:-0.01em;
+  font-size:clamp(13px,1.3vw,25px);font-weight:300;color:var(--text-dim);
+  line-height:1.65;letter-spacing:-0.01em;
 }
 
 /* ─── PLATAFORMA ─── */
@@ -735,7 +749,7 @@ nav{
   letter-spacing:-0.01em;line-height:1.6;max-width:780px;margin:0 auto;
 }
 /* grid */
-.metricas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.8vw,32px)}
+.metricas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.8vw,32px);align-items:stretch}
 /* card */
 .metrica-card{
   border-radius:clamp(14px,1.4vw,24px);overflow:hidden;
@@ -1124,17 +1138,52 @@ footer{
 .hero-btn,.hero-btn-circle,.nav-cta,.form-submit{cursor:pointer}
 a{cursor:pointer}
 
+/* ─── NAV MOBILE ─── */
+.nav-hamburger{
+  display:none;flex-direction:column;justify-content:center;gap:5px;
+  width:40px;height:40px;background:none;border:none;
+  cursor:pointer;flex-shrink:0;padding:4px;
+}
+.nav-hamburger span{
+  display:block;width:24px;height:2px;background:var(--white);border-radius:2px;
+  transition:transform .3s,opacity .3s;
+}
+.nav-hamburger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
+.nav-hamburger.open span:nth-child(2){opacity:0}
+.nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
+/* mobile overlay */
+.nav-mobile{
+  display:none;position:fixed;inset:0;top:76px;
+  background:rgba(9,9,9,0.97);backdrop-filter:blur(16px);
+  z-index:299;
+  flex-direction:column;align-items:center;justify-content:center;
+  gap:clamp(24px,3vw,40px);
+}
+.nav-mobile.open{display:flex}
+.nav-mobile a{
+  font-size:clamp(20px,4vw,32px);font-weight:600;color:rgba(255,255,255,0.85);
+  text-decoration:none;letter-spacing:-0.02em;
+  transition:color .2s;
+}
+.nav-mobile a:hover{color:var(--bright)}
+.nav-mobile .nav-cta{
+  margin-top:8px;font-size:clamp(15px,2.5vw,22px);
+}
+
 /* ─── RESPONSIVE ─── */
 @media(max-width:1024px){
-  .cards-grid,.dif-grid,.metricas-grid{grid-template-columns:repeat(2,1fr)}
+  .dif-grid,.metricas-grid{grid-template-columns:repeat(2,1fr)}
   .sobre-artigo,.daniela-grid,.plat-feature{grid-template-columns:1fr}
   .plat-feature.reverse{direction:ltr}
   .pillar{grid-template-columns:100px 1fr}
   .seguranca-grid{grid-template-columns:repeat(2,1fr)}
 }
+@media(max-width:860px){
+  .nav-links,.nav-cta{display:none}
+  .nav-hamburger{display:flex}
+}
 @media(max-width:640px){
-  .nav-links{display:none}
-  .cards-grid,.dif-grid,.metricas-grid,.seguranca-grid{grid-template-columns:1fr}
+  .dif-grid,.metricas-grid,.seguranca-grid{grid-template-columns:1fr}
   .daniela-portrait{display:none}
   .daniela-books{flex-wrap:wrap}
   footer{flex-direction:column;text-align:center}
@@ -1160,7 +1209,19 @@ a{cursor:pointer}
     <a href="#contato">Contato</a>
   </div>
   <a href="#contato" class="nav-cta">Agendar Demo Gratuita</a>
+  <button class="nav-hamburger" id="nav-hamburger" aria-label="Menu">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
+
+<!-- Mobile nav overlay -->
+<div class="nav-mobile" id="nav-mobile">
+  <a href="#sobre" onclick="closeMobileNav()">Sobre</a>
+  <a href="#metodo" onclick="closeMobileNav()">Método</a>
+  <a href="#diferenciais" onclick="closeMobileNav()">Diferenciais</a>
+  <a href="#plataforma" onclick="closeMobileNav()">Plataforma</a>
+  <a href="#contato" onclick="closeMobileNav()" class="nav-cta">Agendar Demo</a>
+</div>
 
 <!-- HERO -->
 <section class="hero">
@@ -1191,41 +1252,8 @@ a{cursor:pointer}
   </div>
 </section>
 
-<!-- O QUE ENTREGAMOS -->
-<section class="section section-white fade" id="sobre">
-  <div class="badge badge-dark" style="margin-bottom:clamp(8px,.8vw,16px)">
-    <span class="badge-arrow">
-      <svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    </span>
-  </div>
-  <h2 class="entregamos-title">O que entregamos</h2>
-  <div class="cards-grid">
-    <div class="card fade">
-      <img src="fotos/laptop-card.png" alt="Formulários flexíveis" class="card-img">
-      <div class="card-body">
-        <h3 class="card-title">Formulários flexíveis</h3>
-        <p class="card-sub">Captação adaptada à sua operação</p>
-      </div>
-    </div>
-    <div class="card fade">
-      <img src="fotos/laptop-card.png" alt="Relatórios customizados" class="card-img">
-      <div class="card-body">
-        <h3 class="card-title">Relatórios customizados</h3>
-        <p class="card-sub">Mais clareza para a tomada de decisão</p>
-      </div>
-    </div>
-    <div class="card fade">
-      <img src="fotos/laptop-card.png" alt="IA integrada" class="card-img">
-      <div class="card-body">
-        <h3 class="card-title">IA integrada</h3>
-        <p class="card-sub">Respostas contextualizadas e analíticas</p>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- SOBRE NÓS — GREEN BAND -->
-<section class="sobre-green">
+<section class="sobre-green" id="sobre">
   <div class="sobre-green-bg"></div>
   <div class="sobre-green-content">
     <div class="sobre-badge fade">
@@ -1382,7 +1410,7 @@ a{cursor:pointer}
           <div class="dani-cred-icon">
             <svg viewBox="0 0 22 22" fill="none" stroke="#26A24C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="9" width="18" height="11" rx="1"/><path d="M2 9l9-6 9 6"/><path d="M8 20v-6h2v6M12 20v-6h2v6"/></svg>
           </div>
-          <p class="dani-cred-text"><strong>Strategic Marketing Management</strong> pela Ohio University</p>
+          <p class="dani-cred-text"><strong>Strategic Marketing Management</strong><br>Pela Ohio University</p>
         </li>
         <li class="dani-cred">
           <div class="dani-cred-icon">
@@ -2010,6 +2038,20 @@ const revealObs=new IntersectionObserver(entries=>{
 document.querySelectorAll('.fade,.fade-left,.fade-right,.fade-scale').forEach(el=>revealObs.observe(el));
 // alias for legacy usage
 const observer=revealObs;
+
+// ── Mobile nav hamburger ──
+const hamburger=document.getElementById('nav-hamburger');
+const mobileNav=document.getElementById('nav-mobile');
+function closeMobileNav(){
+  hamburger.classList.remove('open');
+  mobileNav.classList.remove('open');
+  document.body.style.overflow='';
+}
+hamburger.addEventListener('click',()=>{
+  const isOpen=hamburger.classList.toggle('open');
+  mobileNav.classList.toggle('open',isOpen);
+  document.body.style.overflow=isOpen?'hidden':'';
+});
 
 // ── Premissa blocks scroll reveal ──
 const premObs=new IntersectionObserver(entries=>{
