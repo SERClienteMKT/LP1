@@ -473,43 +473,138 @@ nav{
 }
 
 /* ─── NOSSO MÉTODO ─── */
-.metodo-intro{padding:clamp(60px,6.25vw,120px) 8% clamp(40px,4vw,80px)}
-.metodo-intro h2{
-  font-size:clamp(28px,4.2vw,80px);font-weight:700;line-height:1.05;
-  letter-spacing:-0.04em;color:var(--text-dark);
-  margin-bottom:clamp(16px,1.5vw,30px);
+/* ─── NOSSO MÉTODO — intro ─── */
+.metodo-intro{
+  background:#F4F3F0;
+  padding:clamp(72px,7.5vw,140px) 8% clamp(40px,4vw,72px);
 }
-.metodo-intro p{
-  font-size:clamp(14px,1.56vw,30px);font-weight:300;color:#2a2a2a;
-  line-height:1.65;letter-spacing:-0.01em;max-width:900px;
+.metodo-intro-sub{
+  font-size:clamp(14px,1.56vw,28px);font-weight:300;color:#2a2a2a;
+  line-height:1.7;letter-spacing:-0.01em;max-width:860px;
 }
-.premissas{}
-.premissa{
-  padding:clamp(48px,5vw,96px) 8%;
-  background:var(--black);
-  border-top:1px solid rgba(255,255,255,0.08);
+.metodo-intro-sub strong{
+  font-weight:700;color:var(--vibrant);font-style:normal;
 }
+
+/* ─── PREMISSA BLOCKS (full-bleed) ─── */
+.premissas{display:flex;flex-direction:column}
+.premissa-block{
+  position:relative;overflow:hidden;
+  display:grid;grid-template-columns:44% 1fr;
+  min-height:clamp(460px,48vw,780px);
+}
+/* background image layer — scales on hover */
+.premissa-bg{
+  position:absolute;inset:0;
+  background-size:cover;background-position:center;
+  transition:transform 1s cubic-bezier(.22,1,.36,1);
+  z-index:0;will-change:transform;
+}
+.premissa-block:hover .premissa-bg{transform:scale(1.04)}
+
+/* subtle dark scrim so text is always readable */
+.premissa-block::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(90deg,rgba(0,0,0,0.18) 0%,rgba(0,0,0,0.42) 100%);
+  z-index:1;pointer-events:none;
+}
+/* Entender (green) — lighter scrim */
+.premissa-block.prem-e::after{
+  background:linear-gradient(90deg,rgba(0,60,20,0.25) 0%,rgba(0,40,12,0.45) 100%);
+}
+/* Resolver (dark) — almost no scrim needed */
+.premissa-block.prem-r::after{
+  background:linear-gradient(90deg,rgba(0,0,0,0.10) 0%,rgba(0,0,0,0.30) 100%);
+}
+
+/* letter column */
+.premissa-letter{
+  position:relative;z-index:2;
+  display:flex;align-items:center;justify-content:center;
+  padding:clamp(40px,4vw,80px) clamp(24px,3vw,60px);
+}
+.premissa-letter img{
+  width:clamp(180px,26vw,420px);height:auto;display:block;
+  transform:translateX(-40px);opacity:0;
+  transition:transform .9s cubic-bezier(.22,1,.36,1),
+             opacity .9s cubic-bezier(.22,1,.36,1),
+             filter .5s ease;
+  will-change:transform,opacity;
+}
+.premissa-block.prem-visible .premissa-letter img{
+  transform:translateX(0);opacity:1;
+}
+.premissa-block:hover .premissa-letter img{
+  filter:drop-shadow(0 0 48px rgba(50,204,97,0.45));
+  transform:scale(1.03) translateX(0);
+}
+
+/* content column */
+.premissa-content{
+  position:relative;z-index:2;
+  display:flex;flex-direction:column;justify-content:center;
+  padding:clamp(48px,5vw,96px) clamp(40px,5vw,96px) clamp(48px,5vw,96px) 0;
+  transform:translateX(40px);opacity:0;
+  transition:transform .9s .12s cubic-bezier(.22,1,.36,1),
+             opacity .9s .12s cubic-bezier(.22,1,.36,1);
+  will-change:transform,opacity;
+}
+.premissa-block.prem-visible .premissa-content{
+  transform:translateX(0);opacity:1;
+}
+
+/* label */
 .premissa-label{
-  font-size:clamp(14px,1.56vw,30px);font-weight:400;color:rgba(255,255,255,0.7);
-  letter-spacing:-0.01em;margin-bottom:clamp(8px,.8vw,16px);
-  display:flex;align-items:center;gap:10px;
+  font-size:clamp(13px,1.3vw,24px);font-weight:400;color:rgba(255,255,255,0.78);
+  letter-spacing:.04em;text-transform:uppercase;
+  display:flex;align-items:center;gap:8px;
+  margin-bottom:clamp(8px,.7vw,14px);
 }
-.premissa h3{
-  font-size:clamp(32px,4.4vw,85px);font-weight:600;color:var(--white);
-  letter-spacing:-0.04em;line-height:1.05;
-  margin-bottom:clamp(12px,1.2vw,24px);
+/* title */
+.premissa-block h3{
+  font-size:clamp(36px,5vw,96px);font-weight:700;color:var(--white);
+  letter-spacing:-0.04em;line-height:1.0;
+  margin-bottom:clamp(14px,1.3vw,26px);
 }
+/* lead paragraph */
 .premissa-lead{
-  font-size:clamp(14px,1.56vw,30px);font-weight:500;color:var(--white);
-  line-height:1.6;letter-spacing:-0.01em;max-width:900px;
-  margin-bottom:clamp(16px,1.3vw,26px);
+  font-size:clamp(14px,1.44vw,27px);font-weight:500;color:rgba(255,255,255,0.93);
+  line-height:1.65;letter-spacing:-0.01em;
+  margin-bottom:clamp(16px,1.5vw,28px);
+  max-width:640px;
 }
+/* bullet list */
 .premissa-list{
-  font-size:clamp(13px,1.56vw,30px);font-weight:200;color:rgba(255,255,255,0.75);
-  line-height:1.9;letter-spacing:-0.01em;
   list-style:none;
+  font-size:clamp(13px,1.3vw,24px);font-weight:300;color:rgba(255,255,255,0.78);
+  line-height:1.85;letter-spacing:-0.01em;
 }
-.premissa-list li::before{content:'—  ';color:var(--bright)}
+.premissa-list li{
+  display:flex;align-items:baseline;gap:10px;
+  opacity:0;transform:translateY(14px);
+  transition:opacity .55s cubic-bezier(.22,1,.36,1),
+             transform .55s cubic-bezier(.22,1,.36,1);
+}
+.premissa-block.prem-visible .premissa-list li{opacity:1;transform:none}
+.premissa-list li:nth-child(1){transition-delay:.3s}
+.premissa-list li:nth-child(2){transition-delay:.38s}
+.premissa-list li:nth-child(3){transition-delay:.46s}
+.premissa-list li:nth-child(4){transition-delay:.54s}
+.premissa-list li:nth-child(5){transition-delay:.62s}
+.premissa-list li::before{
+  content:'';display:inline-block;flex-shrink:0;
+  width:6px;height:6px;border-radius:50%;
+  background:var(--bright);margin-top:3px;
+}
+
+/* responsive */
+@media(max-width:860px){
+  .premissa-block{grid-template-columns:1fr;min-height:auto}
+  .premissa-letter{padding:clamp(40px,6vw,64px) 8% 20px;justify-content:flex-start}
+  .premissa-letter img{width:clamp(120px,32vw,220px)}
+  .premissa-content{padding:0 8% clamp(48px,6vw,72px)}
+  .premissa-block::after{background:linear-gradient(180deg,rgba(0,0,0,0.22) 0%,rgba(0,0,0,0.55) 100%)}
+}
 
 /* ─── DIFERENCIAIS ─── */
 .dif-header{margin-bottom:clamp(32px,3vw,60px)}
@@ -1100,58 +1195,87 @@ a{cursor:pointer}
 </section>
 
 <!-- NOSSO MÉTODO -->
-<div class="metodo-intro section-white fade" id="metodo">
-  <div class="badge badge-mid" style="padding:clamp(40px,4vw,80px) 8% 0">
+<div class="metodo-intro fade" id="metodo">
+  <div class="badge badge-mid" style="margin-bottom:clamp(16px,1.5vw,28px)">
     <span class="badge-arrow">
       <svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
     </span>
     Nosso método
   </div>
-  <div style="padding:0 8% clamp(40px,4vw,80px)">
-    <h2 class="metodo-intro-title" style="font-size:clamp(28px,4.2vw,80px);font-weight:700;line-height:1.05;letter-spacing:-0.04em;color:var(--text-dark);margin:clamp(12px,1vw,20px) 0">Saber. Entender.<br>Resolver e Responder.</h2>
-    <p style="font-size:clamp(14px,1.56vw,30px);font-weight:300;color:#2a2a2a;line-height:1.65;letter-spacing:-0.01em;max-width:900px">O Método S.E.R. Cliente auxilia no entendimento da manifestação, na identificação da causa-raíz e melhora a capacidade de resposta, com foco em qualidade, contexto e resultado.</p>
-  </div>
+  <h2 style="font-size:clamp(32px,4.5vw,86px);font-weight:700;line-height:1.05;letter-spacing:-0.04em;color:var(--text-dark);margin:0 0 clamp(16px,1.5vw,28px)">Saber. Entender.<br>Resolver e Responder.</h2>
+  <p class="metodo-intro-sub">O Método S.E.R. Cliente auxilia no entendimento da manifestação, na identificação da causa-raíz e melhorias contínuas. <strong>Um ciclo completo — da captura à evidência documentada para o seu Board e para as agências reguladoras.</strong></p>
 </div>
+
 <div class="premissas">
-  <div class="premissa fade">
-    <div class="premissa-label">
-      <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      Premissa 01
+
+  <!-- SABER -->
+  <div class="premissa-block prem-s">
+    <div class="premissa-bg" style="background-image:url('fotos/s.background.png')"></div>
+    <div class="premissa-letter">
+      <img src="fotos/s.saber.png" alt="S — Saber">
     </div>
-    <h3>Saber</h3>
-    <p class="premissa-lead">O primeiro passo é garantir um canal acessível e ágil para que o cliente possa se expressar. Reclamações, sugestões e elogios têm igual valor.</p>
-    <ul class="premissa-list">
-      <li>Formulários customizados</li>
-      <li>Multi-canal: e-mail, formulário, presencial, telefone</li>
-      <li>Token de acesso — sem proliferação de logins</li>
-    </ul>
-  </div>
-  <div class="premissa fade">
-    <div class="premissa-label">
-      <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      Premissa 02
+    <div class="premissa-content">
+      <div class="premissa-label">
+        <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Premissa 01
+      </div>
+      <h3>Saber</h3>
+      <p class="premissa-lead">O primeiro passo é garantir um canal acessível e ágil para que o cliente possa se expressar. Reclamações, sugestões e elogios — tudo centralizado, estruturado e pronto para análise.</p>
+      <ul class="premissa-list">
+        <li>Formulários customizados</li>
+        <li>Multi-canal: e-mail, formulário, presencial, telefone</li>
+        <li>Código de rastreamento único por relato</li>
+        <li>SLA automático configurável</li>
+      </ul>
     </div>
-    <h3>Entender</h3>
-    <p class="premissa-lead">Para um diagnóstico preciso, é fundamental analisar o feedback de forma profunda e contextualizada. Dados sem análise são ruído.</p>
-    <ul class="premissa-list">
-      <li>IA para análise e categorização automática</li>
-      <li>Dashboard executivo consolidado e por unidade</li>
-      <li>Relatórios com métricas de CX: NPS, CSAT, CES</li>
-    </ul>
   </div>
-  <div class="premissa fade">
-    <div class="premissa-label">
-      <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
-      Premissa 03
+
+  <!-- ENTENDER -->
+  <div class="premissa-block prem-e">
+    <div class="premissa-bg" style="background-image:url('fotos/e.background.png')"></div>
+    <div class="premissa-letter">
+      <img src="fotos/e.entender.png" alt="E — Entender">
     </div>
-    <h3>Resolver &amp; Responder</h3>
-    <p class="premissa-lead">Iniciativas estratégicas implementadas com base nas etapas anteriores. Agir de forma assertiva para que o cliente sinta que foi ouvido e atendido.</p>
-    <ul class="premissa-list">
-      <li>SLA configurável com alertas antes do vencimento</li>
-      <li>Perfis de responsabilidade e fluxos de aprovação</li>
-      <li>Histórico completo com código único ao cliente</li>
-    </ul>
+    <div class="premissa-content">
+      <div class="premissa-label">
+        <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Premissa 02
+      </div>
+      <h3>Entender</h3>
+      <p class="premissa-lead">Para um diagnóstico preciso, é fundamental analisar o feedback de forma profunda e contextualizada. Entender vai além de ouvir — significa transformar dados em decisões estratégicas.</p>
+      <ul class="premissa-list">
+        <li>IA para compreensão dos relatos e conexão com informações complementares</li>
+        <li>Feedbacks apresentados em cards intuitivos</li>
+        <li>Engajamento dos diversos departamentos da empresa</li>
+        <li>Possibilidade de escalar assuntos e anexar evidências</li>
+        <li>Uso de ferramentas de Qualidade Total</li>
+      </ul>
+    </div>
   </div>
+
+  <!-- RESOLVER E RESPONDER -->
+  <div class="premissa-block prem-r">
+    <div class="premissa-bg" style="background-image:url('fotos/r.background.png')"></div>
+    <div class="premissa-letter">
+      <img src="fotos/r.resolver e responder.png" alt="R — Resolver e Responder">
+    </div>
+    <div class="premissa-content">
+      <div class="premissa-label">
+        <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+        Premissa 03
+      </div>
+      <h3>Resolver e Responder</h3>
+      <p class="premissa-lead">Iniciativas estratégicas implementadas com base nas etapas anteriores. Agir de forma assertiva para minimizar impactos negativos, solucionar problemas e prevenir recorrências.</p>
+      <ul class="premissa-list">
+        <li>IA para customização e análise dos dados e históricos</li>
+        <li>Dashboard executivo consolidado e por unidade</li>
+        <li>Relatórios estatísticos com filtros avançados</li>
+        <li>Alertas de tendências e padrões de recorrência</li>
+        <li>Gráficos de métricas de CX e desempenho operacional</li>
+      </ul>
+    </div>
+  </div>
+
 </div>
 
 <!-- DIFERENCIAIS -->
@@ -1480,6 +1604,17 @@ const revealObs=new IntersectionObserver(entries=>{
 document.querySelectorAll('.fade,.fade-left,.fade-right,.fade-scale').forEach(el=>revealObs.observe(el));
 // alias for legacy usage
 const observer=revealObs;
+
+// ── Premissa blocks scroll reveal ──
+const premObs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){
+      e.target.classList.add('prem-visible');
+      premObs.unobserve(e.target);
+    }
+  });
+},{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
+document.querySelectorAll('.premissa-block').forEach(el=>premObs.observe(el));
 
 // ── FAQ accordion ──
 document.querySelectorAll('.faq-item').forEach(item=>{
