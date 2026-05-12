@@ -949,26 +949,43 @@ nav{
   .faq-section{grid-template-columns:1fr;gap:clamp(32px,4vw,60px)}
 }
 
-/* ─── CTA ─── */
-.cta-green{
+/* ─── CTA BANNER ─── */
+.cta-banner{
   position:relative;overflow:hidden;
-  background:var(--vibrant);
-  padding:clamp(50px,5vw,100px) 8%;
+  background:#111;
+  padding:clamp(64px,7vw,130px) 8%;
+  text-align:center;
 }
-.cta-green-bg{
+/* Mask group — decorative corners */
+.cta-banner-bg{
   position:absolute;inset:0;
-  background:url('fotos/cta-bg.png') center/cover no-repeat;
-  opacity:0.3;mix-blend-mode:multiply;
+  background:url('fotos/Mask group.png') center/cover no-repeat;
+  opacity:1;pointer-events:none;z-index:0;
 }
-.cta-green-content{position:relative;z-index:1}
-.cta-green h2{
-  font-size:clamp(28px,4.2vw,80px);font-weight:600;line-height:1.1;
+/* radial glow top-right */
+.cta-banner-glow{
+  position:absolute;top:-20%;right:-10%;
+  width:55%;aspect-ratio:1;
+  background:radial-gradient(circle,rgba(255,255,255,0.06) 0%,transparent 70%);
+  pointer-events:none;z-index:0;
+}
+.cta-banner-content{
+  position:relative;z-index:1;
+  max-width:1100px;margin:0 auto;
+}
+.cta-banner h2{
+  font-size:clamp(28px,4.5vw,86px);font-weight:700;line-height:1.1;
   letter-spacing:-0.04em;color:var(--white);
-  margin-bottom:clamp(16px,1.5vw,28px);max-width:1300px;
+  margin:clamp(14px,1.3vw,24px) 0 clamp(16px,1.5vw,28px);
 }
-.cta-green p{
-  font-size:clamp(14px,1.56vw,30px);font-weight:300;color:rgba(255,255,255,0.9);
-  letter-spacing:-0.01em;max-width:1140px;line-height:1.6;
+.cta-banner h2 .g{color:var(--bright)}
+.cta-banner-sub{
+  font-size:clamp(15px,1.56vw,30px);font-weight:300;color:rgba(255,255,255,0.88);
+  letter-spacing:-0.01em;line-height:1.6;
+}
+.cta-banner-sub strong{
+  font-weight:700;color:var(--bright);font-style:normal;
+  display:block;
 }
 .cta-form-section{
   background:var(--black);
@@ -1880,15 +1897,19 @@ a{cursor:pointer}
 
 <!-- CTA -->
 <section id="contato">
-  <div class="cta-green fade">
-    <div class="cta-green-bg"></div>
-    <div class="cta-green-content">
-      <div class="badge badge-white" style="margin-bottom:clamp(16px,1.5vw,28px)">
+  <div class="cta-banner">
+    <div class="cta-banner-bg"></div>
+    <div class="cta-banner-glow"></div>
+    <div class="cta-banner-content fade">
+      <div class="badge badge-white" style="margin-bottom:clamp(14px,1.3vw,24px);display:inline-flex">
         <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
         Comece agora
       </div>
-      <h2>30 minutos para ter o acesso à plataforma e&nbsp;já começar a usar.</h2>
-      <p>Agende sua demo e conheça os benefícios da S.E.R. Cliente para a sua operação e sua gestão.</p>
+      <h2><span class="g">30 minutos</span> para ter o acesso à<br>plataforma e já começar a usá-la.</h2>
+      <p class="cta-banner-sub">
+        <strong>Agende a sua demo e conheça os benefícios da S.E.R. Cliente</strong>
+        para a sua operação e para sua gestão.
+      </p>
     </div>
   </div>
   <div class="cta-form-section">
