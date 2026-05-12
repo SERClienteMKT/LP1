@@ -987,56 +987,64 @@ nav{
   font-weight:700;color:var(--bright);font-style:normal;
   display:block;
 }
-.cta-form-section{
-  background:var(--black);
-  padding:clamp(50px,5vw,100px) 8%;
-  display:flex;flex-direction:column;align-items:center;
+/* ─── FORM SECTION ─── */
+.form-section{
+  background:#EEECEA;
+  padding:clamp(64px,7vw,130px) 8%;
+  display:flex;justify-content:center;
 }
-.cta-form-wrap{
-  width:100%;max-width:1140px;
-  background:rgba(255,255,255,0.04);border-radius:16px;
-  padding:clamp(40px,3.5vw,72px);
-  border:1px solid rgba(255,255,255,0.08);
+/* floating card */
+.form-card{
+  width:100%;max-width:680px;
+  border-radius:clamp(16px,1.6vw,26px);overflow:hidden;
+  box-shadow:0 20px 80px rgba(0,0,0,0.13);
 }
-.cta-form-title{
-  font-size:clamp(24px,3.2vw,62px);font-weight:600;color:var(--white);
-  letter-spacing:-0.03em;line-height:1.1;margin-bottom:clamp(8px,.6vw,12px);
+/* dark header */
+.form-card-header{
+  background:#3D3D3D;
+  padding:clamp(22px,2.2vw,40px) clamp(32px,3.5vw,60px);
+  text-align:center;
 }
-.cta-form-sub{
-  font-size:clamp(14px,1.56vw,30px);font-weight:400;color:rgba(255,255,255,0.85);
-  letter-spacing:-0.01em;margin-bottom:clamp(28px,2.5vw,48px);line-height:1.5;
+.form-card-header h2{
+  font-size:clamp(20px,2.6vw,50px);font-weight:700;color:var(--white);
+  letter-spacing:-0.03em;line-height:1.1;
 }
-.form-fields{display:flex;flex-direction:column;gap:clamp(12px,1vw,20px)}
+/* white body */
+.form-card-body{
+  background:#fff;
+  padding:clamp(28px,2.8vw,50px) clamp(32px,3.5vw,60px) clamp(24px,2.4vw,40px);
+}
+.form-fields{display:flex;flex-direction:column;gap:clamp(12px,1.1vw,20px)}
 .form-field{
-  background:#323232;border:none;border-radius:8px;
-  padding:clamp(16px,1.4vw,26px) clamp(16px,1.4vw,26px);
-  font-size:clamp(14px,1.56vw,30px);font-weight:500;color:var(--text-gray);
+  background:#fff;
+  border:1.5px solid #DDDBD8;border-radius:clamp(8px,.8vw,12px);
+  padding:clamp(14px,1.3vw,22px) clamp(16px,1.5vw,24px);
+  font-size:clamp(14px,1.3vw,24px);font-weight:300;color:#333;
   font-family:var(--font);width:100%;outline:none;
-  transition:background .2s;letter-spacing:-0.01em;
+  transition:border-color .2s,box-shadow .2s;
+  letter-spacing:-0.01em;
 }
-.form-field:focus{background:#3a3a3a;color:var(--white)}
-.form-select-wrap{position:relative}
-.form-select-wrap select{
-  background:#323232;border:none;border-radius:8px;
-  padding:clamp(16px,1.4vw,26px) clamp(16px,1.4vw,26px);
-  font-size:clamp(14px,1.56vw,30px);font-weight:500;color:var(--text-gray);
-  font-family:var(--font);width:100%;outline:none;
-  appearance:none;cursor:pointer;letter-spacing:-0.01em;
+.form-field::placeholder{color:#999;font-weight:300}
+.form-field:focus{
+  border-color:var(--bright);
+  box-shadow:0 0 0 3px rgba(50,204,97,0.14);
 }
-.form-select-arrow{
-  position:absolute;right:clamp(16px,1.4vw,26px);top:50%;transform:translateY(-50%);
-  pointer-events:none;color:var(--vibrant);font-size:18px;
-}
+/* submit */
 .form-submit{
   background:var(--vibrant);color:var(--white);border:none;
-  padding:clamp(16px,1.4vw,26px);width:100%;border-radius:8px;
-  font-size:clamp(18px,2.1vw,40px);font-weight:600;font-family:var(--font);
-  cursor:pointer;transition:background .2s;letter-spacing:-0.02em;
+  border-radius:clamp(8px,.8vw,12px);
+  padding:clamp(15px,1.4vw,24px);width:100%;
+  font-size:clamp(15px,1.4vw,26px);font-weight:700;font-family:var(--font);
+  cursor:pointer;letter-spacing:-0.01em;
+  transition:background .2s,transform .25s cubic-bezier(.22,1,.36,1);
+  margin-top:clamp(4px,.4vw,8px);
 }
-.form-submit:hover{background:#1e9442}
+.form-submit:hover{background:#1e9442;transform:translateY(-2px)}
+.form-submit:active{transform:translateY(0)}
+/* disclaimer */
 .form-disclaimer{
-  text-align:center;margin-top:clamp(12px,1vw,20px);
-  font-size:clamp(13px,1.56vw,30px);font-weight:600;color:var(--text-gray);
+  text-align:center;margin-top:clamp(12px,1.1vw,20px);
+  font-size:clamp(12px,1.1vw,20px);font-weight:500;color:#888;
   letter-spacing:-0.01em;
 }
 
@@ -1912,31 +1920,23 @@ a{cursor:pointer}
       </p>
     </div>
   </div>
-  <div class="cta-form-section">
-    <div class="cta-form-wrap fade">
-      <h2 class="cta-form-title">Agende sua demo</h2>
-      <p class="cta-form-sub">Preencha em 30 segundos. Nossa equipe confirma em até 24 horas.</p>
-      <form class="form-fields" onsubmit="return false">
-        <input class="form-field" type="text" placeholder="Nome*" required>
-        <input class="form-field" type="text" placeholder="Nome da empresa:">
-        <div class="form-select-wrap">
-          <select class="form-field">
-            <option value="" disabled selected>Selecione seu setor</option>
-            <option>Aviação Civil</option>
-            <option>Saúde</option>
-            <option>Educação</option>
-            <option>Óleo &amp; Gás</option>
-            <option>Governamental</option>
-            <option>Varejo</option>
-            <option>Outro</option>
-          </select>
-          <span class="form-select-arrow">▾</span>
-        </div>
-        <input class="form-field" type="tel" placeholder="Telefone (WhatsApp):">
-        <input class="form-field" type="email" placeholder="E-mail corporativo:">
-        <button class="form-submit" type="submit">Agendar demonstração gratuita</button>
-      </form>
-      <p class="form-disclaimer">Sem spam. Sem compromisso. Respondemos em até 24 horas úteis.</p>
+  <div class="form-section">
+    <div class="form-card fade-scale">
+      <!-- dark header -->
+      <div class="form-card-header">
+        <h2>Agende sua demo</h2>
+      </div>
+      <!-- white body -->
+      <div class="form-card-body">
+        <form class="form-fields" onsubmit="return false">
+          <input class="form-field" type="text" placeholder="Nome*" required>
+          <input class="form-field" type="text" placeholder="Nome da empresa:*" required>
+          <input class="form-field" type="tel" placeholder="Telefone (WhatsApp):">
+          <input class="form-field" type="email" placeholder="E-mail corporativo:*" required>
+          <button class="form-submit" type="submit">Agendar demonstração gratuita</button>
+        </form>
+        <p class="form-disclaimer">Responderemos em até 24h.</p>
+      </div>
     </div>
   </div>
 </section>
