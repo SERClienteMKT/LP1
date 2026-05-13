@@ -781,10 +781,10 @@ nav{
 }
 /* grid */
 .metricas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.8vw,32px);align-items:stretch}
-/* card */
+/* card — grid layout keeps the white footer always at the same vertical position */
 .metrica-card{
   border-radius:clamp(14px,1.4vw,24px);overflow:hidden;
-  display:flex;flex-direction:column;
+  display:grid;grid-template-rows:1fr auto;
   box-shadow:0 8px 40px rgba(0,0,0,0.10);
   transition:transform .4s cubic-bezier(.22,1,.36,1),
              box-shadow .4s ease,
@@ -800,12 +800,10 @@ nav{
 /* stagger */
 .metricas-grid .metrica-card:nth-child(2){transition-delay:.1s}
 .metricas-grid .metrica-card:nth-child(3){transition-delay:.2s}
-/* dark top */
+/* dark top — fills the available space (grid row 1fr) */
 .metrica-top{
   background:#2B2B2B;
   padding:clamp(24px,2.2vw,40px) clamp(24px,2.2vw,40px) clamp(20px,2vw,36px);
-  flex:1;
-  min-height:clamp(220px,24vw,360px);
 }
 .metrica-icon-row{
   display:flex;align-items:center;gap:clamp(10px,1vw,16px);
