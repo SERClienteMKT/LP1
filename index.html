@@ -41,7 +41,7 @@ h1,h2,h3,h4,p{text-wrap:balance}
 
 /* ─── NAV ─── */
 nav{
-  position:fixed;top:0;left:0;width:100%;z-index:300;height:72px;
+  position:fixed;top:0;left:0;width:100%;z-index:300;height:88px;
   display:flex;flex-direction:row;align-items:center;justify-content:space-between;gap:16px;
   padding:0 5%;
   background:rgba(9,9,9,0.90);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);
@@ -53,31 +53,31 @@ nav{
   transition:opacity .25s;
 }
 .nav-logo:hover{opacity:0.75}
-.nav-logo img{height:40px;width:auto;display:block;}
+.nav-logo img{height:48px;width:auto;display:block;}
 .nav-links{
   display:flex;flex-direction:row;gap:2px;
   align-items:center;flex:1;justify-content:center;
   min-width:0;overflow:hidden;
 }
 .nav-links a{
-  font-size:clamp(13px,.9vw,15px);font-weight:500;
+  font-size:clamp(14px,1vw,17px);font-weight:500;
   color:rgba(255,255,255,0.72);
   text-decoration:none;letter-spacing:-0.01em;
-  padding:7px 16px;border-radius:100px;
+  padding:9px 20px;border-radius:100px;
   transition:color .2s,background .2s;white-space:nowrap;
 }
 .nav-links a:hover{color:var(--bright);background:rgba(50,204,97,0.08)}
 .nav-links a.active{
   background:var(--vibrant);color:#000;font-weight:700;
-  padding:7px 18px;border-radius:100px;
+  padding:9px 20px;border-radius:100px;
 }
 .nav-links a.active:hover{background:var(--bright)}
 .nav-cta{
   display:inline-flex;align-items:center;flex-shrink:0;
   background:transparent;color:#fff;
   border:1.5px solid rgba(255,255,255,0.55);
-  padding:9px 22px;border-radius:100px;
-  font-size:clamp(12px,.85vw,14px);font-weight:600;font-family:var(--font);
+  padding:12px 28px;border-radius:100px;
+  font-size:clamp(14px,1vw,16px);font-weight:600;font-family:var(--font);
   text-decoration:none;letter-spacing:-0.01em;white-space:nowrap;
   transition:all .25s;
 }
@@ -108,7 +108,7 @@ nav{
 .hero{
   min-height:100vh;position:relative;overflow:hidden;
   display:flex;flex-direction:column;justify-content:center;
-  padding:140px 5% 140px;
+  padding:160px 5% 140px;
   background:var(--black);
 }
 .hero-photo{
@@ -130,15 +130,15 @@ nav{
 .hero-content{position:relative;z-index:1;max-width:1000px}
 /* hero badge pill */
 .hero-badge{
-  display:inline-flex;align-items:center;gap:10px;
+  display:inline-flex;align-items:center;gap:12px;
   background:rgba(255,255,255,0.07);border:1px solid rgba(255,255,255,0.18);
-  border-radius:100px;padding:8px 20px 8px 12px;
-  font-size:clamp(13px,.9vw,16px);font-weight:500;color:rgba(255,255,255,0.9);
+  border-radius:100px;padding:10px 26px 10px 14px;
+  font-size:clamp(15px,1.1vw,20px);font-weight:500;color:rgba(255,255,255,0.9);
   letter-spacing:-.01em;margin-bottom:clamp(20px,2vw,36px);
   animation:fadeUp .7s .1s ease both;
 }
 .hero-badge-dot{
-  width:24px;height:24px;background:rgba(50,204,97,0.18);
+  width:30px;height:30px;background:rgba(50,204,97,0.18);
   border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 .hero-badge-dot svg{width:12px;height:12px}
@@ -150,9 +150,9 @@ nav{
 }
 .hero h1 .green{color:var(--bright)}
 .hero-sub{
-  font-size:clamp(16px,1.25vw,22px);font-weight:400;line-height:1.7;
+  font-size:clamp(17px,1.35vw,26px);font-weight:400;line-height:1.65;
   color:rgba(255,255,255,0.75);max-width:720px;
-  margin-bottom:clamp(28px,2.5vw,44px);letter-spacing:-0.01em;
+  margin-bottom:clamp(32px,2.8vw,52px);letter-spacing:-0.01em;
   animation:fadeUp .7s .4s ease both;
 }
 .hero-sub strong{color:rgba(255,255,255,0.95);font-weight:600}
@@ -164,15 +164,15 @@ nav{
 .hero-btn{
   display:inline-flex;align-items:center;gap:10px;
   background:var(--vibrant);color:var(--white);
-  padding:clamp(13px,1vw,17px) clamp(24px,2vw,36px);
-  border-radius:100px;font-size:clamp(14px,1vw,17px);font-weight:700;
+  padding:clamp(16px,1.2vw,22px) clamp(32px,2.5vw,52px);
+  border-radius:100px;font-size:clamp(15px,1.1vw,20px);font-weight:700;
   text-decoration:none;letter-spacing:-0.01em;font-family:var(--font);
   transition:background .25s,transform .25s,box-shadow .25s;
   box-shadow:0 4px 20px rgba(38,162,76,0.35);
 }
 .hero-btn:hover{background:var(--bright);transform:translateY(-2px);box-shadow:0 8px 28px rgba(50,204,97,0.45)}
 .hero-btn-circle{
-  width:clamp(46px,3.2vw,54px);height:clamp(46px,3.2vw,54px);
+  width:clamp(52px,3.8vw,64px);height:clamp(52px,3.8vw,64px);
   background:var(--vibrant);border-radius:50%;
   display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;
   text-decoration:none;
@@ -1178,7 +1178,7 @@ a{cursor:pointer}
 .nav-hamburger.open span:nth-child(3){transform:translateY(-7px) rotate(-45deg)}
 /* mobile overlay */
 .nav-mobile{
-  display:none;position:fixed;inset:0;top:72px;
+  display:none;position:fixed;inset:0;top:88px;
   background:rgba(9,9,9,0.97);backdrop-filter:blur(16px);
   z-index:299;
   flex-direction:column;align-items:center;justify-content:center;
@@ -1270,7 +1270,7 @@ a{cursor:pointer}
       Ouvidoria · Experiência do Cliente · IA
     </div>
     <h1>Gestão de <span class="green">feedbacks</span><br>da escuta à resolução.</h1>
-    <p class="hero-sub">A S.E.R. Cliente transforma a voz do cliente em direcionamento para a operação e para a gestão. <strong>Cada feedback registrado — entendido, resolvido e documentado.</strong></p>
+    <p class="hero-sub">A S.E.R. Cliente transforma a voz do cliente em direcionamento para a operação e para a gestão. <strong>Cada feedback registrado é entendido, resolvido e documentado.</strong></p>
     <div class="hero-actions">
       <a href="#contato" class="hero-btn">Agendar Demo Gratuita</a>
       <a href="#contato" class="hero-btn-circle" aria-label="Saiba mais">
