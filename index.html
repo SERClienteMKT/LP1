@@ -884,11 +884,13 @@ nav{
   font-size:clamp(14px,1.44vw,27px);font-weight:700;color:var(--vibrant);
   letter-spacing:-0.01em;line-height:1.5;
   margin-bottom:clamp(6px,.5vw,10px);
+  text-align:center;
 }
 .seg-sub{
   font-size:clamp(14px,1.44vw,27px);font-weight:300;color:#2a2a2a;
   letter-spacing:-0.01em;line-height:1.6;
   margin-bottom:clamp(40px,4.5vw,80px);
+  text-align:center;
 }
 /* 2-col grid */
 .seg-grid{
@@ -950,9 +952,10 @@ nav{
 }
 /* left col */
 .faq-left h2{
-  font-size:clamp(28px,4.5vw,86px);letter-spacing:-0.04em;line-height:1.05;
+  font-size:clamp(28px,4.5vw,72px);letter-spacing:-0.04em;line-height:1.05;
   color:var(--text-dark);
   margin:clamp(14px,1.3vw,24px) 0 clamp(20px,2vw,36px);
+  text-wrap:pretty;
 }
 .faq-left h2 strong{font-weight:700;display:block}
 .faq-left h2 span{font-weight:300}
@@ -1034,11 +1037,12 @@ nav{
   font-size:clamp(28px,4.5vw,86px);font-weight:700;line-height:1.1;
   letter-spacing:-0.04em;color:var(--white);
   margin:clamp(14px,1.3vw,24px) 0 clamp(16px,1.5vw,28px);
+  text-wrap:pretty;
 }
 .cta-banner h2 .g{color:var(--bright)}
 .cta-banner-sub{
   font-size:clamp(15px,1.56vw,30px);font-weight:300;color:rgba(255,255,255,0.88);
-  letter-spacing:-0.01em;line-height:1.6;
+  letter-spacing:-0.01em;line-height:1.6;text-wrap:pretty;
 }
 .cta-banner-sub strong{
   font-weight:700;color:var(--bright);font-style:normal;
@@ -1934,7 +1938,7 @@ a{cursor:pointer}
 
   <!-- Left col -->
   <div class="faq-left fade">
-    <div class="badge badge-mid" style="margin-bottom:clamp(12px,1vw,20px);display:inline-flex">
+    <div class="sa-badge" style="margin-bottom:clamp(12px,1vw,20px)">
       <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       FAQ
     </div>
