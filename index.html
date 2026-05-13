@@ -417,33 +417,33 @@ nav{
   letter-spacing:-.01em;margin-bottom:clamp(16px,1.5vw,24px);
 }
 .dani-name{
-  font-size:clamp(26px,2.8vw,52px);font-weight:700;
+  font-size:clamp(32px,3.8vw,68px);font-weight:700;
   letter-spacing:-0.038em;line-height:1.1;color:var(--text-dark);
   margin-bottom:clamp(10px,1vw,16px);
 }
 .dani-lead{
-  font-size:clamp(14px,1.05vw,18px);line-height:1.65;
+  font-size:clamp(15px,1.15vw,20px);line-height:1.65;
   color:var(--text-dim);letter-spacing:-0.01em;
   margin-bottom:clamp(20px,2vw,32px);
 }
 .dani-lead strong{color:var(--text-dark);font-weight:700}
 /* credentials */
-.dani-creds{list-style:none;display:flex;flex-direction:column;gap:clamp(10px,1vw,16px)}
-.dani-cred{display:flex;gap:14px;align-items:flex-start;
-  padding:clamp(10px,1vw,16px);border-radius:12px;
+.dani-creds{list-style:none;display:flex;flex-direction:column;gap:clamp(10px,1vw,18px)}
+.dani-cred{display:flex;gap:clamp(14px,1.2vw,20px);align-items:flex-start;
+  padding:clamp(10px,1vw,14px);border-radius:12px;
   transition:background .2s;
 }
 .dani-cred:hover{background:rgba(38,162,76,0.06)}
 .dani-cred-icon{
-  width:clamp(36px,3vw,48px);height:clamp(36px,3vw,48px);
-  background:rgba(38,162,76,0.1);border-radius:10px;
+  width:clamp(44px,3.8vw,60px);height:clamp(44px,3.8vw,60px);
+  background:rgba(38,162,76,0.1);border-radius:12px;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
   align-self:flex-start;margin-top:2px;
 }
-.dani-cred-icon svg{width:55%;height:55%}
+.dani-cred-icon svg{width:52%;height:52%}
 .dani-cred-text{
-  font-size:clamp(14px,1vw,17px);line-height:1.6;
-  color:var(--text-dim);letter-spacing:-0.01em;padding-top:3px;
+  font-size:clamp(15px,1.15vw,20px);line-height:1.6;
+  color:var(--text-dim);letter-spacing:-0.01em;padding-top:clamp(6px,.6vw,10px);
 }
 .dani-cred-text strong{color:var(--text-dark);font-weight:700}
 /* right — photo + award */
@@ -462,13 +462,17 @@ nav{
 .dani-photo-wrap img:hover{filter:drop-shadow(0 24px 64px rgba(0,0,0,0.28))}
 /* award text sits at the bottom of the right col */
 .dani-photo-col > div:last-child{margin-top:auto}
+.dani-award-block{
+  border-left:4px solid var(--vibrant);
+  padding-left:clamp(16px,1.5vw,24px);
+}
 .dani-award-main{
-  font-size:clamp(15px,1.15vw,20px);font-weight:700;
+  font-size:clamp(15px,1.2vw,22px);font-weight:700;
   color:var(--text-dark);line-height:1.55;letter-spacing:-0.02em;
-  margin-bottom:clamp(8px,.7vw,12px);
+  margin-bottom:clamp(8px,.7vw,14px);
 }
 .dani-award-sub{
-  font-size:clamp(14px,.95vw,17px);color:var(--text-dim);
+  font-size:clamp(14px,1vw,18px);color:var(--text-dim);
   line-height:1.6;letter-spacing:-0.01em;
 }
 /* ── mural infinito ── */
@@ -1468,7 +1472,7 @@ a{cursor:pointer}
       <div class="dani-photo-wrap">
         <img src="fotos/Daniela Fantinati.askbox.png" alt="Daniela Fantinati — Fundadora e CEO da S.E.R. Cliente">
       </div>
-      <div>
+      <div class="dani-award-block">
         <p class="dani-award-main">Única brasileira reconhecida como CX Professional of the Year 2023 pela Centricity World Series, uma das mais respeitadas premiações globais de experiência do cliente.</p>
         <p class="dani-award-sub">Profissional de Sucesso e Experiência do Cliente pela CSX Week Brasil 2023.</p>
       </div>
