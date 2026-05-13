@@ -449,19 +449,19 @@ nav{
 /* right — photo + award */
 .dani-photo-col{display:flex;flex-direction:column;gap:clamp(16px,1.6vw,24px)}
 .dani-photo-wrap{
-  display:block;
-  flex-shrink:0;
+  display:flex;
+  flex:1;
+  min-height:0;
 }
 .dani-photo-wrap img{
   width:100%;display:block;
+  height:100%;
   max-height:clamp(420px,52vw,660px);
   object-fit:contain;object-position:top center;
   filter:drop-shadow(0 16px 48px rgba(0,0,0,0.18));
   transition:filter .4s ease;
 }
 .dani-photo-wrap img:hover{filter:drop-shadow(0 24px 64px rgba(0,0,0,0.28))}
-/* award text sits at the bottom of the right col */
-.dani-photo-col > div:last-child{margin-top:auto}
 .dani-award-block{
   border-left:4px solid var(--vibrant);
   padding-left:clamp(16px,1.5vw,24px);
