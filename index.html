@@ -2418,5 +2418,18 @@ window.addEventListener('scroll',()=>{
   });
 },{passive:true});
 </script>
+
+<!-- Vimeo Player API: pause at end to prevent recommendation screen -->
+<script src="https://player.vimeo.com/api/player.js"></script>
+<script>
+(function(){
+  document.querySelectorAll('.test-video iframe').forEach(function(iframe){
+    var player = new Vimeo.Player(iframe);
+    player.on('ended', function(){
+      player.setCurrentTime(0).then(function(){ player.pause(); });
+    });
+  });
+})();
+</script>
 </body>
 </html>
