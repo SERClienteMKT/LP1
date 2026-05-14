@@ -939,9 +939,15 @@ nav{
   font-style:italic;text-align:left;
 }
 .test-quote::before{
-  content:'\201C\00A0';color:var(--bright);
+  content:'\201C';color:var(--vibrant);
   font-size:1.5em;line-height:0;
-  vertical-align:-0.35em;margin-right:1px;
+  vertical-align:-0.35em;margin-right:2px;
+  font-style:normal;
+}
+.test-quote::after{
+  content:'\201D';color:var(--vibrant);
+  font-size:1.5em;line-height:0;
+  vertical-align:-0.35em;margin-left:2px;
   font-style:normal;
 }
 .test-divider{width:28px;height:2px;background:var(--vibrant);border-radius:2px}
@@ -1997,7 +2003,7 @@ a{cursor:pointer}
       </div>
       <div class="test-body">
         <div class="test-quote-wrap">
-          <p class="test-quote">A plataforma vai muito além de um simples repositório de feedbacks; ela transforma a voz do cliente em pautas de melhoria contínua."</p>
+          <p class="test-quote">A plataforma vai muito além de um simples repositório de feedbacks; ela transforma a voz do cliente em pautas de melhoria contínua.</p>
         </div>
         <div class="test-divider"></div>
         <div class="test-info">
@@ -2015,7 +2021,7 @@ a{cursor:pointer}
       </div>
       <div class="test-body">
         <div class="test-quote-wrap">
-          <p class="test-quote">Mais do que um suporte, encontramos conexão e parceria."</p>
+          <p class="test-quote">Mais do que um suporte, encontramos conexão e parceria.</p>
         </div>
         <div class="test-divider"></div>
         <div class="test-info">
@@ -2033,7 +2039,7 @@ a{cursor:pointer}
       </div>
       <div class="test-body">
         <div class="test-quote-wrap">
-          <p class="test-quote">Após um ano de utilização, já percebemos ganhos relevantes de produtividade."</p>
+          <p class="test-quote">Após um ano de utilização, já percebemos ganhos relevantes de produtividade.</p>
         </div>
         <div class="test-divider"></div>
         <div class="test-info">
