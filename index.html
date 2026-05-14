@@ -899,23 +899,14 @@ nav{
 .test-video{
   position:relative;
   aspect-ratio:9/16;
-  background:linear-gradient(160deg,#1e1e1e 0%,#111 100%);
-  display:flex;align-items:center;justify-content:center;
-  overflow:hidden;cursor:pointer;
+  background:#111;
+  overflow:hidden;
 }
-.test-video::after{
-  content:'';position:absolute;inset:0;
-  background:linear-gradient(to bottom,transparent 55%,rgba(0,0,0,0.65) 100%);
-  pointer-events:none;
-}
-.test-video-el{
+.test-video iframe{
   position:absolute;inset:0;
   width:100%;height:100%;
-  object-fit:cover;
-  transition:opacity .3s;
+  border:0;
 }
-.test-video.playing .test-play{opacity:0;pointer-events:none}
-.test-video.playing::after{opacity:0}
 .test-video-frame{
   position:absolute;inset:0;
   border-radius:inherit;
@@ -1986,13 +1977,7 @@ a{cursor:pointer}
     <!-- Paulo Necchio -->
     <div class="test-card fade">
       <div class="test-video">
-        <video class="test-video-el" src="fotos/test-paulo.mp4" playsinline preload="metadata"></video>
-        <div class="test-video-frame"></div>
-        <div class="test-play">
-          <svg width="20" height="23" viewBox="0 0 20 23" fill="none">
-            <path d="M2 1.5l16 9.5-16 9.5V1.5z" fill="#fff" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
-          </svg>
-        </div>
+        <iframe src="https://player.vimeo.com/video/1192393547?title=0&byline=0&portrait=0&badge=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="test-body">
         <div class="test-quote-wrap">
@@ -2010,13 +1995,7 @@ a{cursor:pointer}
     <!-- Luna Marins -->
     <div class="test-card fade">
       <div class="test-video">
-        <video class="test-video-el" src="fotos/test-luna.mp4" playsinline preload="metadata"></video>
-        <div class="test-video-frame"></div>
-        <div class="test-play">
-          <svg width="20" height="23" viewBox="0 0 20 23" fill="none">
-            <path d="M2 1.5l16 9.5-16 9.5V1.5z" fill="#fff" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
-          </svg>
-        </div>
+        <iframe src="https://player.vimeo.com/video/1192393548?title=0&byline=0&portrait=0&badge=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="test-body">
         <div class="test-quote-wrap">
@@ -2034,13 +2013,7 @@ a{cursor:pointer}
     <!-- Keiliestiane Bueno -->
     <div class="test-card fade">
       <div class="test-video">
-        <video class="test-video-el" src="fotos/test-keiliestiane.mp4" playsinline preload="metadata"></video>
-        <div class="test-video-frame"></div>
-        <div class="test-play">
-          <svg width="20" height="23" viewBox="0 0 20 23" fill="none">
-            <path d="M2 1.5l16 9.5-16 9.5V1.5z" fill="#fff" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
-          </svg>
-        </div>
+        <iframe src="https://player.vimeo.com/video/1192393545?title=0&byline=0&portrait=0&badge=0&dnt=1" allow="autoplay; fullscreen; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
       <div class="test-body">
         <div class="test-quote-wrap">
@@ -2383,23 +2356,6 @@ document.querySelectorAll('.premissa-block').forEach(el=>premObs.observe(el));
   obs.observe(v);
 })();
 
-// ── Testimoniais - play/pause ──
-document.querySelectorAll('.test-video').forEach(wrapper=>{
-  const video = wrapper.querySelector('.test-video-el');
-  if(!video) return;
-  wrapper.addEventListener('click',()=>{
-    if(video.paused){
-      // Pause all others first
-      document.querySelectorAll('.test-video-el').forEach(v=>{ if(v!==video){v.pause(); v.closest('.test-video').classList.remove('playing')} });
-      video.play();
-      wrapper.classList.add('playing');
-    } else {
-      video.pause();
-      wrapper.classList.remove('playing');
-    }
-  });
-  video.addEventListener('ended',()=>{ wrapper.classList.remove('playing') });
-});
 
 // ── FAQ accordion - smooth max-height ──
 document.querySelectorAll('.faq-item').forEach(item=>{
