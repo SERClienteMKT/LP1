@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>S.E.R. Cliente — Gestão de Feedbacks da Escuta à Resolução</title>
+<title>S.E.R. Cliente - Gestão de Feedbacks da Escuta à Resolução</title>
 <meta name="description" content="Ouvidoria · Experiência do Cliente · IA. Gestão de feedbacks da escuta à resolução.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -213,13 +213,13 @@ nav{
   background:url('fotos/sobre-nos-green.png') center/cover no-repeat;
   mix-blend-mode:overlay;opacity:0.18;
 }
-/* top wave — dark bite so hero (black) flows into green smoothly */
+/* top wave - dark bite so hero (black) flows into green smoothly */
 .sobre-green::before{
   content:'';position:absolute;top:-2px;left:0;width:100%;height:80px;
   background:url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 80' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,40 C240,80 480,0 720,40 C960,80 1200,0 1440,40 L1440,0 L0,0 Z' fill='%23090909'/%3E%3C/svg%3E") center/100% 100% no-repeat;
   pointer-events:none;z-index:2;
 }
-/* bottom wave — transitions into sa-section (#EEECEA) */
+/* bottom wave - transitions into sa-section (#EEECEA) */
 .sobre-green::after{
   content:'';position:absolute;bottom:-2px;left:0;width:100%;height:80px;
   background:url("data:image/svg+xml,%3Csvg viewBox='0 0 1440 80' preserveAspectRatio='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M0,40 C240,0 480,80 720,40 C960,0 1200,80 1440,40 L1440,80 L0,80 Z' fill='%23EEECEA'/%3E%3C/svg%3E") center/100% 100% no-repeat;
@@ -400,7 +400,7 @@ nav{
 }
 .dani-title strong{font-weight:700;display:block}
 .dani-title span{font-weight:300;display:block}
-/* 2-col grid — stretch so both cols share height; last items align at bottom */
+/* 2-col grid - stretch so both cols share height; last items align at bottom */
 .dani-grid{
   display:grid;grid-template-columns:1fr 1fr;
   gap:clamp(40px,5vw,88px);align-items:stretch;
@@ -413,7 +413,7 @@ nav{
 .dani-grid > .fade-left .dani-creds{
   flex:1;
 }
-/* left — bio */
+/* left - bio */
 .dani-badge{
   display:inline-flex;align-items:center;gap:8px;
   background:#fff;border:1px solid rgba(0,0,0,0.12);
@@ -451,7 +451,7 @@ nav{
   color:var(--text-dim);letter-spacing:-0.01em;padding-top:clamp(6px,.6vw,10px);
 }
 .dani-cred-text strong{color:var(--text-dark);font-weight:700}
-/* right — photo + award */
+/* right - photo + award */
 .dani-photo-col{display:flex;flex-direction:column;gap:clamp(16px,1.6vw,24px)}
 .dani-photo-wrap{
   display:flex;
@@ -502,7 +502,7 @@ nav{
 .dani-mural-img{
   height:clamp(220px,24vw,400px);width:auto;
   display:block;flex-shrink:0;
-  /* gap between repetitions — usando margin-right faz o -50% ser exato */
+  /* gap between repetitions - usando margin-right faz o -50% ser exato */
   margin-right:clamp(16px,2vw,32px);
 }
 @keyframes muralScroll{
@@ -515,7 +515,7 @@ nav{
 }
 
 /* ─── NOSSO MÉTODO ─── */
-/* ─── NOSSO MÉTODO — intro ─── */
+/* ─── NOSSO MÉTODO - intro ─── */
 .metodo-intro{
   background:#F4F3F0;
   padding:clamp(72px,7.5vw,140px) 8% clamp(40px,4vw,72px);
@@ -537,7 +537,7 @@ nav{
   display:grid;grid-template-columns:44% 1fr;
   min-height:clamp(460px,48vw,780px);
 }
-/* background image layer — scales on hover */
+/* background image layer - scales on hover */
 .premissa-bg{
   position:absolute;inset:0;
   background-size:cover;background-position:center;
@@ -552,11 +552,11 @@ nav{
   background:linear-gradient(90deg,rgba(0,0,0,0.18) 0%,rgba(0,0,0,0.42) 100%);
   z-index:1;pointer-events:none;
 }
-/* Entender (green) — lighter scrim */
+/* Entender (green) - lighter scrim */
 .premissa-block.prem-e::after{
   background:linear-gradient(90deg,rgba(0,60,20,0.25) 0%,rgba(0,40,12,0.45) 100%);
 }
-/* Resolver (dark) — almost no scrim needed */
+/* Resolver (dark) - almost no scrim needed */
 .premissa-block.prem-r::after{
   background:linear-gradient(90deg,rgba(0,0,0,0.10) 0%,rgba(0,0,0,0.30) 100%);
 }
@@ -648,6 +648,8 @@ nav{
   .premissa-letter img{width:clamp(120px,32vw,220px)}
   .premissa-content{padding:0 8% clamp(48px,6vw,72px)}
   .premissa-block::after{background:linear-gradient(180deg,rgba(0,0,0,0.22) 0%,rgba(0,0,0,0.55) 100%)}
+  .premissa-bg{background-position:right center}
+  .hero-photo{background-position:right center}
 }
 
 /* ─── DIFERENCIAIS ─── */
@@ -772,7 +774,7 @@ nav{
 /* ─── MÉTRICAS ─── */
 .metricas-section{
   background:#EEECEA;
-  padding:clamp(80px,8vw,140px) 8% clamp(24px,2.5vw,48px);
+  padding:clamp(80px,8vw,140px) 8% clamp(80px,8vw,140px);
 }
 .metricas-header{text-align:center;margin-bottom:clamp(48px,5vw,88px)}
 .metricas-header h2{
@@ -793,7 +795,7 @@ nav{
 }
 /* grid */
 .metricas-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:clamp(16px,1.8vw,32px);align-items:stretch}
-/* card — grid layout keeps the white footer always at the same vertical position */
+/* card - grid layout keeps the white footer always at the same vertical position */
 .metrica-card{
   border-radius:clamp(14px,1.4vw,24px);overflow:hidden;
   display:flex;flex-direction:column;
@@ -813,7 +815,7 @@ nav{
 /* stagger */
 .metricas-grid .metrica-card:nth-child(2){transition-delay:.1s}
 .metricas-grid .metrica-card:nth-child(3){transition-delay:.2s}
-/* dark top — flex:1 fills available space, pushing footer to the bottom */
+/* dark top - flex:1 fills available space, pushing footer to the bottom */
 .metrica-top{
   flex:1;
   background:#2B2B2B;
@@ -856,6 +858,120 @@ nav{
   .metricas-grid{grid-template-columns:1fr}
   .metricas-grid .metrica-card:nth-child(2),
   .metricas-grid .metrica-card:nth-child(3){transition-delay:0s}
+}
+
+/* ─── TESTIMONIAIS ─── */
+.testimoniais-section{
+  background:#0d0d0d;
+  padding:clamp(80px,8vw,140px) 5%;
+  text-align:center;
+}
+.testimoniais-header{
+  max-width:820px;margin:0 auto clamp(48px,5vw,88px);
+}
+.testimoniais-header h2{
+  font-size:clamp(30px,4vw,72px);font-weight:700;
+  letter-spacing:-0.04em;line-height:1.08;color:var(--white);
+  margin:clamp(14px,1.3vw,24px) 0 clamp(16px,1.5vw,28px);
+  text-wrap:pretty;
+}
+.testimoniais-header h2 span{font-weight:300}
+.testimoniais-header p{
+  font-size:clamp(15px,1.4vw,26px);font-weight:300;
+  color:rgba(255,255,255,0.65);line-height:1.65;letter-spacing:-0.01em;
+}
+.testimoniais-grid{
+  display:grid;grid-template-columns:repeat(3,1fr);
+  gap:clamp(20px,2.5vw,40px);
+  max-width:1100px;margin:0 auto;
+}
+.test-card{
+  display:flex;flex-direction:column;
+  background:#141414;border-radius:clamp(14px,1.5vw,22px);
+  overflow:hidden;
+  border:1px solid rgba(255,255,255,0.07);
+  transition:transform .4s cubic-bezier(.22,1,.36,1),box-shadow .4s ease;
+}
+.test-card:hover{
+  transform:translateY(-6px);
+  box-shadow:0 24px 64px rgba(0,0,0,0.5),0 0 0 1px rgba(50,204,97,0.18);
+}
+.test-video{
+  position:relative;
+  aspect-ratio:9/16;
+  background:linear-gradient(160deg,#1e1e1e 0%,#111 100%);
+  display:flex;align-items:center;justify-content:center;
+  overflow:hidden;cursor:pointer;
+}
+.test-video::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to bottom,transparent 55%,rgba(0,0,0,0.65) 100%);
+  pointer-events:none;
+}
+.test-video-el{
+  position:absolute;inset:0;
+  width:100%;height:100%;
+  object-fit:cover;
+  transition:opacity .3s;
+}
+.test-video.playing .test-play{opacity:0;pointer-events:none}
+.test-video.playing::after{opacity:0}
+.test-video-frame{
+  position:absolute;inset:0;
+  border-radius:inherit;
+  box-shadow:inset 0 0 0 1.5px rgba(255,255,255,0.06);
+  pointer-events:none;z-index:2;
+}
+.test-play{
+  position:relative;z-index:3;
+  width:clamp(52px,4.5vw,72px);height:clamp(52px,4.5vw,72px);
+  background:var(--vibrant);border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 32px rgba(38,162,76,0.5),0 0 0 8px rgba(38,162,76,0.12);
+  transition:transform .3s ease,background .3s,box-shadow .3s;
+}
+.test-card:hover .test-play{
+  transform:scale(1.1);
+  background:var(--bright);
+  box-shadow:0 10px 40px rgba(50,204,97,0.55),0 0 0 12px rgba(50,204,97,0.1);
+}
+.test-body{
+  padding:clamp(18px,1.8vw,28px);
+  display:flex;flex-direction:column;gap:clamp(10px,1vw,14px);
+  flex:1;
+}
+.test-quote-wrap{flex:1;display:flex;align-items:flex-start}
+.test-info{min-height:100px}
+.test-quote{
+  font-size:clamp(14px,1.15vw,20px);font-weight:400;
+  color:rgba(255,255,255,0.88);line-height:1.65;letter-spacing:-0.01em;
+  font-style:italic;text-align:left;
+}
+.test-quote::before{
+  content:'\201C\00A0';color:var(--bright);
+  font-size:1.5em;line-height:0;
+  vertical-align:-0.35em;margin-right:1px;
+  font-style:normal;
+}
+.test-divider{width:28px;height:2px;background:var(--vibrant);border-radius:2px}
+.test-name{
+  font-size:clamp(13px,1vw,17px);font-weight:700;
+  color:var(--white);letter-spacing:-0.01em;text-align:left;
+}
+.test-role{
+  font-size:clamp(12px,.9vw,15px);font-weight:400;
+  color:rgba(255,255,255,0.65);letter-spacing:-0.01em;
+  line-height:1.5;text-align:left;margin-bottom:3px;
+}
+.test-company{
+  font-size:clamp(10px,.72vw,12px);font-weight:400;
+  color:rgba(255,255,255,0.35);letter-spacing:0.06em;
+  text-transform:uppercase;line-height:1.5;text-align:left;
+}
+@media(max-width:860px){
+  .testimoniais-grid{
+    grid-template-columns:1fr;max-width:340px;
+  }
 }
 
 /* ─── SEGURANÇA ─── */
@@ -964,7 +1080,7 @@ nav{
   line-height:1.7;letter-spacing:-0.01em;
   hyphens:none;
 }
-/* right col — accordion */
+/* right col - accordion */
 .faq-accordion{display:flex;flex-direction:column;gap:clamp(8px,.8vw,14px)}
 .faq-item{
   background:#fff;border-radius:clamp(10px,1vw,16px);overflow:hidden;
@@ -995,7 +1111,7 @@ nav{
 }
 .faq-item.open .faq-arrow{transform:rotate(180deg);background:var(--vibrant)}
 .faq-arrow svg{display:block;pointer-events:none}
-/* smooth height animation — NO display:none */
+/* smooth height animation - NO display:none */
 .faq-answer{
   max-height:0;overflow:hidden;
   transition:max-height .5s cubic-bezier(.22,1,.36,1);
@@ -1017,7 +1133,7 @@ nav{
   padding:clamp(64px,7vw,130px) 8%;
   text-align:center;
 }
-/* Mask group — decorative corners */
+/* Mask group - decorative corners */
 .cta-banner-bg{
   position:absolute;inset:0;
   background:url('fotos/Mask group.png') center/cover no-repeat;
@@ -1094,6 +1210,37 @@ nav{
   border-color:var(--bright);
   box-shadow:0 0 0 3px rgba(50,204,97,0.14);
 }
+/* phone field with country selector */
+.form-phone-wrap{
+  display:flex;align-items:stretch;
+  background:#fff;
+  border:1.5px solid #DDDBD8;border-radius:clamp(8px,.8vw,12px);
+  overflow:hidden;
+  transition:border-color .2s,box-shadow .2s;
+}
+.form-phone-wrap:focus-within{
+  border-color:var(--bright);
+  box-shadow:0 0 0 3px rgba(50,204,97,0.14);
+}
+.form-phone-code{
+  background:#F7F6F4;
+  border:none;border-right:1.5px solid #DDDBD8;
+  padding:clamp(14px,1.3vw,22px) clamp(28px,2.2vw,36px) clamp(14px,1.3vw,22px) clamp(12px,1.1vw,18px);
+  font-size:clamp(13px,1.05vw,19px);font-weight:500;color:#444;
+  font-family:var(--font);outline:none;cursor:pointer;flex-shrink:0;
+  appearance:none;-webkit-appearance:none;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='10' height='6' viewBox='0 0 10 6'%3E%3Cpath d='M1 1l4 4 4-4' stroke='%23999' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+  background-repeat:no-repeat;background-position:right 9px center;
+  transition:background .2s;
+}
+.form-phone-code:focus{background-color:#EEF8F2}
+.form-phone-input{
+  flex:1;border:none;outline:none;background:transparent;
+  padding:clamp(14px,1.3vw,22px) clamp(16px,1.5vw,24px);
+  font-size:clamp(14px,1.3vw,24px);font-weight:300;color:#333;
+  font-family:var(--font);letter-spacing:-0.01em;min-width:0;
+}
+.form-phone-input::placeholder{color:#999;font-weight:300}
 /* submit */
 .form-submit{
   background:var(--vibrant);color:var(--white);border:none;
@@ -1129,7 +1276,7 @@ footer{
 .footer-logo{
   height:clamp(64px,7vw,110px);width:auto;display:block;flex-shrink:0;
 }
-/* legal links — lighter gray */
+/* legal links - lighter gray */
 .footer-legal{
   display:flex;flex-direction:column;
   gap:clamp(10px,1vw,18px);
@@ -1159,10 +1306,10 @@ footer{
 .fade-right.visible{opacity:1;transform:none}
 .fade-scale{opacity:0;transform:scale(.88);transition:opacity 1s cubic-bezier(.22,1,.36,1),transform 1s cubic-bezier(.22,1,.36,1)}
 .fade-scale.visible{opacity:1;transform:scale(1)}
-/* nth-child stagger — cards */
+/* nth-child stagger - cards */
 .cards-grid .card:nth-child(2){transition-delay:.12s}
 .cards-grid .card:nth-child(3){transition-delay:.24s}
-/* nth-child stagger — dif-cards */
+/* nth-child stagger - dif-cards */
 .dif-grid .dif-card:nth-child(2){transition-delay:.07s}
 .dif-grid .dif-card:nth-child(3){transition-delay:.14s}
 .dif-grid .dif-card:nth-child(4){transition-delay:.21s}
@@ -1298,7 +1445,7 @@ a{cursor:pointer}
   </div>
 </section>
 
-<!-- SOBRE NÓS — GREEN BAND -->
+<!-- SOBRE NÓS - GREEN BAND -->
 <section class="sobre-green" id="sobre">
   <div class="sobre-green-bg"></div>
   <div class="sobre-green-content">
@@ -1313,7 +1460,7 @@ a{cursor:pointer}
   </div>
 </section>
 
-<!-- SOBRE NÓS — ARTIGO (3-row alternating) -->
+<!-- SOBRE NÓS - ARTIGO (3-row alternating) -->
 <section class="sa-section">
 
   <!-- Row 1: texto | imagem -->
@@ -1339,7 +1486,7 @@ a{cursor:pointer}
       <img src="fotos/sobre-feedback.png" alt="Avaliações e feedbacks de clientes em tempo real">
     </div>
     <div class="sa-text fade">
-      <p class="sa-p-lg">Acreditamos que reclamações, sugestões e elogios não devem ser vistos apenas como problemas a resolver, mas como consultoria gratuita — <strong>ganhos valiosos para melhorar processos, fortalecer relações e evoluir a experiência do cliente.</strong></p>
+      <p class="sa-p-lg">Acreditamos que reclamações, sugestões e elogios não devem ser vistos apenas como problemas a resolver, mas como consultoria gratuita - <strong>ganhos valiosos para melhorar processos, fortalecer relações e evoluir a experiência do cliente.</strong></p>
     </div>
   </div>
 
@@ -1372,19 +1519,19 @@ a{cursor:pointer}
     <!-- 01 -->
     <div class="pilar-card fade">
       <div class="pilar-img">
-        <img src="fotos/lp4.png" alt="Escuta ativa — atendente com headset">
+        <img src="fotos/lp4.png" alt="Escuta ativa - atendente com headset">
       </div>
       <div class="pilar-body">
         <span class="pilar-num">01</span>
         <h3 class="pilar-title">Escuta ativa</h3>
-        <p class="pilar-text">Feedback é oportunidade, não incômodo. Cada manifestação — reclamação, sugestão ou elogio — <strong>é capturada, registrada e transformada em insumo estratégico para a sua operação.</strong></p>
+        <p class="pilar-text">Feedback é oportunidade, não incômodo. Cada manifestação - reclamação, sugestão ou elogio - <strong>é capturada, registrada e transformada em insumo estratégico para a sua operação.</strong></p>
       </div>
     </div>
 
     <!-- 02 -->
     <div class="pilar-card fade">
       <div class="pilar-img">
-        <img src="fotos/lp5.png" alt="Decisão baseada em dados — reunião com dashboard">
+        <img src="fotos/lp5.png" alt="Decisão baseada em dados - reunião com dashboard">
       </div>
       <div class="pilar-body">
         <span class="pilar-num">02</span>
@@ -1396,7 +1543,7 @@ a{cursor:pointer}
     <!-- 03 -->
     <div class="pilar-card fade">
       <div class="pilar-img">
-        <img src="fotos/lp6.png" alt="Transparência e rastreabilidade — dois profissionais com laptop">
+        <img src="fotos/lp6.png" alt="Transparência e rastreabilidade - dois profissionais com laptop">
       </div>
       <div class="pilar-body">
         <span class="pilar-num">03</span>
@@ -1408,7 +1555,7 @@ a{cursor:pointer}
     <!-- 04 -->
     <div class="pilar-card fade">
       <div class="pilar-img">
-        <img src="fotos/lp7.png" alt="Responsabilidade na resposta — profissional ao telefone">
+        <img src="fotos/lp7.png" alt="Responsabilidade na resposta - profissional ao telefone">
       </div>
       <div class="pilar-body">
         <span class="pilar-num">04</span>
@@ -1462,7 +1609,7 @@ a{cursor:pointer}
           <div class="dani-cred-icon">
             <svg viewBox="0 0 22 22" fill="none" stroke="#26A24C" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M20 5H8a2 2 0 00-2 2v10a2 2 0 002 2h12a2 2 0 002-2V7a2 2 0 00-2-2z"/><path d="M6 5V3a2 2 0 00-2-2H2"/><path d="M2 5v14"/><line x1="10" y1="10" x2="18" y2="10"/><line x1="10" y1="14" x2="15" y2="14"/></svg>
           </div>
-          <p class="dani-cred-text">Trajetória nos setores <strong>governamental, educação, óleo &amp; gás e aviação civil</strong> — liderando ouvidoria, sucesso do cliente e estratégias estruturadas de CX</p>
+          <p class="dani-cred-text">Trajetória nos setores <strong>governamental, educação, óleo &amp; gás e aviação civil</strong> - liderando ouvidoria, sucesso do cliente e estratégias estruturadas de CX</p>
         </li>
         <li class="dani-cred">
           <div class="dani-cred-icon">
@@ -1482,7 +1629,7 @@ a{cursor:pointer}
     <!-- Direita: foto + prêmio -->
     <div class="dani-photo-col fade-right">
       <div class="dani-photo-wrap">
-        <img src="fotos/Daniela Fantinati.askbox.png" alt="Daniela Fantinati — Fundadora e CEO da S.E.R. Cliente">
+        <img src="fotos/Daniela Fantinati.askbox.png" alt="Daniela Fantinati - Fundadora e CEO da S.E.R. Cliente">
       </div>
       <div class="dani-award-block">
         <p class="dani-award-main">Única brasileira reconhecida como CX Professional of the Year 2023 pela Centricity World Series, uma das mais respeitadas premiações globais de experiência do cliente.</p>
@@ -1495,7 +1642,7 @@ a{cursor:pointer}
   <!-- Mural infinito -->
   <div class="dani-mural">
     <div class="dani-mural-track">
-      <img src="fotos/Daniela Fantinati.mural.png" alt="Daniela Fantinati — momentos e eventos" class="dani-mural-img">
+      <img src="fotos/Daniela Fantinati.mural.png" alt="Daniela Fantinati - momentos e eventos" class="dani-mural-img">
       <img src="fotos/Daniela Fantinati.mural.png" alt="" aria-hidden="true" class="dani-mural-img">
     </div>
   </div>
@@ -1511,7 +1658,7 @@ a{cursor:pointer}
     Nosso método
   </div>
   <h2 style="font-size:clamp(32px,4.5vw,86px);font-weight:700;line-height:1.05;letter-spacing:-0.04em;color:var(--text-dark);margin:0 0 clamp(16px,1.5vw,28px)">Saber. Entender.<br>Resolver e Responder.</h2>
-  <p class="metodo-intro-sub">O Método S.E.R. Cliente auxilia no entendimento da manifestação, na identificação<br>da causa-raíz e melhorias contínuas. <strong>Um ciclo completo — da captura à evidência<br>documentada para o seu Board e para as agências reguladoras.</strong></p>
+  <p class="metodo-intro-sub">O Método S.E.R. Cliente auxilia no entendimento da manifestação, na identificação<br>da causa-raíz e melhorias contínuas. <strong>Um ciclo completo - da captura à evidência<br>documentada para o seu Board e para as agências reguladoras.</strong></p>
 </div>
 
 <div class="premissas">
@@ -1520,7 +1667,7 @@ a{cursor:pointer}
   <div class="premissa-block prem-s">
     <div class="premissa-bg" style="background-image:url('fotos/s.background.png')"></div>
     <div class="premissa-letter">
-      <img src="fotos/s.saber.png" alt="S — Saber">
+      <img src="fotos/s.saber.png" alt="S - Saber">
     </div>
     <div class="premissa-content">
       <div class="premissa-label">
@@ -1528,7 +1675,7 @@ a{cursor:pointer}
         Premissa 01
       </div>
       <h3>Saber</h3>
-      <p class="premissa-lead">O primeiro passo é garantir um canal acessível e ágil para que o cliente possa se expressar. Reclamações, sugestões e elogios — tudo centralizado, estruturado e pronto para análise.</p>
+      <p class="premissa-lead">O primeiro passo é garantir um canal acessível e ágil para que o cliente possa se expressar. Reclamações, sugestões e elogios - tudo centralizado, estruturado e pronto para análise.</p>
       <ul class="premissa-list">
         <li>Formulários customizados</li>
         <li>Multi-canal: e-mail, formulário, presencial, telefone</li>
@@ -1542,7 +1689,7 @@ a{cursor:pointer}
   <div class="premissa-block prem-e">
     <div class="premissa-bg" style="background-image:url('fotos/e.background.png')"></div>
     <div class="premissa-letter">
-      <img src="fotos/e.entender.png" alt="E — Entender">
+      <img src="fotos/e.entender.png" alt="E - Entender">
     </div>
     <div class="premissa-content">
       <div class="premissa-label">
@@ -1550,7 +1697,7 @@ a{cursor:pointer}
         Premissa 02
       </div>
       <h3>Entender</h3>
-      <p class="premissa-lead">Para um diagnóstico preciso, é fundamental analisar o feedback de forma profunda e contextualizada. Entender vai além de ouvir — significa transformar dados em decisões estratégicas.</p>
+      <p class="premissa-lead">Para um diagnóstico preciso, é fundamental analisar o feedback de forma profunda e contextualizada. Entender vai além de ouvir - significa transformar dados em decisões estratégicas.</p>
       <ul class="premissa-list">
         <li>IA para compreensão dos relatos e conexão com informações complementares</li>
         <li>Feedbacks apresentados em cards intuitivos</li>
@@ -1565,7 +1712,7 @@ a{cursor:pointer}
   <div class="premissa-block prem-r">
     <div class="premissa-bg" style="background-image:url('fotos/r.background.png')"></div>
     <div class="premissa-letter">
-      <img src="fotos/r.resolver%20e%20responder.png" alt="R — Resolver e Responder">
+      <img src="fotos/r.resolver%20e%20responder.png" alt="R - Resolver e Responder">
     </div>
     <div class="premissa-content">
       <div class="premissa-label">
@@ -1622,14 +1769,14 @@ a{cursor:pointer}
         <svg viewBox="0 0 34 34" fill="none"><circle cx="17" cy="13" r="5" stroke="#26A24C" stroke-width="2"/><path d="M9 28c0-4.4 3.6-8 8-8s8 3.6 8 8" stroke="#26A24C" stroke-width="2" stroke-linecap="round"/></svg>
       </div>
       <h3>Perfis e permissões configuráveis</h3>
-      <p>Perfis de acesso com base em responsabilidades, permissões e níveis de autonomia — gestão segura para qualquer equipe.</p>
+      <p>Perfis de acesso com base em responsabilidades, permissões e níveis de autonomia - gestão segura para qualquer equipe.</p>
     </div>
     <div class="dif-card fade">
       <div class="dif-icon">
         <svg viewBox="0 0 34 34" fill="none"><rect x="6" y="10" width="22" height="16" rx="2" stroke="#26A24C" stroke-width="2"/><path d="M11 10V7a6 6 0 0112 0v3" stroke="#26A24C" stroke-width="2"/></svg>
       </div>
       <h3>Token de acesso</h3>
-      <p>Links exclusivos com acesso via token — sem proliferação de logins e senhas. Acesso seguro e rastreável.</p>
+      <p>Links exclusivos com acesso via token - sem proliferação de logins e senhas. Acesso seguro e rastreável.</p>
     </div>
     <div class="dif-card fade">
       <div class="dif-icon">
@@ -1642,7 +1789,7 @@ a{cursor:pointer}
       <div class="dif-icon">
         <svg viewBox="0 0 34 34" fill="none"><path d="M17 6c-6.1 0-11 4.9-11 11s4.9 11 11 11 11-4.9 11-11" stroke="#26A24C" stroke-width="2" stroke-linecap="round"/><path d="M23 6v5h5" stroke="#26A24C" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </div>
-      <h3>SaaS — serviço em nuvem</h3>
+      <h3>SaaS - serviço em nuvem</h3>
       <p>Acesso seguro e escalável via nuvem. Disponibilidade garantida, segurança dos dados e atualizações contínuas.</p>
     </div>
     <div class="dif-card fade">
@@ -1668,7 +1815,7 @@ a{cursor:pointer}
   </div>
 
   <!-- Hero screenshot -->
-  <img src="fotos/screen1.png" alt="Plataforma S.E.R. Cliente" class="plat-hero fade-scale">
+  <video id="plat-hero-video" class="plat-hero fade-scale" src="fotos/SER Screen.mp4" muted playsinline preload="metadata"></video>
 
   <!-- Sub-text -->
   <p class="plat-sub fade">Não é produto de prateleira. A S.E.R. Cliente foi <strong>desenvolvida e validada com clientes reais em ambientes de alta complexidade regulada.</strong></p>
@@ -1770,7 +1917,7 @@ a{cursor:pointer}
         <p class="metrica-desc">Mede o esforço que o cliente teve para registrar sua manifestação. Quanto menor o esforço, maior a confiança e menos risco de churn silencioso.</p>
       </div>
       <div class="metrica-footer">
-        <em class="met-label">Como aparece:</em> "Nos conte como foi registrar seu feedback por aqui?" — Métrica crítica para o abandono de clientes.
+        <em class="met-label">Como aparece:</em> "Nos conte como foi registrar seu feedback por aqui?" - Métrica crítica para o abandono de clientes.
       </div>
     </div>
 
@@ -1793,7 +1940,7 @@ a{cursor:pointer}
         <p class="metrica-desc">Mede a satisfação pontual com o atendimento e a resolução. Complementa o NPS com uma leitura imediata da qualidade do tratamento.</p>
       </div>
       <div class="metrica-footer">
-        <em class="met-label">Como aparece:</em> "Como você avalia a tratativa dada para seu feedback?" — Avaliação imediata após cada atendimento.
+        <em class="met-label">Como aparece:</em> "Como você avalia a tratativa dada para seu feedback?" - Avaliação imediata após cada atendimento.
       </div>
     </div>
 
@@ -1822,6 +1969,95 @@ a{cursor:pointer}
   </div>
 </section>
 
+<!-- TESTIMONIAIS -->
+<section class="testimoniais-section">
+
+  <div class="testimoniais-header fade">
+    <div class="sa-badge" style="margin-bottom:clamp(12px,1vw,20px)">
+      <span class="badge-arrow"><svg viewBox="0 0 14 25" fill="none"><path d="M1 1l12 11.5L1 24" stroke="#32CC61" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+      Quem usa, conta
+    </div>
+    <h2>Na prática,<br><span>quem usa não volta atrás.</span></h2>
+    <p>Da operação ao Board - gestores que transformaram a voz do cliente em decisão documentada.</p>
+  </div>
+
+  <div class="testimoniais-grid">
+
+    <!-- Paulo Necchio -->
+    <div class="test-card fade">
+      <div class="test-video">
+        <video class="test-video-el" src="fotos/test-paulo.mp4" playsinline preload="metadata"></video>
+        <div class="test-video-frame"></div>
+        <div class="test-play">
+          <svg width="20" height="23" viewBox="0 0 20 23" fill="none">
+            <path d="M2 1.5l16 9.5-16 9.5V1.5z" fill="#fff" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="test-body">
+        <div class="test-quote-wrap">
+          <p class="test-quote">A plataforma vai muito além de um simples repositório de feedbacks; ela transforma a voz do cliente em pautas de melhoria contínua."</p>
+        </div>
+        <div class="test-divider"></div>
+        <div class="test-info">
+          <div class="test-name">Paulo Necchio</div>
+          <div class="test-role">Gerente de Marketing e Experiência do Cliente</div>
+          <div class="test-company">Aeroporto Internacional de Viracopos</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Luna Marins -->
+    <div class="test-card fade">
+      <div class="test-video">
+        <video class="test-video-el" src="fotos/test-luna.mp4" playsinline preload="metadata"></video>
+        <div class="test-video-frame"></div>
+        <div class="test-play">
+          <svg width="20" height="23" viewBox="0 0 20 23" fill="none">
+            <path d="M2 1.5l16 9.5-16 9.5V1.5z" fill="#fff" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="test-body">
+        <div class="test-quote-wrap">
+          <p class="test-quote">Mais do que um suporte, encontramos conexão e parceria."</p>
+        </div>
+        <div class="test-divider"></div>
+        <div class="test-info">
+          <div class="test-name">Luna Marins</div>
+          <div class="test-role">Ouvidoria</div>
+          <div class="test-company">Aeroporto Internacional de Brasília</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Keiliestiane Bueno -->
+    <div class="test-card fade">
+      <div class="test-video">
+        <video class="test-video-el" src="fotos/test-keiliestiane.mp4" playsinline preload="metadata"></video>
+        <div class="test-video-frame"></div>
+        <div class="test-play">
+          <svg width="20" height="23" viewBox="0 0 20 23" fill="none">
+            <path d="M2 1.5l16 9.5-16 9.5V1.5z" fill="#fff" stroke="#fff" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+        </div>
+      </div>
+      <div class="test-body">
+        <div class="test-quote-wrap">
+          <p class="test-quote">Após um ano de utilização, já percebemos ganhos relevantes de produtividade."</p>
+        </div>
+        <div class="test-divider"></div>
+        <div class="test-info">
+          <div class="test-name">Keiliestiane Bueno</div>
+          <div class="test-role">Supervisora de Atendimento ao Cliente</div>
+          <div class="test-company">ITA Frotas</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
 <!-- SEGURANÇA -->
 <section class="seg-section">
 
@@ -1835,7 +2071,7 @@ a{cursor:pointer}
   </div>
 
   <!-- Hero image -->
-  <img src="fotos/cadeado-nuvem.png" alt="Segurança e conformidade — S.E.R. Cliente" class="seg-hero fade-scale">
+  <img src="fotos/cadeado-nuvem.png" alt="Segurança e conformidade - S.E.R. Cliente" class="seg-hero fade-scale">
 
   <!-- Sub texts -->
   <p class="seg-green fade">Banco de dados seguro e certificado, em conformidade com os principais padrões globais de segurança.</p>
@@ -1947,10 +2183,10 @@ a{cursor:pointer}
       FAQ
     </div>
     <h2><strong>Respostas diretas.</strong><span>Sem eufemismo.</span></h2>
-    <p>Se sua pergunta não está aqui, traga-a para a demonstração da plataforma — que responderemos durante a demo</p>
+    <p>Se sua pergunta não está aqui, traga-a para a demonstração da plataforma - que responderemos durante a demo</p>
   </div>
 
-  <!-- Right col — accordion -->
+  <!-- Right col - accordion -->
   <div class="faq-accordion fade-right">
 
     <div class="faq-item open">
@@ -1959,7 +2195,7 @@ a{cursor:pointer}
         <span class="faq-arrow"><svg width="16" height="10" viewBox="0 0 16 10" fill="none"><path d="M1 1l7 7 7-7" stroke="#fff" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
       </div>
       <div class="faq-answer">
-        <div class="faq-answer-inner">S de Saber (ouvir a voz do cliente e entender suas percepções, oferecendo um canal fácil e acessível para o registro dos feedbacks), E de Entender (analisar profundamente com contexto e gerar insights estratégicos) e R de Resolver e Responder (agir de forma assertiva, fechar o ciclo com o cliente e gerar evidência documentada). É um ciclo completo — não apenas um repositório de reclamações.</div>
+        <div class="faq-answer-inner">S de Saber (ouvir a voz do cliente e entender suas percepções, oferecendo um canal fácil e acessível para o registro dos feedbacks), E de Entender (analisar profundamente com contexto e gerar insights estratégicos) e R de Resolver e Responder (agir de forma assertiva, fechar o ciclo com o cliente e gerar evidência documentada). É um ciclo completo - não apenas um repositório de reclamações.</div>
       </div>
     </div>
 
@@ -2032,10 +2268,25 @@ a{cursor:pointer}
       <!-- white body -->
       <div class="form-card-body">
         <form class="form-fields" onsubmit="return false">
-          <input class="form-field" type="text" placeholder="Nome*" required>
-          <input class="form-field" type="text" placeholder="Nome da empresa:*" required>
-          <input class="form-field" type="tel" placeholder="Telefone (WhatsApp):">
-          <input class="form-field" type="email" placeholder="E-mail corporativo:*" required>
+          <input class="form-field" type="text" placeholder="Nome completo*" required>
+          <input class="form-field" type="text" placeholder="Nome da empresa*" required>
+          <div class="form-phone-wrap">
+            <select class="form-phone-code" id="phone-code" aria-label="Código do país">
+              <option value="+55" data-placeholder="(11) 99999-9999">🇧🇷 +55</option>
+              <option value="+1-us" data-placeholder="(555) 555-5555">🇺🇸 +1</option>
+              <option value="+1-ca" data-placeholder="(555) 555-5555">🇨🇦 +1</option>
+              <option value="+351" data-placeholder="912 345 678">🇵🇹 +351</option>
+              <option value="+244" data-placeholder="923 456 789">🇦🇴 +244</option>
+              <option value="+258" data-placeholder="82 345 6789">🇲🇿 +258</option>
+              <option value="+54" data-placeholder="(11) 1234-5678">🇦🇷 +54</option>
+              <option value="+56" data-placeholder="9 1234 5678">🇨🇱 +56</option>
+              <option value="+57" data-placeholder="312 345 6789">🇨🇴 +57</option>
+              <option value="+52" data-placeholder="55 1234 5678">🇲🇽 +52</option>
+              <option value="+598" data-placeholder="091 234 567">🇺🇾 +598</option>
+            </select>
+            <input class="form-phone-input" id="phone-input" type="tel" placeholder="(11) 99999-9999" aria-label="Telefone WhatsApp">
+          </div>
+          <input class="form-field" type="email" placeholder="E-mail corporativo*" required>
           <button class="form-submit" type="submit">Agendar demonstração gratuita</button>
         </form>
         <p class="form-disclaimer">Responderemos em até 24h.</p>
@@ -2101,7 +2352,56 @@ const premObs=new IntersectionObserver(entries=>{
 },{threshold:0.12,rootMargin:'0px 0px -60px 0px'});
 document.querySelectorAll('.premissa-block').forEach(el=>premObs.observe(el));
 
-// ── FAQ accordion — smooth max-height ──
+// ── Phone country selector ──
+(function(){
+  const sel = document.getElementById('phone-code');
+  const inp = document.getElementById('phone-input');
+  if(!sel||!inp) return;
+  sel.addEventListener('change',function(){
+    const opt = sel.options[sel.selectedIndex];
+    inp.placeholder = opt.dataset.placeholder || '';
+    inp.value = '';
+    inp.focus();
+  });
+})();
+
+// ── Plat hero video - play once on first viewport entry ──
+(function(){
+  const v = document.getElementById('plat-hero-video');
+  if(!v) return;
+  let played = false;
+  const obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting && !played){
+        played = true;
+        v.play();
+        v.addEventListener('ended',function(){ v.pause(); },{ once:true });
+        obs.disconnect();
+      }
+    });
+  },{ threshold:0.3 });
+  obs.observe(v);
+})();
+
+// ── Testimoniais - play/pause ──
+document.querySelectorAll('.test-video').forEach(wrapper=>{
+  const video = wrapper.querySelector('.test-video-el');
+  if(!video) return;
+  wrapper.addEventListener('click',()=>{
+    if(video.paused){
+      // Pause all others first
+      document.querySelectorAll('.test-video-el').forEach(v=>{ if(v!==video){v.pause(); v.closest('.test-video').classList.remove('playing')} });
+      video.play();
+      wrapper.classList.add('playing');
+    } else {
+      video.pause();
+      wrapper.classList.remove('playing');
+    }
+  });
+  video.addEventListener('ended',()=>{ wrapper.classList.remove('playing') });
+});
+
+// ── FAQ accordion - smooth max-height ──
 document.querySelectorAll('.faq-item').forEach(item=>{
   item.querySelector('.faq-question').addEventListener('click',()=>{
     const wasOpen=item.classList.contains('open');
