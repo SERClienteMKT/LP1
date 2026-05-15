@@ -664,12 +664,11 @@ nav{
 .dif-card{
   background:var(--white);border:1.5px solid var(--neutral);border-radius:16px;
   padding:clamp(24px,2.2vw,44px);
-  transition:transform .65s cubic-bezier(.22,1,.36,1),
-             box-shadow .65s cubic-bezier(.22,1,.36,1),border-color .65s ease;
+  transition:transform .9s cubic-bezier(.22,1,.36,1),
+             box-shadow .9s cubic-bezier(.22,1,.36,1),border-color .9s ease;
   will-change:transform;
 }
 .dif-card:hover{
-  transform:translateY(-8px) scale(1.01);
   box-shadow:0 24px 64px rgba(0,0,0,0.13);
   border-color:rgba(50,204,97,0.40);
 }
@@ -797,14 +796,13 @@ nav{
   display:flex;flex-direction:column;
   height:100%;
   box-shadow:0 8px 40px rgba(0,0,0,0.10);
-  transition:transform .7s cubic-bezier(.22,1,.36,1),
-             box-shadow .7s cubic-bezier(.22,1,.36,1),
-             border-color .7s ease;
+  transition:transform .9s cubic-bezier(.22,1,.36,1),
+             box-shadow .9s cubic-bezier(.22,1,.36,1),
+             border-color .9s ease;
   border:1.5px solid transparent;
   will-change:transform;
 }
 .metrica-card:hover{
-  transform:translateY(-10px);
   box-shadow:0 28px 72px rgba(0,0,0,0.18);
   border-color:rgba(50,204,97,0.30);
 }
@@ -1014,12 +1012,11 @@ nav{
   display:flex;align-items:flex-start;gap:clamp(14px,1.3vw,22px);
   border:1.5px solid transparent;
   box-shadow:0 4px 24px rgba(0,0,0,0.06);
-  transition:transform .65s cubic-bezier(.22,1,.36,1),
-             box-shadow .65s cubic-bezier(.22,1,.36,1),border-color .65s ease;
+  transition:transform .9s cubic-bezier(.22,1,.36,1),
+             box-shadow .9s cubic-bezier(.22,1,.36,1),border-color .9s ease;
   will-change:transform;
 }
 .seg-card:hover{
-  transform:translateY(-6px);
   box-shadow:0 20px 60px rgba(0,0,0,0.12);
   border-color:rgba(50,204,97,0.28);
 }
@@ -1080,7 +1077,12 @@ nav{
   cursor:pointer;
   border:1.5px solid transparent;
   box-shadow:0 2px 12px rgba(0,0,0,0.05);
-  transition:border-color .25s,box-shadow .3s;
+  transition:transform .9s cubic-bezier(.22,1,.36,1),border-color .9s ease,box-shadow .9s ease;
+  will-change:transform;
+}
+.faq-item:hover{
+  box-shadow:0 16px 48px rgba(0,0,0,0.10);
+  border-color:rgba(50,204,97,0.20);
 }
 .faq-item.open{
   border-color:rgba(50,204,97,0.22);
@@ -2413,6 +2415,34 @@ window.addEventListener('scroll',()=>{
     a.classList.toggle('active', a.getAttribute('href')==='#'+current);
   });
 },{passive:true});
+</script>
+
+<!-- 3D tilt hover for cards -->
+<script>
+(function(){
+  var maxTilt = 8; // degrees
+  var liftY = 10;  // px lift
+  document.querySelectorAll('.dif-card,.metrica-card,.seg-card,.faq-item').forEach(function(card){
+    card.addEventListener('mousemove',function(e){
+      var r = card.getBoundingClientRect();
+      var x = (e.clientX - r.left) / r.width  - 0.5; // -0.5 to +0.5
+      var y = (e.clientY - r.top)  / r.height - 0.5;
+      // suppress transform transition while mouse is moving (instant response)
+      card.style.transition = 'box-shadow .9s ease,border-color .9s ease';
+      card.style.transform =
+        'perspective(900px)' +
+        ' translateY(-'+ liftY +'px)' +
+        ' rotateX('+ (-y * maxTilt) +'deg)' +
+        ' rotateY('+ ( x * maxTilt) +'deg)' +
+        ' scale(1.015)';
+    });
+    card.addEventListener('mouseleave',function(){
+      // restore full transition so return-to-flat is smooth
+      card.style.transition = '';
+      card.style.transform = '';
+    });
+  });
+})();
 </script>
 
 <!-- Vimeo Player API: pause at end to prevent recommendation screen -->
