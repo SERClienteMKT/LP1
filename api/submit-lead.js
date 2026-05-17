@@ -132,7 +132,7 @@ function buildLeadEmail(name) {
 
         <!-- Header verde com logo -->
         <tr><td style="background:linear-gradient(135deg,#003A1A 0%,#005A28 60%,#008038 100%);padding:36px 40px;text-align:center">
-          <img src="https://sercliente.com.br/fotos/Logo%20branco.png" alt="S.E.R. Cliente" style="height:64px;display:block;margin:0 auto">
+          <p style="margin:0;font-size:28px;font-weight:800;color:#fff;letter-spacing:-0.03em">S.E.R. <span style="color:#32CC61">Cliente</span></p>
         </td></tr>
 
         <!-- Corpo -->
