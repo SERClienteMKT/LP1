@@ -151,7 +151,7 @@ function buildLeadEmail(name) {
 
         <!-- CTA -->
         <tr><td style="padding:0 40px 36px;text-align:center">
-          <a href="https://sercliente.com.br" style="display:inline-block;background:#008038;color:#fff;text-decoration:none;padding:14px 36px;border-radius:100px;font-size:14px;font-weight:600">Conhecer a plataforma</a>
+          <a href="https://www.sercliente.com" style="display:inline-block;background:#008038;color:#fff;text-decoration:none;padding:14px 36px;border-radius:100px;font-size:14px;font-weight:600">Conhecer a plataforma</a>
         </td></tr>
 
         <tr><td style="background:#F8F7F5;padding:20px 40px;border-top:1px solid #EEECEA">
