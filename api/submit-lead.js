@@ -136,22 +136,16 @@ function buildLeadEmail(name) {
         </td></tr>
 
         <!-- Corpo -->
-        <tr><td style="padding:40px 40px 32px">
+        <tr><td style="padding:40px 40px 36px">
           <h2 style="margin:0 0 16px;font-size:20px;font-weight:700;color:#1a1a1a">Olá, ${firstName}! 👋</h2>
-          <p style="margin:0 0 16px;font-size:15px;color:#3a3a3a;line-height:1.7">Recebemos sua solicitação com sucesso. Ficamos felizes com o seu interesse na <strong>S.E.R. Cliente</strong>.</p>
-          <p style="margin:0 0 24px;font-size:15px;color:#3a3a3a;line-height:1.7">Nossa equipe entrará em contato em até <strong>48 horas</strong> para apresentar a plataforma e entender como podemos apoiar a gestão de feedbacks da sua operação.</p>
+          <p style="margin:0 0 24px;font-size:15px;color:#3a3a3a;line-height:1.7">Recebemos a sua mensagem de interesse para conhecer a plataforma <strong>S.E.R. Cliente</strong>.</p>
 
           <div style="background:#F0FBF4;border-left:3px solid #32CC61;border-radius:0 8px 8px 0;padding:16px 20px;margin:0 0 28px">
             <p style="margin:0;font-size:14px;color:#006B30;font-weight:600">O que acontece agora?</p>
-            <p style="margin:6px 0 0;font-size:13px;color:#3a3a3a;line-height:1.6">Um especialista da S.E.R. Cliente agendará uma demonstração personalizada para o contexto da sua empresa.</p>
+            <p style="margin:6px 0 0;font-size:13px;color:#3a3a3a;line-height:1.6">Um especialista da S.E.R. Cliente entrará em contato, em até <strong>24h</strong>, para agendar uma demonstração da plataforma.</p>
           </div>
 
-          <p style="margin:0;font-size:14px;color:#666;line-height:1.7">Caso precise entrar em contato antes, responda a este e-mail ou escreva para <a href="mailto:contato@sercliente.com" style="color:#008038;text-decoration:none;font-weight:600">contato@sercliente.com</a>.</p>
-        </td></tr>
-
-        <!-- CTA -->
-        <tr><td style="padding:0 40px 36px;text-align:center">
-          <a href="https://www.sercliente.com" style="display:inline-block;background:#008038;color:#fff;text-decoration:none;padding:14px 36px;border-radius:100px;font-size:14px;font-weight:600">Conhecer a plataforma</a>
+          <p style="margin:0;font-size:14px;color:#666;line-height:1.7">Mais informações, enviar e-mail para <a href="mailto:contato@sercliente.com" style="color:#008038;text-decoration:none;font-weight:600">contato@sercliente.com</a>.</p>
         </td></tr>
 
         <tr><td style="background:#F8F7F5;padding:20px 40px;border-top:1px solid #EEECEA">
