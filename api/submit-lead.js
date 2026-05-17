@@ -146,7 +146,7 @@ function buildLeadEmail(name) {
             <p style="margin:6px 0 0;font-size:13px;color:#3a3a3a;line-height:1.6">Um especialista da S.E.R. Cliente agendará uma demonstração personalizada para o contexto da sua empresa.</p>
           </div>
 
-          <p style="margin:0;font-size:14px;color:#666;line-height:1.7">Caso precise entrar em contato antes, responda a este e-mail ou escreva para <a href="mailto:comercial@email.sercliente.com" style="color:#008038;text-decoration:none;font-weight:600">comercial@email.sercliente.com</a>.</p>
+          <p style="margin:0;font-size:14px;color:#666;line-height:1.7">Caso precise entrar em contato antes, responda a este e-mail ou escreva para <a href="mailto:contato@sercliente.com" style="color:#008038;text-decoration:none;font-weight:600">contato@sercliente.com</a>.</p>
         </td></tr>
 
         <!-- CTA -->
