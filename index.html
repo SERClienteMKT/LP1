@@ -1256,6 +1256,35 @@ nav{
   font-size:clamp(12px,1.1vw,20px);font-weight:500;color:#888;
   letter-spacing:-0.01em;
 }
+/* submit loading state */
+.form-submit:disabled{opacity:.7;cursor:not-allowed;transform:none}
+/* success message */
+.form-success{
+  display:none;flex-direction:column;align-items:center;
+  text-align:center;padding:clamp(28px,3vw,48px) clamp(16px,2vw,32px);
+  gap:clamp(12px,1.2vw,20px);
+}
+.form-success-icon{
+  width:clamp(56px,5vw,80px);height:clamp(56px,5vw,80px);
+  background:linear-gradient(135deg,#009944,#32CC61);
+  border-radius:50%;display:flex;align-items:center;justify-content:center;
+  box-shadow:0 8px 32px rgba(50,204,97,0.35);
+}
+.form-success-icon svg{width:42%;height:42%}
+.form-success h3{
+  font-size:clamp(18px,1.8vw,30px);font-weight:700;color:#1a1a1a;
+  letter-spacing:-0.02em;margin:0;
+}
+.form-success p{
+  font-size:clamp(13px,1.1vw,18px);color:#666;line-height:1.65;margin:0;
+  max-width:340px;
+}
+/* error message */
+.form-error{
+  display:none;background:#FFF3F3;border:1px solid #FFCDD2;
+  border-radius:10px;padding:12px 16px;margin-top:8px;
+  font-size:13px;color:#c62828;text-align:center;
+}
 
 /* ─── FOOTER ─── */
 footer{
@@ -2256,9 +2285,9 @@ a{cursor:pointer}
       </div>
       <!-- white body -->
       <div class="form-card-body">
-        <form class="form-fields" onsubmit="return false">
-          <input class="form-field" type="text" placeholder="Nome completo*" required>
-          <input class="form-field" type="text" placeholder="Nome da empresa*" required>
+        <form class="form-fields" id="demo-form">
+          <input class="form-field" id="f-name"    type="text"  placeholder="Nome completo*"    required>
+          <input class="form-field" id="f-company" type="text"  placeholder="Nome da empresa*"  required>
           <div class="form-phone-wrap">
             <select class="form-phone-code" id="phone-code" aria-label="Código do país">
               <option value="+55" data-placeholder="(11) 99999-9999">🇧🇷 +55</option>
@@ -2275,10 +2304,21 @@ a{cursor:pointer}
             </select>
             <input class="form-phone-input" id="phone-input" type="tel" placeholder="(11) 99999-9999" aria-label="Telefone WhatsApp">
           </div>
-          <input class="form-field" type="email" placeholder="E-mail corporativo*" required>
-          <button class="form-submit" type="submit">Agendar demonstração gratuita</button>
+          <input class="form-field" id="f-email"   type="email" placeholder="E-mail corporativo*" required>
+          <button class="form-submit" id="form-btn" type="submit">Agendar demonstração gratuita</button>
+          <div class="form-error" id="form-error"></div>
         </form>
-        <p class="form-disclaimer">Responderemos em até 24h.</p>
+        <!-- Mensagem de sucesso (oculta até envio) -->
+        <div class="form-success" id="form-success">
+          <div class="form-success-icon">
+            <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+          </div>
+          <h3>Solicitação enviada!</h3>
+          <p>Recebemos seus dados e entraremos em contato em até <strong>48 horas</strong>. Verifique também sua caixa de e-mail.</p>
+        </div>
+        <p class="form-disclaimer" id="form-disclaimer">Responderemos em até 48h.</p>
       </div>
     </div>
   </div>
@@ -2319,6 +2359,51 @@ a{cursor:pointer}
 </footer>
 
 <script>
+// ── Formulário — submit via API ──
+(function(){
+  var form    = document.getElementById('demo-form');
+  var btn     = document.getElementById('form-btn');
+  var success = document.getElementById('form-success');
+  var error   = document.getElementById('form-error');
+  var disc    = document.getElementById('form-disclaimer');
+  if(!form) return;
+
+  form.addEventListener('submit', async function(e){
+    e.preventDefault();
+    var name    = document.getElementById('f-name').value.trim();
+    var company = document.getElementById('f-company').value.trim();
+    var email   = document.getElementById('f-email').value.trim();
+    var code    = document.getElementById('phone-code').value.replace(/-us|-ca/,'');
+    var phone   = document.getElementById('phone-input').value.trim();
+    var fullPhone = phone ? code + ' ' + phone : '';
+
+    btn.disabled = true;
+    btn.textContent = 'Enviando…';
+    error.style.display = 'none';
+
+    try {
+      var res = await fetch('/api/submit-lead', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ name, company, email, phone: fullPhone })
+      });
+      var data = await res.json();
+      if(res.ok && data.success){
+        form.style.display      = 'none';
+        disc.style.display      = 'none';
+        success.style.display   = 'flex';
+      } else {
+        throw new Error(data.error || 'Erro desconhecido');
+      }
+    } catch(err){
+      error.textContent = err.message || 'Não foi possível enviar. Tente novamente.';
+      error.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = 'Agendar demonstração gratuita';
+    }
+  });
+})();
+
 // ── Scroll reveal (fade, fade-left, fade-right, fade-scale) ──
 const revealObs=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
