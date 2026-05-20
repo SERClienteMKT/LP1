@@ -2331,6 +2331,8 @@ a{cursor:pointer}
       <!-- white body -->
       <div class="form-card-body">
         <form class="form-fields" id="demo-form">
+          <!-- Honeypot: invisível para humanos, bots preenchem e são bloqueados -->
+          <input type="text" name="website" id="f-honeypot" tabindex="-1" autocomplete="off" style="position:absolute;left:-9999px;width:1px;height:1px;opacity:0" aria-hidden="true">
           <input class="form-field" id="f-name"    type="text"  placeholder="Nome completo*"    required>
           <input class="form-field" id="f-company" type="text"  placeholder="Nome da empresa*"  required>
           <div class="form-phone-wrap">
@@ -2413,14 +2415,39 @@ a{cursor:pointer}
   var disc    = document.getElementById('form-disclaimer');
   if(!form) return;
 
+  // Marca o tempo em que a página carregou o formulário
+  var formLoadTime = Date.now();
+
+  // Detecta strings aleatórias (sem vogal ou proporção anormal de maiúsculas/números)
+  function looksLikeBot(str) {
+    if (!str || str.length < 2) return false;
+    var vowels = (str.match(/[aeiouáéíóúàèìòùâêîôûãõ]/gi) || []).length;
+    var ratio  = vowels / str.replace(/\s/g,'').length;
+    return ratio < 0.1; // menos de 10% de vogais = provável bot
+  }
+
   form.addEventListener('submit', async function(e){
     e.preventDefault();
+
+    // 1. Honeypot — se preenchido, é bot
+    if (document.getElementById('f-honeypot').value) return;
+
+    // 2. Tempo — enviado em menos de 3s = bot
+    if (Date.now() - formLoadTime < 3000) return;
+
     var name    = document.getElementById('f-name').value.trim();
     var company = document.getElementById('f-company').value.trim();
     var email   = document.getElementById('f-email').value.trim();
     var code    = document.getElementById('phone-code').value.replace(/-us|-ca/,'');
     var phone   = document.getElementById('phone-input').value.trim();
     var fullPhone = phone ? code + ' ' + phone : '';
+
+    // 3. Validação de nome — bloqueia strings sem espaço ou sem vogais
+    if (!name.includes(' ') || looksLikeBot(name) || looksLikeBot(company)) {
+      error.textContent = 'Por favor, insira seu nome completo.';
+      error.style.display = 'block';
+      return;
+    }
 
     btn.disabled = true;
     btn.textContent = 'Enviando…';
@@ -2430,7 +2457,7 @@ a{cursor:pointer}
       var res = await fetch('/api/submit-lead', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ name, company, email, phone: fullPhone })
+        body: JSON.stringify({ name, company, email, phone: fullPhone, website: document.getElementById('f-honeypot').value })
       });
       var data = await res.json();
       if(res.ok && data.success){

@@ -5,8 +5,21 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { name, company, email, phone } = req.body;
+  const { name, company, email, phone, website } = req.body;
   if (!name || !email) return res.status(400).json({ error: 'Nome e e-mail são obrigatórios.' });
+
+  // Anti-bot: honeypot preenchido
+  if (website) return res.status(200).json({ success: true });
+
+  // Anti-bot: nome sem espaço ou sem vogais (string aleatória)
+  function looksLikeBot(str) {
+    if (!str) return false;
+    const vowels = (str.match(/[aeiouáéíóúàèìòùâêîôûãõ]/gi) || []).length;
+    return vowels / str.replace(/\s/g,'').length < 0.1;
+  }
+  if (!name.includes(' ') || looksLikeBot(name) || looksLikeBot(company)) {
+    return res.status(200).json({ success: true }); // retorna 200 para não dar dica ao bot
+  }
 
   const RESEND_KEY  = process.env.RESEND_API_KEY;
   const SHEET_URL   = process.env.GOOGLE_SHEET_WEBHOOK_URL;
