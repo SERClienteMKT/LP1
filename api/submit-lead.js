@@ -24,7 +24,7 @@ export default async function handler(req, res) {
   const RESEND_KEY  = process.env.RESEND_API_KEY;
   const SHEET_URL   = process.env.GOOGLE_SHEET_WEBHOOK_URL;
   const FROM        = 'S.E.R. Cliente <noreply@email.sercliente.com>';
-  const INTERNAL    = 'comercial@email.sercliente.com';
+  const INTERNAL    = 'contato@sercliente.com';
   const now = new Date().toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo' });
 
   try {
@@ -145,7 +145,7 @@ function buildLeadEmail(name) {
 
         <!-- Header verde com logo -->
         <tr><td style="background:linear-gradient(135deg,#003A1A 0%,#005A28 60%,#008038 100%);padding:36px 40px;text-align:center">
-          <img src="https://www.sercliente.com/fotos/Logo%20branco.png" alt="S.E.R. Cliente" style="height:64px;display:block;margin:0 auto">
+          <img src="https://www.sercliente.com/fotos/logo-branco.png" alt="S.E.R. Cliente" style="height:64px;display:block;margin:0 auto">
         </td></tr>
 
         <!-- Corpo -->
