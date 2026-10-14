@@ -2454,9 +2454,9 @@ a{cursor:pointer}
     var phone   = document.getElementById('phone-input').value.trim();
     var fullPhone = phone ? code + ' ' + phone : '';
 
-    // 3. Validação de nome — bloqueia strings sem espaço ou sem vogais
-    if (!name.includes(' ') || looksLikeBot(name) || looksLikeBot(company)) {
-      error.textContent = 'Por favor, insira seu nome completo.';
+    // 3. Validação de nome — bloqueia strings sem vogais (aceita nome único)
+    if (looksLikeBot(name) || looksLikeBot(company)) {
+      error.textContent = 'Por favor, insira seu nome.';
       error.style.display = 'block';
       return;
     }

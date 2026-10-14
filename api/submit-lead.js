@@ -17,7 +17,7 @@ export default async function handler(req, res) {
     const vowels = (str.match(/[aeiouáéíóúàèìòùâêîôûãõ]/gi) || []).length;
     return vowels / str.replace(/\s/g,'').length < 0.1;
   }
-  if (!name.includes(' ') || looksLikeBot(name) || looksLikeBot(company)) {
+  if (looksLikeBot(name) || looksLikeBot(company)) {
     return res.status(200).json({ success: true }); // retorna 200 para não dar dica ao bot
   }
 
