@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Políticas e Termos de Uso — S.E.R. Cliente</title>
+<link rel="icon" type="image/svg+xml" href="fotos/logo-nav.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --green:#008038;--bright:#32CC61;--text:#1a1a1a;--muted:#555;
+  --border:rgba(0,0,0,0.10);--bg:#F8F7F5;--white:#fff;
+}
+html{scroll-behavior:smooth}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--text);line-height:1.7;font-size:16px}
+
+/* ── NAV ── */
+nav{
+  background:var(--white);border-bottom:1px solid var(--border);
+  padding:20px 8%;display:flex;align-items:center;justify-content:space-between;
+  position:sticky;top:0;z-index:100;
+}
+.nav-logo{height:44px;width:auto}
+.nav-back{
+  display:inline-flex;align-items:center;gap:8px;
+  font-size:14px;font-weight:500;color:var(--muted);
+  text-decoration:none;transition:color .2s;
+}
+.nav-back:hover{color:var(--green)}
+.nav-back svg{width:16px;height:16px}
+
+/* ── HERO ── */
+.page-hero{
+  background:linear-gradient(135deg,#003A1A 0%,#005A28 60%,#008038 100%);
+  padding:clamp(48px,6vw,96px) 8% clamp(40px,5vw,80px);
+  text-align:center;
+}
+.page-hero h1{
+  font-size:clamp(28px,3.5vw,52px);font-weight:700;color:#fff;
+  letter-spacing:-0.03em;line-height:1.1;
+  margin-bottom:clamp(12px,1.2vw,20px);
+}
+.page-hero p{
+  font-size:clamp(14px,1.2vw,18px);color:rgba(255,255,255,0.72);
+  max-width:560px;margin:0 auto clamp(28px,2.8vw,44px);line-height:1.65;
+}
+.hero-meta{
+  display:inline-flex;align-items:center;gap:clamp(16px,2vw,32px);
+  background:rgba(255,255,255,0.10);border:1px solid rgba(255,255,255,0.18);
+  border-radius:100px;padding:8px 24px;
+  font-size:13px;color:rgba(255,255,255,0.70);letter-spacing:.02em;flex-wrap:wrap;justify-content:center;gap:12px;
+}
+.hero-meta span{display:flex;align-items:center;gap:6px}
+
+/* ── TABS ── */
+.tabs-wrap{
+  background:var(--white);border-bottom:1px solid var(--border);
+  position:sticky;top:85px;z-index:90;
+}
+.tabs{
+  display:flex;max-width:900px;margin:0 auto;padding:0 8%;
+  overflow-x:auto;scrollbar-width:none;
+}
+.tabs::-webkit-scrollbar{display:none}
+.tab-link{
+  padding:16px 20px;font-size:14px;font-weight:500;color:var(--muted);
+  text-decoration:none;white-space:nowrap;border-bottom:2px solid transparent;
+  transition:color .2s,border-color .2s;
+}
+.tab-link:hover{color:var(--text)}
+.tab-link.active{color:var(--green);border-bottom-color:var(--green)}
+
+/* ── CONTENT ── */
+.content{max-width:900px;margin:0 auto;padding:clamp(40px,5vw,80px) 8%}
+
+.policy-section{
+  padding-bottom:clamp(48px,6vw,96px);
+  border-bottom:1px solid var(--border);
+  margin-bottom:clamp(48px,6vw,96px);
+}
+.policy-section:last-child{border-bottom:none;margin-bottom:0}
+
+.section-tag{
+  display:inline-flex;align-items:center;gap:8px;
+  background:rgba(0,128,56,0.08);border:1px solid rgba(0,128,56,0.18);
+  border-radius:100px;padding:5px 16px;
+  font-size:12px;font-weight:600;color:var(--green);
+  letter-spacing:.06em;text-transform:uppercase;
+  margin-bottom:clamp(14px,1.4vw,22px);
+}
+.policy-section > h2{
+  font-size:clamp(22px,2.5vw,38px);font-weight:700;
+  letter-spacing:-0.03em;line-height:1.15;
+  margin-bottom:clamp(28px,3vw,48px);color:var(--text);
+}
+
+/* article blocks */
+.art-block{margin-bottom:clamp(28px,2.8vw,44px)}
+.art-block h3{
+  font-size:clamp(15px,1.2vw,19px);font-weight:600;
+  color:var(--text);margin-bottom:10px;letter-spacing:-0.01em;
+}
+.art-block p,.art-block li{
+  font-size:clamp(14px,1vw,16px);color:#3a3a3a;line-height:1.75;
+}
+.art-block ul,.art-block ol{padding-left:20px;margin-top:8px}
+.art-block li{margin-bottom:6px}
+.art-block li::marker{color:var(--bright)}
+
+/* table */
+.policy-table{width:100%;border-collapse:collapse;margin-top:12px;font-size:14px}
+.policy-table th{
+  background:rgba(0,128,56,0.07);color:var(--green);
+  font-weight:600;letter-spacing:.03em;text-transform:uppercase;font-size:11px;
+  padding:10px 14px;text-align:left;border-bottom:2px solid rgba(0,128,56,0.18);
+}
+.policy-table td{
+  padding:12px 14px;border-bottom:1px solid var(--border);
+  color:#3a3a3a;vertical-align:top;line-height:1.6;
+}
+.policy-table tr:last-child td{border-bottom:none}
+.policy-table tr:hover td{background:rgba(0,0,0,0.02)}
+
+/* contact box */
+.contact-box{
+  background:linear-gradient(135deg,rgba(0,128,56,0.06),rgba(50,204,97,0.06));
+  border:1px solid rgba(0,128,56,0.18);border-radius:16px;
+  padding:clamp(20px,2vw,32px) clamp(20px,2.5vw,40px);
+  margin-top:clamp(20px,2vw,32px);
+}
+.contact-box p{font-size:14px;color:var(--muted);margin-bottom:6px}
+.contact-box a{
+  font-size:clamp(15px,1.2vw,18px);font-weight:600;color:var(--green);
+  text-decoration:none;transition:opacity .2s;
+}
+.contact-box a:hover{opacity:.75}
+
+/* ── FOOTER ── */
+footer{
+  background:var(--white);border-top:1px solid var(--border);
+  padding:clamp(24px,3vw,44px) 8%;
+  display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;
+}
+.footer-note{font-size:13px;color:#aaa}
+
+@media(max-width:680px){
+  .tabs{padding:0 5%}
+  .content{padding:clamp(32px,5vw,64px) 5%}
+  nav{padding:16px 5%}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <img src="fotos/logo-footer.svg" alt="S.E.R. Cliente" class="nav-logo">
+  <a href="/" class="nav-back">
+    <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M10 3L5 8l5 5"/></svg>
+    Voltar ao site
+  </a>
+</nav>
+
+<div class="page-hero">
+  <h1>Políticas e Termos de Uso</h1>
+  <p>Regras de privacidade, cookies, proteção de dados pessoais e condições gerais de uso da plataforma S.E.R. Cliente.</p>
+  <div class="hero-meta">
+    <span>📄 Versão 2.0</span>
+    <span>📅 03/05/2026</span>
+    <span>🔒 LGPD Conforme</span>
+  </div>
+</div>
+
+<div class="tabs-wrap">
+  <nav class="tabs" aria-label="Seções">
+    <a href="#privacidade" class="tab-link active">Política de Privacidade</a>
+    <a href="#cookies" class="tab-link">Política de Cookies</a>
+    <a href="#termos" class="tab-link">Termos de Uso</a>
+  </nav>
+</div>
+
+<main class="content">
+
+  <!-- ══ PRIVACIDADE ══ -->
+  <section class="policy-section" id="privacidade">
+    <div class="section-tag">Seção 1</div>
+    <h2>Política de Privacidade</h2>
+
+    <div class="art-block">
+      <h3>1.1 Introdução</h3>
+      <p>A You as a Manager Treinamento e Consultoria Ltda., registrada no CNPJ sob nº 43.889.876/0001-43, proprietária da marca Plataforma S.E.R. Cliente, valoriza a privacidade, a segurança da informação e a proteção dos dados pessoais tratados em sua plataforma. Esta Política explica, de forma clara, como dados pessoais podem ser coletados, utilizados, armazenados, compartilhados e protegidos no contexto do uso da plataforma S.E.R. Cliente, dos seus formulários, páginas institucionais e recursos de autenticação.</p>
+      <p style="margin-top:10px">Esta Política foi elaborada em conformidade com a Lei Geral de Proteção de Dados Pessoais do Brasil, Lei nº 13.709/2018 (LGPD), e considera, quando aplicável, a Lei nº 22/11 de Protecção de Dados Pessoais de Angola.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>1.2 Quem Trata os Dados</h3>
+      <p>Nas operações relacionadas à gestão de feedbacks, a S.E.R. Cliente atua como operadora de dados pessoais em nome das empresas contratantes de licenças de uso da Plataforma, empresas essas que definem as finalidades e meios principais do tratamento e assumem a posição de controladoras dos dados de seus clientes, manifestantes, colaboradores ou demais usuários finais.</p>
+      <p style="margin-top:10px">Em algumas situações, a S.E.R. Cliente poderá atuar como controladora dos dados, especialmente no tratamento de dados de usuários administradores da plataforma, usuários convidados, contatos comerciais, visitantes do site, registros de segurança, suporte, faturamento e relacionamento institucional.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>1.3 Dados Pessoais Tratados</h3>
+      <p>A plataforma poderá tratar os seguintes dados pessoais, conforme o contexto de uso:</p>
+      <ul>
+        <li>Dados cadastrais: nome, e-mail, telefone, empresa, endereço, país e unidade de atendimento</li>
+        <li>Dados de autenticação e acesso: identificador técnico de usuário, provedor de login, data e horário de acesso, endereço IP e registros de sessão</li>
+        <li>Dados enviados em formulários de feedback: mensagens, sugestões, reclamações, elogios, classificações, anexos, evidências e demais informações fornecidas voluntariamente</li>
+        <li>Dados operacionais da plataforma: status do feedback, responsáveis internos, histórico de tratativas, prazos, respostas, auditorias e registros de ações</li>
+        <li>Dados de navegação: páginas acessadas, tipo e versão do navegador, sistema operacional, dispositivo, idioma e preferências visuais</li>
+        <li>Identificadores eletrônicos: cookies essenciais, cookies funcionais e tecnologias semelhantes</li>
+        <li>Dados de relacionamento comercial e suporte: mensagens enviadas à S.E.R. Cliente, solicitações de demonstração, chamados e comunicações institucionais</li>
+      </ul>
+    </div>
+
+    <div class="art-block">
+      <h3>1.4 Finalidades do Tratamento</h3>
+      <p>Os dados pessoais porventura fornecidos poderão ser tratados para:</p>
+      <ul>
+        <li>Permitir acesso autenticado à plataforma e validar identidade, perfil e permissões</li>
+        <li>Receber, registrar, classificar, encaminhar, tratar e responder feedbacks</li>
+        <li>Gerar protocolos, históricos, relatórios operacionais e indicadores de gestão</li>
+        <li>Enviar notificações, convites, comunicações transacionais e mensagens relacionadas ao tratamento de feedbacks</li>
+        <li>Atender solicitações comerciais, suporte, demonstrações e relacionamento institucional</li>
+        <li>Proteger a plataforma contra acessos indevidos, abusos, fraudes, incidentes e violações de segurança</li>
+        <li>Cumprir obrigações legais, regulatórias, contratuais e ordens de autoridades competentes</li>
+        <li>Melhorar a experiência, estabilidade, desempenho e segurança da plataforma</li>
+      </ul>
+    </div>
+
+    <div class="art-block">
+      <h3>1.5 Bases Legais</h3>
+      <table class="policy-table">
+        <thead><tr><th>Base Legal</th><th>Exemplos de Aplicação</th></tr></thead>
+        <tbody>
+          <tr><td>Execução de contrato</td><td>Criação e uso de contas, operação da plataforma, suporte e atendimento a empresas contratantes.</td></tr>
+          <tr><td>Cumprimento de obrigação legal ou regulatória</td><td>Guarda de registros, atendimento a solicitações de autoridades e obrigações fiscais, legais ou regulatórias.</td></tr>
+          <tr><td>Legítimo interesse</td><td>Segurança da plataforma, prevenção a fraudes, melhoria de serviços, registros de auditoria e comunicações institucionais proporcionais.</td></tr>
+          <tr><td>Consentimento</td><td>Cookies não essenciais, comunicações promocionais e situações em que a lei exigir manifestação livre, informada e inequívoca.</td></tr>
+          <tr><td>Exercício regular de direitos</td><td>Defesa da S.E.R. Cliente, de empresas contratantes ou de terceiros em processos administrativos, judiciais ou arbitrais.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="art-block">
+      <h3>1.6 Login, Autenticação e Provedores de Identidade</h3>
+      <p>A plataforma pode permitir autenticação por e-mail e senha ou por provedores externos de identidade, como Microsoft Entra ID/Azure AD, quando habilitado pela empresa contratante. A S.E.R. Cliente não recebe a senha do provedor externo - são tratados apenas dados mínimos necessários para autenticação e controle de acesso.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>1.7 Compartilhamento de Dados</h3>
+      <p>A S.E.R. Cliente não vende dados pessoais. O compartilhamento poderá ocorrer apenas quando necessário e compatível com as finalidades desta Política, incluindo:</p>
+      <ul>
+        <li>Com empresas contratantes responsáveis pelo relacionamento com os titulares</li>
+        <li>Com prestadores de serviços essenciais (hospedagem, autenticação, envio de e-mails, segurança, suporte e infraestrutura)</li>
+        <li>Com provedores de autenticação, quando o usuário optar por login federado</li>
+        <li>Com autoridades públicas, órgãos reguladores ou terceiros, quando houver obrigação legal ou ordem válida</li>
+      </ul>
+    </div>
+
+    <div class="art-block">
+      <h3>1.8 Transferência Internacional</h3>
+      <p>Alguns dados poderão ser armazenados ou processados fora do país de residência do titular. Quando isso ocorrer, a S.E.R. Cliente adotará medidas razoáveis para garantir proteção compatível com a legislação aplicável, incluindo contratos, controles técnicos e escolha de fornecedores com padrões reconhecidos de segurança e privacidade.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>1.9 Retenção e Exclusão</h3>
+      <table class="policy-table">
+        <thead><tr><th>Categoria</th><th>Prazo Orientativo</th></tr></thead>
+        <tbody>
+          <tr><td>Dados de conta e acesso</td><td>Enquanto a conta estiver ativa e pelo período necessário após encerramento para auditoria, segurança e obrigações legais.</td></tr>
+          <tr><td>Feedbacks, tratamentos e históricos</td><td>Conforme prazo definido pela empresa contratante, contrato aplicável ou necessidade operacional/legal.</td></tr>
+          <tr><td>Logs de segurança e auditoria</td><td>Pelo período necessário para rastreabilidade, prevenção de fraudes, investigação de incidentes e cumprimento de obrigações legais.</td></tr>
+          <tr><td>Dados comerciais e suporte</td><td>Enquanto houver relacionamento ativo e pelo prazo necessário para histórico, obrigações legais e exercício de direitos.</td></tr>
+          <tr><td>Cookies</td><td>Conforme a tabela de cookies desta Política ou configuração do navegador/dispositivo.</td></tr>
+          <tr><td>Backups</td><td>Até que sejam sobrescritos ou excluídos conforme ciclo técnico de backup e retenção.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="art-block">
+      <h3>1.10 Segurança da Informação</h3>
+      <p>A S.E.R. Cliente adota medidas técnicas e administrativas para proteger dados pessoais, incluindo:</p>
+      <ul>
+        <li>Controle de acesso por perfil e autenticação</li>
+        <li>Uso de HTTPS e mecanismos seguros de sessão</li>
+        <li>Registros de auditoria e rastreabilidade de ações relevantes</li>
+        <li>Backups e controles de disponibilidade</li>
+        <li>Monitoramento de incidentes e vulnerabilidades</li>
+        <li>Segregação lógica de dados por empresa quando aplicável</li>
+      </ul>
+    </div>
+
+    <div class="art-block">
+      <h3>1.11 Direitos dos Titulares</h3>
+      <p>Nos termos da LGPD, o titular poderá solicitar: confirmação da existência de tratamento, acesso aos dados, correção de dados incompletos ou desatualizados, anonimização, bloqueio ou eliminação, portabilidade (quando regulamentada), informação sobre compartilhamento, revogação do consentimento, revisão de decisões automatizadas, e reclamação perante a ANPD.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>1.12 Crianças e Adolescentes</h3>
+      <p>A plataforma não é direcionada a crianças. Caso dados de crianças ou adolescentes sejam inseridos em feedbacks ou comunicações, a empresa contratante controladora deverá garantir que o tratamento observe o melhor interesse do menor e as bases legais aplicáveis.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>1.13 Canal de Contato</h3>
+      <div class="contact-box">
+        <p>Solicitações relacionadas a privacidade, proteção de dados, cookies ou exercício de direitos podem ser enviadas para:</p>
+        <a href="mailto:contato@sercliente.com">contato@sercliente.com</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ══ COOKIES ══ -->
+  <section class="policy-section" id="cookies">
+    <div class="section-tag">Seção 2</div>
+    <h2>Política de Cookies</h2>
+
+    <div class="art-block">
+      <h3>2.1 O Que São Cookies</h3>
+      <p>Cookies são pequenos arquivos ou identificadores armazenados no navegador ou dispositivo do usuário. Eles ajudam a manter a plataforma funcionando, preservar preferências, proteger sessões, melhorar a experiência e, quando autorizado, coletar métricas de uso ou personalizar comunicações.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>2.2 Categorias de Cookies</h3>
+      <table class="policy-table">
+        <thead><tr><th>Categoria</th><th>Descrição</th><th>Consentimento</th></tr></thead>
+        <tbody>
+          <tr><td><strong>Essenciais</strong></td><td>Necessários para autenticação, segurança, prevenção de fraude, recuperação de senha e funcionamento básico da plataforma.</td><td>Não dependem de consentimento.</td></tr>
+          <tr><td><strong>Funcionais</strong></td><td>Guardam preferências como idioma, tema, estado de menu e configurações de interface.</td><td>Podem ser desativados pelo navegador, mas a experiência poderá ser afetada.</td></tr>
+          <tr><td><strong>Analíticos</strong></td><td>Medem audiência, desempenho e comportamento agregado de navegação.</td><td>Dependem de consentimento quando não forem estritamente necessários.</td></tr>
+          <tr><td><strong>Publicidade / Marketing</strong></td><td>Personalizam campanhas, anúncios ou comunicações comerciais.</td><td>Dependem de consentimento específico.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="art-block">
+      <h3>2.3 Cookies Utilizados</h3>
+      <table class="policy-table">
+        <thead><tr><th>Nome</th><th>Categoria</th><th>Finalidade</th><th>Duração</th></tr></thead>
+        <tbody>
+          <tr><td><code>app_settings</code></td><td>Funcional</td><td>Armazena preferências de uso, como idioma, tema e configurações de interface.</td><td>Persistente, conforme configuração do navegador.</td></tr>
+          <tr><td><code>sidebar_state</code></td><td>Funcional</td><td>Mantém o estado aberto/fechado da barra lateral da aplicação.</td><td>Até 7 dias.</td></tr>
+          <tr><td><code>ser-password-recovery</code></td><td>Essencial</td><td>Indica contexto temporário de recuperação de senha.</td><td>Até 30 minutos.</td></tr>
+          <tr><td>Cookies de sessão/autenticação</td><td>Essencial</td><td>Mantêm sessão autenticada, renovação de sessão e segurança do login.</td><td>Conforme configuração de sessão e autenticação.</td></tr>
+          <tr><td>Cookies de provedores de identidade</td><td>Essencial / Funcional</td><td>Permitem autenticação federada quando o usuário usa login externo (ex: Microsoft).</td><td>Conforme política do provedor externo.</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="art-block">
+      <h3>2.4 Serviços de Terceiros</h3>
+      <p>Quando a plataforma ou o site institucional usar ferramentas como Google Analytics, Meta Pixel, Microsoft ou serviços equivalentes, esses terceiros poderão tratar dados técnicos e cookies conforme suas próprias políticas. Cookies analíticos, publicitários ou de comportamento não devem ser ativados sem base legal adequada e, quando necessário, consentimento prévio.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>2.5 Como Gerenciar Cookies</h3>
+      <p>O usuário pode gerenciar cookies pelas configurações do navegador, bloquear cookies de terceiros, apagar cookies já armazenados ou configurar preferências de privacidade do dispositivo. A desativação de cookies essenciais poderá impedir login, recuperação de senha ou funcionamento adequado da plataforma.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>2.6 Atualizações da Política de Cookies</h3>
+      <p>Esta Política de Cookies poderá ser atualizada para refletir novos recursos, alterações técnicas, mudanças em fornecedores, exigências legais ou melhorias de transparência. Recomendamos a consulta periódica deste documento.</p>
+    </div>
+  </section>
+
+  <!-- ══ TERMOS ══ -->
+  <section class="policy-section" id="termos">
+    <div class="section-tag">Seção 3</div>
+    <h2>Termos de Uso</h2>
+
+    <div class="art-block">
+      <h3>3.1 Aceitação dos Termos</h3>
+      <p>Ao acessar ou utilizar a plataforma S.E.R. Cliente, o usuário declara estar ciente e concordar com estes Termos de Uso, com a Política de Privacidade, com a Política de Cookies e com demais regras aplicáveis ao serviço contratado. Caso o usuário utilize a plataforma em nome de uma empresa, declara possuir autorização para agir em nome dela e para cumprir as obrigações aplicáveis.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>3.2 Objeto da Plataforma</h3>
+      <p>A S.E.R. Cliente é uma plataforma de gestão de feedbacks, manifestações, tratativas, respostas, relatórios e fluxos operacionais relacionados à experiência de clientes, usuários ou públicos atendidos pelas empresas contratantes. Os recursos disponíveis podem variar conforme plano contratado, configurações da empresa, permissões do usuário e módulos habilitados.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>3.3 Cadastro, Acesso e Segurança</h3>
+      <p>O usuário compromete-se a:</p>
+      <ul>
+        <li>Fornecer informações verdadeiras, completas e atualizadas</li>
+        <li>Manter a confidencialidade de suas credenciais</li>
+        <li>Não compartilhar contas, senhas, tokens ou links restritos</li>
+        <li>Comunicar suspeitas de acesso indevido ou incidente de segurança</li>
+        <li>Usar a plataforma apenas dentro das permissões concedidas pela empresa contratante</li>
+      </ul>
+    </div>
+
+    <div class="art-block">
+      <h3>3.4 Obrigações do Usuário</h3>
+      <p>O usuário deve utilizar a plataforma com boa-fé, finalidade legítima, respeito à legislação aplicável, às políticas internas da empresa contratante e aos direitos de terceiros. É responsabilidade do usuário avaliar o conteúdo que insere na plataforma, evitar dados excessivos ou desnecessários e preservar informações confidenciais às quais tenha acesso.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>3.5 Condutas Proibidas</h3>
+      <p>É vedado ao usuário:</p>
+      <ul>
+        <li>Utilizar a plataforma para fins ilícitos, fraudulentos, abusivos ou discriminatórios</li>
+        <li>Tentar violar, testar indevidamente, invadir ou contornar controles de segurança</li>
+        <li>Acessar dados, áreas, empresas, feedbacks ou recursos sem autorização</li>
+        <li>Praticar spam, engenharia social, scraping, coleta indevida de dados ou automação não autorizada</li>
+        <li>Inserir malware, links maliciosos, conteúdo ilegal ou material que viole direitos de terceiros</li>
+        <li>Compartilhar, exportar ou reproduzir dados da plataforma sem autorização ou base legal</li>
+        <li>Usar a plataforma de forma que prejudique disponibilidade, integridade ou segurança do serviço</li>
+      </ul>
+    </div>
+
+    <div class="art-block">
+      <h3>3.6 Conteúdo Inserido por Usuários</h3>
+      <p>Os conteúdos inseridos por usuários, manifestantes ou empresas contratantes são de responsabilidade de quem os fornece ou controla. A S.E.R. Cliente poderá tratar tais conteúdos para executar o serviço, cumprir obrigações legais, proteger direitos, investigar incidentes ou aplicar estes Termos.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>3.7 Suspensão ou Encerramento de Acesso</h3>
+      <p>A S.E.R. Cliente poderá suspender, limitar ou encerrar o acesso de usuários ou empresas que violem estes Termos, comprometam a segurança, pratiquem condutas ilegais, descumpram contrato ou coloquem em risco a plataforma, terceiros ou dados pessoais. Em situações urgentes de segurança, fraude ou exigência legal, a medida poderá ser imediata.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>3.8 Propriedade Intelectual</h3>
+      <p>A plataforma, suas marcas, logotipos, interfaces, textos, códigos, bancos de dados, fluxos, documentos, relatórios, modelos e elementos visuais pertencem à You as a Manager Treinamento e Consultoria Ltda./S.E.R. Cliente ou a seus licenciantes. O uso da plataforma não transfere propriedade intelectual ao usuário ou à empresa contratante. É proibido copiar, modificar, distribuir, sublicenciar, vender, fazer engenharia reversa ou explorar a plataforma fora dos limites autorizados.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>3.9 Disponibilidade e Limitação de Responsabilidade</h3>
+      <p>A S.E.R. Cliente emprega esforços razoáveis para manter a plataforma segura e disponível, mas não garante funcionamento ininterrupto ou livre de falhas. Na máxima extensão permitida pela legislação aplicável, a S.E.R. Cliente não será responsável por danos indiretos, lucros cessantes, perda de oportunidade, falhas de terceiros ou indisponibilidades de internet.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>3.10 Indenização</h3>
+      <p>O usuário e a empresa contratante poderão ser responsabilizados por perdas, danos, custos, reclamações e despesas decorrentes de uso indevido da plataforma, violação destes Termos, violação de direitos de terceiros, tratamento irregular de dados pessoais ou descumprimento da legislação aplicável.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>3.11 Links e Serviços de Terceiros</h3>
+      <p>A plataforma pode conter links, integrações ou redirecionamentos para serviços de terceiros. A S.E.R. Cliente não controla políticas, práticas ou conteúdos desses terceiros, salvo quando houver contrato específico aplicável.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>3.12 Alterações dos Termos</h3>
+      <p>Estes Termos e Políticas poderão ser atualizados para refletir mudanças legais, técnicas, operacionais, comerciais ou de segurança. Alterações relevantes poderão ser comunicadas por meio da plataforma, site, e-mail ou outro canal adequado. O uso contínuo da plataforma após a vigência das alterações indica ciência e aceitação da versão atualizada.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>3.13 Legislação e Foro</h3>
+      <p>Estes Termos serão interpretados conforme a legislação brasileira e, quando aplicável, a legislação angolana ou legislação indicada no contrato com a empresa contratante. Eventuais disputas observarão o foro definido em contrato ou, na ausência de definição, o foro aplicável conforme a legislação vigente.</p>
+    </div>
+
+    <div class="art-block">
+      <h3>3.14 Contato</h3>
+      <div class="contact-box">
+        <p>Para dúvidas sobre estes Termos, privacidade, cookies ou uso da plataforma:</p>
+        <a href="mailto:contato@sercliente.com">contato@sercliente.com</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <img src="fotos/logo-footer.svg" alt="S.E.R. Cliente" style="height:40px;width:auto">
+  <span class="footer-note">© 2026 S.E.R. Cliente · CNPJ: 43.889.876/0001-43 · Versão 2.0 · 03/05/2026</span>
+</footer>
+
+<script>
+// Highlight active tab on scroll
+(function(){
+  var sections = document.querySelectorAll('.policy-section');
+  var links = document.querySelectorAll('.tab-link');
+  var obs = new IntersectionObserver(function(entries){
+    entries.forEach(function(e){
+      if(e.isIntersecting){
+        var id = e.target.id;
+        links.forEach(function(l){
+          l.classList.toggle('active', l.getAttribute('href') === '#'+id);
+        });
+      }
+    });
+  },{threshold:0.3,rootMargin:'-100px 0px -40% 0px'});
+  sections.forEach(function(s){obs.observe(s)});
+})();
+</script>
+</body>
+</html>
