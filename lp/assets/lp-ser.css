@@ -683,3 +683,7 @@ em{font-style:italic;color:var(--accent)}
   .t-edu .hero-bg::after{background:linear-gradient(180deg,rgba(4,25,16,.78),rgba(4,25,16,.9) 55%,#04190F)}
   .crumbs ol{flex-wrap:wrap;gap:4px 10px}
 }
+.hp{position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden}
+.form .form-body .form-err{margin:12px 0 0;padding:10px 14px;border-radius:10px;background:rgba(226,91,91,.12);color:#C23B3B;font-size:13px!important;font-weight:600;text-align:center}
+.t-road .form .form-body .form-err{color:#FF8A8A}
+.form-err[hidden]{display:none}

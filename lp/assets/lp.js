@@ -1,10 +1,10 @@
 /* S.E.R. Cliente — comportamento compartilhado das LPs por segmento */
 (function(){
   /* ─── CONFIG ───
-     LEAD_ENDPOINT: URL que recebe o POST (JSON) do formulário — ex.: webhook do
-     HubSpot / RD Station / Make / Zapier / Formspree. Vazio = só dispara o evento
-     de conversão e mostra a confirmação (útil em testes). */
-  var LEAD_ENDPOINT = '';
+     LEAD_ENDPOINT: rota do site principal que grava o lead no Google Sheets e
+     dispara os e-mails (api/submit-lead.js). Só responde no mesmo domínio que
+     serve /lp. Vazio = só mostra a confirmação, sem enviar (útil em prévias). */
+  var LEAD_ENDPOINT = '/api/submit-lead';
 
   /* ─── SCROLL REVEAL ─── */
   var io = new IntersectionObserver(function(entries){
@@ -128,21 +128,34 @@
     ev.preventDefault();
     if(!f.checkValidity()){ f.reportValidity(); return; }
     var btn = f.querySelector('button[type=submit]');
+    var err = f.querySelector('.form-err');
     btn.disabled = true;
-    var data = Object.fromEntries(new FormData(f).entries());
-    Object.assign(data, attr, {
-      segmento: f.dataset.segmento,
-      pagina: location.pathname,
+    if(err) err.hidden = true;
+    var d = Object.fromEntries(new FormData(f).entries());
+    /* Campos no formato de api/submit-lead (name, company, email, phone, website);
+       os demais vão como extras para registrar segmento, porte e origem. */
+    var lead = Object.assign({
+      name: d.nome,
+      company: d.empresa,
+      email: d.email,
+      phone: d.telefone,
+      website: d.website || '',
+      role: d.cargo,
+      size: d.unidades || d.concessoes || d.alunos || '',
+      segment: f.dataset.segmento,
+      page: location.pathname,
       referrer: document.referrer || ''
-    });
-    window.dataLayer = window.dataLayer || [];
-    window.dataLayer.push({ event:'generate_lead', lead_segment: f.dataset.segmento });
-    if(window.lintrk && f.dataset.liConversion) window.lintrk('track', { conversion_id: +f.dataset.liConversion });
+    }, attr);
 
-    var done = function(){ f.classList.add('sent'); };
-    if(!LEAD_ENDPOINT){ console.info('[S.E.R.] LEAD_ENDPOINT vazio — lead não enviado:', data); done(); return; }
-    fetch(LEAD_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(data) })
-      .then(done)
-      .catch(function(){ btn.disabled = false; alert('Não foi possível enviar agora. Tente novamente em instantes.'); });
+    var done = function(){
+      f.classList.add('sent');
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ event:'generate_lead', lead_segment: f.dataset.segmento });
+      if(window.lintrk && f.dataset.liConversion) window.lintrk('track', { conversion_id: +f.dataset.liConversion });
+    };
+    if(!LEAD_ENDPOINT){ console.info('[S.E.R.] LEAD_ENDPOINT vazio — lead não enviado:', lead); done(); return; }
+    fetch(LEAD_ENDPOINT, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(lead) })
+      .then(function(r){ if(!r.ok) throw new Error('HTTP ' + r.status); done(); })
+      .catch(function(){ btn.disabled = false; if(err) err.hidden = false; });
   });
 })();

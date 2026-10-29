@@ -6,6 +6,11 @@ export default async function handler(req, res) {
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
   const { name, company, email, phone, website } = req.body;
+  // Extras opcionais enviados pelas LPs de segmento (/lp/*)
+  const { role, size, segment, page, utm_source, utm_medium, utm_campaign, gclid, li_fat_id } = req.body;
+  const source = segment ? `LP ${segment}` : 'Landing Page';
+  const utm = [utm_source, utm_medium, utm_campaign].filter(Boolean).join(' / ') || (gclid ? 'Google Ads (gclid)' : li_fat_id ? 'LinkedIn (li_fat_id)' : '');
+  const extras = { role, size, page, utm };
   if (!name || !email) return res.status(400).json({ error: 'Nome e e-mail são obrigatórios.' });
 
   // Anti-bot: honeypot preenchido
@@ -40,7 +45,11 @@ export default async function handler(req, res) {
           email,
           phone: phone || '',
           stage: 'Novo Lead',
-          source: 'Landing Page'
+          source,
+          role: role || '',
+          size: size || '',
+          page: page || '',
+          utm
         })
       });
     }
@@ -53,7 +62,7 @@ export default async function handler(req, res) {
         from: FROM,
         to: [INTERNAL],
         subject: `🟢 Novo Lead — ${name}${company ? ' · ' + company : ''}`,
-        html: buildInternalEmail(name, company, email, phone, now)
+        html: buildInternalEmail(name, company, email, phone, now, source, extras)
       })
     });
 
@@ -81,7 +90,13 @@ export default async function handler(req, res) {
 // ═══════════════════════════════════════════════════════════════════════
 // E-MAIL INTERNO
 // ═══════════════════════════════════════════════════════════════════════
-function buildInternalEmail(name, company, email, phone, timestamp) {
+function buildInternalEmail(name, company, email, phone, timestamp, source = 'Landing Page', extras = {}) {
+  const esc = s => String(s).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+  const extraRows =
+    (extras.role ? row('Cargo', esc(extras.role)) : '') +
+    (extras.size ? row('Porte', esc(extras.size)) : '') +
+    (extras.page ? row('Página', esc(extras.page)) : '') +
+    (extras.utm ? row('Campanha', esc(extras.utm)) : '');
   return `<!DOCTYPE html><html lang="pt-BR"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Novo Lead</title></head>
 <body style="margin:0;padding:0;background:#F4F3F0;font-family:'Inter',Arial,sans-serif">
@@ -106,7 +121,8 @@ function buildInternalEmail(name, company, email, phone, timestamp) {
             ${row('E-mail', `<a href="mailto:${email}" style="color:#008038;text-decoration:none">${email}</a>`)}
             ${row('Telefone / WhatsApp', phone || '—')}
             ${row('Estágio', '<span style="background:#E8F7EE;color:#006B30;padding:3px 10px;border-radius:100px;font-size:12px;font-weight:600">Novo Lead</span>')}
-            ${row('Origem', 'Landing Page')}
+            ${row('Origem', esc(source))}
+            ${extraRows}
           </table>
 
           <div style="margin:28px 0 0;text-align:center">
