@@ -687,3 +687,14 @@ em{font-style:italic;color:var(--accent)}
 .form .form-body .form-err{margin:12px 0 0;padding:10px 14px;border-radius:10px;background:rgba(226,91,91,.12);color:#C23B3B;font-size:13px!important;font-weight:600;text-align:center}
 .t-road .form .form-body .form-err{color:#FF8A8A}
 .form-err[hidden]{display:none}
+
+/* Telas reais da plataforma (substituem os mocks de protocolo e barras) */
+.shot{margin:0;position:relative;z-index:1}
+.shot img{display:block;width:100%;height:auto;filter:drop-shadow(0 26px 40px rgba(14,42,71,.18))}
+.shot figcaption{display:table;margin:14px auto 0;padding:6px 14px;border-radius:999px;background:var(--surface);box-shadow:var(--sh-2),inset 0 0 0 1px var(--line);font-size:12.5px;line-height:1.45;color:var(--ink-2);text-align:center}
+.t-road .shot figcaption{background:rgba(10,30,22,.9);color:#C9D6CF}
+.t-road .shot img{filter:drop-shadow(0 26px 44px rgba(0,0,0,.5))}
+
+/* Evita palavra sozinha na última linha dos parágrafos */
+p,li,.lead,.feat p,.stat p{text-wrap:pretty}
+@media (max-width:1080px){.shot{margin-left:0!important;max-width:100%!important}}

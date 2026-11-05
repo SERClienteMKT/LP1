@@ -64,7 +64,7 @@
       "operatingSystem": "Web, iOS, Android (navegador)",
       "description": "Plataforma SaaS de ouvidoria para universidades, centros universitários e faculdades, com SLA automático, alertas de recorrência por curso e setor, relatórios para a CPA e a avaliação institucional, IA para categorização e respostas, e CES, CSAT e NPS pós-resolução.",
       "audience": { "@type": "BusinessAudience", "audienceType": "Instituições de ensino superior, grupos educacionais e polos EAD" },
-      "featureList": "Formulários com curso, campus, período e polo EAD; SLA automático por tipo de manifestação; Alertas de recorrência por curso e setor; Relatórios para CPA e avaliação institucional; IA para categorização e sugestão de resposta; Protocolo único e acesso por token; Multicampus e polos EAD; CES, CSAT e NPS; Google SSO e Active Directory; API REST; LGPD, ISO 27001 e SOC 2",
+      "featureList": "Formulários com curso, campus, período e polo EAD; SLA automático por tipo de manifestação; Alertas de recorrência por curso e setor; Relatórios para CPA e avaliação institucional; IA para categorização e sugestão de resposta; Protocolo único e acesso por token; Multicampus e polos EAD; CES, CSAT e NPS; API REST; LGPD e login corporativo via Microsoft Active Directory",
       "provider": { "@id": "https://www.sercliente.com/#org" }
     },
     {
@@ -82,7 +82,7 @@
         { "@type": "Question", "name": "Funciona para instituições com vários campi e polos EAD?",
           "acceptedAnswer": { "@type": "Answer", "text": "Sim. Cada campus ou polo opera com autonomia e permissões próprias, e a reitoria ou mantenedora acompanha tudo em um dashboard consolidado." } },
         { "@type": "Question", "name": "O aluno precisa de mais um login?",
-          "acceptedAnswer": { "@type": "Answer", "text": "Não. O aluno recebe um código de protocolo e acompanha a manifestação por link seguro com token de acesso. Para a equipe da instituição, o acesso pode ser feito via Google SSO ou Microsoft Active Directory." } },
+          "acceptedAnswer": { "@type": "Answer", "text": "Não. O aluno recebe um código de protocolo e acompanha a manifestação por link seguro com token de acesso. Para a equipe da instituição, o acesso pode ser feito via login corporativo Microsoft Active Directory." } },
         { "@type": "Question", "name": "Quanto tempo leva para implantar?",
           "acceptedAnswer": { "@type": "Answer", "text": "O acesso à plataforma é liberado em 30 minutos e o onboarding é feito em até três encontros de 1 hora. Integrações com o sistema acadêmico são avaliadas em um levantamento técnico gratuito." } }
       ]
@@ -226,7 +226,7 @@
     <div class="pains">
       <article class="pain rv"><div class="pain-img" style="--img:url('../assets/universidades/dor-1.jpg')" aria-hidden="true"></div><div class="pain-head"><span class="pain-ico"><svg width="22" height="22"><use href="#i-mail"/></svg></span><div><div class="pain-n">1 linha</div><h3>no e-mail de cancelamento</h3></div></div><p>A insatisfação veio em sinais espalhados por vários setores. Sem uma visão única por aluno, curso e tema, ninguém percebe o padrão a tempo.</p></article>
       <article class="pain rv rv-d1"><div class="pain-img" style="--img:url('../assets/universidades/dor-2.jpg')" aria-hidden="true"></div><div class="pain-head"><span class="pain-ico"><svg width="22" height="22"><use href="#i-chart"/></svg></span><div><div class="pain-n">1 vez/ano</div><h3>o relatório da CPA vira mutirão</h3></div></div><p>Os dados da ouvidoria ficam em planilhas e e-mails. Na hora da autoavaliação e da visita do INEP, a equipe corre para consolidar.</p></article>
-      <article class="pain c3 rv rv-d2"><div class="pain-img" style="--img:url('../assets/universidades/dor-3.jpg')" aria-hidden="true"></div><div class="pain-head"><span class="pain-ico"><svg width="22" height="22"><use href="#i-users"/></svg></span><div><div class="pain-n">N campi</div><h3>N jeitos de ouvir o aluno</h3></div></div><p>Cada campus e polo EAD trata manifestações do seu jeito. A reitoria e a mantenedora não comparam unidades com o mesmo critério.</p></article>
+      <article class="pain c3 rv rv-d2"><div class="pain-img" style="--img:url('../assets/universidades/dor-3.jpg')" aria-hidden="true"></div><div class="pain-head"><span class="pain-ico"><svg width="22" height="22"><use href="#i-users"/></svg></span><div><div class="pain-n">Vários campi</div><h3>vários jeitos de ouvir o aluno</h3></div></div><p>Cada campus e polo EAD trata manifestações do seu jeito. A reitoria e a mantenedora não comparam unidades com o mesmo critério.</p></article>
     </div>
   </div>
 </section>
@@ -245,12 +245,12 @@
       <article class="feat rv"><div class="feat-vis" style="--img:url('../assets/universidades/rc-1.jpg')" aria-hidden="true"></div><div class="feat-ico"><svg width="24" height="24"><use href="#i-pin"/></svg></div><h3>Escuta onde o aluno está</h3><p>Link no portal do aluno e no AVA, QR code nos campi e nos polos, além de registro presencial, telefone e e-mail. Tudo na mesma fila.</p><span class="feat-tag">Saber</span></article>
       <article class="feat rv rv-d1"><div class="feat-vis" style="--img:url('../assets/universidades/rc-2.jpg')" aria-hidden="true"></div><div class="feat-ico"><svg width="24" height="24"><use href="#i-cap"/></svg></div><h3>Formulários com curso, campus e período</h3><p>Campos customizados para curso, turno, período, campus e polo EAD. Cada manifestação já chega no contexto acadêmico certo.</p><span class="feat-tag">Customizável</span></article>
       <article class="feat rv rv-d2"><div class="feat-vis" style="--img:url('../assets/universidades/rc-3.jpg')" aria-hidden="true"></div><div class="feat-ico"><svg width="24" height="24"><use href="#i-chart"/></svg></div><h3>Alertas de recorrência</h3><p>Quando um tema cresce em um curso ou setor — estágio, financeiro, professor, infraestrutura — a coordenação é avisada antes que vire evasão.</p><span class="feat-tag">Retenção</span></article>
-      <article class="feat rv"><div class="feat-vis" style="--img:url('../assets/universidades/rc-4.jpg')" aria-hidden="true"></div><div class="feat-ico"><svg width="24" height="24"><use href="#i-ai"/></svg></div><h3>IA que classifica e sugere respostas</h3><p>Categorização automática por setor e tema e sugestões de resposta empáticas e claras para o aluno, revisadas pela sua equipe.</p><span class="feat-tag">Entender</span></article>
+      <article class="feat rv"><div class="feat-vis" style="--img:url('../assets/universidades/rc-4.jpg')" aria-hidden="true"></div><div class="feat-ico"><svg width="24" height="24"><use href="#i-ai"/></svg></div><h3>IA que analisa e sugere resposta</h3><p>Categorização por setor e tema e sugestões de resposta empáticas e claras para o aluno, revisadas pela sua equipe.</p><span class="feat-tag">Entender</span></article>
       <article class="feat rv rv-d1"><div class="feat-vis" style="--img:url('../assets/universidades/rc-5.jpg')" aria-hidden="true"></div><div class="feat-ico"><svg width="24" height="24"><use href="#i-clock"/></svg></div><h3>SLA por tipo de manifestação</h3><p>Prazos diferentes para solicitação acadêmica, financeira, biblioteca, com alertas antes do vencimento para secretaria, financeiro e coordenações.</p><span class="feat-tag">Controle</span></article>
-      <article class="feat rv rv-d2"><div class="feat-vis" style="--img:url('../assets/universidades/rc-6.jpg')" aria-hidden="true"></div><div class="feat-ico"><svg width="24" height="24"><use href="#i-key"/></svg></div><h3>Protocolo único, sem mais um login</h3><p>O aluno acompanha por link seguro com token e código de protocolo. A equipe entra com Google SSO ou Active Directory.</p><span class="feat-tag">Transparência</span></article>
+      <article class="feat rv rv-d2"><div class="feat-vis" style="--img:url('../assets/universidades/rc-6.jpg')" aria-hidden="true"></div><div class="feat-ico"><svg width="24" height="24"><use href="#i-key"/></svg></div><h3>Protocolo único, sem mais um login</h3><p>O aluno acompanha por link seguro com token e código de protocolo. A equipe entra com login corporativo via Microsoft Active Directory.</p><span class="feat-tag">Transparência</span></article>
       <article class="feat rv"><div class="feat-vis" style="--img:url('../assets/universidades/rc-7.jpg')" aria-hidden="true"></div><div class="feat-ico"><svg width="24" height="24"><use href="#i-doc"/></svg></div><h3>Relatórios para CPA e avaliação</h3><p>Histórico, prazos, respostas e ações de melhoria exportáveis em XLS, PPT e BI — prontos para a autoavaliação e a avaliação institucional.</p><span class="feat-tag">MEC · INEP</span></article>
       <article class="feat rv rv-d1"><div class="feat-vis" style="--img:url('../assets/universidades/rc-8.jpg');width:46%" aria-hidden="true"></div><div class="feat-ico"><svg width="24" height="24"><use href="#i-building"/></svg></div><h3>Multicampus e polos EAD</h3><p>Cada unidade com autonomia e permissões próprias: reitoria e mantenedora com dashboard consolidado e comparável.</p><span class="feat-tag">Escala</span></article>
-      <article class="feat rv rv-d2"><div class="feat-vis" style="--img:url('../assets/universidades/rc-9.jpg')" aria-hidden="true"></div><div class="feat-ico"><svg width="24" height="24"><use href="#i-shield"/></svg></div><h3>CES, CSAT e NPS do aluno</h3><p>Pesquisa automática após o encerramento. O CES mede o esforço do aluno para resolver um problema — um dos sinais mais claros de risco de evasão.</p><span class="feat-tag">Experiência</span></article>
+      <article class="feat rv rv-d2"><div class="feat-vis" style="--img:url('../assets/universidades/rc-9.jpg')" aria-hidden="true"></div><div class="feat-ico"><svg width="24" height="24"><use href="#i-shield"/></svg></div><h3>CES, CSAT e NPS do aluno</h3><p>Coleta da percepção do aluno durante o atendimento. O CES mede o esforço do aluno para resolver um problema — um dos sinais mais claros de risco de evasão.</p><span class="feat-tag">Experiência</span></article>
     </div>
   </div>
 </section>
@@ -335,7 +335,7 @@
         <h3>Entender</h3>
         <p>Analisar cada manifestação no contexto da vida acadêmica, cruzando dados e histórico para identificar a causa-raiz e gerar informações que apoiem decisões estratégicas da instituição.</p>
         <ul class="band-list">
-          <li><i style="color:#12805E"><svg width="26" height="26"><use href="#i-chart"/></svg></i>Categorização automática por tema (ensino, infraestrutura, financeiro, atendimento etc.)</li>
+          <li><i style="color:#12805E"><svg width="26" height="26"><use href="#i-chart"/></svg></i>Categorização por tema (ensino, infraestrutura, financeiro, atendimento etc.)</li>
           <li><i style="color:#12805E"><svg width="26" height="26"><use href="#i-share"/></svg></i>Integração com sistemas acadêmicos e administrativos</li>
           <li><i style="color:#12805E"><svg width="26" height="26"><use href="#i-doc"/></svg></i>Dashboard com visibilidade por campus, curso e período</li>
           <li><i style="color:#12805E"><svg width="26" height="26"><use href="#i-search"/></svg></i>Insights por IA para identificação de padrões e recorrências</li>
@@ -356,7 +356,7 @@
           <li><i><svg width="26" height="26"><use href="#i-users"/></svg></i>Encaminhamento inteligente para a área responsável</li>
           <li><i><svg width="26" height="26"><use href="#i-doc"/></svg></i>Acompanhamento completo por protocolo</li>
           <li><i><svg width="26" height="26"><use href="#i-clock"/></svg></i>Controle de prazos conforme exigências do MEC, INEP e CPA</li>
-          <li><i><svg width="26" height="26"><use href="#i-chat"/></svg></i>Resposta padronizada e transparente ao usuário</li>
+          <li><i><svg width="26" height="26"><use href="#i-chat"/></svg></i>Resposta customizada e transparente ao usuário</li>
           <li><i><svg width="26" height="26"><use href="#i-shield"/></svg></i>Relatórios para auditoria e avaliação institucional</li>
         </ul>
       </div>
@@ -380,33 +380,13 @@
           <li><span><strong>Evidências prontas</strong> para MEC, INEP e CPA.</span></li>
         </ul>
       </div>
-      <div class="panel rv rv-d1" style="max-width:440px">
-        <div class="panel-h"><span>Visita INEP · Preparação</span><span class="ok" style="text-transform:none;letter-spacing:0;font-size:13px"><i></i>Em dia</span></div>
-        <div class="tl">
-          <div class="tl-item"><span class="tl-dot"><svg width="13" height="13"><use href="#i-check"/></svg></span><div><b>Manifestações documentadas</b><span>327 relatos com evidências e respostas</span></div></div>
-          <div class="tl-item"><span class="tl-dot"><svg width="13" height="13"><use href="#i-check"/></svg></span><div><b>Prazos atendidos</b><span>94% dentro do SLA definido</span></div></div>
-          <div class="tl-item"><span class="tl-dot"><svg width="13" height="13"><use href="#i-check"/></svg></span><div><b>Ações de melhoria registradas</b><span>12 planos de ação vinculados</span></div></div>
-          <div class="tl-item"><span class="tl-dot"><svg width="13" height="13"><use href="#i-check"/></svg></span><div><b>Evidências organizadas</b><span>Prontas para anexar ao relatório da CPA e INEP</span></div></div>
-        </div>
-        <a class="panel-link" href="#demo"><svg width="22" height="22"><use href="#i-doc"/></svg><span><b>Relatório para o INEP</b>Dados consolidados e auditáveis</span><svg width="12" height="12"><use href="#i-chev"/></svg></a>
-      </div>
+      <figure class="shot rv rv-d1" style="max-width:520px"><img src="../assets/plataforma/feedback.png" width="681" height="434" loading="lazy" alt="Tela da plataforma S.E.R. Cliente com o detalhe de uma manifestação de aluno: protocolo, datas, prazo de resposta, local e avaliação"><figcaption>Detalhe da manifestação na plataforma: protocolo, prazos, responsável e avaliação.</figcaption></figure>
     </div>
 
     <div class="split rev" style="margin-top:110px">
       <div class="rv" style="position:relative">
         <div class="proof-photo left" style="--img:url('../assets/universidades/gestao.jpg');position:absolute;left:-180px;top:-60px;bottom:-60px;width:520px;height:auto;-webkit-mask:linear-gradient(270deg,transparent,#000 45%);mask:linear-gradient(270deg,transparent,#000 45%)" aria-hidden="true"></div>
-        <div class="panel" style="position:relative;margin-left:60px">
-          <div class="panel-h"><span>Manifestações por setor · Semestre</span><span class="pick" style="font-size:13px;letter-spacing:0">2024.2 ⌄</span></div>
-          <div class="bars">
-            <div class="bar-row"><span>Ensino</span><div class="bar-track"><div class="bar-fill" style="--w:76%"></div></div><b>612</b></div>
-            <div class="bar-row"><span>Infraestrutura</span><div class="bar-track"><div class="bar-fill" style="--w:62%"></div></div><b>481</b></div>
-            <div class="bar-row"><span>Secretaria Acadêmica</span><div class="bar-track"><div class="bar-fill" style="--w:46%"></div></div><b>357</b></div>
-            <div class="bar-row"><span>Coordenação de Curso</span><div class="bar-track"><div class="bar-fill" style="--w:35%"></div></div><b>254</b></div>
-            <div class="bar-row"><span>Biblioteca</span><div class="bar-track"><div class="bar-fill" style="--w:28%"></div></div><b>203</b></div>
-            <div class="bar-row"><span>Estágios</span><div class="bar-track"><div class="bar-fill" style="--w:20%"></div></div><b>138</b></div>
-          </div>
-          <div class="kpi3"><div><b>1.248</b>Manifestações<small>↗ +18%</small></div><div><b class="g">92%</b>No prazo<small>↗ +5 p.p.</small></div><div><b>4,6</b>Satisfação média<small>↗ +0,7</small></div></div>
-        </div>
+        <figure class="shot" style="margin-left:60px"><img src="../assets/plataforma/dashboard.png" width="681" height="425" loading="lazy" alt="Dashboard da plataforma S.E.R. Cliente com volume de manifestações por período e distribuição por status"><figcaption>Dashboard da plataforma: volume por período e distribuição por status.</figcaption></figure>
       </div>
       <div class="rv rv-d1">
         <p class="eyebrow">Gestão acadêmica</p>
@@ -440,7 +420,7 @@
           <tr><th scope="row"><span><i><svg width="20" height="20"><use href="#i-doc"/></svg></i>SLA automático por tipo de manifestação</span></th><td><span class="n">Não</span></td><td><span class="p">Varia</span></td><td><span class="p">Parcial</span></td><td class="us"><span class="y">Sim, com alertas e regras por tipo</span></td></tr>
           <tr><th scope="row"><span><i><svg width="20" height="20"><use href="#i-trend"/></svg></i>Alertas de recorrência por curso e campus</span></th><td><span class="n">Não</span></td><td><span class="n">Raramente</span></td><td><span class="n">Não</span></td><td class="us"><span class="y">Nativo, com análise de tendências</span></td></tr>
           <tr><th scope="row"><span><i><svg width="20" height="20"><use href="#i-chart"/></svg></i>Relatórios para CPA e avaliação (MEC e INEP)</span></th><td><span class="n">Manual</span></td><td><span class="p">Parcial</span></td><td><span class="n">Manual</span></td><td class="us"><span class="y">1 clique, com dados consolidados e auditáveis</span></td></tr>
-          <tr><th scope="row"><span><i><svg width="20" height="20"><use href="#i-ai"/></svg></i>IA para categorizar e sugerir respostas</span></th><td><span class="n">Não</span></td><td><span class="n">Raramente</span></td><td><span class="p">Genérica</span></td><td class="us"><span class="y">Integrada e treinada para o contexto acadêmico</span></td></tr>
+          <tr><th scope="row"><span><i><svg width="20" height="20"><use href="#i-ai"/></svg></i>IA que analisa e sugere resposta</span></th><td><span class="n">Não</span></td><td><span class="n">Raramente</span></td><td><span class="p">Genérica</span></td><td class="us"><span class="y">Integrada e treinada para o contexto acadêmico</span></td></tr>
           <tr><th scope="row"><span><i><svg width="20" height="20"><use href="#i-shield"/></svg></i>CES, CSAT e NPS pós-resolução</span></th><td><span class="n">Não</span></td><td><span class="n">Raramente</span></td><td><span class="p">Parcial</span></td><td class="us"><span class="y">Automático e por unidade (curso, campus, polo)</span></td></tr>
           <tr><th scope="row"><span><i><svg width="20" height="20"><use href="#i-gear"/></svg></i>Metodologia de Experiência do Cliente e Qualidade</span></th><td><span class="n">Não</span></td><td><span class="n">Não</span></td><td><span class="n">Não</span></td><td class="us"><span class="y">Método S.E.R. com CX e Qualidade Total</span></td></tr>
           <tr><th scope="row"><span><i><svg width="20" height="20"><use href="#i-bank"/></svg></i>Visão multicampus e EAD</span></th><td><span class="n">Manual</span></td><td><span class="p">Varia</span></td><td><span class="p">Parcial</span></td><td class="us"><span class="y">Nativa, com dashboards por campus e modalidade</span></td></tr>
@@ -491,10 +471,10 @@
       <div class="rv">
         <span class="role"><svg width="16" height="16"><use href="#i-user"/></svg>Fundadora &amp; CEO</span>
         <p class="f-name">Daniela Fantinati</p>
-        <p class="f-tag">Mais de <b>20 anos</b> conectando estratégia, cultura e resultados em Experiência do Cliente no <b>setor de educação</b>.</p>
+        <p class="f-tag">Mais de <b>20 anos</b> conectando estratégia, cultura e resultados em Experiência do Cliente.</p>
         <ul class="creds">
-          <li><span class="ci"><svg width="24" height="24"><use href="#i-cap"/></svg></span><span><strong>Comunicação Social · PUC-Campinas</strong>+ CX Strategy · Columbia Business School</span></li>
-          <li><span class="ci"><svg width="24" height="24"><use href="#i-bank"/></svg></span><span><strong>Strategic Marketing Management</strong>pela Ohio University</span></li>
+          <li><span class="ci"><svg width="24" height="24"><use href="#i-cap"/></svg></span><span><strong>Customer Experience Strategy</strong>pela Columbia Business School</span></li>
+          <li><span class="ci"><svg width="24" height="24"><use href="#i-bank"/></svg></span><span><strong>Strategic Marketing and Business Management</strong>pela Ohio University</span></li>
           <li><span class="ci"><svg width="24" height="24"><use href="#i-book"/></svg></span><span><strong>Especialista em Ouvidoria, Experiência do Cliente e Qualidade em Serviços</strong>com foco em instituições de ensino e setor público.</span></li>
           <li><span class="ci"><svg width="24" height="24"><use href="#i-plane"/></svg></span><span><strong>Trajetória em educação, governo e aeroportos</strong>liderando projetos de ouvidoria, sucesso do aluno e estratégias estruturadas de CX.</span></li>
           <li><span class="ci"><svg width="24" height="24"><use href="#i-book"/></svg></span><span><strong>Autora e coautora de livros</strong>Experiência do Cliente na Teoria e na Prática · Mulheres na Aviação · Pérolas de Gestão</span></li>
@@ -503,7 +483,7 @@
       <div class="f-photo rv rv-d1">
         <div class="f-frame" aria-hidden="true"></div>
         <picture><source srcset="../assets/dani/daniela-recorte.webp" type="image/webp"><img src="../assets/dani/daniela-recorte.png" width="900" height="1320" loading="lazy" alt="Daniela Fantinati, fundadora e CEO da S.E.R. Cliente"></picture>
-        <div class="quote">“A ouvidoria nas universidades é uma ponte entre o aluno, a instituição e a melhoria contínua. Quando a escuta é estruturada, vira evidência, fortalece a CPA, apoia decisões e transforma a experiência acadêmica.”<hr><small><b>Daniela Fantinati</b>Especialista em Experiência do Cliente e Ouvidoria no setor de educação</small></div>
+        <div class="quote">“A ouvidoria nas universidades é uma ponte entre o aluno, a instituição e a melhoria contínua. Quando a escuta é estruturada, vira evidência, fortalece a CPA, apoia decisões e transforma a experiência acadêmica.”<hr><small><b>Daniela Fantinati</b>Especialista em Experiência do Cliente e Ouvidoria</small></div>
       </div>
     </div>
   </div>
@@ -537,7 +517,7 @@
       <details><summary><span class="q-ico"><svg width="20" height="20"><use href="#i-users"/></svg></span><span class="q">Como a ouvidoria ajuda a reduzir a evasão de alunos?</span></summary><div class="ans">Muitos alunos manifestam insatisfação antes de cancelar a matrícula. A S.E.R. Cliente categoriza as manifestações por curso, campus e tema, emite alertas de recorrência e mede o esforço do aluno (CES) para resolver problemas, permitindo que a coordenação aja antes que a insatisfação vire evasão.</div></details>
       <details><summary><span class="q-ico"><svg width="20" height="20"><use href="#i-chart"/></svg></span><span class="q">Os dados da ouvidoria podem ser usados pela CPA?</span></summary><div class="ans">Sim. Os relatórios podem ser filtrados por período, curso, campus, setor e tipo de manifestação e exportados em xls, ppt ou BI, prontos para compor o relatório de autoavaliação da CPA.</div></details>
       <details><summary><span class="q-ico"><svg width="20" height="20"><use href="#i-building"/></svg></span><span class="q">Funciona para instituições com vários campi e polos EAD?</span></summary><div class="ans">Sim. Cada campus ou polo opera com autonomia e permissões próprias, e a reitoria ou mantenedora acompanha tudo em um dashboard consolidado.</div></details>
-      <details><summary><span class="q-ico"><svg width="20" height="20"><use href="#i-lock"/></svg></span><span class="q">O aluno precisa de mais um login?</span></summary><div class="ans">Não. O aluno recebe um código de protocolo e acompanha a manifestação por link seguro com token de acesso. Para a equipe da instituição, o acesso pode ser feito via Google SSO ou Microsoft Active Directory.</div></details>
+      <details><summary><span class="q-ico"><svg width="20" height="20"><use href="#i-lock"/></svg></span><span class="q">O aluno precisa de mais um login?</span></summary><div class="ans">Não. O aluno recebe um código de protocolo e acompanha a manifestação por link seguro com token de acesso. Para a equipe da instituição, o acesso pode ser feito via login corporativo Microsoft Active Directory.</div></details>
       <details><summary><span class="q-ico"><svg width="20" height="20"><use href="#i-clock"/></svg></span><span class="q">Quanto tempo leva para implantar?</span></summary><div class="ans">O acesso à plataforma é liberado em <strong>30 minutos</strong> e o onboarding é feito em até três encontros de 1 hora. Integrações com o sistema acadêmico são avaliadas em um levantamento técnico gratuito.</div></details>
     </div>
   </div>
@@ -596,7 +576,7 @@
   <div class="wrap">
     <h2 class="h2" id="outros" style="font-size:26px">Ouvidoria para outros segmentos</h2>
     <div class="others">
-      <a class="other rv" href="/lp/hospitalar/"><small>Saúde</small><b>Ouvidoria hospitalar</b><span>Evidências para ONA e JCI, SLA por criticidade e NPS do paciente.</span></a>
+      <a class="other rv" href="/lp/saude/"><small>Saúde</small><b>Ouvidoria para o setor de saúde</b><span>Hospitais, clínicas e operadoras: evidências para ONA, JCI e ANS e NPS do paciente.</span></a>
       <a class="other rv rv-d1" href="/lp/rodovias/"><small>Infraestrutura</small><b>Ouvidoria para concessionárias de rodovias</b><span>SLA, rastreabilidade e relatórios para ANTT e agências estaduais.</span></a>
       <a class="other rv rv-d2" href="/"><small>Plataforma</small><b>Conheça a S.E.R. Cliente</b><span>Gestão de feedbacks da escuta à resolução.</span></a>
     </div>
@@ -609,7 +589,7 @@
     <div class="foot-grid">
       <a class="logo" href="/" aria-label="S.E.R. Cliente"><img src="../assets/brand/ser-cliente-logo-branco.png" width="242" height="180" alt="S.E.R. Cliente" loading="lazy"></a>
       <nav aria-label="Rodapé">
-        <a href="/lp/hospitalar/">Ouvidoria hospitalar</a>
+        <a href="/lp/saude/">Ouvidoria para saúde</a>
         <a href="/lp/rodovias/">Ouvidoria para rodovias</a>
         <a href="/lp/universidades/">Ouvidoria para universidades</a>
         <a href="#metodo">Método S.E.R.</a>
