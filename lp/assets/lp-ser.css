@@ -212,6 +212,7 @@ em{font-style:italic;color:var(--accent)}
 .stat-n{font-size:32px;font-weight:800;line-height:1;letter-spacing:-.02em}
 .stat h3{font-size:15.5px;font-weight:800;margin-top:4px}
 .stat p{font-size:14px;color:var(--ink-2);line-height:1.6}
+.stat p.stat-sol{margin-top:14px;font-weight:800;color:var(--ink)}
 .stat-go{position:absolute;top:24px;right:22px;width:30px;height:30px;border-radius:50%;display:grid;place-items:center;color:var(--accent-2);box-shadow:inset 0 0 0 1.5px var(--line);transition:background .3s,color .3s,transform .4s var(--spring)}
 .stat:hover .stat-go{background:var(--accent);color:#fff;transform:rotate(45deg)}
 
